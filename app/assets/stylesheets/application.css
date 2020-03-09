@@ -1,0 +1,27 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require css/bootstrap.css
+ *= require css/magnific-popup.min.css
+ *= require css/font-awesome.css
+ *= require css/jquery.fancybox.min.css
+ *= require css/themify-icons.css
+ *= require css/niceselect.css
+ *= require css/animate.css
+ *= require css/flex-slider.min.css
+ *= require css/owl-carousel.css
+ *= require css/slicknav.min.css
+ *= require css/reset.css
+ *= require style.css
+ *= require css/responsive.css
+ *= require_self
+ */
