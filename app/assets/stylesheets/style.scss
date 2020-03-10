@@ -35,12 +35,7 @@ Version:1.0
 20. 404 Error CSS
 21. Footer CSS
 ========================================*/
-body{
-	overflow-y: hidden;
-}
-.scroll {
-	overflow: auto;
-}
+
 .color-plate {
 	position: fixed;
 	display: block;
@@ -3201,7 +3196,7 @@ body{
 	margin-bottom: 25px;
 }
 .shop.checkout .form .form-group label{
-	margin-right: 20px;
+
 	color:#333;
 	position:relative;
 }
