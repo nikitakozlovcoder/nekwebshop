@@ -18,3 +18,18 @@
 //= require onepage-nav.min.js
 //= require easing.js
 //= require active.js
+
+let links = document.querySelectorAll('.main-category > li');
+let menu = document.querySelector('.main-category');
+
+links.forEach((el)=>{
+
+    el.addEventListener('mouseover', (e)=>{
+        menu.style.overflow='visible';
+    });
+
+    el.addEventListener('mouseout', (e)=>{
+            menu.style.overflow='hidden';
+    });
+
+});

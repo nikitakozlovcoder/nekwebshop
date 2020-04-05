@@ -1,6 +1,6 @@
 Rails.application.configure do
   #config.assets.css_compressor = :yui
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(:harmony => true)
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
