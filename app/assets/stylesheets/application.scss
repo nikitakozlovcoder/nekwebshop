@@ -26,19 +26,21 @@
  *= require css/responsive.css
  *= require_self
  */
+
+.main-category{
+  transition: all 0.5s ease;
+  overflow: hidden;
+  max-height: 0;
+}
+.all-category:hover .main-category{
+  max-height: 3000px;
+}
 .sticky .main-category{
   display: none !important;
 }
 .sticky .all-category:hover .main-category{
   display: block !important;
-}
-
-.header.shop .main-category{
-	display: none !important;
-}
-
-.header.shop .all-category:hover .main-category{
-	display: block !important;
+  height: auto;
 }
 
 .sub-category{
