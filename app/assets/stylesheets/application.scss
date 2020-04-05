@@ -32,6 +32,15 @@
 .sticky .all-category:hover .main-category{
   display: block !important;
 }
+
+.header.shop .main-category{
+	display: none !important;
+}
+
+.header.shop .all-category:hover .main-category{
+	display: block !important;
+}
+
 .sub-category{
   display: none !important;
 }
