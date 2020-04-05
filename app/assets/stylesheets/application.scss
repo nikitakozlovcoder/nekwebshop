@@ -35,13 +35,7 @@
 .all-category:hover .main-category{
   max-height: 3000px;
 }
-.sticky .main-category{
-  display: none !important;
-}
-.sticky .all-category:hover .main-category{
-  display: block !important;
-  height: auto;
-}
+
 
 .sub-category{
   display: none !important;
