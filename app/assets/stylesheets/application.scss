@@ -45,6 +45,13 @@ $color-border: rgba(175, 175, 175, 0.86);
   margin-left: auto;
 
 }
+body{
+  display: flex;
+  flex-direction: column;
+}
+.footer{
+  margin-top: auto;
+}
 .main-category{
   transition: all 0.5s ease;
   overflow: hidden;
