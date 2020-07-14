@@ -1,4 +1,5 @@
-
+$color-accent: #f7941d;
+$color-border: rgba(175, 175, 175, 0.86);
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -24,15 +25,35 @@
  *= require css/reset.css
  *= require style.css
  *= require css/responsive.css
- *= require_self
  *= require users.css
+ *= require_self
  */
+*{
+  box-sizing: border-box;
+}
+.container{
+  max-width: 1180px;
+}
+.fix-bug{
+  height: 0;
+}
+
+.fix-bug-active{
+  height: 64px;
+}
 .wrap{
   padding: 15px;
   max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
 
+}
+body{
+  display: flex;
+  flex-direction: column;
+}
+.footer{
+  margin-top: auto;
 }
 .main-category{
   transition: all 0.5s ease;
