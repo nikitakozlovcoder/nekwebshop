@@ -47,12 +47,16 @@ Version:1.0
 		
 		/*====================================
 		03. Sticky Header JS
-		======================================*/ 
+		======================================*/
+		let fix_bug = document.querySelector('.fix-bug');
+
 		jQuery(window).on('scroll', function() {
 			if ($(this).scrollTop() > 200) {
 				$('.header').addClass("sticky");
+				fix_bug.classList.add('fix-bug-active');
 			} else {
 				$('.header').removeClass("sticky");
+				fix_bug.classList.remove('fix-bug-active');
 			}
 		});
 		
