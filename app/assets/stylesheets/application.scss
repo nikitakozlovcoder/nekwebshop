@@ -25,11 +25,14 @@ $color-border: rgba(175, 175, 175, 0.86);
  *= require css/reset.css
  *= require style.css
  *= require css/responsive.css
- *= require_self
  *= require users.css
+ *= require_self
  */
 *{
   box-sizing: border-box;
+}
+.container{
+  max-width: 1180px;
 }
 .fix-bug{
   height: 0;
