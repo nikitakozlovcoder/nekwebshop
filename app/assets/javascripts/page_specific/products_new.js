@@ -10,6 +10,18 @@ if (body.classList.contains('products') && body.classList.contains('new'))
 			document.getElementById("developer_input").style.display = "none";
 		}
 	}
+
+
+	function preview_image(event)
+	{
+		var reader = new FileReader();
+		reader.onload = function()
+		{
+		var output = document.getElementById('output_image');
+		output.src = reader.result;
+		}
+		reader.readAsDataURL(event.target.files[0]);
+	}
     //TODO preview image
     //TODO generate form filed from json
 

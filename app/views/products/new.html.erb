@@ -19,11 +19,16 @@
                     <input name="name" type="text" placeholder="">
                   </div>
                 </div>
-                <div class="col-lg-6 col-12">
-                  <div class="form-group button ">
-                    <input type="file" id="myFile" name="filename" class="btn add_photo_btn"></input>
-                  </div>
-                </div>
+                <div class="img-preloader">
+					<div class="label-container">
+					<label for="upload-photo" id = "img-label">Load image...</label>
+					<input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)">
+					</div>
+					<div class = "img-wrapper">
+					<img id="output_image" src="https://via.placeholder.com/225x150"/>
+					</div>
+				</div>
+
                 <div class="col-12">
                   <div class="form-group">
                     <label>Product Category<span>*</span></label>
