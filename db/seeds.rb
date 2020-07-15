@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Category.delete_all
+Maker.delete_all
 
 Category.add 'Смартфоны', [
     {:name=> "Диагональ", :type => "Number", :id=>1},
@@ -13,3 +14,13 @@ Category.add 'Смартфоны', [
     {:name=>"Описание", :type=>"LongText", :id=>3},
     {:name=>"Чтото", :type=>"Text", :id=>4},
 ]
+
+makers = [
+    Maker.create(name: 'Другое'),
+    Maker.create(name: 'Apple'),
+    Maker.create(name: 'Samsung'),
+    Maker.create(name: 'Xiaomi'),
+
+]
+
+Category.where(name:"Смартфоны").first.makers << makers

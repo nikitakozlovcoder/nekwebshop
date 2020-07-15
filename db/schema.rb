@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_115025) do
+ActiveRecord::Schema.define(version: 2020_07_15_153609) do
 
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "data"
+  end
+
+  create_table "categories_makers", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "maker_id"
+    t.index ["category_id"], name: "index_categories_makers_on_category_id"
+    t.index ["maker_id"], name: "index_categories_makers_on_maker_id"
+  end
+
+  create_table "makers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -27,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_115025) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "category_id"
+    t.integer "maker_id"
   end
 
 end
