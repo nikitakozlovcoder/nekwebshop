@@ -44,8 +44,28 @@
                     <input name="email" type="email" placeholder="">
                   </div>
                 </div>
+               <div class="col-12">
+                  <div class="form-group">
+                    <label>Developer<span>*</span></label>
+                    <p>
+                    <select size="3" onchange="ListCheck(this)">
+    
+    <option selected value="Apple">Apple</option>
+    <option value="Samsung">Samsung</option>
+    <option value="Xiaomi">Xiaomi</option>
+    <option value="Another">Another</option>
+   </select>
+</p>
+                  </div>
+                </div>
                
-               
+               <div id = "developer_input" class="col-12" style = "display:none;">
+                  <div class="form-group">
+                    <label>Your developer name<span>*</span></label>
+                    <input id = "developer_input_inp"name="email" type="email" placeholder="">
+                  </div>
+                </div>
+
                 <div class="col-12">
                   <div class="form-group button">
                     <button type="submit" class="btn ">Send Message</button>
