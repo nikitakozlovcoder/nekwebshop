@@ -22,10 +22,7 @@ if (body.classList.contains('products') && body.classList.contains('new'))
 		}
 		reader.readAsDataURL(event.target.files[0]);
 	}
-    //TODO preview image
     //TODO generate form filed from json
-
-
 
 
 
