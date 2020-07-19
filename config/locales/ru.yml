@@ -1,0 +1,9 @@
+ru:
+  hello: 'привет'
+  activerecord:
+    errors:
+      models:
+        product:
+          attributes:
+            title:
+              title_blank: 'название не может быть пустым'
