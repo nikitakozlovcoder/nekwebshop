@@ -1,3 +1,4 @@
+
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
@@ -5,13 +6,12 @@
 
 .seller_profile_main{
   display: flex;
-  width: 70%;
 }
 .avatar_col{
   max-width: 200px;
 }
 .seller_table{
-  margin-left: 20px;
+  margin-left: 30px;
   width: 100%;
 }
 .seller_row{
@@ -19,12 +19,10 @@
 
 }
 .seller_cell{
-  font-family: "Arial", sans-serif;
-  font-size: 14px;
   border-bottom: 1px solid $color-border;
   border-right: 1px solid $color-border;
   padding: 15px;
-  width: 30%;
+  width: calc((100% - 30px)/2);
 }
 .seller_row-idx{
   width: 30px;
@@ -54,20 +52,24 @@
   .seller_table{
     margin: 0;
   }
+
 }
 @media only screen and (min-width: 601px) {
+
   .seller_row:last-child>.seller_cell{
-    border-bottom: 0;
+    border-bottom: 0px;
   }
+
 }
 
 @media only screen and (max-width: 600px) {
+
   .seller_row{
     flex-direction: column;
     box-shadow: 9px 10px 9px $color-border;
   }
   .seller_cell:last-child{
-    border: 0;
+    border: 0px;
   }
   .seller_cell{
     width: 100%;
@@ -75,7 +77,7 @@
   }
   .seller_row-idx{
     margin-top: 10px;
-    border-bottom: 0;
+    border-bottom: 0px;
     width: 100%;
   }
   .seller_row-idx-box{
@@ -83,3 +85,4 @@
   }
 
 }
+

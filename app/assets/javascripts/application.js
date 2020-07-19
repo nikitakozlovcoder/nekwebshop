@@ -18,6 +18,7 @@
 //= require onepage-nav.min.js
 //= require easing.js
 //= require active.js
+//= require page_specific/products_new.js
 
 let links = document.querySelectorAll('.main-category > li');
 let menu = document.querySelector('.main-category');
