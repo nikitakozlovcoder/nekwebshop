@@ -1,4 +1,93 @@
 <%= render partial: './header.html.erb' %>
 
 
-<%= render partial: './footer.html.erb' %>
+<section id="contact-us" class="contact-us section">
+  <div class="container">
+    <div class="contact-head">
+      <div class="row">
+        <div class = "add_product_section">
+          <div class="form-main">
+            <div class="title">
+
+              
+
+              <h3>Add new product</h3>
+            </div>
+            <form class="form" method="post" action="">
+              <div class="row form_row">
+                <div class="col-lg-6 col-12">
+                  <div class="form-group">
+                    <label>Product Name<span>*</span></label>
+                    <input name="name" type="text" placeholder="">
+                  </div>
+                  <div class="img-preloader">
+                    <div class="label-container">
+                      <label for="upload-photo" id = "img-label" class = "btn">Load image...</label>
+                      <input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)" name="main_photo">
+                    </div>
+                    <div class = "img-wrapper">
+                      <img id="output_image" src="" style="display: none"/>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-12 col-lg-6">
+                  <div class="form-group">
+                    <label>Product Category<span>*</span></label>
+                    <p>
+                        <select required class="category_select" onchange="CategoryCheck(this)">
+                          <option value="" disabled selected value>-------</option>
+                          <% @categories.each do |el| %>
+                            <option value="<%= el.id %>"><%= el.name %></option>
+                          <% end %>
+
+                        </select>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <div class="form-group">
+                    <label>Product Price<span>*</span></label>
+                    <input name="price" type="number" step="0.01" placeholder="">
+                  </div>
+                </div>
+               <div class="col-12">
+                  <div class="form-group form-group_dev" style="display: none">
+                    <label>Developer<span>*</span></label>
+                      <p>
+                        <select  onchange="ListCheck(this)" name="maker" class="form-group_dev_select">
+
+                        </select>
+                    </p>
+                  </div>
+                </div>
+
+               
+
+               <div id = "developer_input" class="col-12" style = "display:none;">
+                  <div class="form-group">
+                    <label>Your developer name<span>*</span></label>
+                    <input id = "developer_input_inp" name="custom_maker" type="text" placeholder="">
+                  </div>
+                </div>
+                <div class="col-12 generated_fields">
+
+                </div>
+                <div class="col-12">
+                  <div class="form-group button">
+                    <button type="submit" class="btn ">Send Message</button>
+                  </div>
+                </div>
+
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
