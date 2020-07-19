@@ -5,12 +5,13 @@
 
 .seller_profile_main{
   display: flex;
+  width: 70%;
 }
 .avatar_col{
   max-width: 200px;
 }
 .seller_table{
-  margin-left: 30px;
+  margin-left: 20px;
   width: 100%;
 }
 .seller_row{
@@ -18,10 +19,12 @@
 
 }
 .seller_cell{
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
   border-bottom: 1px solid $color-border;
   border-right: 1px solid $color-border;
   padding: 15px;
-  width: calc((100% - 30px)/2);
+  width: 30%;
 }
 .seller_row-idx{
   width: 30px;
@@ -51,24 +54,20 @@
   .seller_table{
     margin: 0;
   }
-
 }
 @media only screen and (min-width: 601px) {
-
   .seller_row:last-child>.seller_cell{
-    border-bottom: 0px;
+    border-bottom: 0;
   }
-
 }
 
 @media only screen and (max-width: 600px) {
-
   .seller_row{
     flex-direction: column;
     box-shadow: 9px 10px 9px $color-border;
   }
   .seller_cell:last-child{
-    border: 0px;
+    border: 0;
   }
   .seller_cell{
     width: 100%;
@@ -76,7 +75,7 @@
   }
   .seller_row-idx{
     margin-top: 10px;
-    border-bottom: 0px;
+    border-bottom: 0;
     width: 100%;
   }
   .seller_row-idx-box{
