@@ -19,10 +19,10 @@ Category.add 'Телевизоры', [
     {:name=> "Диагональ", :type => "Number", :id=>1},
     {:name=>"Изображения", :type=>"Images", :id=>2},
     {:name=>"Описание", :type=>"LongText", :id=>3},
-    {:name=>"Количетсво цветов", :type=>"Number", :id=>4},
+    {:name=>"Количество цветов", :type=>"Number", :id=>4},
     {:name=>"Умное ТВ", :type=>"Bool", :id=>5},
 ]
-
+another = Maker.create(name: 'Другое')
 makers = [
 
     Maker.create(name: 'Apple'),
@@ -32,3 +32,8 @@ makers = [
 ]
 
 Category.where(name:"Смартфоны").first.makers << makers
+Category.where(name:"Смартфоны").first.makers << another
+Category.where(name:"Телевизоры").first.makers << makers[1]
+Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Sony')
+Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Polar')
+Category.where(name:"Телевизоры").first.makers <<  another

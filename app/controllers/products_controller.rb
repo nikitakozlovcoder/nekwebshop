@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   # add new product
   def new
-
+    @categories = Category.all
   end
   # TODO add action for  viewing single product
 end

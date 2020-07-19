@@ -110,7 +110,7 @@ body{
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
-padding-left: 15px;
+
 }
 .img-wrapper{
 height: 150px;
@@ -138,4 +138,13 @@ max-height:150px;
 } 
 .form-group .nice-select{
   padding-top: 5px;
+}
+
+.form_row{
+  margin-left: 0;
+  margin-right: 0;
+}
+.title{
+  padding-left: 5px;
+  padding-right: 5px;
 }
