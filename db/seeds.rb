@@ -12,11 +12,19 @@ Category.add 'Смартфоны', [
     {:name=> "Диагональ", :type => "Number", :id=>1},
     {:name=>"Изображения", :type=>"Images", :id=>2},
     {:name=>"Описание", :type=>"LongText", :id=>3},
-    {:name=>"Чтото", :type=>"Text", :id=>4},
+    {:name=>"Чтото", :type=>"Text", :id=>4}
+]
+
+Category.add 'Телевизоры', [
+    {:name=> "Диагональ", :type => "Number", :id=>1},
+    {:name=>"Изображения", :type=>"Images", :id=>2},
+    {:name=>"Описание", :type=>"LongText", :id=>3},
+    {:name=>"Количетсво цветов", :type=>"Number", :id=>4},
+    {:name=>"Умное ТВ", :type=>"Bool", :id=>5},
 ]
 
 makers = [
-    Maker.create(name: 'Другое'),
+
     Maker.create(name: 'Apple'),
     Maker.create(name: 'Samsung'),
     Maker.create(name: 'Xiaomi'),
