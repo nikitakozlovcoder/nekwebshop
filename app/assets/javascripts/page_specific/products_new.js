@@ -35,7 +35,7 @@ if (body.classList.contains('products') && body.classList.contains('new'))
 			if (el.type == "Number")
 			{
 				type = "number";
-				text_to_add=`<div class="form-group"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" required> </div>`;
+				text_to_add=`<div class="form-group"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder="" required> </div>`;
 			}
 			else if(el.type == "Text")
 			{
@@ -50,7 +50,7 @@ if (body.classList.contains('products') && body.classList.contains('new'))
 			{
 				type = "checkbox";
 				style = `width: 25px; height: 25px; display: block`;
-				text_to_add=`<div class="form-group"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}" required></div>`;
+				text_to_add=`<div class="form-group"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"></div>`;
 			}
 			else if(el.type == "Images")
 			{
@@ -105,7 +105,6 @@ if (body.classList.contains('products') && body.classList.contains('new'))
 	}
 
 
-    //TODO generate form filed from json
 
 
 

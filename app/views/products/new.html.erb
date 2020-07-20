@@ -13,17 +13,18 @@
 
               <h3>Add new product</h3>
             </div>
-            <form class="form" method="post" action="">
+            <%= form_with class: "form", multipart: true do %>
+
               <div class="row form_row">
                 <div class="col-lg-6 col-12">
                   <div class="form-group">
                     <label>Product Name<span>*</span></label>
-                    <input name="name" type="text" placeholder="">
+                    <input name="name" type="text" placeholder="" required>
                   </div>
                   <div class="img-preloader">
                     <div class="label-container">
                       <label for="upload-photo" id = "img-label" class = "btn">Load image...</label>
-                      <input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)" name="main_photo">
+                      <input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)" name="main_photo" required>
                     </div>
                     <div class = "img-wrapper">
                       <img id="output_image" src="" style="display: none"/>
@@ -37,7 +38,7 @@
                   <div class="form-group">
                     <label>Product Category<span>*</span></label>
                     <p>
-                        <select required class="category_select" onchange="CategoryCheck(this)">
+                        <select name="category" required class="category_select" onchange="CategoryCheck(this)">
                           <option value="" disabled selected value>-------</option>
                           <% @categories.each do |el| %>
                             <option value="<%= el.id %>"><%= el.name %></option>
@@ -50,7 +51,11 @@
                 <div class="col-lg-6 col-12">
                   <div class="form-group">
                     <label>Product Price<span>*</span></label>
-                    <input name="price" type="number" step="0.01" placeholder="">
+                    <input name="price" type="number" step="0.01" placeholder="" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Описание<span>*</span></label>
+                    <textarea name="description"  placeholder="" required></textarea>
                   </div>
                 </div>
                <div class="col-12">
@@ -83,7 +88,7 @@
 
 
               </div>
-            </form>
+           <% end %>
           </div>
         </div>
 

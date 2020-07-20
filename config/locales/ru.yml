@@ -1,9 +1,14 @@
 ru:
   hello: 'привет'
+
   activerecord:
     errors:
       models:
         product:
           attributes:
+            maker:
+              required: 'необходимо указать производителя'
             title:
               title_blank: 'название не может быть пустым'
+            main_photo:
+              blank: 'необходимо прикрепить фото'

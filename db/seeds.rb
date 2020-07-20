@@ -7,33 +7,36 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Category.delete_all
 Maker.delete_all
+Shop.delete_all
+
+Shop.create(name: 'Chine International')
+Shop.create(name: 'РашнБестБайСторЕвер')
+Shop.create(name: 'Семерочка')
 
 Category.add 'Смартфоны', [
     {:name=> "Диагональ", :type => "Number", :id=>1},
     {:name=>"Изображения", :type=>"Images", :id=>2},
-    {:name=>"Описание", :type=>"LongText", :id=>3},
-    {:name=>"Чтото", :type=>"Text", :id=>4}
+    {:name=>"Чтото", :type=>"Text", :id=>3}
 ]
 
 Category.add 'Телевизоры', [
     {:name=> "Диагональ", :type => "Number", :id=>1},
     {:name=>"Изображения", :type=>"Images", :id=>2},
-    {:name=>"Описание", :type=>"LongText", :id=>3},
-    {:name=>"Количество цветов", :type=>"Number", :id=>4},
-    {:name=>"Умное ТВ", :type=>"Bool", :id=>5},
+    {:name=>"Количество цветов", :type=>"Number", :id=>3},
+    {:name=>"Умное ТВ", :type=>"Bool", :id=>4},
 ]
-another = Maker.create(name: 'Другое')
+another = Maker.create(name: 'Другое', is_another:true)
 makers = [
 
-    Maker.create(name: 'Apple'),
-    Maker.create(name: 'Samsung'),
-    Maker.create(name: 'Xiaomi'),
+    Maker.create(name: 'Apple', is_another:false),
+    Maker.create(name: 'Samsung', is_another:false ),
+    Maker.create(name: 'Xiaomi', is_another:false ),
 
 ]
 
 Category.where(name:"Смартфоны").first.makers << makers
 Category.where(name:"Смартфоны").first.makers << another
 Category.where(name:"Телевизоры").first.makers << makers[1]
-Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Sony')
-Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Polar')
+Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Sony', is_another:false )
+Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Polar', is_another:false )
 Category.where(name:"Телевизоры").first.makers <<  another
