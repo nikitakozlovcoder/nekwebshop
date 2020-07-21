@@ -47,8 +47,8 @@ class ProductsController < ApplicationController
     end
     is_correct = is_correct_extra_fields data
 
-    if (@product.save && is_correct)
-
+    if (@product.valid? && is_correct)
+      @product.save
       data.each do |el|
 
           a = Attribute.new
