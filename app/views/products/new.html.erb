@@ -8,23 +8,35 @@
         <div class = "add_product_section">
           <div class="form-main">
             <div class="title">
-
-              
-
               <h3>Add new product</h3>
             </div>
-            <%= form_with class: "form", multipart: true do %>
 
+            <%= form_with class: "form", multipart: true do %>
+              <div class="error-list">
+                <% flash.each do |type, msg| %>
+                  <li>
+                    <%= msg %>
+                  </li>
+                <% end %>
+                <% @product.errors.messages.values.each do |msg| %>
+                  <%msg.each do  |m| %>
+                    <li><%= m %></li>
+                  <%end %>
+                <% end %>
+                </div>
               <div class="row form_row">
                 <div class="col-lg-6 col-12">
                   <div class="form-group">
                     <label>Product Name<span>*</span></label>
-                    <input name="name" type="text" placeholder="" required>
+                    <input name="name" type="text" placeholder="" value="<%= @product.title %>">
+                    <div class="error-list"></div>
                   </div>
-                  <div class="img-preloader">
-                    <div class="label-container">
+
+                  <div class="img-preloader form-group">
+                    <div class="label-container form-group">
                       <label for="upload-photo" id = "img-label" class = "btn">Load image...</label>
-                      <input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)" name="main_photo" required>
+                      <input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)" name="main_photo" >
+                      <div class="error-list"></div>
                     </div>
                     <div class = "img-wrapper">
                       <img id="output_image" src="" style="display: none"/>
@@ -37,35 +49,39 @@
                 <div class="col-12 col-lg-6">
                   <div class="form-group">
                     <label>Product Category<span>*</span></label>
-                    <p>
-                        <select name="category" required class="category_select" onchange="CategoryCheck(this)">
+                    <p style="display: flex">
+                        <select name="category" class="category_select" onchange="CategoryCheck(this)">
                           <option value="" disabled selected value>-------</option>
                           <% @categories.each do |el| %>
+
                             <option value="<%= el.id %>"><%= el.name %></option>
                           <% end %>
 
                         </select>
+
                     </p>
+                    <div class="error-list"></div>
                   </div>
                 </div>
                 <div class="col-lg-6 col-12">
                   <div class="form-group">
                     <label>Product Price<span>*</span></label>
-                    <input name="price" type="number" step="0.01" placeholder="" required>
+                    <input name="price" type="number" step="0.01" placeholder="" value="<%= @product.price != 0 ? @product.price : "" %>">
                   </div>
                   <div class="form-group">
                     <label>Описание<span>*</span></label>
-                    <textarea name="description"  placeholder="" required></textarea>
+                    <textarea name="description"  placeholder="" ><%= @product.description %></textarea>
                   </div>
                 </div>
                <div class="col-12">
-                  <div class="form-group form-group_dev" style="display: none">
+                  <div class="form-group form-group_dev" style="display: block">
                     <label>Developer<span>*</span></label>
-                      <p>
+                      <p style="display: flex">
                         <select  onchange="ListCheck(this)" name="maker" class="form-group_dev_select">
-
+                          <option value="" disabled selected value="">-------</option>
                         </select>
                     </p>
+                    <div class="error-list"></div>
                   </div>
                 </div>
 

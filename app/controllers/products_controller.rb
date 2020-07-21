@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   # add new product
   def new
     @categories = Category.all
+    @product = Product.new
   end
   def create
 
@@ -40,18 +41,15 @@ class ProductsController < ApplicationController
     @product.maker = @maker
     @product.shop = @shop
     @product.category = @category
-
-    if (@product.save)
+    data = nil
+    if @category != nil
       data = JSON.parse @category.data
+    end
+    is_correct = is_correct_extra_fields data
+
+    if (@product.save && is_correct)
+
       data.each do |el|
-
-        if el['type'] != "Images" && (params[el['id'].to_s] == "" || params[el['id'].to_s] == nil)
-          @product.destroy
-          flash.now[:error] = "Заполните все поля"
-
-          render plain: "not valid!!"
-          return
-        else
 
           a = Attribute.new
 
@@ -70,15 +68,34 @@ class ProductsController < ApplicationController
           end
 
           @product.fields << a
-
-        end
       end
 
       render plain: "hi!"
     else
-      pp @product.errors
-      render plain: "not valid!"
+      if !is_correct
+        flash.now[:alert] = "заполните все поля"
+      end
+      @categories = Category.all
+      render :new
     end
   end
   # TODO add action for  viewing single product
+
+
+  private
+
+  def is_correct_extra_fields data
+    if data == nil
+      return true
+    end
+    data.each do |el|
+
+      if el['type'] != "Images" && (params[el['id'].to_s] == "" || params[el['id'].to_s] == nil)
+
+        return false
+      end
+    end
+    true
+  end
+
 end
