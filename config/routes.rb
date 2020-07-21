@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'
   get 'category/load/:id', to:'categories#show'
+  get 'product/:id', to:'products#show'
 
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
 end
