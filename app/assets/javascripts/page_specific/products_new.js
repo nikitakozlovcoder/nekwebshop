@@ -2,6 +2,10 @@
 let body = document.querySelector('body');
 if (body.classList.contains('products') &&( body.classList.contains('new') ||body.classList.contains('create') ))
 {
+
+	let category_select = document.querySelector('.category_select');
+	CategoryCheck(category_select);
+
 	let another = -1;
 	function generateForm(data) {
 		let dev = document.querySelector('.form-group_dev');
@@ -87,6 +91,8 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 	}
 
 	function CategoryCheck(e) {
+		if (e.value == "")
+			return;
 		let dev = document.querySelector('#developer_input');
 		let dev_inp = document.querySelector('#developer_input_inp');
 		dev.style.display = "none";

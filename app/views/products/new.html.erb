@@ -49,12 +49,12 @@
                 <div class="col-12 col-lg-6">
                   <div class="form-group">
                     <label>Product Category<span>*</span></label>
-                    <p style="display: flex">
+                    <p style="display: flex" >
                         <select name="category" class="category_select" onchange="CategoryCheck(this)">
-                          <option value="" disabled selected value>-------</option>
+                          <option value="" disabled <%= @category ? "" : "selected" %> value>-------</option>
                           <% @categories.each do |el| %>
 
-                            <option value="<%= el.id %>"><%= el.name %></option>
+                            <option value="<%= el.id %>"  <%= @category && @category.id == el.id ? "selected" : "" %>><%= el.name %></option>
                           <% end %>
 
                         </select>
@@ -76,7 +76,7 @@
                <div class="col-12">
                   <div class="form-group form-group_dev" style="display: block">
                     <label>Developer<span>*</span></label>
-                      <p style="display: flex">
+                      <p style="display: flex" >
                         <select  onchange="ListCheck(this)" name="maker" class="form-group_dev_select">
                           <option value="" disabled selected value="">-------</option>
                         </select>
