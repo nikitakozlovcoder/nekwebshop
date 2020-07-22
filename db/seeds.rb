@@ -14,16 +14,16 @@ Shop.create(name: 'РашнБестБайСторЕвер')
 Shop.create(name: 'Семерочка')
 
 Category.add 'Смартфоны', [
-    {:name=> "Диагональ", :type => "Number", :id=>1},
-    {:name=>"Изображения", :type=>"Images", :id=>2},
-    {:name=>"Чтото", :type=>"Text", :id=>3}
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>"0", :max=>""},
+    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>"", :max=>""},
+    {:name=>"Чтото", :type=>"Text", :id=>3, :min=>"", :max=>""}
 ]
 
 Category.add 'Телевизоры', [
-    {:name=> "Диагональ", :type => "Number", :id=>1},
-    {:name=>"Изображения", :type=>"Images", :id=>2},
-    {:name=>"Количество цветов", :type=>"Number", :id=>3},
-    {:name=>"Умное ТВ", :type=>"Bool", :id=>4},
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>"0", :max=>""},
+    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>"", :max=>""},
+    {:name=>"Количество цветов", :type=>"Number", :id=>3, :min=>"0", :max=>""},
+    {:name=>"Умное ТВ", :type=>"Bool", :id=>4, :min=>"", :max=>""},
 ]
 another = Maker.create(name: 'Другое', is_another:true)
 makers = [
