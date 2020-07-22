@@ -174,7 +174,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -209,6 +208,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  activestorage
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -221,7 +221,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   uglifier
