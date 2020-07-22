@@ -1028,6 +1028,7 @@ Version:1.0
 	float: right;
 	position: relative;
 }
+
 .header.shop .right-bar .sinlge-bar.top-search a {
 	transform: translateY(3px);
 }
@@ -1035,10 +1036,12 @@ Version:1.0
 	color:#F7941D;
 }
 .header.shop .right-bar .sinlge-bar .single-icon{
+
 	color:#333;
 	font-size:20px;
 	position:relative;
 }
+
 .header.shop .right-bar .sinlge-bar .single-icon:hover{
 	color:#F7941D;
 }
@@ -1055,6 +1058,7 @@ Version:1.0
 	border-radius: 100%;
 	font-size: 11px;
 }
+
 .header.shop .right-bar .sinlge-bar{
 	display:inline-block;
 	margin-right:25px;
@@ -2124,6 +2128,7 @@ Version:1.0
 	color:#666;
 }
 /* Category List */
+
 .shop-sidebar .categor-list {
 	margin-top: 10px;
 }
@@ -2137,12 +2142,14 @@ Version:1.0
 	margin-bottom:0px;
 }
 .shop-sidebar .categor-list li a {
+
 	display: inline-block;
 	color: #666;
 	font-weight: 400;
 	font-size: 14px;
 	text-transform: capitalize;
 }
+
 .shop-sidebar .categor-list li a:hover{
 	color:#F7941D;
 }
@@ -4182,6 +4189,7 @@ Version:1.0
 	color:#fff;
 }
 /* Category List */
+
 .main-sidebar .categor-list {
 	margin-top: 15px;
 }
@@ -4195,15 +4203,18 @@ Version:1.0
 	margin-bottom:0px;
 }
 .main-sidebar .categor-list li a {
+
 	display: inline-block;
 	color: #333;
 	font-size:14px;
 }
+
 .main-sidebar .categor-list li a:hover{
 	color:#F7941D;
 	padding-left:7px;
 }
 .main-sidebar .categor-list li a i {
+
 	display: inline-block;
 	margin-right:0px;
 	font-size: 9px;
@@ -4214,7 +4225,9 @@ Version:1.0
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
 }
+
 .main-sidebar .categor-list li a:hover i{
+
 	margin-right: 6px;
 	opacity:1;
 	visibility:visible;

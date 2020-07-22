@@ -1,13 +1,16 @@
 # controller for products
 # TODO implement actions functionality
 
+
 class ProductsController < ApplicationController
    #protect_from_forgery only: [:load]
+
 
   # all products grid
   def index
 
   end
+
 
   def show
   	
@@ -100,5 +103,6 @@ class ProductsController < ApplicationController
     end
     true
   end
+
 
 end

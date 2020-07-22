@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index'
   get 'products', to:'products#index'
+
   post 'products/load', to:'products#load'
   get 'blog', to:'posts#index'
   get 'contact', to:'home#contact'
