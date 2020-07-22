@@ -27,14 +27,14 @@
                 </div>
               <div class="row form_row">
                 <div class="col-lg-6 col-12">
-                  <div class="form-group">
+                  <div class="form-group Text" data-min="5" data-max="">
                     <label>Product Name<span>*</span></label>
                     <input name="name" type="text" placeholder="" value="<%= @product.title %>">
                     <div class="error-list"></div>
                   </div>
 
                   <div class="img-preloader form-group">
-                    <div class="label-container form-group">
+                    <div class="label-container form-group Image">
                       <label for="upload-photo" id = "img-label" class = "btn">Load image...</label>
                       <input id = "upload-photo" type="file" accept="image/*" onchange="preview_image(event)" name="main_photo" >
                       <div class="error-list"></div>
@@ -48,7 +48,7 @@
 
 
                 <div class="col-12 col-lg-6">
-                  <div class="form-group">
+                  <div class="form-group Category">
                     <label>Product Category<span>*</span></label>
                     <p style="display: flex" >
                         <select name="category" class="category_select" onchange="CategoryCheck(this)">
@@ -65,17 +65,17 @@
                   </div>
                 </div>
                 <div class="col-lg-6 col-12">
-                  <div class="form-group">
+                  <div class="form-group Number" data-min="0" data-max="">
                     <label>Product Price<span>*</span></label>
                     <input name="price" type="number" step="0.01" placeholder="" value="<%= @product.price != 0 ? @product.price : "" %>">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group LongText" data-min="10" data-max="2000">
                     <label>Описание<span>*</span></label>
                     <textarea name="description"  placeholder="" ><%= @product.description %></textarea>
                   </div>
                 </div>
                <div class="col-12">
-                  <div class="form-group form-group_dev" style="display: block">
+                  <div class="form-group form-group_dev Maker" style="display: block">
                     <label>Developer<span>*</span></label>
                       <p style="display: flex" >
                         <select  onchange="ListCheck(this)" name="maker" class="form-group_dev_select">
