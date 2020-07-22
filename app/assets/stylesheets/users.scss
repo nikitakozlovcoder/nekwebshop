@@ -1,3 +1,4 @@
+
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
@@ -122,24 +123,26 @@
   .seller_table{
     margin: 0;
   }
+
 }
 
 
 @media only screen and (min-width: 601px) {
 
   .seller_row:last-child>.seller_cell{
-    border-bottom: 0;
+    border-bottom: 0px;
   }
 
 }
 
 @media only screen and (max-width: 600px) {
+
   .seller_row{
     flex-direction: column;
     box-shadow: 9px 10px 9px $color-border;
   }
   .seller_cell:last-child{
-    border: 0;
+    border: 0px;
   }
   .seller_cell{
     width: 100%;
@@ -147,10 +150,11 @@
   }
   .seller_row-idx{
     margin-top: 10px;
-    border-bottom: 0;
+    border-bottom: 0px;
     width: 100%;
   }
   .seller_row-idx-box{
     width: 100%;
   }
 }
+
