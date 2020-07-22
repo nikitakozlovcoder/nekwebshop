@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'shop/:id/add_product', to:'products#create'
 
   get 'category/load/:id', to:'categories#show'
+  get 'product/:id', to:'products#show'
 
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
 end
