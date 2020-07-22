@@ -32,7 +32,9 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
-
+.nice-select .list{
+  z-index: 100;
+}
 .error-list{
   padding: 0 15px 15px;
   color: rgba(255, 0, 0, 0.73);

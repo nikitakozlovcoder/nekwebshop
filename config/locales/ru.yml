@@ -1,6 +1,8 @@
 ru:
   hello: 'привет'
-
+  controllers:
+    product:
+      blank: 'заполните все поля'
   activerecord:
     errors:
       models:
@@ -12,3 +14,7 @@ ru:
               title_blank: 'название не может быть пустым'
             main_photo:
               blank: 'необходимо прикрепить фото'
+            description:
+              blank: 'необходимо заполнить описание'
+            category:
+              required: 'необходимо указать категорию'

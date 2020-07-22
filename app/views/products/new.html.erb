@@ -14,7 +14,7 @@
 
             <%= form_with class: "form", multipart: true do %>
               <div class="error-list">
-                <% flash.each do |type, msg| %>
+                <% @errors.each do |msg| %>
                   <li>
                     <%= msg %>
                   </li>

@@ -1,7 +1,6 @@
 # controller for products
 # TODO implement actions functionality
 
-
 class ProductsController < ApplicationController
    #protect_from_forgery only: [:load]
 
@@ -18,8 +17,10 @@ class ProductsController < ApplicationController
   # add new product
 
   def new
+
     @categories = Category.all
     @product = Product.new
+    @errors = []
   end
   def create
 
@@ -78,9 +79,7 @@ class ProductsController < ApplicationController
 
       render plain: "hi!"
     else
-      if !is_correct
-        flash.now[:alert] = "заполните все поля"
-      end
+
       @categories = Category.all
       render :new
     end
@@ -91,18 +90,59 @@ class ProductsController < ApplicationController
   private
 
   def is_correct_extra_fields data
+    @errors = []
+    blank = false
+    valid = true
     if data == nil
-      return true
+      return valid
     end
     data.each do |el|
 
-      if el['type'] != "Images" && (params[el['id'].to_s] == "" || params[el['id'].to_s] == nil)
-
-        return false
+      if el['type'] != "Images"
+        if (params[el['id'].to_s] == "" || params[el['id'].to_s] == nil)
+          blank = true
+          valid = false
+        else
+          if !is_field_valid? el
+            valid = false
+          end
+        end
       end
     end
-    true
+    if blank
+      @errors << t('controllers.product.blank')
+    end
+
+    return  valid
   end
 
+  def is_field_valid?(el)
+    valid = true
+    case el['type']
+    when "Number"
+      if el['max'] && params[el['id'].to_s].to_f > el['max']
+        @errors << "Значение поля "+el['name']+" должно быть не больше "+el['max'].to_s
+        valid =  false
+      end
+      if el['min'] && params[el['id'].to_s].to_f  < el['min']
+        @errors << "Значение поля "+el['name']+" должно быть не меньше "+el['min'].to_s
+        valid =  false
+      end
+
+    when "Text", "LongText"
+      if el['max'] && params[el['id'].to_s].length > el['max']
+        @errors << "Количество символов поля "+el['name']+" должно быть не больше "+el['max'].to_s
+        valid =  false
+      end
+      if el['min'] && params[el['id'].to_s].length < el['min']
+        @errors << "Количество символов поля "+el['name']+" должно быть не меньше "+el['min'].to_s
+        valid =  false
+      end
+    end
+
+    return  valid
+
+
+  end
 
 end
