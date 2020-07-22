@@ -1,5 +1,11 @@
+# controller for creating and editing comments
+# TODO implement actions functionality
 class PostsController < ApplicationController
-  def index
+  # create comment
+  def new
 
   end
+  # TODO add actions for:
+  # delete comment
+  # edit comment
 end

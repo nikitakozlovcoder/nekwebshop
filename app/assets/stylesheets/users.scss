@@ -5,13 +5,12 @@
 
 .seller_profile_main{
   display: flex;
-  width: 70%;
 }
 .avatar_col{
   max-width: 200px;
 }
 .seller_table{
-  margin-left: 20px;
+  margin-left: 30px;
   width: 100%;
 }
 .seller_row{
@@ -19,12 +18,10 @@
 
 }
 .seller_cell{
-  font-family: "Arial", sans-serif;
-  font-size: 14px;
   border-bottom: 1px solid $color-border;
   border-right: 1px solid $color-border;
   padding: 15px;
-  width: 30%;
+  width: calc((100% - 30px)/2);
 }
 .seller_row-idx{
   width: 30px;
@@ -43,11 +40,82 @@
 
 }
 
-
 .seller_cell:last-child{
-  border-right: 0px;
+  border-right: 0;
 }
-@media only screen and (max-width: 767px) {
+
+//Profile
+
+.section-profile{
+  padding: 35px 0;
+}
+
+.sidebar-container{
+  width: 22%;
+  padding: 0 15px;
+  min-width: max-content;
+}
+
+.shop-sidebar .category-list li a{
+  text-transform: none;
+}
+
+.profile-main{
+  padding: 5px 40px;
+}
+
+.profile-main h2{
+  padding-bottom: 20px;
+  font-size: 38px;
+}
+
+.inform-profile{
+  border-bottom: 1px solid #ddd;
+}
+
+.inform-profile div{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.inform-profile p{
+  width: 180px;
+}
+
+.data{
+  color: black;
+}
+
+.actions{
+  padding-top: 15px;
+  text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions a{
+  margin: 8px 0;
+  width: max-content;
+}
+
+//End-Profile
+
+
+
+@media only screen and (max-width: 992px){
+  .header.shop .right-bar .single-bar{
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 685px) {
+  .sidebar-container{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .seller_profile_main{
     display: block;
   }
@@ -55,10 +123,14 @@
     margin: 0;
   }
 }
+
+
 @media only screen and (min-width: 601px) {
+
   .seller_row:last-child>.seller_cell{
     border-bottom: 0;
   }
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -81,5 +153,4 @@
   .seller_row-idx-box{
     width: 100%;
   }
-
 }

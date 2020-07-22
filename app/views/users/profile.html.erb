@@ -1,1 +1,55 @@
 <%= render partial: './header.html.erb' %>
+
+<section class="section-profile">
+<div class="container">
+  <div class="row">
+    <div class="sidebar-container">
+      <div class="shop-sidebar">
+        <div class="single-widget category">
+          <h3 class="title">Категории</h3>
+          <ul class="category-list">
+            <li><%= link_to 'Мои данные', :profile %></li>
+            <li><%= link_to 'Корзина', :cart_index %></li>
+            <li><a href="#">Мои заказы</a></li>
+            <li><a href="#">Мои отзывы</a></li>
+            <li><a href="#">Список желаний</a></li>
+            <li><a href="#">Просмотренные товары</a></li>
+            <li><%= link_to 'Мои магазины', :my_shops %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="profile-main">
+      <h2>Мои данные</h2>
+      <div class="inform-profile">
+        <div>
+          <p>Имя</p>
+          <p class="data">Владислав Гришак</p>
+        </div>
+        <div>
+          <p>Электронная почта</p>
+          <p class="data">grishakvlad@gmail.com</p>
+        </div>
+        <div>
+          <p>Телефон</p>
+          <p class="data">+7 918 567 03 94</p>
+        </div>
+        <div>
+          <p>Домашний адрес</p>
+          <p class="data">г. Таганрог, ул. Чехова, д. 22, кв. 148</p>
+        </div>
+        <div>
+          <p>Тип аккаунта</p>
+          <p class="data">Юридическое лицо</p>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="#">Редактировать личные данные</a>
+        <a href="#">Изменить пароль</a>
+        <a href="#">Удалить аккаунт</a>
+        <a href="#">Выйти</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
