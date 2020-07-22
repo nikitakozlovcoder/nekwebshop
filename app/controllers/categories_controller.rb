@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
       output = nil
     else
       makers = c.makers
+      makers = makers.partition{|el| el.name != "Другое"}.reduce(:+)
       output[:makers] = makers
       output[:category] = c
     end
