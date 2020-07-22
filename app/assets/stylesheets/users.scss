@@ -1,3 +1,4 @@
+
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
@@ -40,11 +41,86 @@
 
 }
 
-
 .seller_cell:last-child{
-  border-right: 0px;
+  border-right: 0;
 }
-@media only screen and (max-width: 767px) {
+
+//Profile
+
+.section-profile{
+  padding: 35px 0;
+}
+
+.sidebar-container{
+  width: 22%;
+  padding: 0 15px;
+  min-width: max-content;
+}
+
+.shop-sidebar .category-list li a{
+  text-transform: none;
+}
+
+.profile-main{
+  padding: 5px 40px;
+
+}
+
+.profile-main h2{
+  padding-bottom: 20px;
+  font-size: 38px;
+}
+
+.inform-profile{
+  border-bottom: 1px solid #ddd;
+}
+
+.inform-profile div{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.inform-profile p{
+  width: 180px;
+}
+
+
+.data{
+  color: black;
+}
+
+.actions{
+  padding-top: 15px;
+  text-decoration: underline;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions a{
+  margin: 8px 0;
+  width: max-content;
+}
+
+//End-Profile
+
+
+
+
+@media only screen and (max-width: 992px){
+   .right-bar div{
+    margin-right: 10px !important;
+  }
+}
+
+
+@media only screen and (max-width: 685px) {
+  .sidebar-container{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .seller_profile_main{
     display: block;
   }
@@ -53,6 +129,8 @@
   }
 
 }
+
+
 @media only screen and (min-width: 601px) {
 
   .seller_row:last-child>.seller_cell{
@@ -82,5 +160,5 @@
   .seller_row-idx-box{
     width: 100%;
   }
-
 }
+

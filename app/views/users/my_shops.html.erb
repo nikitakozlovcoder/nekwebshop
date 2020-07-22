@@ -1,6 +1,4 @@
-
 <%= render partial: './header.html.erb' %>
-
 
 <section class="section-profile">
 <div class="container">
@@ -9,14 +7,14 @@
       <div class="shop-sidebar">
         <div class="single-widget category">
           <h3 class="title">Категории</h3>
-          <ul class="categor-list">
+          <ul class="category-list">
             <li><%= link_to 'Мои данные', :profile %></li>
-            <li><%= link_to 'Корзина', :cart_index %></li>
+            <li><a href="#">Корзина</a></li>
             <li><a href="#">Мои заказы</a></li>
             <li><a href="#">Мои отзывы</a></li>
             <li><a href="#">Список желаний</a></li>
             <li><a href="#">Просмотренные товары</a></li>
-
+            <li><a href="#">Мои магазины</a></li>
           </ul>
         </div>
       </div>
@@ -55,5 +53,3 @@
   </div>
 </div>
 </section>
-
-
