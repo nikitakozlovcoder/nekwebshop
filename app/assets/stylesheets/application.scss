@@ -1,3 +1,4 @@
+
 $color-accent: #f7941d;
 $color-border: rgba(175, 175, 175, 0.86);
 /*
@@ -36,17 +37,7 @@ $color-border: rgba(175, 175, 175, 0.86);
   padding: 0 15px 15px;
   color: rgba(255, 0, 0, 0.73);
 }
-.icons-bar{
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-.icons-bar  i{
-  font-size: 20px;
-}
-.icons-bar a{
-  margin: 10px;
-}
+
 .container{
   max-width: 1180px;
 }
@@ -156,7 +147,7 @@ background: #F7941D;
 #output_image
 {
 max-height:150px;
-}
+} 
 .form-group .nice-select{
   padding-top: 5px;
 }
@@ -171,6 +162,9 @@ max-height:150px;
 }
 
 
+a:visited{
+   color: white;
+}
 .add-to-cart{
   text-align: right;
 
@@ -356,7 +350,7 @@ tbody tr:hover {
 }
 .date {
   text-align: right;
-
+  
 }
 @media (max-width: 580px) {
   .single_review {
@@ -369,8 +363,4 @@ tbody tr:hover {
 
 }
 
-@media only screen and (max-width: 992px){
-  .right-bar div{
-    margin-right: 10px !important;
-  }
-}
+

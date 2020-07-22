@@ -208,7 +208,9 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+
   activestorage
+
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
@@ -221,6 +223,8 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+
+
   turbolinks (~> 5)
   tzinfo-data
   uglifier
