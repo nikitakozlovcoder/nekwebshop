@@ -6,18 +6,84 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 	let form = document.querySelector('.form');
 	form.addEventListener('submit', (e)=>{
 		e.preventDefault();
+		//Remove old errors
 		let errors = document.querySelectorAll('.error-list');
 		errors.forEach(el=>{
 			el.innerHTML = "";
-		})
+		});
+		//Validate flag
 		let valid = true;
 
+		//Validate Text elements
 		let texts = document.querySelectorAll('.Text');
-		let maker = document.querySelector('.Maker');
+		texts.forEach((el)=>{
+			let input_string = el.querySelector('input').value;
+			let error_list = el.querySelector('.error-list');
+			let min = el.getAttribute("data-min");
+			let max = el.getAttribute("data-max");
+			if(input_string == ""){
+				valid = false;
+				error_list.innerHTML+=`<li>Введите наименование</li>`;
+			} else if(min&&(input_string.length < min)){
+				valid = false;
+				error_list.innerHTML+=`<li>Наименование слишком короткое, минимальная длина - ${min} cимволов</li>`;
+			} else if(max&&(input_string.length > max)){
+				valid = false;
+				error_list.innerHTML+=`<li>Наименование слишком большого размера</li>`;
+			}
+		});
 
+		//Validate Long_Text elements
+		let long_texts = document.querySelectorAll('.LongText');
+		long_texts.forEach((el)=>{
+			let input_string = el.querySelector('textarea').value;
+			let error_list = el.querySelector('.error-list');
+			let min = el.getAttribute("data-min");
+			let max = el.getAttribute("data-max");
+			if(input_string == ""){
+				valid = false;
+				error_list.innerHTML+=`<li>Запоните описание товара</li>`;
+			}else if(min&&(input_string.length < min)){
+				valid = false;
+				error_list.innerHTML+=`<li>Описание слишком короткое, минимальная длина - ${min} cимволов</li>`;
+			} else if(max&&(input_string.length > max)){
+				valid = false;
+				error_list.innerHTML+=`<li>Описание слишком длинное, максимальная длина - ${max} cимволов</li>`;
+			}
+		});
+
+		//Validate Number elements
+		let numbers = document.querySelectorAll('.Number');
+		numbers.forEach((el) => {
+			let input_number = el.querySelector('input').value;
+			let error_list = el.querySelector('.error-list');
+			let min = el.getAttribute("data-min");
+			let max = el.getAttribute("data-max");
+			if(input_number == ""){
+				valid = false;
+				error_list.innerHTML+=`<li>Введите значение</li>`;
+			} else if(min&&(input_number < min)){
+				valid = false;
+				error_list.innerHTML+=`<li>Слишком малое значение</li>`;
+			} else if(max&&(input_number > max)){
+				valid = false;
+				error_list.innerHTML+=`<li>Слишком большое значение</li>`;
+			}
+		});
+
+		//Validate Maker element
+		let maker = document.querySelector('.Maker');
+		let maker_selector = maker.querySelector('select');
+		if(maker_selector.value == "")
+		{
+			valid = false;
+			let error_list = maker.querySelector('.error-list');
+			error_list.innerHTML+=`<li>Выберите производителя</li>`;
+		}
+
+		//Validate Category element
 		let category = document.querySelector('.Category');
 		let category_selector = category.querySelector('select');
-
 		if (category_selector.value == "")
 		{
 			valid = false;
@@ -25,9 +91,14 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			error_list.innerHTML+=`<li>Выберите категорию</li>`;
 		}
 
-
-
-
+		//Validate Main Image element
+		let image = document.querySelector('.Image');
+		let image_input = image.querySelector('input');
+		if(image_input.value == ""){
+			valid = false;
+			let error_list = image.querySelector('.error-list');
+			error_list.innerHTML+=`<li>Загрузите главное изображение товара</li>`;
+		}
 
 
 		texts.forEach((el)=>{
@@ -40,13 +111,12 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 		});
 
-
 		if (valid)
 		{
-			//form.submit();
+			form.submit();
 		}
-
 	});
+
 	let category_select = document.querySelector('.category_select');
 	CategoryCheck(category_select);
 
@@ -76,36 +146,34 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 
 		let fields = JSON.parse(data.category.data);
-		console.log("fields");
-		console.log(fields);
 		fields.forEach((el)=>{
 			let type="";
 			let text_to_add="";
 			if (el.type == "Number")
 			{
 				type = "number";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder=""> </div>  <div class="error-list"></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Text")
 			{
 				type = "text";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""></div><div class="error-list"></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "LongText")
 			{
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea></div><div class="error-list"></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Bool")
 			{
 				type = "checkbox";
 				style = `width: 25px; height: 25px; display: block`;
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"></div><div class="error-list"></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Images")
 			{
 				style ="";
 				type="file";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}" multiple></div><div class="error-list"></div>`;
+				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}" class = "btn">Load images...</label><input id = "${el.id}" type="file" accept="image/*" onchange="preview_image(this)" name="photos" multiple><div class="error-list"></div></div></div>`;
 			}
 			generated_fields.innerHTML+=text_to_add;
 		})
@@ -121,17 +189,30 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		}
 	}
 
-
-	function preview_image(event)
-	{
-		var reader = new FileReader();
-		reader.onload = function()
-		{
-		var output = document.getElementById('output_image');
-		output.src = reader.result;
-		output.style.display = "block";
+	function preview_image(input) {
+		if (input.files) {
+			//get images count
+		  var filesCount = input.files.length;
+		  //get outter_container
+		  var container = input.parentNode.parentNode;
+		  //delete old elements
+		  var elements = container.getElementsByClassName("img-wrapper");
+		  while (elements[0]) {
+			 elements[0].parentNode.removeChild(elements[0]);
+		  }
+		  console.log(container);
+		  //add images
+		  for(var i = 0; i<filesCount; i++){
+			  var reader = new FileReader();
+			  reader.onload = function(e) {
+				var img = document.createElement('div');
+			  	img.className = 'img-wrapper';
+			  	img.innerHTML = `<img src="${e.target.result}"/>`;
+				container.appendChild(img);
+			  }
+			  reader.readAsDataURL(input.files[i]);
+		  }
 		}
-		reader.readAsDataURL(event.target.files[0]);
 	}
 
 	function CategoryCheck(e) {
@@ -146,9 +227,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 				return response.json();
 			})
 			.then((data) => {
-				console.log(data);
 				generateForm(data);
-
 			});
 
 
