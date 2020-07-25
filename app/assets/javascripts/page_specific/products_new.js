@@ -100,17 +100,6 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			error_list.innerHTML+=`<li>Загрузите главное изображение товара</li>`;
 		}
 
-
-		texts.forEach((el)=>{
-			//el.querySelector('input');
-			//required
-			//min && max
-			//validate Image
-			//dont validate Images
-			//el.querySelector...
-
-		});
-
 		if (valid)
 		{
 			form.submit();
@@ -191,7 +180,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 	function preview_image(input) {
 		if (input.files) {
-			//get images count
+		  //get images count
 		  var filesCount = input.files.length;
 		  //get outter_container
 		  var container = input.parentNode.parentNode;
@@ -200,7 +189,6 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		  while (elements[0]) {
 			 elements[0].parentNode.removeChild(elements[0]);
 		  }
-		  console.log(container);
 		  //add images
 		  for(var i = 0; i<filesCount; i++){
 			  var reader = new FileReader();
@@ -229,17 +217,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			.then((data) => {
 				generateForm(data);
 			});
-
-
-
 	}
-
-
-
-
-
-
-
 
 }
 
