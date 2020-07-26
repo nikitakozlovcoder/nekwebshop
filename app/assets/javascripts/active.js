@@ -153,6 +153,35 @@ Version:1.0
 				},
 			}
 		});
+		 $('.product-images-slider').owlCarousel({
+			 autoplay:true,
+			 animateIn: 'fadeIn',
+			 autoplayTimeout:5000,
+			 smartSpeed: 400,
+			 animateOut: 'fadeOut',
+			 autoplayHoverPause:true,
+			 loop:true,
+			 nav:true,
+			 merge:true,
+			 dots:false,
+			 navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+			 responsive: {
+			 	0: {
+			 		items: 1,
+				},
+				 500: {
+					 items:2,
+				 },
+				 768: {
+					 items:3,
+				 },
+				 1170: {
+					 items:4,
+				 },
+			 }
+
+		 });
+
 		
 		/*===========================
 		  Quick View Slider JS

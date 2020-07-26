@@ -113,7 +113,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			{
 				style ="";
 				type="file";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}" multiple></div><div class="error-list"></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}[]" type="${type}" placeholder="" style="${style}" multiple></div><div class="error-list"></div>`;
 			}
 			generated_fields.innerHTML+=text_to_add;
 		})

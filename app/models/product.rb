@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
+
   validates :title, presence: { :message => :title_blank }
   validates :price, presence: true
+  validates :price,:numericality => { :greater_than_or_equal_to => 0 }
   validates :description, presence: true
   validates_length_of :description, :in => 10..2000
   has_one_attached :main_photo

@@ -12,22 +12,32 @@ class ProductsController < ApplicationController
 
 
   def show
-  	
+  	@product = Product.find params[:id]
+
+    @images = @product.fields.select{|el|  el.type_name == "Images" }
+    @fields = @product.fields - @images
+    #pp @product.fields
+    @page_title = @product.title
   end
   # add new product
 
   def new
 
-    @categories = Category.all
+    @categories = Category.where(is_template: true )
     @product = Product.new
     @errors = []
   end
   def create
-
+    @errors = []
+    valid = true
+    pp params
     @shop = Shop.find(params[:id])
     @category = Category.find_by(id: params[:category])
-
+    if @category && !@category.is_template
+      @category = nil
+    end
     if @category && params[:maker] != nil
+
       @maker = @category.makers.find(params[:maker])
     end
 
@@ -42,7 +52,12 @@ class ProductsController < ApplicationController
     @product.main_photo.attach(main_photo)
 
     if (@maker && @maker.is_another)
-      @product.maker_name = custom_maker
+      if custom_maker.strip() != ""
+        @product.maker_name = custom_maker
+      else
+        valid = false
+        @errors << "укажите производителя"
+      end
     end
 
     @product.maker = @maker
@@ -54,7 +69,7 @@ class ProductsController < ApplicationController
     end
     is_correct = is_correct_extra_fields data
 
-    if (@product.valid? && is_correct)
+    if (@product.valid? && is_correct && valid)
       @product.save
       data.each do |el|
 
@@ -65,7 +80,13 @@ class ProductsController < ApplicationController
 
           case el['type']
           when  "Images"
-            a.images.attach params[el['id'].to_s]
+            if params[el['id'].to_s] == nil
+              next
+            end
+            params[el['id'].to_s].each do |el|
+                a.images.attach(el)
+            end
+
           when "Text", "LongText"
             a.text =  params[el['id'].to_s]
           when "Number"
@@ -77,10 +98,10 @@ class ProductsController < ApplicationController
           @product.fields << a
       end
 
-      render plain: "hi!"
+      redirect_to action: 'show', id: @product.id
     else
 
-      @categories = Category.all
+      @categories = Category.where(is_template: true )
       render :new
     end
   end
@@ -90,7 +111,7 @@ class ProductsController < ApplicationController
   private
 
   def is_correct_extra_fields data
-    @errors = []
+
     blank = false
     valid = true
     if data == nil
@@ -98,7 +119,7 @@ class ProductsController < ApplicationController
     end
     data.each do |el|
 
-      if el['type'] != "Images"
+      if el['type'] != "Images" && el['type'] != "Bool"
         if (params[el['id'].to_s] == "" || params[el['id'].to_s] == nil)
           blank = true
           valid = false
