@@ -49,7 +49,9 @@
           <!-- Logo -->
           <div class="logo">
 
-            <a href="index.html"><%= image_tag 'logo.svg' %></a>
+            <%= link_to(controller: "home", action: "index") do %>
+              <%= image_tag 'logo.svg' %>
+            <% end %>
 
           </div>
           <!--/ End Logo -->
