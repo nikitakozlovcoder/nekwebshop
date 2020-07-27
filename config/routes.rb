@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'blog', to:'posts#index'
   get 'contact', to:'home#contact'
   get 'profile', to:'users#profile'
+  get 'sign_in', to: 'users#sign_in'
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'
   post 'shop/:id/add_product', to:'products#create'
