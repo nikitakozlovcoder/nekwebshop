@@ -73,9 +73,9 @@
             <div class="search-bar">
               <select>
                 <option selected="selected">Все категории</option>
-                <option>watch</option>
-                <option>mobile</option>
-                <option>kid’s item</option>
+                <% all_categories.each  do |el| %>
+                <option><%= el.name %></option>
+                <% end %>
               </select>
               <form>
                 <input name="search" placeholder="Поиск товаров....." type="search">

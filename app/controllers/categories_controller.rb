@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 
+
   def show
     c = Category.find_by(id: params[:id])
     output = {}
@@ -14,4 +15,6 @@ class CategoriesController < ApplicationController
 
     render json: output
   end
+
+
 end
