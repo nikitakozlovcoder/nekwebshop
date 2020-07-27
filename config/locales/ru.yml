@@ -1,0 +1,24 @@
+ru:
+  hello: 'привет'
+  controllers:
+    product:
+      blank: 'заполните все поля'
+  activerecord:
+    errors:
+      models:
+        product:
+          attributes:
+            price:
+              greater_than_or_equal_to: 'цена должна быть неотрицательной'
+            maker:
+              required: 'необходимо указать производителя'
+            title:
+              title_blank: 'название не может быть пустым'
+            main_photo:
+              blank: 'необходимо прикрепить фото'
+            description:
+              too_short: 'описание должно быть длиннее 10 символов'
+              too_long: 'описание должно быть короче 2000 символов'
+              blank: 'необходимо заполнить описание'
+            category:
+              required: 'необходимо указать категорию'

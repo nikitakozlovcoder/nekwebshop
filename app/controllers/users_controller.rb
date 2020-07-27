@@ -2,6 +2,14 @@
 # there will also be functionality for creating a new store.
 # TODO implement actions functionality
 class UsersController < ApplicationController
+
+  def sign_in
+
+  end
+
+  def registration
+
+  end
   # TODO and actions for:
   # registration
   # login

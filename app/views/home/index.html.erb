@@ -1,5 +1,6 @@
 
 
+
 <!-- Preloader -->
 <div class="preloader">
   <div class="preloader-inner">
@@ -50,7 +51,11 @@
         <div class="col-lg-2 col-md-2 col-12">
           <!-- Logo -->
           <div class="logo">
-            <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+
+            <%= link_to(controller: "home", action: "index") do %>
+              <%= image_tag 'logo.svg' %>
+            <% end %>
+
           </div>
           <!--/ End Logo -->
           <!-- Search Form -->
@@ -71,11 +76,17 @@
         <div class="col-lg-8 col-md-7 col-12">
           <div class="search-bar-top">
             <div class="search-bar">
-			  <select>
+              <select>
                 <option selected="selected">Все категории</option>
-                <option>watch</option>
-                <option>mobile</option>
-                <option>kid’s item</option>
+                <% all_categories.roots.each  do |el| %>
+                    <option><%= el.name %></option>
+                    <%= el.children.each do |e| %>
+                        <option><%= e.name %></option>
+                        <%= e.children.each do |t| %>
+                          <option><%= t.name %></option>
+                        <% end %>
+                  <% end %>
+                <% end %>
               </select>
               <form>
                 <input name="search" placeholder="Поиск товаров....." type="search">
@@ -87,6 +98,7 @@
         <div class="col-lg-2 col-md-3 col-12">
           <div class="right-bar">
             <!-- Search Form -->
+
             <div class="sinlge-bar">
               <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
             </div>
@@ -94,6 +106,7 @@
               <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
             </div>
             <div class="sinlge-bar shopping">
+
               <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
               <!-- Shopping Item -->
               <div class="shopping-item">
@@ -2289,6 +2302,7 @@
   </div>
 </div>
 <!-- Modal end -->
+
 
 
 
