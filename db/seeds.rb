@@ -9,6 +9,7 @@ Category.delete_all
 Maker.delete_all
 Shop.delete_all
 Product.delete_all
+Attribute.delete_all
 
 
 
@@ -18,19 +19,25 @@ Shop.create(name: 'РашнБестБайСторЕвер')
 Shop.create(name: 'Семерочка')
 
 
-
+Category.add 'Компьютерные мыши', [
+    {:name=> "Разрешение cенсора", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "DPI" },
+    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
+    {:name=>"Высота", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: "мм"},
+    {:name=>"Ширина", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "мм"},
+    {:name=>"Масса", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "г"}
+]
 
 Category.add 'Смартфоны', [
-    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil},
-    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil},
-    {:name=>"Чтото", :type=>"Text", :id=>3, :min=>nil, :max=>nil}
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil},
+    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
+    {:name=>"Чтото", :type=>"Text", :id=>3, :min=>nil, :max=>nil, hint: nil}
 ]
 
 Category.add 'Телевизоры', [
-    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil},
-    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil},
-    {:name=>"Количество цветов", :type=>"Number", :id=>3, :min=>0, :max=>nil},
-    {:name=>"Умное ТВ", :type=>"Bool", :id=>4, :min=>nil, :max=>nil},
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil},
+    {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
+    {:name=>"Количество цветов", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: nil},
+    {:name=>"Умное ТВ", :type=>"Bool", :id=>4, :min=>nil, :max=>nil, hint: nil},
 ]
 another = Maker.create(name: 'Другое', is_another:true)
 
@@ -43,6 +50,8 @@ makers = [
 ]
 
 Category.where(name:"Смартфоны").first.makers << makers
+Category.where(name:"Компьютерные мыши").first.makers << makers
+Category.where(name:"Компьютерные мыши").first.makers << another
 Category.where(name:"Смартфоны").first.makers << another
 Category.where(name:"Телевизоры").first.makers << makers[1]
 Category.where(name:"Телевизоры").first.makers <<  Maker.create(name: 'Sony', is_another:false )
