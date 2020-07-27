@@ -4,7 +4,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 {
 
 	let form = document.querySelector('.form');
-	/*form.addEventListener('submit', (e)=>{
+	form.addEventListener('submit', (e)=>{
 		e.preventDefault();
 		//Remove old errors
 		let errors = document.querySelectorAll('.error-list');
@@ -175,7 +175,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 				style ="";
 				type="file";
 
-				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="photos" multiple><div class="error-list"></div></div></div>`;
+				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><div class="error-list"></div></div></div>`;
 
 			}
 			generated_fields.innerHTML+=text_to_add;
