@@ -4,14 +4,16 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 {
 
 	let form = document.querySelector('.form');
-	form.addEventListener('submit', (e)=>{
+	/*form.addEventListener('submit', (e)=>{
 		e.preventDefault();
 		//Remove old errors
 		let errors = document.querySelectorAll('.error-list');
 		errors.forEach(el=>{
 			el.innerHTML = "";
 		});
+
 		//Validate flag
+
 		let valid = true;
 
 		//Validate Text elements
@@ -104,7 +106,9 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		{
 			form.submit();
 		}
+
 	});
+
 
 	let category_select = document.querySelector('.category_select');
 	CategoryCheck(category_select);
@@ -138,6 +142,14 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		fields.forEach((el)=>{
 			let type="";
 			let text_to_add="";
+			if (el.min===null)
+			{
+				el.min = "";
+			}
+			if(el.max===null)
+			{
+				el.max = "";
+			}
 			if (el.type == "Number")
 			{
 				type = "number";
@@ -162,7 +174,9 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			{
 				style ="";
 				type="file";
-				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}" class = "btn">Load images...</label><input id = "${el.id}" type="file" accept="image/*" onchange="preview_image(this)" name="photos" multiple><div class="error-list"></div></div></div>`;
+
+				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="photos" multiple><div class="error-list"></div></div></div>`;
+
 			}
 			generated_fields.innerHTML+=text_to_add;
 		})

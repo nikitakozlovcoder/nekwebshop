@@ -32,7 +32,39 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.product_add_to{
+  width: auto !important;
 
+}
+.add-to-cart{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.product_price{
+  width: auto !important;
+  line-height: 2;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+.single-product{
+  margin-top: 25px;
+}
+.product-img{
+  height: 250px;
+  padding: 0 10px 10px;
+  display: flex;
+
+}
+.product-img img{
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+}
+.nice-select .list{
+  z-index: 100;
+}
 .error-list{
   padding: 0 15px 15px;
   color: rgba(255, 0, 0, 0.73);
