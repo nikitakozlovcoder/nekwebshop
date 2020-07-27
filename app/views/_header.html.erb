@@ -75,8 +75,11 @@
             <div class="search-bar">
               <select>
                 <option selected="selected">Все категории</option>
-                <% all_categories.each  do |el| %>
-                <option><%= el.name %></option>
+                <% all_categories.roots.each  do |el| %>
+                  <option><%= el.name %></option>
+                  <%= el.children.each do |e| %>
+                    <option><%= e.name %></option>
+                  <% end %>
                 <% end %>
               </select>
               <form>

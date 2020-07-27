@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   # all products grid
   def index
-
+    @products = Product.all
   end
 
 
@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
     price = params[:price].to_f
     custom_maker = params[:custom_maker]
 
-    @product = Product.new(title: name, price:price, description: description)
+    @product = Product.new(title: name ? name.strip : nil, price:price, description: description ? description.strip : nil)
 
     @product.main_photo.attach(main_photo)
 
@@ -88,7 +88,7 @@ class ProductsController < ApplicationController
             end
 
           when "Text", "LongText"
-            a.text =  params[el['id'].to_s]
+            a.text =  params[el['id'].to_s].strip
           when "Number"
             a.num =  params[el['id'].to_s].to_f
           when "Bool"
@@ -120,7 +120,7 @@ class ProductsController < ApplicationController
     data.each do |el|
 
       if el['type'] != "Images" && el['type'] != "Bool"
-        if (params[el['id'].to_s] == "" || params[el['id'].to_s] == nil)
+        if (params[el['id'].to_s] == nil || params[el['id'].to_s].strip == ""  )
           blank = true
           valid = false
         else
@@ -151,11 +151,11 @@ class ProductsController < ApplicationController
       end
 
     when "Text", "LongText"
-      if el['max'] && params[el['id'].to_s].length > el['max']
+      if el['max'] && params[el['id'].to_s].strip.length > el['max']
         @errors << "Количество символов поля "+el['name']+" должно быть не больше "+el['max'].to_s
         valid =  false
       end
-      if el['min'] && params[el['id'].to_s].length < el['min']
+      if el['min'] && params[el['id'].to_s].strip.length < el['min']
         @errors << "Количество символов поля "+el['name']+" должно быть не меньше "+el['min'].to_s
         valid =  false
       end

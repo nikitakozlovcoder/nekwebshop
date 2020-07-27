@@ -82,9 +82,6 @@
                     <option><%= el.name %></option>
                     <%= el.children.each do |e| %>
                         <option><%= e.name %></option>
-                        <%= e.children.each do |t| %>
-                          <option><%= t.name %></option>
-                        <% end %>
                   <% end %>
                 <% end %>
               </select>
@@ -205,14 +202,30 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="#">accessories</a></li>
-                <li><a href="#">top 100 offer</a></li>
-                <li><a href="#">sunglass</a></li>
-                <li><a href="#">watch</a></li>
-                <li><a href="#">man’s product</a></li>
-                <li><a href="#">ladies</a></li>
-                <li><a href="#">westrn dress</a></li>
-                <li><a href="#">denim </a></li>
+                <% all_categories.roots.each do |root| %>
+                  <li>
+                    <a href="#">
+                      <%= root.name %>
+                      <% if root.is_template %>
+                      (<%= root.products.count %>)
+                      <% end %>
+                      <% if root.children.count > 0%>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      <% end %>
+
+                    </a>
+
+                    <ul class="sub-category">
+                      <% root.children.each do |child| %>
+                        <li><a href="#"> <%= child.name %>
+                          <% if child.is_template %>
+                            (<%= child.products.count %>)
+                          <% end %>
+                        </a></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </div>
