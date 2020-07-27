@@ -4,12 +4,12 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 {
 
 	let form = document.querySelector('.form');
-	form.addEventListener('submit', (e)=>{
+	/*form.addEventListener('submit', (e)=>{
 		e.preventDefault();
 		let errors = document.querySelectorAll('.error-list');
 		errors.forEach(el=>{
 			el.innerHTML = "";
-		})
+		});
 		let valid = true;
 
 		let texts = document.querySelectorAll('.Text');
@@ -46,7 +46,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			//form.submit();
 		}
 
-	});
+	});*/
 	let category_select = document.querySelector('.category_select');
 	CategoryCheck(category_select);
 
@@ -81,6 +81,14 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		fields.forEach((el)=>{
 			let type="";
 			let text_to_add="";
+			if (el.min===null)
+			{
+				el.min = "";
+			}
+			if(el.max===null)
+			{
+				el.max = "";
+			}
 			if (el.type == "Number")
 			{
 				type = "number";
@@ -105,7 +113,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			{
 				style ="";
 				type="file";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}" multiple></div><div class="error-list"></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}[]" type="${type}" placeholder="" style="${style}" multiple></div><div class="error-list"></div>`;
 			}
 			generated_fields.innerHTML+=text_to_add;
 		})
