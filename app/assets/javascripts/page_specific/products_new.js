@@ -146,6 +146,11 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 		let fields = JSON.parse(data.category.data);
 		fields.forEach((el)=>{
+			let hint = "";
+			if (el.hint != null)
+			{
+				hint = " ("+el.hint+")";
+			}
 			let type="";
 			let text_to_add="";
 			if (el.min===null)
@@ -159,22 +164,22 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			if (el.type == "Number")
 			{
 				type = "number";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder=""><div class="error-list"></div></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Text")
 			{
 				type = "text";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "LongText")
 			{
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Bool")
 			{
 				type = "checkbox";
 				style = `width: 25px; height: 25px; display: block`;
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
+				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Images")
 			{

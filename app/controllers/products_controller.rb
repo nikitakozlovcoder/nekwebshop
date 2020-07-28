@@ -77,6 +77,7 @@ class ProductsController < ApplicationController
 
           a.name = el['name']
           a.type_name = el['type']
+          a.hint = el['hint']
 
           case el['type']
           when  "Images"

@@ -99,7 +99,11 @@
 													</tr>
 												<% @fields.each do |el| %>
 													<tr>
-														<td class="column1"><%= el.name %></td>
+														<td class="column1"><%= el.name %>
+														<% if el.hint %>
+															(<%= el.hint  %>)
+														<% end %>
+														</td>
 														<td class="column2">
 															<% if el.type_name == "Number"%>
 																<%= el.num == el.num.floor ? el.num.to_i : el.num %>
