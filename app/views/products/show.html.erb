@@ -12,6 +12,14 @@
 
 
 							<h3><%= @product.title %></h3>
+							<p>В наличии:
+							<% if @product.is_inf_quantity %>
+									неограничено
+								<% else %>
+									<%= @product.quantity %>
+							<% end %>
+
+							</p>
 						</div>
 
 							<div class = "row form-row" style="padding-left: 10px; padding-right: 10px;">

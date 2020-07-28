@@ -59,10 +59,15 @@ class ProductsController < ApplicationController
         @errors << "укажите производителя"
       end
     end
-
+    quantity = params[:quantity]
+    if params[:is_inf_quantity] == "on"
+      quantity = 0
+    end
     @product.maker = @maker
     @product.shop = @shop
+    @product.is_inf_quantity = params[:is_inf_quantity] == "on"
     @product.category = @category
+    @product.quantity = quantity
     data = nil
     if @category != nil
       data = JSON.parse @category.data

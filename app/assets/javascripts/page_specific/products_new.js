@@ -5,6 +5,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 	let form = document.querySelector('.form');
 	form.addEventListener('submit', (e)=>{
+		let quantity_check = document.querySelector('inf_quantity');
 		e.preventDefault();
 		//Remove old errors
 		let errors = document.querySelectorAll('.error-list');
@@ -57,6 +58,11 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		//Validate Number elements
 		let numbers = document.querySelectorAll('.Number');
 		numbers.forEach((el) => {
+			if (el.classList.contains('form-group-quantity') && inf_quantity.checked)
+			{
+				return;
+			}
+
 			let input_number = el.querySelector('input').value;
 			let error_list = el.querySelector('.error-list');
 			let min = el.getAttribute("data-min");
@@ -66,10 +72,10 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 				error_list.innerHTML+=`<li>Введите значение</li>`;
 			} else if(min&&(input_number < min)){
 				valid = false;
-				error_list.innerHTML+=`<li>Слишком малое значение</li>`;
+				error_list.innerHTML+=`<li>Слишком малое значение, минимальное допустимое значение - ${min}</li>`;
 			} else if(max&&(input_number > max)){
 				valid = false;
-				error_list.innerHTML+=`<li>Слишком большое значение</li>`;
+				error_list.innerHTML+=`<li>Слишком большое значение, максимальное допустимое значение - ${max}</li>`;
 			}
 		});
 
@@ -120,6 +126,26 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 	CategoryCheck(category_select);
 
 	let another = -1;
+	let inf_quantity = document.querySelector('.inf_quantity');
+	inf_quantity.addEventListener('change', (e)=>{
+
+		let quantity = document.querySelector('.inp_quantity');
+		console.log(quantity);
+		if (inf_quantity.checked)
+		{
+			quantity.placeholder = quantity.value;
+			quantity.value = "";
+			quantity.setAttribute('readonly', 'readonly');
+		}
+		else
+		{
+			quantity.removeAttribute ('readonly');
+			quantity.value = quantity.placeholder;
+			quantity.placeholder = "";
+		}
+
+
+	});
 	function generateForm(data) {
 		let dev = document.querySelector('.form-group_dev');
 		let dev_select = document.querySelector('.form-group_dev_select');
