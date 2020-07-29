@@ -19,7 +19,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		//Validate Text elements
 		let texts = document.querySelectorAll('.Text');
 		texts.forEach((el)=>{
-			let input_string = el.querySelector('input').value;
+			let input_string = el.querySelector('input').value.trim();
 			let error_list = el.querySelector('.error-list');
 			let min = el.getAttribute("data-min");
 			let max = el.getAttribute("data-max");
@@ -31,14 +31,14 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 				error_list.innerHTML+=`<li>Наименование слишком короткое, минимальная длина - ${min} cимволов</li>`;
 			} else if(max&&(input_string.length > max)){
 				valid = false;
-				error_list.innerHTML+=`<li>Наименование слишком большого размера</li>`;
+				error_list.innerHTML+=`<li>Наименование слишком длинное, минимальная длина - ${max} cимволов</li>`;
 			}
 		});
 
 		//Validate Long_Text elements
 		let long_texts = document.querySelectorAll('.LongText');
 		long_texts.forEach((el)=>{
-			let input_string = el.querySelector('textarea').value;
+			let input_string = el.querySelector('textarea').value.trim();
 			let error_list = el.querySelector('.error-list');
 			let min = el.getAttribute("data-min");
 			let max = el.getAttribute("data-max");
@@ -76,13 +76,19 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		//Validate Maker element
 		let maker = document.querySelector('.Maker');
 		let maker_selector = maker.querySelector('select');
+		let dev_inp = document.querySelector("#developer_input_inp");
 		if(maker_selector.value == "")
 		{
 			valid = false;
 			let error_list = maker.querySelector('.error-list');
 			error_list.innerHTML+=`<li>Выберите производителя</li>`;
 		}
-
+		if(maker_selector.value == another && dev_inp.value.trim() == "")
+		{
+			valid = false;
+			let error_list = maker.querySelector('.error-list');
+			error_list.innerHTML+=`<li>Внесите название производителя</li>`;
+		}
 		//Validate Category element
 		let category = document.querySelector('.Category');
 		let category_selector = category.querySelector('select');
