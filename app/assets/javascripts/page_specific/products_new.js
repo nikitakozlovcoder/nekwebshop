@@ -13,7 +13,6 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		});
 
 		//Validate flag
-
 		let valid = true;
 
 		//Validate Text elements
@@ -31,7 +30,7 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 				error_list.innerHTML+=`<li>Наименование слишком короткое, минимальная длина - ${min} cимволов</li>`;
 			} else if(max&&(input_string.length > max)){
 				valid = false;
-				error_list.innerHTML+=`<li>Наименование слишком длинное, минимальная длина - ${max} cимволов</li>`;
+				error_list.innerHTML+=`<li>Наименование слишком длинное, максимальная длина - ${max} cимволов</li>`;
 			}
 		});
 
