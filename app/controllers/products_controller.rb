@@ -6,15 +6,37 @@ class ProductsController < ApplicationController
 
 
   # all products grid
+   def load_fields
+     @product = Product.find params[:id]
+     out ={}
+     out[:category_id] = @product.category.id
+     out[:maker_id] = @product.maker.id
+     out[:custom_maker_name] = @product.maker_name
+
+     @product.fields.each do |field|
+       out[field.code] = [field, []]
+       if field.type_name == "Images" || field.type_name == "Videos" || field.type_name == "Files"
+
+         field.files.each do |file|
+           out[field.code][1] << url_for(file)
+         end
+
+       end
+     end
+     render json: out
+   end
   def index
     @products = Product.all
   end
 
 
   def show
+    #TODO show files and videos
   	@product = Product.find params[:id]
 
     @images = @product.fields.select{|el|  el.type_name == "Images" }
+    @videos = @product.fields.select{|el|  el.type_name == "Videos" }
+    @files = @product.fields.select{|el|  el.type_name == "Files" }
     @fields = @product.fields - @images
     #pp @product.fields
     @page_title = @product.title
@@ -83,16 +105,19 @@ class ProductsController < ApplicationController
           a.name = el['name']
           a.type_name = el['type']
           a.hint = el['hint']
-
+          a.code = el['id']
           case el['type']
           when  "Images"
             if params[el['id'].to_s] == nil
               next
             end
             params[el['id'].to_s].each do |el|
-                a.images.attach(el)
+                a.files.attach(el)
             end
-
+          when "Videos"
+            #TODO add
+          when "Files"
+            #TODO add
           when "Text", "LongText"
             a.text =  params[el['id'].to_s].strip
           when "Number"
@@ -135,6 +160,13 @@ class ProductsController < ApplicationController
           end
         end
       end
+      if el['type'] == "Images"
+        #TODO validation
+      elsif el['type'] == "Videos"
+        #TODO validation
+      elsif el['type'] == "Files"
+        #TODO validation
+      end
     end
     if blank
       @errors << t('controllers.product.blank')
@@ -154,6 +186,10 @@ class ProductsController < ApplicationController
       if el['min'] && params[el['id'].to_s].to_f  < el['min']
         @errors << "Значение поля "+el['name']+" должно быть не меньше "+el['min'].to_s
         valid =  false
+      end
+      if el['is_int'] && params[el['id'].to_s].split('.').count != 1
+        @errors << "Значение поля "+el['name']+" должно быть целым числом"
+        valid = false
       end
 
     when "Text", "LongText"

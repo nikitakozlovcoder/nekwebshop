@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get 'registration', to: 'users#registration'
   get 'category/load/:id', to:'categories#show'
   get 'product/:id', to:'products#show', as: :show_product_path
-
+  get 'product/:id/load_fields', to: 'products#load_fields'
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
 end

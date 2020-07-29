@@ -123,12 +123,14 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 
 	let category_select = document.querySelector('.category_select');
-	CategoryCheck(category_select);
+
+	CategoryCheck(category_select).then(()=>{
+		//TODO fill fields if needs update
+	});
 
 	let another = -1;
 	let inf_quantity = document.querySelector('.inf_quantity');
-	inf_quantity.addEventListener('change', (e)=>{
-
+	function manipulate_quantity() {
 		let quantity = document.querySelector('.inp_quantity');
 		console.log(quantity);
 		if (inf_quantity.checked)
@@ -143,6 +145,11 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			quantity.value = quantity.placeholder;
 			quantity.placeholder = "";
 		}
+	}
+	manipulate_quantity();
+	inf_quantity.addEventListener('change', (e)=>{
+
+		manipulate_quantity();
 
 
 	});
@@ -190,29 +197,34 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			if (el.type == "Number")
 			{
 				type = "number";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder=""><div class="error-list"></div></div>`;
+				let step = 0.01;
+				if (el.is_int)
+				{
+						step = 1;
+				}
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" step="${step}" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Text")
 			{
 				type = "text";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "LongText")
 			{
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Bool")
 			{
 				type = "checkbox";
 				style = `width: 25px; height: 25px; display: block`;
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Images")
 			{
 				style ="";
 				type="file";
 
-				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><div class="error-list"></div></div></div>`;
+				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><div class="error-list"></div></div></div>`;
 
 			}
 			generated_fields.innerHTML+=text_to_add;
@@ -255,20 +267,35 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 	}
 
 	function CategoryCheck(e) {
-		if (e.value == "")
-			return;
-		let dev = document.querySelector('#developer_input');
-		let dev_inp = document.querySelector('#developer_input_inp');
-		dev.style.display = "none";
-		dev_inp.value = "";
-		fetch('/category/load/'+e.value)
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				generateForm(data);
-			});
-	}
+		return new Promise(resolve =>{
 
+			if (e.value == "")
+			{
+
+				resolve();
+				return;
+			}
+
+
+			let dev = document.querySelector('#developer_input');
+			let dev_inp = document.querySelector('#developer_input_inp');
+			dev.style.display = "none";
+			dev_inp.value = "";
+			fetch('/category/load/'+e.value)
+				.then((response) => {
+					return response.json();
+
+
+				})
+				.then((data) => {
+					generateForm(data);
+					console.log(0)
+				})
+				.then(()=>{
+					resolve();
+				});
+
+		});
+	}
 }
 

@@ -20,23 +20,23 @@ Shop.create(name: 'Семерочка')
 
 
 Category.add 'Компьютерные мыши', [
-    {:name=> "Разрешение cенсора", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "DPI" },
+    {:name=> "Разрешение cенсора", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "DPI", is_int: true},
     {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
-    {:name=>"Высота", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: "мм"},
-    {:name=>"Ширина", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "мм"},
-    {:name=>"Масса", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "г"}
+    {:name=>"Высота", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: "мм", is_int: true},
+    {:name=>"Ширина", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "мм", is_int: true},
+    {:name=>"Масса", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "г", is_int: true}
 ]
 
 Category.add 'Смартфоны', [
-    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil, is_int: false },
     {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
     {:name=>"Чтото", :type=>"Text", :id=>3, :min=>nil, :max=>nil, hint: nil}
 ]
 
 Category.add 'Телевизоры', [
-    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil, is_int: false},
     {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
-    {:name=>"Количество цветов", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: nil},
+    {:name=>"Количество цветов", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: nil, is_int: true},
     {:name=>"Умное ТВ", :type=>"Bool", :id=>4, :min=>nil, :max=>nil, hint: nil},
 ]
 another = Maker.create(name: 'Другое', is_another:true)
