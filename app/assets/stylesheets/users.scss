@@ -202,6 +202,71 @@
 
 //end-sign-in
 
+//shop_id
+
+.inform-shop{
+  padding-bottom: 0;
+}
+
+.left-shop-inform-container{
+  background-color: rgb(246, 247, 251);
+  padding: 15px 0;
+
+}
+
+.left-shop-inform{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.left-shop-inform div{
+  padding-bottom: 8px;
+}
+
+.rating-shop{
+  padding-top: 2px;
+}
+.data-shop{
+  padding-right: 3px;
+}
+.left-shop-inform .reviews{
+  padding-right: 5px;
+  width: max-content;
+}
+
+.left-shop-inform .reviews li {
+  display: inline-block;
+  font-size: 20px;
+}
+
+.left-shop-inform .reviews li.yellow i {
+  color: #F7941D;
+}
+
+.logo-shop{
+  padding: 0 5px;
+  //margin: 0 auto;
+  //padding-bottom: 15px;
+}
+
+.rating-shop{
+  display: flex;
+}
+
+.rating-shop-numb{
+  font-size: 20px;
+  color: #424646;
+  padding-right: 5px;
+}
+
+.shop-name h2{
+  padding-bottom: 20px;
+  font-size: 38px;
+}
+
+//end-shop_id
+
 @media only screen and (max-width: 992px){
    .right-bar div{
     margin-right: 10px !important;
