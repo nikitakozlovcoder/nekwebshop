@@ -60,6 +60,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ancestry (3.0.7)
       activerecord (>= 3.2.0)
+    bcrypt (3.1.15)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -212,6 +213,7 @@ PLATFORMS
 DEPENDENCIES
   activestorage
   ancestry
+  bcrypt
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)

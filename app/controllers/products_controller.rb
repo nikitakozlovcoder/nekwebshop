@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
      out[:category_id] = @product.category.id
      out[:maker_id] = @product.maker.id
      out[:custom_maker_name] = @product.maker_name
+     out[:main_photo] = url_for(@product.main_photo)
 
      @product.fields.each do |field|
        out[field.code] = [field, []]
@@ -31,8 +32,10 @@ class ProductsController < ApplicationController
 
   def update
     @categories = Category.where(is_template: true )
+
     @shop = Shop.find(params[:shop_id])
     @product = @shop.products.find(params[:id])
+    @category = @product.category
     @errors = []
 
     render :new

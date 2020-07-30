@@ -1,4 +1,4 @@
-if (get_body().classList.contains('users') && get_body().classList.contains('registration') )
+if (get_body().classList.contains('users') && (get_body().classList.contains('registration') ||  get_body().classList.contains('create')))
 {
                 let form = document.querySelector('.form');
                 form.addEventListener('submit', (e)=>{
@@ -22,13 +22,14 @@ if (get_body().classList.contains('users') && get_body().classList.contains('reg
                                 if(email_val == ""){
                                         valid = false;
                                         error_list.innerHTML+=`<li>Введите адрес своей эл. почты</li>`;
-                                } else if(min&&(email_val.length < min)){
-                                        valid = false;
-                                        error_list.innerHTML+=`<li>Адрес слишком короткий, минимальная длина - ${min} cимволов</li>`;
-                                } else if(max&&(email_val.length > max)){
-                                        valid = false;
-                                        error_list.innerHTML+=`<li>Адрес слишком длинный, максимальная длина - ${max} cимволов</li>`;
-                                } else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email_val))){
+                              //  } else if(min&&(email_val.length < min)){
+                                    //    valid = false;
+                                     //   error_list.innerHTML+=`<li>Адрес слишком короткий, минимальная длина - ${min} cимволов</li>`;
+                               // } else if(max&&(email_val.length > max)){
+                                     //   valid = false;
+                                    //    error_list.innerHTML+=`<li>Адрес слишком длинный, максимальная длина - ${max} cимволов</li>`;
+                                        // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                                } else if(!( /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.test(email_val))){
                                         valid = false;
                                         error_list.innerHTML+=`<li>Адрес эл. почты не соотвесвует стандартному формату.<br>Пример: my.example12@test.ru</li>`;
                                 }
@@ -60,26 +61,26 @@ if (get_body().classList.contains('users') && get_body().classList.contains('reg
                                 }
                         }
                         //Validate Tel_Number element
-                        {
-                                let tel_number = document.querySelector('.Tel_Number');
-                                let tel_number_val = tel_number.querySelector('input').value;
-                                let error_list = tel_number.querySelector('.error-list');
-                                let min = tel_number.getAttribute("data-min");
-                                let max = tel_number.getAttribute("data-max");
-                                if(tel_number_val == ""){
-                                        valid = false;
-                                        error_list.innerHTML+=`<li>Введите номер телефона</li>`;
-                                } else if(min&&(el_number_val.length < min)){
-                                        valid = false;
-                                        error_list.innerHTML+=`<li>Номер телефона слишком короткий, минимальная длина - ${min} cимволов</li>`;
-                                } else if(max&&(el_number_val.length > max)){
-                                        valid = false;
-                                        error_list.innerHTML+=`<li>Номер телефона слишком длинный, максимальная длина - ${max} cимволов</li>`;
-                                } else if(!(/(8|\+?7)-?([0-9]{3}|\([0-9]{3}\))-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}/.test(el_number_val))){
-                                        valid = false;
-                                        error_list.innerHTML+=`<li>Номер телефона не соотвесвует стандартному формату</li>`;
-                                }
-                        }
+                       // {
+                        //        let tel_number = document.querySelector('.Tel_Number');
+                        //        let tel_number_val = tel_number.querySelector('input').value;
+                        //        let error_list = tel_number.querySelector('.error-list');
+                         //       let min = tel_number.getAttribute("data-min");
+                         //       let max = tel_number.getAttribute("data-max");
+                       //         if(tel_number_val == ""){
+                       //                 valid = false;
+                       //                 error_list.innerHTML+=`<li>Введите номер телефона</li>`;
+                      //          } else if(min&&(tel_number_val.length < min)){
+                      //                  valid = false;
+                      //                  error_list.innerHTML+=`<li>Номер телефона слишком короткий, минимальная длина - ${min} cимволов</li>`;
+                        //        } else if(max&&(tel_number_val.length > max)){
+                      //                  valid = false;
+                      //                  error_list.innerHTML+=`<li>Номер телефона слишком длинный, максимальная длина - ${max} cимволов</li>`;
+                      //          } else if(!(/(8|\+?7)-?([0-9]{3}|\([0-9]{3}\))-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}/.test(tel_number_val))){
+                       //                 valid = false;
+                      //                  error_list.innerHTML+=`<li>Номер телефона не соотвесвует стандартному формату</li>`;
+                      //          }
+                     //   }
 
                         if (valid)
                         {

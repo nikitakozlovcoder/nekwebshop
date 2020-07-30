@@ -2,7 +2,30 @@
 
 if (get_body().classList.contains('products') &&( get_body().classList.contains('new') || get_body().classList.contains('create')|| get_body().classList.contains('update') ))
 {
+	//TODO add function
 
+	function fill_fields_update()
+	{
+		if (!get_body().classList.contains('update'))
+		{
+			return;
+		}
+		let id = window.location.toString().split('/').splice(-1,1);
+
+		fetch(`/product/${id}/load_fields`)
+			.then((response) => {
+				return response.json();
+
+
+			})
+			.then((data) => {
+
+				console.log(data)
+				//call function
+				//after select update $('select').niceSelect('update');
+			})
+
+	}
 	let form = document.querySelector('.form');
 	form.addEventListener('submit', (e)=>{
 		let quantity_check = document.querySelector('inf_quantity');
@@ -124,7 +147,8 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 	let category_select = document.querySelector('.category_select');
 
 	CategoryCheck(category_select).then(()=>{
-		//TODO fill fields if needs update
+
+		fill_fields_update();
 	});
 
 	let another = -1;
