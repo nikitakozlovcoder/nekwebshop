@@ -22,6 +22,7 @@
 //= require page_specific/products_new.js
 //= require page_specific/users_register.js
 
+
 let links = document.querySelectorAll('.main-category > li');
 let menu = document.querySelector('.main-category');
 
