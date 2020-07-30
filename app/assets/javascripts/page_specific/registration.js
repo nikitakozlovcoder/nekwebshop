@@ -68,13 +68,13 @@ if (document.querySelector('body').classList.contains('registration')){
             if(tel_number_val == ""){
                 valid = false;
 			    error_list.innerHTML+=`<li>Введите номер телефона</li>`;
-            } else if(min&&(el_number_val.length < min)){
+            } else if(min&&(tel_number_val.length < min)){
                 valid = false;
 			    error_list.innerHTML+=`<li>Номер телефона слишком короткий, минимальная длина - ${min} cимволов</li>`;
-            } else if(max&&(el_number_val.length > max)){
+            } else if(max&&(tel_number_val.length > max)){
                 valid = false;
 			    error_list.innerHTML+=`<li>Номер телефона слишком длинный, максимальная длина - ${max} cимволов</li>`;
-            } else if(!(/(8|\+?7)-?([0-9]{3}|\([0-9]{3}\))-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}/.test(el_number_val))){
+            } else if(!(/(8|\+?7)-?([0-9]{3}|\([0-9]{3}\))-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}/.test(tel_number_val))){
                 valid = false;
                 error_list.innerHTML+=`<li>Номер телефона не соотвесвует стандартному формату</li>`;
             }

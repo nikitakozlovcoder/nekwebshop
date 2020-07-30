@@ -33,9 +33,25 @@
                     <input name="login" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
                     <div class="error-list"></div>
                 </div>
-                
-            </div>
 
+            </div>
+            <div class = "col-12 col-lg-6">
+              <div class="form-group Category">
+                    <label>Product Category<span>*</span></label>
+                    <p style="display: flex" >
+                        <select name="category" class="category_select" onchange="CategoryCheck(this)">
+                          <option value="" disabled <%= @category ? "" : "selected" %> value>-------</option>
+                          <% @categories.each do |el| %>
+
+                            <option value="<%= el.id %>"  <%= @category && @category.id == el.id ? "selected" : "" %>><%= el.name %></option>
+                          <% end %>
+
+                        </select>
+
+                    </p>
+                    <div class="error-list"></div>
+                  </div>
+            </div>
             <div class="col-lg-10 col-12">
               <div class="form-group button">
                 <button type="submit" class="btn">Зарегистрироваться</button>
