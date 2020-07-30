@@ -1,4 +1,5 @@
 
+//= require general/main.js
 //= require jquery.min.js
 //= require jquery-migrate-3.0.0.js
 //= require jquery-ui.min.js
@@ -19,7 +20,8 @@
 //= require easing.js
 //= require active.js
 //= require page_specific/products_new.js
-//= require page_specific/registration.js
+//= require page_specific/users_register.js
+
 
 let links = document.querySelectorAll('.main-category > li');
 let menu = document.querySelector('.main-category');

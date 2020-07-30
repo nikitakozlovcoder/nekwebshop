@@ -1,4 +1,4 @@
 class Attribute < ApplicationRecord
   belongs_to :product
-  has_many_attached :images
+  has_many_attached :files
 end

@@ -8,6 +8,9 @@ ru:
       models:
         product:
           attributes:
+            quantity:
+              greater_than_or_equal_to: 'количество товаров должно быть положительным'
+              not_a_number: 'укажите количество товаров'
             price:
               greater_than_or_equal_to: 'цена должна быть неотрицательной'
             maker:
