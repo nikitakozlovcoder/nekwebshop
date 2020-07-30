@@ -29,7 +29,14 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def update
+    @categories = Category.where(is_template: true )
+    @shop = Shop.find(params[:shop_id])
+    @product = @shop.products.find(params[:id])
+    @errors = []
 
+    render :new
+  end
   def show
     #TODO show files and videos
   	@product = Product.find params[:id]
@@ -44,7 +51,7 @@ class ProductsController < ApplicationController
   # add new product
 
   def new
-
+    @shop = Shop.find(params[:id])
     @categories = Category.where(is_template: true )
     @product = Product.new
     @errors = []

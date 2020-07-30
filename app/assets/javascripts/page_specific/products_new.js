@@ -1,6 +1,6 @@
 
 
-if (get_body().classList.contains('products') &&( get_body().classList.contains('new') || get_body().classList.contains('create') ))
+if (get_body().classList.contains('products') &&( get_body().classList.contains('new') || get_body().classList.contains('create')|| get_body().classList.contains('update') ))
 {
 
 	let form = document.querySelector('.form');
