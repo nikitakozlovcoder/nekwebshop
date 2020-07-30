@@ -12,6 +12,14 @@
 
 
 							<h3><%= @product.title %></h3>
+							<p>В наличии:
+							<% if @product.is_inf_quantity %>
+									неограничено
+								<% else %>
+									<%= @product.quantity %>
+							<% end %>
+
+							</p>
 						</div>
 
 							<div class = "row form-row" style="padding-left: 10px; padding-right: 10px;">
@@ -99,7 +107,11 @@
 													</tr>
 												<% @fields.each do |el| %>
 													<tr>
-														<td class="column1"><%= el.name %></td>
+														<td class="column1"><%= el.name %>
+														<% if el.hint %>
+															(<%= el.hint  %>)
+														<% end %>
+														</td>
 														<td class="column2">
 															<% if el.type_name == "Number"%>
 																<%= el.num == el.num.floor ? el.num.to_i : el.num %>
@@ -141,7 +153,7 @@
 									</h3>
 									<div class="owl-carousel product-images-slider">
 										<!-- Start Single Product -->
-										<%el.images.each do |image| %>
+										<%el.files.each do |image| %>
 											<div class="single-product">
 											<div class="product-img">
 												<%= image_tag image, :class=>"default-img" %>
