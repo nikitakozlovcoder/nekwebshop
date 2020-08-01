@@ -29,8 +29,10 @@ if (get_body().classList.contains('users') && (get_body().classList.contains('re
                                      //   valid = false;
                                     //    error_list.innerHTML+=`<li>Адрес слишком длинный, максимальная длина - ${max} cимволов</li>`;
                                         // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-                                } else if(!( /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.test(email_val))){
+                                        // /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+                                } else if(!( /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email_val))){
                                         valid = false;
+                                        console.log(email_val);
                                         error_list.innerHTML+=`<li>Адрес эл. почты не соотвесвует стандартному формату.<br>Пример: my.example12@test.ru</li>`;
                                 }
                         }
@@ -60,6 +62,27 @@ if (get_body().classList.contains('users') && (get_body().classList.contains('re
                                         }
                                 }
                         }
+                       // Validate Name element
+                        {
+                                let names = document.querySelectorAll('.Name');
+                                let t = ['имя', 'фамилию'];
+                                names.forEach((el, i)=>{
+
+                                     let name_inp = el.querySelector('input');
+
+                                     let error_list = el.querySelector('.error-list');
+                                     error_list.innerHTML="";
+
+                                     if (name_inp.value.trim() == "")
+                                     {
+                                             valid = false;
+
+                                             error_list.innerHTML+=`<li>Укажите ${t[i]}</li>`
+                                     }
+
+                                })
+                        }
+
                         //Validate Tel_Number element
                        // {
                         //        let tel_number = document.querySelector('.Tel_Number');

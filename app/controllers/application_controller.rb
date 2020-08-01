@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
+    if cookies.signed[:user]
+      hash = JSON.parse cookies.signed[:user]
+      return  @current_user ||= User.find(hash['user_id'])
+    else
+      return  nil
+    end
   end
 end

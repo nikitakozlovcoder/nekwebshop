@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'contact', to:'home#contact'
   get 'profile', to:'users#profile'
   get 'sign_in', to: 'users#sign_in'
+  post 'sign_in', to: 'users#sign_in_post'
+  get 'exit', to: 'users#exit'
+
   #get 'shop_id', to: 'users#shop_id'
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
   post 'registration', to: 'users#create'
   get 'category/load/:id', to:'categories#show'
   get 'product/:id', to:'products#show', as: :show_product_path
+  post 'product/:id', to:'posts#create'
   get 'product/:id/load_fields', to: 'products#load_fields'
   get 'shop/:shop_id/update_product/:id', to: 'products#update'
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}

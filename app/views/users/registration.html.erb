@@ -5,7 +5,7 @@
         <div class="title">
           <h2>Регистрация</h2>
         </div>
-        <%= form_with class: "form",:htnl =>{'novalidate'=>''}, multipart: true do %>
+        <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
           <div class="error-list">
             <% @errors.each do |msg| %>
               <li>
@@ -24,9 +24,19 @@
 
                 <div class="form-group Email" data-min="5" data-max="50">
                     <label>Эл. почта<span>*</span></label>
-                    <input name="email" type="email" placeholder="" novalidate>
+                    <input name="email" type="email" placeholder=""  value="<%= @user.email %>">
                     <div class="error-list"></div>
                 </div>
+                <div class="form-group Name" data-min="0">
+                  <label>Имя<span>*</span></label>
+                  <input name="name" placeholder=""  value="<%= @user.name %>">
+                  <div class="error-list"></div>
+                </div>
+              <div class="form-group Name" data-min="0">
+                <label>Фамилия<span>*</span></label>
+                <input name="surname" placeholder=""  value="<%= @user.surname %>">
+                <div class="error-list"></div>
+              </div>
 
                 <div class="form-group Password" data-min="8" data-max="50">
                     <label>Пароль<span>*</span></label>

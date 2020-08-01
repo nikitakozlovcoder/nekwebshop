@@ -203,10 +203,10 @@
               <% if current_user %>
               <li><i class="ti-alarm-clock"></i> <a href="#">Запланированные покупки</a></li>
               <li><i class="ti-user"></i> <a href="#">Профиль</a></li>
-              <li><i class="ti-power-off"></i><a href="login.html#"> Выход</a></li>
+              <li><i class="ti-power-off"></i><%= link_to "Выход", controller: "users", action: "exit"  %></li>
               <% else %>
-              <li><i class="ti-user"></i> <a href="#">Регистрация</a></li>
-              <li><i class="ti-power-off"></i><a href="login.html#"> Вход</a></li>
+              <li><i class="ti-user"></i><%= link_to "Регистрация", controller: "users", action: "registration"  %></li>
+              <li><i class="ti-power-off"></i><%= link_to "Вход", controller: "users", action: "sign_in"  %></li>
               <% end %>
             </ul>
           </div>
