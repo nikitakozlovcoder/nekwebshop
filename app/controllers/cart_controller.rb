@@ -9,4 +9,7 @@ class CartController < ApplicationController
   def new
 
   end
+  def wishlist
+
+  end
 end

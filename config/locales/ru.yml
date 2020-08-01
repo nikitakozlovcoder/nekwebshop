@@ -6,8 +6,26 @@ ru:
   activerecord:
     errors:
       models:
+        user:
+          attributes:
+            phone:
+              taken: 'этот номер телефона уже используется'
+            email:
+              blank: 'введите адрес электронной почты'
+              invalid: 'Адрес эл. почты не соотвесвует стандартному формату. Пример: my.example12@test'
+              taken: 'адрес электронной почты уже используется, выполните вход или восстановите пароль'
+            password:
+              blank: 'введите пароль'
+              too_short: 'пароль должен быть длиннее 7 символов'
+              too_long: 'пароль должен быть короче 51 символа'
+            password_confirmation:
+              confirmation: 'пароли не совпадают'
+
         product:
           attributes:
+            quantity:
+              greater_than_or_equal_to: 'количество товаров должно быть положительным'
+              not_a_number: 'укажите количество товаров'
             price:
               greater_than_or_equal_to: 'цена должна быть неотрицательной'
             maker:

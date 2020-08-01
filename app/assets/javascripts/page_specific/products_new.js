@@ -1,10 +1,34 @@
 
-let body = document.querySelector('body');
-if (body.classList.contains('products') &&( body.classList.contains('new') ||body.classList.contains('create') ))
-{
 
+if (get_body().classList.contains('products') &&( get_body().classList.contains('new') || get_body().classList.contains('create')|| get_body().classList.contains('update') ))
+{
+	//TODO add function
+
+	function fill_fields_update()
+	{
+		if (!get_body().classList.contains('update'))
+		{
+			return;
+		}
+		let id = window.location.toString().split('/').splice(-1,1);
+
+		fetch(`/product/${id}/load_fields`)
+			.then((response) => {
+				return response.json();
+
+
+			})
+			.then((data) => {
+
+				console.log(data)
+				//call function
+				//after select update $('select').niceSelect('update');
+			})
+
+	}
 	let form = document.querySelector('.form');
 	form.addEventListener('submit', (e)=>{
+		let quantity_check = document.querySelector('inf_quantity');
 		e.preventDefault();
 		//Remove old errors
 		let errors = document.querySelectorAll('.error-list');
@@ -56,6 +80,11 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 		//Validate Number elements
 		let numbers = document.querySelectorAll('.Number');
 		numbers.forEach((el) => {
+			if (el.classList.contains('form-group-quantity') && inf_quantity.checked)
+			{
+				return;
+			}
+
 			let input_number = el.querySelector('input').value;
 			let error_list = el.querySelector('.error-list');
 			let min = el.getAttribute("data-min");
@@ -65,10 +94,10 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 				error_list.innerHTML+=`<li>Введите значение</li>`;
 			} else if(min&&(input_number < min)){
 				valid = false;
-				error_list.innerHTML+=`<li>Слишком малое значение</li>`;
+				error_list.innerHTML+=`<li>Слишком малое значение, минимальное допустимое значение - ${min}</li>`;
 			} else if(max&&(input_number > max)){
 				valid = false;
-				error_list.innerHTML+=`<li>Слишком большое значение</li>`;
+				error_list.innerHTML+=`<li>Слишком большое значение, максимальное допустимое значение - ${max}</li>`;
 			}
 		});
 
@@ -116,9 +145,37 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 
 	let category_select = document.querySelector('.category_select');
-	CategoryCheck(category_select);
+
+	CategoryCheck(category_select).then(()=>{
+
+		fill_fields_update();
+	});
 
 	let another = -1;
+	let inf_quantity = document.querySelector('.inf_quantity');
+	function manipulate_quantity() {
+		let quantity = document.querySelector('.inp_quantity');
+		console.log(quantity);
+		if (inf_quantity.checked)
+		{
+			quantity.placeholder = quantity.value;
+			quantity.value = "";
+			quantity.setAttribute('readonly', 'readonly');
+		}
+		else
+		{
+			quantity.removeAttribute ('readonly');
+			quantity.value = quantity.placeholder;
+			quantity.placeholder = "";
+		}
+	}
+	manipulate_quantity();
+	inf_quantity.addEventListener('change', (e)=>{
+
+		manipulate_quantity();
+
+
+	});
 	function generateForm(data) {
 		let dev = document.querySelector('.form-group_dev');
 		let dev_select = document.querySelector('.form-group_dev_select');
@@ -145,6 +202,11 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 
 		let fields = JSON.parse(data.category.data);
 		fields.forEach((el)=>{
+			let hint = "";
+			if (el.hint != null)
+			{
+				hint = " ("+el.hint+")";
+			}
 			let type="";
 			let text_to_add="";
 			if (el.min===null)
@@ -158,29 +220,34 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 			if (el.type == "Number")
 			{
 				type = "number";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" step="0.01" placeholder=""><div class="error-list"></div></div>`;
+				let step = 0.01;
+				if (el.is_int)
+				{
+						step = 1;
+				}
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" step="${step}" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Text")
 			{
 				type = "text";
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder=""><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "LongText")
 			{
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><textarea name="${el.id}" type="${type}" placeholder=""></textarea><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Bool")
 			{
 				type = "checkbox";
 				style = `width: 25px; height: 25px; display: block`;
-				text_to_add=`<div class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
+				text_to_add=`<div data-code="${el.id}" class="form-group ${el.type}" data-min="${el.min}" data-max="${el.max}"><label>${el.name}${hint}<span>*</span></label><input name="${el.id}" type="${type}" placeholder="" style="${style}"><div class="error-list"></div></div>`;
 			}
 			else if(el.type == "Images")
 			{
 				style ="";
 				type="file";
 
-				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><div class="error-list"></div></div></div>`;
+				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><div class="error-list"></div></div></div>`;
 
 			}
 			generated_fields.innerHTML+=text_to_add;
@@ -223,20 +290,35 @@ if (body.classList.contains('products') &&( body.classList.contains('new') ||bod
 	}
 
 	function CategoryCheck(e) {
-		if (e.value == "")
-			return;
-		let dev = document.querySelector('#developer_input');
-		let dev_inp = document.querySelector('#developer_input_inp');
-		dev.style.display = "none";
-		dev_inp.value = "";
-		fetch('/category/load/'+e.value)
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				generateForm(data);
-			});
-	}
+		return new Promise(resolve =>{
 
+			if (e.value == "")
+			{
+
+				resolve();
+				return;
+			}
+
+
+			let dev = document.querySelector('#developer_input');
+			let dev_inp = document.querySelector('#developer_input_inp');
+			dev.style.display = "none";
+			dev_inp.value = "";
+			fetch('/category/load/'+e.value)
+				.then((response) => {
+					return response.json();
+
+
+				})
+				.then((data) => {
+					generateForm(data);
+					console.log(0)
+				})
+				.then(()=>{
+					resolve();
+				});
+
+		});
+	}
 }
 

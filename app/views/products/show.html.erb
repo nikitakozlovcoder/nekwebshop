@@ -12,30 +12,21 @@
 
 
 							<h3><%= @product.title %></h3>
+							<p>В наличии:
+							<% if @product.is_inf_quantity %>
+									неограничено
+								<% else %>
+									<%= @product.quantity %>
+							<% end %>
+
+							</p>
 						</div>
 
 							<div class = "row form-row" style="padding-left: 10px; padding-right: 10px;">
 								<div class="col-lg-6">
 									<%= image_tag @product.main_photo %>
 
-									<!-- Product Slider -->
-									<!-- <div class="product-gallery">
-                     <div class="quickview-slider-active">
-                       <div class="single-slider">
-                         <img src="https://lunafon.ru/image/cache/catalog/Telephones/XiaomiNew/xiaomi-mi-10-twilight-grey-1000x1000.jpg" alt="#">
-                       </div>
-                       <div class="single-slider">
-                         <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBUPEBAPEBAQEhESEBAPDw8QEA0QFxcZFhUVFRUYHSggGBomGxUVITEhMSk3Li4uFx8zODMsNygtLisBCgoKDg0OGxAQGC0lHSUxLS0tLS0tKy0vLS0tLS0rLS0tLjAtLS0tKy0tLS0tKy0tLS0tLS4rLS0tKzctLS0tLf/AABEIAOMA3gMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAAAQYEBQcDCAL/xABDEAACAQICAwoMBQMDBQAAAAAAAQIDEQQFBhIhEyIxQVFxc3SBsgcjMjM0UmFykaGxs5K0wdHwFEKCYmPCJFNkg+H/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAgMEAQX/xAAqEQEAAgEDAwMDBAMAAAAAAAAAAQIDETFBEoGxBCEyBXHBEyMzUWHR8P/aAAwDAQACEQMRAD8A7iAAAAAAAAAAAAAAAACpeEXSSeAoRdK26VG1HmVr/VFMWmeM1K0d3viKFJTqeLg6dKctsYcrdtr27Lpc1kY5mvUq/Vjq6YdgBwTLPCvmcW1U/pqyTs06coS/Em18i04Lwsycd/gm5f7dZOL520mvgP07J9cOpApeXeEnB1HarCvh3y1Ibz8S/Ys+EzbD1dtOvSnf1ZxZDSXdYZoCYOOgAAAAAczxFPEVcRiNSs4Rp1pp69acYrWqSUUvgdMOX18dVoYmu6cU9bESlvot7YVZSj8zyvqkxEU6tdNZ2+z2PpEWmb9Omukb/f8A08cbSxVKOvKtJxvGKlCtKSlrQ14tbeCx1HDPeR92P0OUYrHValNUpRWrHUtaLT3kNSPyOr4XyI+7H6Ff0qYm1+nXT237rfrEWilOrTX327PUAHsvCAAAZBJAAAAESQiQAAA514V4KVXCJ7VrrZy3rUEc8y5Xnmb43Kpf8R0bwoLx2E9+P5igc9ypb7Mveqd81R8K9/LLX+S/bwrVDB7xzje8Xv8A3XwP+cpscv4TIyFJVbS8me8d+Dbs/Y9MRgnQrSp7dW94Nu943t8eIur7eyWrZ0UZNOlF7Wlflsr/ABPDDLYZlNHLQQ6BoBWk6U4uUpKMlqqUnLV2cCvxewtZUfB/5FTnX0RbjFf5L67AAIugAAAAAQ2SRICQAAAAAgkgAAAFzn2N8KmHVZ0cPRnXUJ6kqusoU9fjS42XbOKzhh601wwo1ZLnUWz56wWFUaeCUV5dOVST45TaUm37d9bsRowUrbdRmvMbO44DSiFRJyhq34ozi2udSt8rmxw2dYapLUjWhr+pN6k+yMrNnIKmLUNVOSi5yUY3dld+00OY5rUVVqM5bOFNSSa5bSW1bH8HyFl8FdfaVdc19NdHSvCc1u+Fu7b6PD1igc/yZb/Mveqd888BjpYqShW8ZGlPDKEZ76MdavBOyexbEe2Rx32Y+/U746dIiPv5hzHbqteft4YuXYfWaXHLe/FW/UsmeUY18NSxMUteNOnOouPVmld9kvoajLouLUlwxakudbTaTrLD4uhSn5jE061Dbwam6ycPhGpAstulDDwK2GbGJ5QwzpTlSlwwk4v22fCZSiLOwuvg/wDIqc6+iLcVLQHyanOvoi2mK/ylorsAAg6AAAAABEiSJASAAAAAEEkAAABr9IfQ8R1ev3JHEcDTvTy9/wDj1O5A7dpF6HiOr1+5I4tlMXuOXa1r/wBPW4L2tqwt8rGr0/LPnYWkMU5QT4oycW3ZRmqlJRlfis2VPBJRk4LWWrdNSSTU1ZT2cVt5dcVy2aVx2Lo5fcpFPw9ZzxF25PVpuK1qjqJK8dkW+Bew7ln92EMcftLLov5yXSYP8xE22RLfZh79Tvmp0X85LpMH+YibrR9b7MOkq99k7cd/MIYt7dvD0wFPemfpRgFVwNCr/dRqTi2uFRcIpvs1EzxwMdhZcvw8a2CnSleyrNXXDFuMZJrtJXSrLRzm6saWIflThqVunp71vtjqy7T1URg8K6e6YaXCkqsLcDlCyk1z05R/Ce+qc4TWvQNb2fOvoi1lV0HW9nz/AKItRjyfKV9dgAEEgAAAAAIkSRICQAAAABkEkAAABr9IfQ8R1ev3JHHMpXisu6tW7tM7JpB6HiOr1+5I49lMfF5euTD1+7TNPp+WbO1mmC3v/rl36ZTMI4vEb2Lj4qzu272cVfb7Ldty6aY+Sujl9ykUbK/SJcPkS4betHkO5f5Ycxx+3qtei/nJe/g/zETe6OR24/pKvfZo9F/Oz9/B/mIlh0Zj6d0tb7jLZ47+YV4t7dvDJwUdhZNGHeNany6s49iaf0j8TQ4aOwsOi1PfN24ZON+S1nb+cgybJVYubJQr0a3FsUvbFvUkvhUv/ifirR1bxfCrr4bDJzyjrQS/1avNrRlH62PzWlrxjU/7kIS7WtvzTI6pxs3uhS2T5/2LQVnQ1bJ8/wCxZjLk+Ur67AAIJAAAAAARIkiQEgAAAABBLIAAADA0g9ExHV63cZyDJ1vMv6vX7tM6/pB6HiOr1+5I5Dkfm8v6vX7tM0+n5Zs7Vaay1VG/HCaXtevSdil4GnbEPfRlek29XietFNfFPssdPzvKqeJhGNRXUZKVrtXSs2rrauDh4tnDwFOxeUww9SWrduXLt1VxRRZkpM3iyul46NGTox52fv4P8xEs+i0dmN6Wt9xlY0a87L38H+YiWvRRb3GdNX+4zs8d/MI497dvDJoLYWnRdeL9t1L4uS/Qq8NiLNou9tRcUFQh221n30MuyzGxc6dqUperOnL4TuedOPikvUnVh2X1o/KR6Zyr4ep7f3PxgXrQl7XSn8aeq/nAilXZvtD1snz/ALFkK7omra/P+xYjNk+Ur67AAIJAAAAAARIkiQEgAAAADIDAAAAa/SH0PEdXr9yRyPIPN5d1at3aZ1zSD0PEdXr9yRyTIfN5f1ev3aZp9Pyz5+H40uxdalRjuCes5rXaV9WmrX+LcV2lUq4qrUnONbzlNpN6ihdNXW9XAXjSHL5V6OpCpuc+KVrq3Gn7Gv0KTXyz+mk467qOTu5tauxKyVvYXWieqP6U1mOn/LJ0a87L38H+YiW3RNbzGdNX+4ypaNTUa7vffSwqXPuxcNEl4vF9NiPuM5bjv5gx727eHvCN9nLsLFog70q1T18RLtUYxS+USuynqwlP1U7e18XzsWXRSGpgYvldWXOk5JfJo5lWU2Y2Yq9CfYY+Trec9Gk/hUmv1MrGrxLMbJPIXQL7hydu7tVl0YVtf+chvjSaOLyv5yG7M1/kvrsAAgkAAAAABEiSJASAAAAAhgMAAABr9IfQ8R1ev3JHI9H/ADeXdXrd2mdc0h9DxHV6/ckcj0f81l3V63dpmn0/LPnb68U4uSbinFySteUU02u1FK0m1d3lq31bvVvw6t9l+wutZbCk6QrxvYaJj31Z4n20YeReeXS4b70S5aKu1LGP/exH3GU3JPPR6XD/AHol50NoqVPFX4HXxN/dVV3IW47+YTx89vEsfNKm50knxLXl2LW+uqu0umWU9zwNOHHGhFPndk/ozn+cz3WpGnx1qsKWz1XJSn/wOkY12pW9sV8Ft+dyN94T2hqsd5rsMXI/IXQQ+dR/sZeZ7Kf+P6GJkytDmp0I9u2X6nOHYWnR7+7+chujTaP/AN385Dcma/yX12AARSAAAAAAiRJEgJAAAAAQwGAAAA1+kPoeI6vX7kjkeQeay7q9bu0zrmkPoeI6vX7kjkeQeay7oKvdpmn0/LNnWKqthSdIl43sLzW4Cj6RPxvYaJZ2uyjz0Omw/wB2JftF5KGDxUr7ZV8Xf2RjVZQco89DpsP92Ja8nxahhsXrcEamKlb/AEqq212uy7SvJx3/AAtxc9vy8tHIbvmkIPyaEXKXIpvyvg5pf4HQ8zldQj615PtZSPBPg5NVcTPyqstW/Lfyn2ucvwlzx0tavbijb5HJ+X2Stswc6fi5e6zwy3yZdJGP4YW/U/ecy3rXLZfFnnl3m4csteb/AMpWX0OcOxytOj/A/wCchuTTaP8ABL+chuTNf5L67AAIpAAAAAARIkiQEgAAAAIYDAAAAa/SH0PEdXr9yRyLIn4nLugq92mdd0h9DxHV6/ckcfyeVqOXdBV7tM1en5Zs6y4mewoukE/G9hcMXV2FGz2fjew0TDPD9ZAk6rfJPCtex/1FJfRsysrk5vMafEpVL24lujdu1/RGuySs4zbUJT3+Guo2v6RSey/DwW7Sz6CYLdMRjtnDWk5N8Vp7Pha/YVZOP+/pbi57fledEcCsPh4RtbVjrS59q+uu+1E0Za05SMzFSVOjZbHK1lxqKVkvgkYWHVoX5SEbTKU7xDU6R1rRsuFvZz8C+bRm0YarUPUjGHwW353NVjJbriqcP7Y7+fNHb+xtcM77XwvayUuwsmj/AB/zkNyabR/gf85DcmW+6+uwACKQAAAAAESJIkBIAAAACGAwAAAGv0h9DxHV6/ckcay2VqGXdBV7tM7LpD6HiOr1+5I4rhJWoZd0FTu0zV6Zm9Q3OKqbClZ1Pxpa8TU2FPz26mpcRqtszVZGjsvGP3sN+ZpHS/BthE4YmdvLxOIvzKo1t+Fux8pyvKE9zrVo3bpOhPVS4YxqKcnf2KHzOn+DvNqe44qgmlNValeD/wC9QrNSUl7VLXi1xWXKZ8u0aLsftMt3mlfXnqrgWxEYqahTfIkeeApOUnN8C4+Q0ml+eUIR3JV6SlLhW6QvFe1X/lhOkexXWfd+MpvLdK74aktzh7q2yfxsjd0EV3C5xQSjToRr14wiorcaFWSk+Fu7SW1m6wv9bU83gKqXE69SFL5K5GbQsiJWvR/gf85DcGo0ewlenBvEbmpyeyFNtqC9snwtm3M9p1lfWNIAARdAAAAAAiRJEgJAAAAAQwAAAAGv0h9DxHV6/ckcQpytQy7oKndpnb9IfQ8R1ev3JHC5Sth8t6Gfdpmr0zN6hsMTPYaHHtPhNpiamw0mMmbbMlXnRjSptVIzlGSbtbeyS49iUthCzWUNaNNKEZJp6jlBv2q3kvmsY8cVKClFWtNasrq+zatnJwsw2yiY4Xw2+USjWr0qVdTrxnUhGW74jE1NjaTsnO3yPoDLtD8uw/mcFh4W49zi38WfPGj8v+rodNT7yPqMzZo000X4vfXV+KdKMVaMYxXJFJL5H7AKFwAAAAAAAAAABEiSJASAAAAAgAAAABr9IfQ8R1ev3JHBsTO2Gy3oZ92md50i9DxHV6/ckfP2MSjhsuSSS3KbsuVqDfzZq9Mz52TiJmoxUjPrSNXiWb7sVGJUZ5Nk1GebZnlfDY5C/wDqqPS0+8j6nPlbIE3i6CXC61NLnckfVJmz8NGLkABnXAAAAAAAAAAAESJIkBIAAAACAGAAAA1+kPoeI6vX7kj55zGfiMvXJR/40z6RxVLXpzh68JR28G1WPnLGZHjKUaeGrUauvhZShFqEnGpSvsaklb/4avTcs2fh+KrNbiWWPB6OYzEO1OjN8t01bn5Cy5Z4Ja09uJqxpr1Yb6Xy2fM2ZMlI3llx0tO0OUzZm5dkeKxD1aNCrUb9WDO+ZR4Osuw9nuO6zX91V328yLTQoQprVhGMIrgjCKivgjHbPHDXXFPLkOgfgyxNPFUsVi7U4UZKpGmmpSnNeSnyJOz7DsQBntebT7rq1ioACKQAAAAAAAAAABEiSJASAAAAAhkgAAAAAAAAAAAAAAAAAAAAAAAAAAAAIkAB/9k=" alt="#">
-                       </div>
-                       <div class="single-slider">
-                         <img src="https://andro-news.com/images/content/Xiaomi-Mi-10-7_large_large.jpg" alt="#">
-                       </div>
-                       <div class="single-slider">
-                         <img src="https://via.placeholder.com/569x528" alt="#">
-                       </div>
-                     </div>
-                   </div> -->
-									<!-- End Product slider -->
+
 									<div class="quickview-ratting-review">
 										<div class="quickview-ratting-wrap">
 											<div class="quickview-ratting">
@@ -99,7 +90,11 @@
 													</tr>
 												<% @fields.each do |el| %>
 													<tr>
-														<td class="column1"><%= el.name %></td>
+														<td class="column1"><%= el.name %>
+														<% if el.hint %>
+															(<%= el.hint  %>)
+														<% end %>
+														</td>
 														<td class="column2">
 															<% if el.type_name == "Number"%>
 																<%= el.num == el.num.floor ? el.num.to_i : el.num %>
@@ -141,7 +136,7 @@
 									</h3>
 									<div class="owl-carousel product-images-slider">
 										<!-- Start Single Product -->
-										<%el.images.each do |image| %>
+										<%el.files.each do |image| %>
 											<div class="single-product">
 											<div class="product-img">
 												<%= image_tag image, :class=>"default-img" %>
@@ -162,19 +157,23 @@
 									<div class = "title inside_title">
 										<h3>Отзывы</h3>
 									</div>
+									<form action="" class="post_review_form">
 									<div class = "form-group form-group-review">
-										<label>Оставьте свой отзыв<span>*</span></label>
-										<div class="quickview-ratting set_rating">
-											<span>☆</span>
-											<span>☆</span>
-											<span>☆</span>
-											<span>☆</span>
-											<span>☆</span>
+										<label>Оставьте свой отзыв</label>
+										<div class="quickview-ratting post_review_ratting set_rating">
+											<span class="post_review_ratting_el">☆</span>
+											<span class="post_review_ratting_el">☆</span>
+											<span class="post_review_ratting_el">☆</span>
+											<span class="post_review_ratting_el">☆</span>
+											<span class="post_review_ratting_el">☆</span>
 
 										</div>
-										<textarea name = "3" type placeholder required=""></textarea>
+										<input type="number" class="ratting_inp" style="display: block" value="0">
+										<div class="form-group LongText" data-min="10" data-max="2000" style="margin-bottom: 0;"><textarea name="body"></textarea><div class="error-list"></div></div>
+										<div class="form-group img-preloader Image" style="margin-bottom: 0;"><div class="label-container"><label for = "images[]" class = "btn" style="padding: 8px;">Прикрепить фото...</label><input id = "images[]" type="file" accept="image/*" onchange="preview_image(this)" name="images[]" multiple><div class="error-list"></div></div></div>
 										<button type="submit" class="btn review_btn">Отправить отзыв</button>
 									</div>
+									</form>
 									<!--<div class="col-12">
                         <div class="form-group button">
                           <button type="submit" class="btn review_btn">Отправить отзыв</button>
