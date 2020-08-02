@@ -45,7 +45,8 @@
                 <div class="col-12 col-lg-6">
                   <div class="form-group Number form-group-quantity" data-min="0" data-max="">
                     <label>Количество товаров<span>*</span></label>
-                    <input name="quantity" type="number" placeholder="" value="<%= @product.quantity %>" class="inp_quantity">
+
+                    <input name="quantity" type="number" placeholder="<%= @product.quantity %>" value="<%= @product.quantity %>" class="inp_quantity">
                     <div class="error-list"></div>
                   </div>
                   <div class="form-group Bool" data-min="" data-max=""><label>Неограниченное количество</label><input name="is_inf_quantity" type="checkbox" placeholder="" style="width: 25px; height: 25px; display: block" class="inf_quantity" <%= @product.is_inf_quantity ? "checked" : "" %>><div class="error-list"></div></div>

@@ -154,12 +154,14 @@
 								</div>
 								<% end %>
 								<div class = "reviews">
-									<div class = "title inside_title">
+									<div class = "title inside_title" style="display: <%= @product.posts.count > 0 ? "block": "none" %>">
 										<h3>Отзывы</h3>
 									</div>
+									<% if current_user %>
 									<form action="" class="post_review_form">
 									<div class = "form-group form-group-review">
 										<label>Оставьте свой отзыв</label>
+										<div class="error-list review_errors"></div>
 										<div class="quickview-ratting post_review_ratting set_rating">
 											<span class="post_review_ratting_el">☆</span>
 											<span class="post_review_ratting_el">☆</span>
@@ -168,73 +170,65 @@
 											<span class="post_review_ratting_el">☆</span>
 
 										</div>
-										<input type="number" class="ratting_inp" style="display: block" value="0">
-										<div class="form-group LongText" data-min="10" data-max="2000" style="margin-bottom: 0;"><textarea name="body"></textarea><div class="error-list"></div></div>
-										<div class="form-group img-preloader Image" style="margin-bottom: 0;"><div class="label-container"><label for = "images[]" class = "btn" style="padding: 8px;">Прикрепить фото...</label><input id = "images[]" type="file" accept="image/*" onchange="preview_image(this)" name="images[]" multiple><div class="error-list"></div></div></div>
+										<input type="number" class="ratting_inp" style="display: none" value="0">
+										<div class="form-group LongText" data-min="10" data-max="2000" style="margin-bottom: 0;"><textarea name="body" class="post_body"></textarea><div class="error-list"></div></div>
+										<div class="form-group img-preloader Image" style="margin-bottom: 0;"><div class="label-container"><label for = "images[]" class = "btn" style="padding: 8px;">Прикрепить фото...</label><input id = "images[]" type="file" accept="image/*" onchange="preview_image(this)" name="images[]" multiple class="review_images"><div class="error-list"></div></div></div>
 										<button type="submit" class="btn review_btn">Отправить отзыв</button>
 									</div>
 									</form>
+										<% end %>
 									<!--<div class="col-12">
                         <div class="form-group button">
                           <button type="submit" class="btn review_btn">Отправить отзыв</button>
                         </div>
                       </div>-->
+									<% @posts.each do |post| %>
+
+
 									<div class = "single_review">
 										<div class = "user_attributes">
 											<div class = "reviewer_name">
-												Alex
+												<%= post.user.name%>
 											</div>
-											<img class = "user_photo_review" src="https://lunafon.ru/image/cache/catalog/Telephones/XiaomiNew/xiaomi-mi-10-twilight-grey-1000x1000.jpg" alt="#">
+											<% if post.user.avatar.attached? %>
+												<%= image_tag image, :class=>"user_photo_review" %>
+												<% else%>
+												<%= image_tag "no_avatar.png", :class=>"user_photo_review" %>
+											<% end %>
+
+
 											<div class = "view_review_rating">
-												<span>&#9733;</span>
-												<span>&#9733;</span>
-												<span>&#9733;</span>
-												<span>&#9733;</span>
-												<span>☆</span>
+												<% for i in 0...post.mark %>
+													<span>&#9733;</span>
+												<% end %>
+												<% for i in post.mark...5 %>
+													<span>☆</span>
+												<% end %>
+
 											</div>
 										</div>
-										<div class = "review_text">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a lorem tincidunt, pulvinar risus ut, efficitur nulla. Aenean egestas dictum augue, quis ullamcorper dui luctus tincidunt. Vivamus arcu elit, dignissim ultricies nisl eget, sodales laoreet sapien. Proin venenatis tempor tincidunt. Mauris id volutpat nunc. Nullam bibendum lobortis faucibus. Suspendisse fringilla, nunc eu congue lacinia, nisl nunc tincidunt eros, sit amet pharetra tellus tellus ac eros. Aliquam vitae molestie arcu, fermentum viverra urna. Praesent vel gravida lectus. Mauris laoreet, velit eget tristique rhoncus, mi est convallis leo, viverra imperdiet lorem lorem ac lectus. Nam aliquet odio neque, et sodales turpis tincidunt vel. Morbi suscipit laoreet venenatis. Nunc sagittis enim ut dapibus sollicitudin.
-											<div class = "date">
-												Posted 21 July 2020
-											</div>
+										<div style="width: 100%; display: flex; flex-direction: column">
+											<div class = "review_text">
+												<%= post.body %>
 
+
+											</div>
+											<div class="review_imgs" style="margin-top: auto;">
+												<% post.images.each do |img| %>
+													<%= image_tag img %>
+												<% end %>
+											</div>
+											<div style=" padding-top: 10px">
+												<%= post.created_at %>
+											</div>
 										</div>
 
 									</div>
-									<div class = "single_review">
-										<div class = "user_attributes">
-											<div class = "reviewer_name">
-												Putin
-											</div>
-											<img class = "user_photo_review" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Vladimir_Putin_%282017-07-08%29.jpg/250px-Vladimir_Putin_%282017-07-08%29.jpg" alt="#">
-											<div class = "view_review_rating">
-												<span>&#9733;</span>
-												<span>&#9733;</span>
-												<span>&#9733;</span>
-												<span>&#9734;</span>
-												<span>☆</span>
-											</div>
-										</div>
-										<div class = "review_text">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a lorem tincidunt, pulvinar risus ut, efficitur nulla. Aenean egestas dictum augue, quis ullamcorper dui luctus tincidunt. Vivamus arcu elit, dignissim ultricies nisl eget, sodales laoreet sapien. Proin venenatis tempor tincidunt. Mauris id volutpat nunc. Nullam bibendum lobortis faucibus. Suspendisse fringilla, nunc eu congue lacinia, nisl nunc tincidunt eros, sit amet pharetra tellus tellus ac eros. Aliquam vitae molestie arcu, fermentum viverra urna. Praesent vel gravida lectus. Mauris laoreet, velit eget tristique rhoncus, mi est convallis leo, viverra imperdiet lorem lorem ac lectus. Nam aliquet odio neque, et sodales turpis tincidunt vel. Morbi suscipit laoreet venenatis. Nunc sagittis enim ut dapibus sollicitudin.
-											<div class = "date">
-												Posted 21 July 2020
-											</div>
-
-										</div>
-
-									</div>
+									<% end %>
 								</div>
 
 
 							</div>
-
-
-
-
-
-
 					</div>
 				</div>
 			</div>

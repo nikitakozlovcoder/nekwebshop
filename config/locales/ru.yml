@@ -6,6 +6,13 @@ ru:
   activerecord:
     errors:
       models:
+        post:
+          attributes:
+            body:
+              too_short: 'текст комментария должен быть длиннее 9 символов'
+              too_long: 'текст комментария должен быть короче 2001 символа'
+            images:
+              content_type: 'недопустимый формат изображений'
         user:
           attributes:
             phone:

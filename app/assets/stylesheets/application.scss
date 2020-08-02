@@ -32,7 +32,11 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
-
+.review_imgs img{
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
 .post_review_ratting{
   cursor: pointer;
   width: 125px;
@@ -373,6 +377,7 @@ tbody tr:hover {
   text-align: center;
 }
 .single_review {
+  padding: 10px;
   border: 1px solid #e6e2f5;
   border-radius: 6px;
   display: flex;
@@ -383,7 +388,7 @@ tbody tr:hover {
   content: "\2605";
 }
 .review_text {
-  width: 80%;
+  margin-top: 20px;
   color: #757575;
 }
 .date {
