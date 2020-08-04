@@ -3,6 +3,7 @@
 if (get_body().classList.contains('products') &&( get_body().classList.contains('new') || get_body().classList.contains('create')|| get_body().classList.contains('update') ))
 {
 	function refill_fields(product){
+		console.log(product);
 
 		//Fill Text elements
 		let texts = document.querySelectorAll('.generated_fields .Text');
@@ -34,9 +35,10 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		//Fill Images elements
 		let images = document.querySelectorAll('.generated_fields .Images');
 		images.forEach((el)=>{
-			product[el.getAttribute("data-code")][1].forEach((src)=>{
-				AppendPhoto(el, src);
-			});
+			if(product[el.getAttribute("data-code")] != undefined)
+				product[el.getAttribute("data-code")][1].forEach((src)=>{
+					AppendPhoto(el, src);
+				});
 		});
 
 		//Fill Maker element
@@ -319,7 +321,7 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		  var filesCount = input.files.length;
 		  //get outter_container
 		  var container = input.parentNode.parentNode;
-		  //mark that elements changed 
+		  //mark that images changed 
 		  input.nextSibling.value = "Yes";
 		  //delete old elements
 		  var elements = container.getElementsByClassName("img-wrapper");
