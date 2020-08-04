@@ -7,7 +7,16 @@ class UsersController < ApplicationController
     @login = nil
     @errors = []
   end
+  def restore
 
+  end
+  def restore_mail
+
+  end
+
+  def restire_link
+
+  end
   def restore_mobile
     hash = {success: true, errors: []}
 

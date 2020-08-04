@@ -72,6 +72,9 @@ $color-border: rgba(175, 175, 175, 0.86);
   display: flex;
 
 }
+.list_lowercase li a {
+  text-transform: none !important;
+}
 .product-img img{
   margin: auto;
   width: 100%;
