@@ -32,6 +32,15 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+
+.post_review_ratting{
+  cursor: pointer;
+  width: 125px;
+}
+.ratting_star:before {
+  content: "\2605";
+  position: absolute;
+}
 .product_add_to{
   width: auto !important;
 
@@ -103,11 +112,14 @@ body{
   transition: all 0.5s ease;
   overflow: hidden;
   max-height: 0;
+  z-index: 100;
 }
 .all-category:hover .main-category{
   max-height: 3000px;
 }
-
+.all-category{
+  z-index: 100;
+}
 
 .sub-category{
   display: none !important;

@@ -2,10 +2,77 @@
 
 if (get_body().classList.contains('products') &&( get_body().classList.contains('new') || get_body().classList.contains('create')|| get_body().classList.contains('update') ))
 {
+	function refill_fields(product){
+		console.log(product);
 
+		//Fill Text elements
+		let texts = document.querySelectorAll('.generated_fields .Text');
+		texts.forEach((el)=>{
+			el.querySelector('input').value = product[el.getAttribute("data-code")][0].text;
+		});
+
+		//Fill LongText elements
+		let long_texts = document.querySelectorAll('.generated_fields .LongText');
+		long_texts.forEach((el)=>{
+			el.querySelector('textarea').value = product[el.getAttribute("data-code")][0].text;
+		});
+
+		//Fill Number elements
+		let numbers = document.querySelectorAll('.generated_fields .Number');
+		numbers.forEach((el)=>{
+			el.querySelector('input').value = product[el.getAttribute("data-code")][0].num;
+		});
+
+		//Fill Bool elements
+		let checks = document.querySelectorAll('.generated_fields .Bool');
+		checks.forEach((el)=>{
+			el.querySelector('input').checked = product[el.getAttribute("data-code")][0].check;
+		});
+
+		//Fill Main Image element
+		AppendPhoto(document.querySelector('.Image'), product.main_photo);
+		
+		//Fill Images elements
+		let images = document.querySelectorAll('.generated_fields .Images');
+		images.forEach((el)=>{
+			if(product[el.getAttribute("data-code")] != undefined)
+				product[el.getAttribute("data-code")][1].forEach((src)=>{
+					AppendPhoto(el, src);
+				});
+		});
+
+		//Fill Maker element
+		document.querySelector('.Maker select').value = product.maker_id;
+		if(product.custom_maker_name){
+			let custom_dev = document.getElementById("developer_input");
+			custom_dev.style.display = "block";
+			custom_dev.querySelector("input").value = product.custom_maker_name;
+		}
+	}
+
+	function fill_fields_update()
+	{
+		if (!get_body().classList.contains('update'))
+		{
+			return;
+		}
+		let id = window.location.toString().split('/').splice(-1,1);
+
+		fetch(`/product/${id}/load_fields`)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				//call function
+				refill_fields(data);
+				//after select update
+				$('select').niceSelect('update');
+			})
+
+	}
 	let form = document.querySelector('.form');
 	form.addEventListener('submit', (e)=>{
-		let quantity_check = document.querySelector('inf_quantity');
+		
 		e.preventDefault();
 		//Remove old errors
 		let errors = document.querySelectorAll('.error-list');
@@ -105,14 +172,16 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		}
 
 		//Validate Main Image element
-		let image = document.querySelector('.Image');
-		let image_input = image.querySelector('input');
-		if(image_input.value == ""){
-			valid = false;
-			let error_list = image.querySelector('.error-list');
-			error_list.innerHTML+=`<li>Загрузите главное изображение товара</li>`;
+		if(!get_body().classList.contains('update')){
+			let image = document.querySelector('.Image');
+			let image_input = image.querySelector('input');
+			if(image_input.value == ""){
+				valid = false;
+				let error_list = image.querySelector('.error-list');
+				error_list.innerHTML+=`<li>Загрузите главное изображение товара</li>`;
+			}
 		}
-
+		
 		if (valid)
 		{
 			form.submit();
@@ -124,14 +193,14 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 	let category_select = document.querySelector('.category_select');
 
 	CategoryCheck(category_select).then(()=>{
-		//TODO fill fields if needs update
+
+		fill_fields_update();
 	});
 
 	let another = -1;
 	let inf_quantity = document.querySelector('.inf_quantity');
 	function manipulate_quantity() {
 		let quantity = document.querySelector('.inp_quantity');
-		console.log(quantity);
 		if (inf_quantity.checked)
 		{
 			quantity.placeholder = quantity.value;
@@ -223,7 +292,7 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 				style ="";
 				type="file";
 
-				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><div class="error-list"></div></div></div>`;
+				text_to_add=`<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><input name="${el.id}_changed" type="text" value = "No"><div class="error-list"></div></div></div>`;
 
 			}
 			generated_fields.innerHTML+=text_to_add;
@@ -239,6 +308,12 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 			document.getElementById("developer_input").style.display = "none";
 		}
 	}
+	function AppendPhoto(container, src){
+		var img = document.createElement('div');
+		img.className = 'img-wrapper';
+		img.innerHTML = `<img src="${src}"/>`;
+		container.appendChild(img);
+	}
 
 	function preview_image(input) {
 		if (input.files) {
@@ -246,6 +321,8 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		  var filesCount = input.files.length;
 		  //get outter_container
 		  var container = input.parentNode.parentNode;
+		  //mark that images changed 
+		  input.nextSibling.value = "Yes";
 		  //delete old elements
 		  var elements = container.getElementsByClassName("img-wrapper");
 		  while (elements[0]) {
@@ -255,10 +332,7 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		  for(var i = 0; i<filesCount; i++){
 			  var reader = new FileReader();
 			  reader.onload = function(e) {
-				var img = document.createElement('div');
-			  	img.className = 'img-wrapper';
-			  	img.innerHTML = `<img src="${e.target.result}"/>`;
-				container.appendChild(img);
+				AppendPhoto(container, e.target.result);
 			  }
 			  reader.readAsDataURL(input.files[i]);
 		  }
@@ -288,7 +362,6 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 				})
 				.then((data) => {
 					generateForm(data);
-					console.log(0)
 				})
 				.then(()=>{
 					resolve();
