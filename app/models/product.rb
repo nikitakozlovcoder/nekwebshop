@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
 
+  has_many :posts
   validates :title, presence: { :message => :title_blank }
   validates :quantity, :numericality => { :greater_than_or_equal_to => 0 }
   validates_length_of :title, :in => 5..50

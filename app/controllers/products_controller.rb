@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   def show
     #TODO show files and videos
   	@product = Product.find params[:id]
-
+    @posts = @product.posts.order('created_at DESC')
     @images = @product.fields.select{|el|  el.type_name == "Images" }
     @videos = @product.fields.select{|el|  el.type_name == "Videos" }
     @files = @product.fields.select{|el|  el.type_name == "Files" }
@@ -64,7 +64,6 @@ class ProductsController < ApplicationController
   def create
     @errors = []
     valid = true
-    pp params
     @shop = Shop.find(params[:id])
     @category = Category.find_by(id: params[:category])
     if @category && !@category.is_template
