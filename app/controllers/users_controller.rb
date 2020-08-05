@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   end
 
-  def restire_link
+  def restore_link
 
   end
   def restore_mobile

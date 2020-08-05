@@ -40,6 +40,110 @@ class ProductsController < ApplicationController
 
     render :new
   end
+
+   def update_product
+     @errors = []
+     valid = true
+     @shop = Shop.find(params[:shop_id])
+     @category = Category.find_by(id: params[:category])
+     if @category && !@category.is_template
+       @category = nil
+     end
+     if @category && params[:maker] != nil
+
+       @maker = @category.makers.find(params[:maker])
+     end
+
+     name = params[:name]
+     description = params[:description]
+     main_photo = params[:main_photo]
+     price = params[:price].to_f
+     custom_maker = params[:custom_maker]
+     @product = @shop.products.find params[:id]
+     @product.title =  name ? name.strip : nil
+     @product.price =  price
+     @product.description =  description ? description.strip : nil
+     @product.maker_name = nil
+     @product.main_photo.attach(main_photo) if params[:main_photo_changed] == 'Yes'
+
+     if (@maker && @maker.is_another)
+       if custom_maker.strip() != ""
+         @product.maker_name = custom_maker.strip()
+       else
+         valid = false
+         @errors << "укажите производителя"
+       end
+     end
+     quantity = params[:quantity]
+     if params[:is_inf_quantity] == "on"
+       quantity = 0
+     end
+     @product.maker = @maker
+     @product.shop = @shop
+     @product.is_inf_quantity = params[:is_inf_quantity] == "on"
+     @product.category = @category
+     @product.quantity = quantity
+     data = nil
+     if @category != nil
+       data = JSON.parse @category.data
+     end
+     is_correct = is_correct_extra_fields data
+
+     if (@product.valid? && is_correct && valid)
+       @product.save
+       data.each do |el|
+         a = @product.fields.where(code: el['id']).first
+         should_save = true
+
+         unless a
+
+           should_save = false
+           a = Attribute.new
+         end
+         a.check = nil
+         a.text = nil
+         a.num = nil
+         a.name = el['name']
+         a.type_name = el['type']
+         a.hint = el['hint']
+         a.code = el['id']
+         case el['type']
+         when  "Images"
+           if params[el['id'].to_s+'_changed'] == 'Yes'
+             a.files.each {|file| file.purge}
+             params[el['id'].to_s].each { |el| a.files.attach(el) } if params[el['id'].to_s] != nil
+           end
+         when "Videos"
+           #TODO add
+         when "Files"
+           #TODO add
+         when "Text", "LongText"
+           a.files.each {|file| file.purge}
+           a.text =  params[el['id'].to_s].strip
+         when "Number"
+           a.files.each {|file| file.purge}
+           a.num =  params[el['id'].to_s].to_f
+         when "Bool"
+           a.files.each {|file| file.purge}
+           a.check =  params[el['id'].to_s] == "on"
+         end
+          if should_save
+            a.save
+          else
+            puts ""
+            @product.fields << a
+          end
+
+       end
+       @product.fields.where("code  > ?", data.last['id']).delete_all
+       redirect_to action: 'show', id: @product.id
+     else
+
+       @categories = Category.where(is_template: true )
+       render :new
+     end
+   end
+
   def show
     #TODO show files and videos
   	@product = Product.find params[:id]
@@ -83,12 +187,12 @@ class ProductsController < ApplicationController
     custom_maker = params[:custom_maker]
 
     @product = Product.new(title: name ? name.strip : nil, price:price, description: description ? description.strip : nil)
-
+    @product.maker_name = nil
     @product.main_photo.attach(main_photo)
 
     if (@maker && @maker.is_another)
       if custom_maker.strip() != ""
-        @product.maker_name = custom_maker
+        @product.maker_name = custom_maker.strip()
       else
         valid = false
         @errors << "укажите производителя"
@@ -121,12 +225,7 @@ class ProductsController < ApplicationController
           a.code = el['id']
           case el['type']
           when  "Images"
-            if params[el['id'].to_s] == nil
-              next
-            end
-            params[el['id'].to_s].each do |el|
-                a.files.attach(el)
-            end
+            params[el['id'].to_s].each { |el| a.files.attach(el) } if params[el['id'].to_s] != nil
           when "Videos"
             #TODO add
           when "Files"

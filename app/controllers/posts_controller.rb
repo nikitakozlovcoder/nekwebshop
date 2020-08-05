@@ -5,7 +5,13 @@ class PostsController < ApplicationController
   def new
 
   end
-
+  def delete
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!"
+    @post = Post.find params[:id]
+    if current_user && @post.user.id == current_user.id
+      @post.delete
+    end
+  end
   # TODO add actions for:
   # delete comment
   # edit comment
@@ -29,7 +35,10 @@ class PostsController < ApplicationController
 
 
       if @post.save && valid
+        hash[:user_name] = @post.user.name
+        hash[:avatar] = @post.user.avatar.attached? ? url_for(@post.user.avatar) : '../assets/no_avatar.png'
         hash[:post] = @post
+        hash[:current_user] = current_user.id
         @post.images.each { |img| hash[:images] << url_for(img) }
         render json: hash
       else

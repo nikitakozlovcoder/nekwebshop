@@ -53,6 +53,15 @@ if (get_body().classList.contains('products') && get_body().classList.contains('
     let head = -1;
 
     let post_review_form = document.querySelector('.post_review_form');
+    function delete_review(id)
+    {
+        let post =  document.getElementById(id);
+        if(post)
+            post.remove();
+        fetch(`../post/${id}/delete`,{
+            method: 'POST'
+        });
+    }
 
     post_review_ratting.forEach((el, i)=>{
 
@@ -78,6 +87,35 @@ if (get_body().classList.contains('products') && get_body().classList.contains('
 
 
     });
+    function set_ratting(mark)
+    {
+       let out = ``;
+        for(let i = 0; i<mark; i++)
+        {
+            out+=`<span>&#9733;</span>`
+        }
+        for(let i = mark; i<5; i++)
+        {
+            out+=`<span>☆</span>`
+        }
+
+        return out;
+    }
+    function set_imgs(images)
+    {
+        let out = ``;
+        images.forEach((el)=>
+        {
+            out+=`<img src="${el}" style="padding: 2px;">`
+        });
+        return out;
+    }
+    function set_delete_btn(user, owner, id) {
+
+            if (user != owner)
+                return "";
+            return `<div onclick="delete_review(${id})">Удалить</div>`;
+    }
     function post_review()
     {
         let review_errors = document.querySelector('.review_errors');
@@ -104,6 +142,50 @@ if (get_body().classList.contains('products') && get_body().classList.contains('
                 {
                     post_review_form.reset();
                     set_stars(-1);
+                    let wrap = document.querySelector('.posts_wrap');
+                    let pre = document.querySelectorAll('.img-wrapper');
+                    if (pre)
+                        pre.forEach((el)=>{
+                            el.remove();
+                        });
+                    let content = document.createElement("div");
+                    content.innerHTML+=`
+                    <div class = "single_review" id="${data.post.id}">
+												<div class = "user_attributes">
+													<div class = "reviewer_name">
+														${data.user_name}
+													</div>
+													<img src="${data.avatar}">
+
+
+													<div class = "view_review_rating">
+														
+                                                    ${set_ratting(data.post.mark)}
+                    
+                 
+													</div>
+												</div>
+												<div style="width: 100%; display: flex; flex-direction: column">
+													<div class = "review_text">
+														
+                                                    ${data.post.body}
+
+													</div>
+													<div class="review_imgs" style="margin-top: auto;">             
+													${set_imgs(data.images)}
+														
+													</div>
+													<div style=" padding-top: 10px">
+													<div>${data.post.created_at}</div>
+													${set_delete_btn(data.current_user, data.post.user_id, data.post.id )}
+													</div>
+												</div>
+
+											</div>
+                 
+                    `
+
+                   wrap.prepend(content);
 
                 }
                 else

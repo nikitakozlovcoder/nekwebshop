@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   post 'product/:id', to:'posts#create'
   get 'product/:id/load_fields', to: 'products#load_fields'
   get 'shop/:shop_id/update_product/:id', to: 'products#update'
-
+  post 'shop/:shop_id/update_product/:id', to: 'products#update_product'
+  post '/post/:id/delete', to: 'posts#delete'
   get 'user/restore', to: 'users#restore'
   post 'user/restore/mobile', to:'users#restore_mobile'
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
