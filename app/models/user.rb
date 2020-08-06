@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :carts
     attr_accessor :skip_pass
     has_one_attached :avatar
     has_many :posts
@@ -14,3 +15,4 @@ class User < ApplicationRecord
    # validates :password, presence: true
     validates_length_of  :password, in: 8..50, unless: :skip_pass
 end
+
