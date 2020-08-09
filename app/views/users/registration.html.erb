@@ -55,7 +55,24 @@
                     <input name="phone" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
                     <div class="error-list"></div>
                 </div>  -->
-                
+              <div id="locationField" class="form-group">
+                <label>Адрес<span>*</span></label>
+                <input type="search" id="address-input" />
+                <p>Выбрано: <strong id="address-value">---</strong></p>
+              </div>
+
+              <div style="display: none">
+                <input name="street" class="field" id="form-street"/>
+                <input name="city" class="field" id="form-city" />
+                <input name="state" class="field" id="form-administrative" />
+                <input name="zip" class="field" id="form-zip" />
+                <input name="country" class="field" id="form-country" />
+                <input name="county" class="field" id="form-county" />
+                <input name="suburb" class="field" id="form-suburb"/>
+              </div>
+
+
+
             </div>
 
             </div>
@@ -85,3 +102,26 @@
     </div>
   </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+    var placesAutocomplete_register = places({
+        appId: 'pl95AIU49SL1',
+        apiKey: 'd63ea66c7015964fa631d4f72045e333',
+        container: document.querySelector('#address-input')
+    });
+    var $address = document.querySelector('#address-value')
+    placesAutocomplete_register.on('change', function resultSelected(e) {
+        $address.textContent = e.suggestion.value
+        document.querySelector('#form-street').value = e.suggestion.name || '';
+        document.querySelector('#form-city').value = e.suggestion.city || '';
+        document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+        document.querySelector('#form-administrative').value = e.suggestion.administrative || '';
+        document.querySelector('#form-country').value = e.suggestion.country || '';
+        document.querySelector('#form-suburb').value = e.suggestion.suburb || '';
+        document.querySelector('#form-county').value = e.suggestion.county || '';
+    });
+    placesAutocomplete_register.on('clear', function() {
+        $address.textContent = 'none';
+    });
+</script>
+

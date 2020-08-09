@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :carts
+    has_many :wishes
     attr_accessor :skip_pass
     has_one_attached :avatar
     has_many :posts

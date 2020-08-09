@@ -16,18 +16,39 @@ class CartController < ApplicationController
 
 
   end
-  def wishlist
 
+  def delete_cart
+    hash = {success: false}
+    if current_user
+      hash[:success] = true
+      current_user.carts.find(params[:id]).delete
+    elsif cookies.signed[:uuid]
+      hash[:success] = true
+      Cart.find_by!(uuid:cookies.signed[:uuid], id: params[:id]).delete
+    end
+    render json: hash
   end
-
+  def change_quantity
+    hash = {success: false}
+    if current_user && @cart = current_user.carts.find(params[:id])
+        hash[:success] = true
+        @cart.quantity = params[:quantity]
+        @cart.save
+    elsif cookies.signed[:uuid] && @cart = Cart.find_by!(uuid: cookies.signed[:uuid], id: params[:id])
+      hash[:success] = true
+      @cart.quantity = params[:quantity]
+      @cart.save
+    end
+    render json: hash
+  end
   def add
     @cart = Cart.new
     @cart.product = Product.find params[:id]
     @cart.quantity = 1
-    hash = {succsess: false}
+    hash = {success: false}
 
     if current_user
-      hash[:succsess] = true
+      hash[:success] = true
       if Cart.where(user_id: current_user.id, product_id: params[:id]).last
         render json: hash
         return
@@ -36,7 +57,7 @@ class CartController < ApplicationController
       @cart.save
 
     elsif cookies.signed[:uuid]
-      hash[:succsess] = true
+      hash[:success] = true
       if Cart.where(uuid: cookies.signed[:uuid], product_id: params[:id]).last
         render json: hash
         return
@@ -45,7 +66,7 @@ class CartController < ApplicationController
       @cart.save
 
     else
-      hash[:succsess] = true
+      hash[:success] = true
       cookies.signed[:uuid] = SecureRandom.uuid
       @cart.uuid = cookies.signed[:uuid]
       @cart.save

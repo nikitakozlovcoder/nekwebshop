@@ -35,7 +35,7 @@
           </thead>
           <tbody>
           <% @carts.each do |cart| %>
-            <tr>
+            <tr data-code = "<%= cart.id %>">
               <td class="image" data-title="No"><%= image_tag cart.product.main_photo %></td>
               <td class="product-des" data-title="Description">
                 <p class="product-name"><%= link_to cart.product.title, controller: "products", action: "show", id: cart.product.id  %></p>
@@ -49,7 +49,7 @@
                       <i class="ti-minus"></i>
                     </button>
                   </div>
-                  <input type="text" name="quant[<%= cart.id %>]" class="input-number"  data-min="1" data-max="100" value="<%= cart.quantity %>">
+                  <input type="text" name="quant[<%= cart.id %>]" class="input-number" data-min="1" data-max="2147483647" value="<%= cart.quantity %>">
                   <div class="button plus">
                     <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[<%= cart.id %>]">
                       <i class="ti-plus"></i>

@@ -98,7 +98,17 @@ class UsersController < ApplicationController
     @user = User.new(email: params[:email], password_confirmation: params[:pass], name: params[:name], surname: params[:surname])
     @user.password = params[:password]
     @user.restore_date = Time.now.getutc
-    if @user.save
+    @user.suburb = params[:suburb]
+    @user.county = params[:county]
+    @user.street = params[:street]
+    @user.city = params[:city]
+    @user.state = params[:state]
+    @user.country = params[:country]
+    @user.zip = params[:zip]
+    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
+      @errors << "Введите полный адрес"
+    end
+    if @errors.count <= 0 && @user.save
       redirect_to :sign_in
     else
       render :registration
