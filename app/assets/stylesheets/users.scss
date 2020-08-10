@@ -324,3 +324,99 @@
   }
 }
 
+//restore
+.restore .section{
+  max-width: 550px;
+  margin: 0 auto;
+}
+.restore .section .btn{
+  cursor: pointer;
+}
+
+.choice-container{
+  box-shadow: 0px 0px 15px #0000001a;
+}
+.choice-container .container-header{
+  box-shadow: 0px 4px 15px #0000001a;
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+  padding-bottom: 6px;
+}
+.choice-container .options{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.choice-container .options label{
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.choice-container .options label:hover, .active{
+  color: #F6971C;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.4s ease;
+}
+
+.choice-container .radios{
+  display: flex;
+  justify-content: center;
+}
+.choice-container .radios > div{
+  margin-right: 10px;
+}
+//radio button styles
+.choice-container .radios input[type="radio"] {
+  display:none;
+}
+.choice-container .radios input[type="radio"] + div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #00000056;
+  border-radius: 100%;
+  background: #fff;
+  box-shadow: 0px 0px 6px #00000056;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.choice-container .radios input[type="radio"] + div > div{
+  width: 6px;
+  height: 6px;
+  background: #F6971C;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.choice-container .radios input[type="radio"]:not(:checked) + div > div {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+.choice-container .radios input[type="radio"]:checked + div > div {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.choice-container .radios input[type="radio"]:checked + div{
+  border-color: #F6971C;
+  box-shadow:  0px 0px 6px #F6971C;
+}
+//end radio button styles
+
+.choice-container .container-body{
+  padding: 30px;
+}
+//hide all option by default
+.choice-container .container-body .option{
+  display: none;
+}
+.choice-container .container-body .option.show{
+  display: block;
+}
+//end-restore
+
