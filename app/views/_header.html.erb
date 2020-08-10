@@ -1,6 +1,6 @@
 <!-- Preloader -->
 
-<div class="preloader">
+<div class="preloader" style="display: none">
   <div class="preloader-inner">
     <div class="preloader-icon">
       <span></span>
@@ -256,10 +256,10 @@
                   <% end %>
                 <% end %>
               </select>
-              <form>
-                <input name="search" placeholder="Поиск товаров....." type="search">
+             <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get" do %>
+                <input name="search" placeholder="Поиск товаров....." type="search" value="<%= params[:search] %>">
                 <button class="btnn"><i class="ti-search"></i></button>
-              </form>
+              <% end %>
             </div>
           </div>
         </div>

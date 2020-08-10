@@ -27,7 +27,38 @@ class ProductsController < ApplicationController
      render json: out
    end
   def index
-    @products = Product.all
+
+    @category = nil
+    @data = nil
+    query = []
+    if params[:category_id]
+      @category = Category.includes(:products, :makers).find params[:category_id]
+      @data = JSON.parse @category.data if @category.is_template
+      @products = []
+      @makers = []
+      t=[]
+      @category.subtree.map do |el|
+        t << el.id
+      end
+      @makers = Maker.includes(:categories).where(categories: {id: t})
+      query << 'products.category_id in (' + t.join(', ') + ')'
+    else
+      @makers = nil
+    end
+
+    if !params[:search].blank?
+      query << "products.title like '%#{params[:search]}%'"
+    end
+    if params['makers']
+      query << 'products.maker_id in (' + params[:makers].join(', ') + ')'
+    end
+    query = query.join ' and '
+    order = :title
+    if params[:order] && params[:order] == 'price'
+      order = :price
+    end
+    @products = Product.includes(:fields).where(query).order(order)
+
   end
 
   def update
