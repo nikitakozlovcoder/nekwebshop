@@ -1,6 +1,36 @@
 
-$(document).on('turbolinks:load', function () {
+
+
 	if (get_body().classList.contains('products') && (get_body().classList.contains('new') || get_body().classList.contains('create') || get_body().classList.contains('update'))) {
+		function CategoryCheck(e) {
+			return new Promise(resolve => {
+
+				if (e.value == "") {
+
+					resolve();
+					return;
+				}
+
+
+				let dev = document.querySelector('#developer_input');
+				let dev_inp = document.querySelector('#developer_input_inp');
+				dev.style.display = "none";
+				dev_inp.value = "";
+				fetch('/category/load/' + e.value)
+					.then((response) => {
+						return response.json();
+
+
+					})
+					.then((data) => {
+						generateForm(data);
+					})
+					.then(() => {
+						resolve();
+					});
+
+			});
+		}
 		function refill_fields(product) {
 			console.log(product);
 
@@ -318,35 +348,7 @@ $(document).on('turbolinks:load', function () {
 			}
 		}
 
-		function CategoryCheck(e) {
-			return new Promise(resolve => {
 
-				if (e.value == "") {
-
-					resolve();
-					return;
-				}
-
-
-				let dev = document.querySelector('#developer_input');
-				let dev_inp = document.querySelector('#developer_input_inp');
-				dev.style.display = "none";
-				dev_inp.value = "";
-				fetch('/category/load/' + e.value)
-					.then((response) => {
-						return response.json();
-
-
-					})
-					.then((data) => {
-						generateForm(data);
-					})
-					.then(() => {
-						resolve();
-					});
-
-			});
-		}
 	}
 
-})
+

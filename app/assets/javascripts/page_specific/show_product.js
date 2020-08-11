@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+
     if (get_body().classList.contains('products') && get_body().classList.contains('show')) {
         function preview_image(input) {
             if (input.files) {
@@ -202,4 +202,4 @@ $(document).on('turbolinks:load', function () {
                 post_review()
             })
     }
-})
+

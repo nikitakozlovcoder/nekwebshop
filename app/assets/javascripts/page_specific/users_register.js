@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+
         if (get_body().classList.contains('users') && (get_body().classList.contains('registration') || get_body().classList.contains('create'))) {
                 let form = document.querySelector('.form');
                 form.addEventListener('submit', (e) => {
@@ -116,4 +116,4 @@ $(document).on('turbolinks:load', function () {
 
         }
 
-})
+

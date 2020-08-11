@@ -52,21 +52,34 @@ class ProductsController < ApplicationController
     if params['makers']
       query << 'products.maker_id in (' + params[:makers].join(', ') + ')'
     end
-    query = query.join ' and '
+
     order = :title
     if params[:order] && params[:order] == 'price'
       order = :price
-    end
-    @products = Product.includes(:fields).where(query).order(order)
-    if @products.count > 0
-      @max_price = @products.max_by{|el| el.price}.price
-      @min_price = @products.min_by{|el| el.price}.price
     end
 
     @template = []
     if @category and @category.is_template
       @template = JSON.parse @category.data
     end
+
+    @template.select{|el| el['type'] == "Number"}.each do |el|
+      if !params[el['id'].to_s+"_min"].blank?
+          query << "(attributes.code = '#{el['id']}' and attributes.num >= '#{params[el['id'].to_s+"_min"]}')"
+      end
+    end
+    query = query.join ' and '
+    pp query
+    @products = Product.joins(:fields).where(query).order(order).distinct
+
+
+    if @products.count > 0
+      @max_price = @products.max_by{|el| el.price}.price
+      @min_price = @products.min_by{|el| el.price}.price
+    end
+
+
+
   end
 
   def update

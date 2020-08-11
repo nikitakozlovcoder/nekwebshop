@@ -26,7 +26,7 @@ Category.add 'Компьютерные мыши', [
     {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
     {:name=>"Высота", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: "мм", is_int: true},
     {:name=>"Ширина", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "мм", is_int: true},
-    {:name=>"Масса", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "г", is_int: true}
+    {:name=>"Масса", :type=>"Number", :id=>5, :min=>0, :max=>nil, hint: "г", is_int: true}
 ]
 
 Category.add 'Смартфоны', [
