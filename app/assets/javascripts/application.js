@@ -18,11 +18,12 @@
 //= require scrollup.js
 //= require onepage-nav.min.js
 //= require easing.js
+//= require turbolinks
 //= require active.js
 //= require page_specific/products_new.js
 //= require page_specific/users_register.js
 //= require page_specific/show_product.js
-//= require turbolinks
+
 
 
 

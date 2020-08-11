@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <meta name="turbolinks-cache-control" content="no-cache">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload'%>
   <title><%= @page_title ?  @page_title : "NekMarket" %></title>
 
   <%= csrf_meta_tags %>
@@ -27,7 +28,7 @@
 
 <%= yield %>
 <%= render partial: './footer.html.erb' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
+
 <% if action_name == 'contact'%>
 <%= javascript_include_tag 'mapman', 'data-turbolinks-track'=> 'reload' %>
 <% end %>

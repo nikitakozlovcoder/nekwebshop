@@ -43,7 +43,7 @@
 
             <h3 class="title">
               <% if @category %>
-              <%= link_to( controller: "products", action: "index", category_id: @category && @category.parent ? @category.parent.id : '') do  %>
+              <%= link_to({controller: "products", action: "index", category_id: @category && @category.parent ? @category.parent.id : ''}, data: {'turbolinks-no-scroll'=> 'true'}) do  %>
                 <
               <% end %>
               <% end %>
@@ -54,7 +54,7 @@
 
              <%  @categories.each do |el| %>
 
-              <li><%= link_to(controller: "products", action: "index", category_id: el.id)  do%>
+              <li><%= link_to({controller: "products", action: "index", category_id: el.id}, data: {'turbolinks-no-scroll'=> 'true'})  do%>
                  <%= el.name %>  <%= el.is_template ? "(#{el.products.count})" : "" %>
                   <% end %>
               </li>
@@ -65,18 +65,49 @@
           </div>
           <!--/ End Single Widget -->
           <!-- Shop By Price -->
+          <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get" do %>
           <div class="single-widget range">
             <h3 class="title">Shop by Price</h3>
             <div class="price-filter">
               <div class="price-filter-inner">
-                <div id="slider-range"></div>
+                <div id="slider-range" data-max="<%= @max_price %>" data-min="<%= @min_price%>"></div>
                 <div class="price_slider_amount">
                   <div class="label-input">
-                    <span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price"/>
+                    <div>Range:</div>
+                    <!--<input type="text" id="amount" name="price" placeholder="Add Your Price"/>-->
+                    <div style="display: flex">
+                    <input type="text" id="amount_min" name="price_min" placeholder="" style="width: 105px" value="<%= params[:price_min] ? params[:price_min] : @min_price %>"/>
+                      /
+                    <input type="text" id="amount_max" name="price_max" placeholder="" style="width: 105px" value="<%= params[:price_max] ? params[:price_max] : @max_price  %>"/>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="filters-wrap">
+              <% @template.each do |el| %>
+                <% if el['type'] == 'Number' %>
+                  <div class="filter-title"><%= el['name'] %></div>
+                  <div class="form-group">
+                    <label for="">От</label>
+                    <input name="<%= el['id'].to_s+"_min" %>" type="number" placeholder="">
+                    <label for="">До</label>
+                    <input name="<%= el['id'].to_s+"_max" %>" type="number" placeholder="">
+                  </div>
+                <% elsif el['type'] == 'Bool' %>
+                  <div class="filter-title"><%= el['name'] %></div>
+                  <div class="form-group">
+                    <label for="">Любое</label>
+                    <input name="<%= el['id'].to_s%>" type="radio" placeholder="" checked value="">
+                    <label for="">Нет</label>
+                    <input name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No">
+                    <label for="">Да</label>
+                    <input name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes">
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <!--
             <ul class="check-box-list">
               <li>
                 <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox">$20 - $50<span class="count">(3)</span></label>
@@ -87,8 +118,12 @@
               <li>
                 <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">$100 - $250<span class="count">(8)</span></label>
               </li>
-            </ul>
+            </ul>-->
+            <div class="form-group button">
+              <button type="submit" class="btn ">Найти</button>
+            </div>
           </div>
+            <% end %>
           <!--/ End Shop By Price -->
           <!-- Single Widget -->
           <div class="single-widget recent-post">

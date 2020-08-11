@@ -58,7 +58,15 @@ class ProductsController < ApplicationController
       order = :price
     end
     @products = Product.includes(:fields).where(query).order(order)
+    if @products.count > 0
+      @max_price = @products.max_by{|el| el.price}.price
+      @min_price = @products.min_by{|el| el.price}.price
+    end
 
+    @template = []
+    if @category and @category.is_template
+      @template = JSON.parse @category.data
+    end
   end
 
   def update

@@ -30,10 +30,59 @@ Version:1.0
 =========================================
 [End Activation Code]
 =========================================*/
-$(document).on('turbolinks:load', function() {
+
+let _TURBOLINKS_NO_SCROLL = false;
+const turbolinksPersistScroll = () => {
+	let scrollPosition = null;
+
+
+	document.addEventListener('turbolinks:before-visit', (event) => {
+		console.log('before!');
+		if (enabled)
+			scrollPosition = window.scrollY;
+		else
+			scrollPosition = null;
+		enabled = false
+	});
+
+	document.addEventListener('turbolinks:load', (event) => {
+		const elements = document.querySelectorAll(`[data-turbolinks-no-scroll="true"]`);
+		console.log(elements);
+		for (let i = 0; i < elements.length; i++) {
+			elements[i].addEventListener('click', () => {
+				enabled = true
+			})
+		}
+
+		if (scrollPosition) {
+		//	let inner = document.querySelector('.header-inner');
+			//inner.style.position = 'fixed';
+			let fix_bug = document.querySelector('.fix-bug');
+			let header = document.querySelector('.header');
+
+			header.style.animation = ""
+			if (scrollPosition > 200) {
+				header.classList.add("sticky");
+
+				fix_bug.classList.add('fix-bug-active');
+			} else {
+				header.classList.remove("sticky");
+				fix_bug.classList.remove('fix-bug-active');
+			}
+			window.scrollTo(0, scrollPosition)
+
+		}
+	})
+};
+
+turbolinksPersistScroll();
+
+$(document).on('turbolinks:load', function () {
 	(function ($) {
+
 		"use strict";
-		$(document).on('ready', function () {
+
+
 
 			/*====================================
                 Mobile Menu
@@ -49,16 +98,21 @@ $(document).on('turbolinks:load', function() {
 			/*====================================
             03. Sticky Header JS
             ======================================*/
+
 			let fix_bug = document.querySelector('.fix-bug');
 
 			jQuery(window).on('scroll', function () {
+
+				let header = document.querySelector('.header');
+
 				if ($(this).scrollTop() > 200) {
-					$('.header').addClass("sticky");
+					header.classList.add("sticky");
 					fix_bug.classList.add('fix-bug-active');
 				} else {
-					$('.header').removeClass("sticky");
+					header.classList.remove("sticky");
 					fix_bug.classList.remove('fix-bug-active');
 				}
+
 			});
 
 			/*=======================
@@ -72,17 +126,11 @@ $(document).on('turbolinks:load', function() {
               Slider Range JS
             =========================*/
 			$(function () {
+
 				$("#slider-range").slider({
 					range: true,
-					min: 0,
-					max: 50000,
-					values: [1000, 25000],
-					slide: function (event, ui) {
-						$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-					}
 				});
-				$("#amount").val("$" + $("#slider-range").slider("values", 0) +
-					" - $" + $("#slider-range").slider("values", 1));
+
 			});
 
 			/*=======================
@@ -321,47 +369,35 @@ $(document).on('turbolinks:load', function() {
 				animation: 'fade'
 			});
 
-		});
+			;
 
-		/*====================================
-        18. Nice Select JS
-        ======================================*/
-		$('select').niceSelect();
+			/*====================================
+            18. Nice Select JS
+            ======================================*/
 
-		/*=====================================
-         Others JS
-        ======================================*/
-		$(function () {
-			$("#slider-range").slider({
-				range: true,
-				min: 0,
-				max: 500,
-				values: [0, 500],
-				slide: function (event, ui) {
-					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-				}
+			$('select').niceSelect();
+
+			/*=====================================
+             Others JS
+            ======================================*/
+			$(function () {
+				$("#slider-range").slider({
+					range: true,
+					min: 0,
+					max: 500,
+					values: [0, 500],
+					slide: function (event, ui) {
+						$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+
+					}
+				});
+				$("#amount").val("$" + $("#slider-range").slider("values", 0) +
+					" - $" + $("#slider-range").slider("values", 1));
+
+
 			});
-			$("#amount").val("$" + $("#slider-range").slider("values", 0) +
-				" - $" + $("#slider-range").slider("values", 1));
-		});
 
-		/*=====================================
-          Preloader JS
-        ======================================*/
-
-		$(document).ready(function () {
-			$('.preloader').fadeOut('slow');
-			$('body').addClass('scroll');
-
-
-		});
-		//After 2s preloader is fadeOut
-		//$('.preloader').delay(2000).fadeOut('slow');
-
-		/*setTimeout(function() {
-        //After 2s, the no-scroll class of the body will be removed
-        $('body').removeClass('no-scroll');
-        }, 2000);*/ //Here you can change preloader time
 
 	})(jQuery);
+
 })
