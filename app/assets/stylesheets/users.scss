@@ -331,10 +331,13 @@
 }
 .restore .section .btn{
   cursor: pointer;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
-
+//start choice-container styles
 .choice-container{
   box-shadow: 0px 0px 15px #0000001a;
+  transition: all 0.2s ease;
 }
 .choice-container .container-header{
   box-shadow: 0px 4px 15px #0000001a;
@@ -362,12 +365,12 @@
 
 .choice-container .radios{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .choice-container .radios > div{
   margin-right: 10px;
 }
-//radio button styles
+//start radio button styles
 .choice-container .radios input[type="radio"] {
   display:none;
 }
@@ -375,20 +378,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12px;
+  width: 26px;
   height: 12px;
   border: 1px solid #00000056;
-  border-radius: 100%;
   background: #fff;
   box-shadow: 0px 0px 6px #00000056;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .choice-container .radios input[type="radio"] + div > div{
-  width: 6px;
+  width: 16px;
   height: 6px;
   background: #F6971C;
-  border-radius: 100%;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
@@ -413,10 +414,21 @@
 }
 //hide all option by default
 .choice-container .container-body .option{
-  display: none;
+  height: 0;
+  overflow: hidden;
 }
 .choice-container .container-body .option.show{
-  display: block;
+  height: 100%;
 }
+.step{
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+}
+.step.active{
+  max-height: 520px;
+}
+//end choice-container styles
 //end-restore
 

@@ -41,20 +41,22 @@
                     <input name="phone" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
                     <div class="error-list"></div>
                 </div>
-                <div class="form-group Number" data-min="0" data-max="">
-                    <label>Код подтверждения<span>*</span></label>
-                    <input name="code" type="number">
-                    <div class="error-list"></div>
-                </div>
-                <div class="form-group Password" data-min="8" data-max="50">
-                    <label>Новый пароль<span>*</span></label>
-                    <input name="password" type="password" placeholder="">
-                    <div class="error-list"></div>
-                </div>
-                <div class="form-group Double_Password">
-                    <label>Подтверждение пароля<span>*</span></label>
-                    <input name="pass" type="password" placeholder="">
-                    <div class="error-list"></div>
+                <div class = "step">
+                    <div class="form-group Code" data-min="6" data-max="6">
+                        <label>Код подтверждения<span>*</span></label>
+                        <input name="code" type="number">
+                        <div class="error-list"></div>
+                    </div>
+                    <div class="form-group Password" data-min="8" data-max="50">
+                        <label>Новый пароль<span>*</span></label>
+                        <input name="password" type="password" placeholder="">
+                        <div class="error-list"></div>
+                    </div>
+                    <div class="form-group Double_Password">
+                        <label>Подтверждение пароля<span>*</span></label>
+                        <input name="pass" type="password" placeholder="">
+                        <div class="error-list"></div>
+                    </div>
                 </div>
                 <div class="form-group button">
                     <button type="submit" class="btn">Отправить</button>
