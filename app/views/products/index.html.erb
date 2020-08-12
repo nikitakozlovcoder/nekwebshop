@@ -90,19 +90,19 @@
                   <div class="filter-title"><%= el['name'] %></div>
                   <div class="form-group">
                     <label for="">От</label>
-                    <input name="<%= el['id'].to_s+"_min" %>" type="number" placeholder="">
+                    <input name="<%= el['id'].to_s+"_min" %>" type="number" placeholder="" value="<%= params[el['id'].to_s+"_min"]%>">
                     <label for="">До</label>
-                    <input name="<%= el['id'].to_s+"_max" %>" type="number" placeholder="">
+                    <input name="<%= el['id'].to_s+"_max" %>" type="number" placeholder="" value="<%= params[el['id'].to_s+"_max"]%>">
                   </div>
                 <% elsif el['type'] == 'Bool' %>
                   <div class="filter-title"><%= el['name'] %></div>
                   <div class="form-group">
                     <label for="">Любое</label>
-                    <input name="<%= el['id'].to_s%>" type="radio" placeholder="" checked value="">
+                    <input name="<%= el['id'].to_s%>" type="radio" placeholder=""  value="" <%= params[el['id'].to_s ]== 'No' || params[el['id'].to_s ]== 'Yes' ? '': 'checked' %>>
                     <label for="">Нет</label>
-                    <input name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No">
+                    <input name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No" <%= params[el['id'].to_s ]== 'No' ? 'checked' : '' %>>
                     <label for="">Да</label>
-                    <input name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes">
+                    <input name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes" <%= params[el['id'].to_s ]== 'Yes' ? 'checked' : '' %>>
                   </div>
                 <% end %>
               <% end %>
