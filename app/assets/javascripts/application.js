@@ -23,19 +23,27 @@
 //= require page_specific/users_register.js
 //= require page_specific/show_product.js
 //= require page_specific/restore.js
+//= require turbolinks
 
 
-let links = document.querySelectorAll('.main-category > li');
-let menu = document.querySelector('.main-category');
 
-links.forEach((el)=>{
 
-    el.addEventListener('mouseover', (e)=>{
-        menu.style.overflow='visible';
+
+$(document).on('turbolinks:load', function() {
+    let links = document.querySelectorAll('.main-category > li');
+    let menu = document.querySelector('.main-category');
+
+    links.forEach((el) => {
+
+        el.addEventListener('mouseover', (e) => {
+            menu.style.overflow = 'visible';
+        });
+
+        el.addEventListener('mouseout', (e) => {
+            menu.style.overflow = 'hidden';
+        });
+
     });
+})
 
-    el.addEventListener('mouseout', (e)=>{
-            menu.style.overflow='hidden';
-    });
 
-});

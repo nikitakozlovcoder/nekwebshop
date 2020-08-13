@@ -1,7 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="turbolinks-cache-control" content="no-cache">
+  <script>
 
+      const turbolinks_control = {
+          enabled:  false,
+          run: ()=>{
+              let scrollPosition = null;
+              document.addEventListener('turbolinks:before-visit', (event) => {
+                  console.log('before!');
+                  if (this.enabled)
+                      scrollPosition = window.scrollY;
+                  else
+                      scrollPosition = null;
+                  this.enabled = false
+              });
+
+              document.addEventListener('turbolinks:load', (event) => {
+                  const elements = document.querySelectorAll(`[data-turbolinks-no-scroll="true"]`);
+                  console.log(elements);
+                  for (let i = 0; i < elements.length; i++) {
+                      elements[i].addEventListener('click', () => {
+                          enabled = true
+                      })
+                  }
+
+                  if (scrollPosition) {
+                      //	let inner = document.querySelector('.header-inner');
+                      //inner.style.position = 'fixed';
+                      let fix_bug = document.querySelector('.fix-bug');
+                      let header = document.querySelector('.header');
+
+                      header.style.animation = ""
+                      if (scrollPosition > 200) {
+                          header.classList.add("sticky");
+
+                          fix_bug.classList.add('fix-bug-active');
+                      } else {
+                          header.classList.remove("sticky");
+                          fix_bug.classList.remove('fix-bug-active');
+                      }
+                      window.scrollTo(0, scrollPosition)
+
+                  }
+              })
+
+
+          }
+
+
+
+      };
+
+      turbolinks_control.run()
+  </script>
   <title><%= @page_title ?  @page_title : "NekMarket" %></title>
 
   <%= csrf_meta_tags %>
@@ -23,14 +76,15 @@
 
 </head>
 <div class="fix-bug"></div>
-<body class="js <%= controller_name %> <%= action_name %>" style="overflow: auto">
+<body class="js <%= controller_name %> <%= action_name %> " style="overflow: auto">
 
 <%= yield %>
 <%= render partial: './footer.html.erb' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
+
 <% if action_name == 'contact'%>
 <%= javascript_include_tag 'mapman', 'data-turbolinks-track'=> 'reload' %>
 <% end %>
 </body>
 
 </html>
+<%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload', :data=>{'turbolinks-suppress-warning'=>'true'}%>

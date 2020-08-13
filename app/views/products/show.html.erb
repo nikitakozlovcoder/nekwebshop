@@ -36,7 +36,7 @@
 												<i class="yellow fa fa-star"></i>
 												<i class="fa fa-star"></i>
 											</div>
-											<a href="#"> (1 customer review)</a>
+											<a href="#"> (Отзывов о товаре: <%= @product.posts.count %>)</a>
 										</div>
 										<div class="quickview-stock">
 											<span><i class="fa fa-check-circle-o"></i> in stock</span>
@@ -129,6 +129,7 @@
 
 									<p><%= @product.description %></p>
 								</div>
+
 								<% @images.each do  |el|   %>
 								<div class="col-12">
 									<h3 class = "title inside_title">
@@ -182,49 +183,59 @@
                           <button type="submit" class="btn review_btn">Отправить отзыв</button>
                         </div>
                       </div>-->
-									<% @posts.each do |post| %>
+									<div class="posts_wrap">
+										<% @posts.each do |post| %>
 
 
-									<div class = "single_review">
-										<div class = "user_attributes">
-											<div class = "reviewer_name">
-												<%= post.user.name%>
+											<div class = "single_review" id="<%= post.id %>">
+												<div class = "user_attributes">
+													<div class = "reviewer_name">
+														<%= post.user.name%>
+													</div>
+													<% if post.user.avatar.attached? %>
+														<%= image_tag image, :class=>"user_photo_review" %>
+													<% else%>
+														<%= image_tag "no_avatar.png", :class=>"user_photo_review" %>
+													<% end %>
+
+
+													<div class = "view_review_rating">
+														<% for i in 0...post.mark %>
+															<span>&#9733;</span>
+														<% end %>
+														<% for i in post.mark...5 %>
+															<span>☆</span>
+														<% end %>
+
+													</div>
+												</div>
+												<div style="width: 100%; display: flex; flex-direction: column">
+													<div class = "review_text">
+														<%= post.body %>
+
+
+													</div>
+													<div class="review_imgs" style="margin-top: auto;">
+														<% post.images.each do |img| %>
+															<%= image_tag img %>
+														<% end %>
+													</div>
+													<div style=" padding-top: 10px">
+														<div>
+															<%= post.created_at %>
+														</div>
+														<% if current_user and current_user.id == post.user.id %>
+														<div onclick="delete_review(<%= post.id %>)">
+																Удалить
+														</div>
+															<% end %>
+													</div>
+												</div>
+
 											</div>
-											<% if post.user.avatar.attached? %>
-												<%= image_tag image, :class=>"user_photo_review" %>
-												<% else%>
-												<%= image_tag "no_avatar.png", :class=>"user_photo_review" %>
-											<% end %>
-
-
-											<div class = "view_review_rating">
-												<% for i in 0...post.mark %>
-													<span>&#9733;</span>
-												<% end %>
-												<% for i in post.mark...5 %>
-													<span>☆</span>
-												<% end %>
-
-											</div>
-										</div>
-										<div style="width: 100%; display: flex; flex-direction: column">
-											<div class = "review_text">
-												<%= post.body %>
-
-
-											</div>
-											<div class="review_imgs" style="margin-top: auto;">
-												<% post.images.each do |img| %>
-													<%= image_tag img %>
-												<% end %>
-											</div>
-											<div style=" padding-top: 10px">
-												<%= post.created_at %>
-											</div>
-										</div>
-
+										<% end %>
 									</div>
-									<% end %>
+
 								</div>
 
 
