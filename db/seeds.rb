@@ -18,6 +18,7 @@ Shop.create(name: 'China International')
 Shop.create(name: 'РашнБестБайСторЕвер')
 Shop.create(name: 'Семерочка')
 test_user = User.new(name: 'John', surname: 'Doe', password: '12345678', password_confirmation: '12345678', phone: '88005553535', email: 'john.doe@gmail.com')
+test_user.restore_date = Time.now.getutc
 test_user.save
 
 Category.add 'Компьютерные мыши', [
@@ -25,7 +26,7 @@ Category.add 'Компьютерные мыши', [
     {:name=>"Изображения", :type=>"Images", :id=>2, :min=>nil, :max=>nil, hint: nil},
     {:name=>"Высота", :type=>"Number", :id=>3, :min=>0, :max=>nil, hint: "мм", is_int: true},
     {:name=>"Ширина", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "мм", is_int: true},
-    {:name=>"Масса", :type=>"Number", :id=>4, :min=>0, :max=>nil, hint: "г", is_int: true}
+    {:name=>"Масса", :type=>"Number", :id=>5, :min=>0, :max=>nil, hint: "г", is_int: true}
 ]
 
 Category.add 'Смартфоны', [
