@@ -323,8 +323,8 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		  var filesCount = input.files.length;
 		  //get outter_container
 		  var container = input.parentNode.parentNode;
-		  //mark that images changed 
-		  input.nextSibling.value = "Yes";
+		  //mark that images changed
+		  container.querySelector('input[type="text"]').value = "Yes";
 		  //delete old elements
 		  var elements = container.getElementsByClassName("img-wrapper");
 		  while (elements[0]) {
