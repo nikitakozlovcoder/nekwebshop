@@ -29,6 +29,7 @@
 
 
 
+
 $(document).on('turbolinks:load', function() {
     let links = document.querySelectorAll('.main-category > li');
     let menu = document.querySelector('.main-category');

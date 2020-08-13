@@ -1,8 +1,8 @@
 
 
-
+$(document).on('turbolinks:load', function () {
 	if (get_body().classList.contains('products') && (get_body().classList.contains('new') || get_body().classList.contains('create') || get_body().classList.contains('update'))) {
-		function CategoryCheck(e) {
+		 CategoryCheck = function(e) {
 			return new Promise(resolve => {
 
 				if (e.value == "") {
@@ -21,7 +21,6 @@
 						return response.json();
 
 
-
 					})
 					.then((data) => {
 						generateForm(data);
@@ -32,6 +31,7 @@
 
 			});
 		}
+
 		function refill_fields(product) {
 			console.log(product);
 
@@ -313,7 +313,7 @@
 		}
 
 
-		function ListCheck(that) {
+		 ListCheck = function(that) {
 
 
 			if (that.value == another) {
@@ -333,7 +333,7 @@
 		}
 
 
-		function preview_image(input) {
+		 preview_image = function(input) {
 			if (input.files) {
 				//get images count
 				var filesCount = input.files.length;
@@ -359,5 +359,5 @@
 
 
 	}
-
+})
 
