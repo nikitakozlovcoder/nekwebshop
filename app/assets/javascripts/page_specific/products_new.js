@@ -308,6 +308,8 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 			document.getElementById("developer_input").style.display = "none";
 		}
 	}
+	
+	//preview image functionality start
 	function AppendPhoto(container, src){
 		var img = document.createElement('div');
 		img.className = 'img-wrapper';
@@ -338,6 +340,7 @@ if (get_body().classList.contains('products') &&( get_body().classList.contains(
 		  }
 		}
 	}
+	//preview image functionality end
 
 	function CategoryCheck(e) {
 		return new Promise(resolve =>{

@@ -47,7 +47,9 @@ class ProductsController < ApplicationController
     @images = @product.fields.select{|el|  el.type_name == "Images" }
     @videos = @product.fields.select{|el|  el.type_name == "Videos" }
     @files = @product.fields.select{|el|  el.type_name == "Files" }
-    @fields = @product.fields
+    @fields = @product.fields - @videos
+    @fields = @fields - @files
+    @fields = @fields - @images
     #pp @product.fields
     @page_title = @product.title
     @post = Post.new
