@@ -10,11 +10,11 @@
               let scrollPosition = null;
               document.addEventListener('turbolinks:before-visit', (event) => {
                   console.log('before!');
-                  if (enabled)
+                  if (this.enabled)
                       scrollPosition = window.scrollY;
                   else
                       scrollPosition = null;
-                  enabled = false
+                  this.enabled = false
               });
 
               document.addEventListener('turbolinks:load', (event) => {
