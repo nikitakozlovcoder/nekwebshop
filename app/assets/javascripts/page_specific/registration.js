@@ -1,4 +1,5 @@
 
+
     if (document.querySelector('body').classList.contains('registration')) {
         let form = document.querySelector('.form');
         form.addEventListener('submit', (e) => {
@@ -90,4 +91,5 @@
 
         }
     }
+
 

@@ -21,6 +21,7 @@
 						return response.json();
 
 
+
 					})
 					.then((data) => {
 						generateForm(data);
@@ -195,6 +196,7 @@
 				error_list.innerHTML += `<li>Выберите категорию</li>`;
 			}
 
+
 			//Validate Main Image element
 			if (!get_body().classList.contains('update')) {
 				let image = document.querySelector('.Image');
@@ -210,6 +212,7 @@
 				form.submit();
 			}
 
+
 		});
 
 
@@ -219,6 +222,7 @@
 
 			fill_fields_update();
 		});
+
 
 		let another = -1;
 		let inf_quantity = document.querySelector('.inf_quantity');
@@ -234,6 +238,7 @@
 				quantity.value = quantity.placeholder;
 				quantity.placeholder = "";
 			}
+
 		}
 
 		manipulate_quantity();
@@ -307,7 +312,9 @@
 			})
 		}
 
+
 		function ListCheck(that) {
+
 
 			if (that.value == another) {
 				document.getElementById("developer_input").style.display = "block";
@@ -317,12 +324,14 @@
 			}
 		}
 
+
 		function AppendPhoto(container, src) {
 			var img = document.createElement('div');
 			img.className = 'img-wrapper';
 			img.innerHTML = `<img src="${src}"/>`;
 			container.appendChild(img);
 		}
+
 
 		function preview_image(input) {
 			if (input.files) {
