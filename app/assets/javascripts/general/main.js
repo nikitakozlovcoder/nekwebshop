@@ -2,6 +2,7 @@ let CategoryCheck;
 let preview_image;
 let ListCheck;
 let delete_review;
+let choice_container;
 
 function get_body()
 {

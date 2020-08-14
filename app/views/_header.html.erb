@@ -376,7 +376,7 @@
                 </li>
                 <% all_categories.roots.each do |root| %>
                   <li>
-                    <a href="#">
+                    <%= link_to(controller: 'products', action: 'index', category_id: root.id) do%>
                       <%= root.name %>
                       <% if root.is_template %>
                         (<%= root.products.count %>)
@@ -385,15 +385,15 @@
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                       <% end %>
 
-                    </a>
+                    <% end %>
 
                     <ul class="sub-category">
                       <% root.children.each do |child| %>
-                        <li><a href="#"> <%= child.name %>
+                        <li><%= link_to(controller: 'products', action: 'index', category_id: child.id) do%> <%= child.name %>
                           <% if child.is_template %>
                             (<%= child.products.count %>)
                           <% end %>
-                        </a></li>
+                        <% end %></li>
                       <% end %>
                     </ul>
                   </li>
