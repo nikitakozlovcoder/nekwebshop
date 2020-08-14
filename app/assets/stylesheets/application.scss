@@ -360,9 +360,12 @@ tbody tr:hover {
 .categories>p {
   background-color: #dadada;
   display: inline-block;
+  padding: 0 4px 0 4px;
+  margin-right: 6px;
 }
-.inside_title {
+.title.inside_title {
   padding-top: 20px;
+  margin-bottom: 18px;
 }
 .reviews {
   width: 100%;

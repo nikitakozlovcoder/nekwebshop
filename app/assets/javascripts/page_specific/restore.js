@@ -35,6 +35,11 @@ if (document.querySelector('body').classList.contains('restore')){
 
         if (valid)
 		{
+            //showing message to user
+            form[0].querySelectorAll('.step').forEach((el)=>{
+                el.classList.toggle('active');
+              });
+            //submiting
 			form.submit();
 		}
     });
@@ -90,7 +95,9 @@ if (document.querySelector('body').classList.contains('restore')){
                     .then((data) => {
                         if(data.success){
                             step++;
-                            document.querySelector('.step').classList.toggle('active');
+                            form[1].querySelectorAll('.step').forEach((el)=>{
+                              el.classList.toggle('active');
+                            });
                         } else{
                             valid = false;
                             data.errors.forEach((msg)=>{
@@ -101,7 +108,6 @@ if (document.querySelector('body').classList.contains('restore')){
             } else {
 
                 //Validate Code element
-                
                 let code = document.querySelector('.Code');
                 let code_val = code.querySelector('input').value;
                 let error_list_code = code.querySelector('.error-list');
@@ -145,7 +151,8 @@ if (document.querySelector('body').classList.contains('restore')){
                     let password_confirmation = document.querySelector('.Double_Password input').value;
                     form_data.append('code', code_val);
                     form_data.append('password', password);
-                    form_data.append('password_confirmation', password_confirmation);         
+                    form_data.append('password_confirmation', password_confirmation);
+                    console.log(12324);         
                     fetch('restore/mobile', {
                         method: 'POST',
                         body: form_data})
@@ -154,7 +161,7 @@ if (document.querySelector('body').classList.contains('restore')){
                         })
                         .then((data) => {
                             if(data.success){
-                                form.submit();
+                                form[1].submit();
                             } else{
                                 valid = false;
                                 data.errors.forEach((msg)=>{
