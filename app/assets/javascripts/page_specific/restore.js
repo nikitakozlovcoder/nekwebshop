@@ -1,4 +1,4 @@
-if (document.querySelector('body').classList.contains('restore')){
+if (get_body().classList.contains('restore')){
     let form = document.querySelectorAll('.form');
 
     form[0].addEventListener('submit', (e)=>{

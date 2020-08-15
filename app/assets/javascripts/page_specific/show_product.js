@@ -201,5 +201,17 @@
 
                 post_review()
             })
+
+        function addtoCart(id){
+            fetch(`../cart/add/${id}`, {
+                method: 'POST'
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data)=>{
+                console.log(data);
+            });
+        }
     }
 
