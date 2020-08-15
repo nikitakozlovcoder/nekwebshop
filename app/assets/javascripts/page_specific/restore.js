@@ -1,43 +1,10 @@
 $(document).on('turbolinks:load', function () {
-    if (document.querySelector('body').classList.contains('restore')) {
+
+    if (get_body().classList.contains('restore') || get_body().classList.contains('restore_mail')) {
+
         let form = document.querySelectorAll('.form');
 
-        form[0].addEventListener('submit', (e) => {
-            e.preventDefault();
-            //Remove old errors
-            let errors = document.querySelectorAll('.error-list');
-            errors.forEach(el => {
-                el.innerHTML = "";
-            });
 
-            //Validate flag
-            let valid = true;
-            //Validate Email element
-            {
-                let email = document.querySelector('.Email');
-                let email_val = email.querySelector('input').value.trim();
-                let error_list = email.querySelector('.error-list');
-                let min = email.getAttribute("data-min");
-                let max = email.getAttribute("data-max");
-                if (email_val == "") {
-                    valid = false;
-                    error_list.innerHTML += `<li>Введите адрес своей эл. почты</li>`;
-                } else if (min && (email_val.length < min)) {
-                    valid = false;
-                    error_list.innerHTML += `<li>Адрес слишком короткий, минимальная длина - ${min} cимволов</li>`;
-                } else if (max && (email_val.length > max)) {
-                    valid = false;
-                    error_list.innerHTML += `<li>Адрес слишком длинный, максимальная длина - ${max} cимволов</li>`;
-                } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email_val))) {
-                    valid = false;
-                    error_list.innerHTML += `<li>Адрес эл. почты не соотвесвует стандартному формату.<br>Пример: my.example12@test.ru</li>`;
-                }
-            }
-
-            if (valid) {
-                form.submit();
-            }
-        });
 
 
         let step = 1;

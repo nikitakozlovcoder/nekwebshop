@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 gem 'activestorage'
-
+gem 'turbolinks_render'
 gem 'ancestry'
 gem 'yui-compressor'
 

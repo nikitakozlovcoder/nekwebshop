@@ -22,16 +22,28 @@
         </div>
         <div class = "container-body">
             <div class = "option show">
-                <form class = "form">
+              <% if @submitted %>
+                <h6>Ссылка для восставноления пароля отправлена на указанный адрес</h6>
+              <% end %>
+              <div class="error-list">
+                <% @errors.each do |msg| %>
+                  <li>
+                    <%= msg %>
+                  </li>
+                <% end %>
+
+
+              </div>
+                  <%= form_with class: 'form' do %>
                 <div class="form-group Email" data-min="5" data-max="50">
                     <label>Эл. почта<span>*</span></label>
-                    <input name="email" type="email" placeholder="">
+                    <input name="mail" type="email" placeholder="" value="<%= @mail %>">
                     <div class="error-list"></div>
                 </div>
                 <div class="form-group button">
-                    <button type="submit" class="btn">Отправить</button>
+                    <button type="submit" class="btn">Восстановить</button>
                 </div>
-                </form>
+                <% end %>
             </div>
 
             <div class = "option">
@@ -59,7 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group button">
-                    <button type="submit" class="btn">Отправить</button>
+                    <button type="submit" class="btn">Восстановить</button>
                 </div>
                 </form>
             </div>
