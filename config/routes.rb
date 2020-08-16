@@ -34,13 +34,16 @@ Rails.application.routes.draw do
   post '/post/:id/delete', to: 'posts#delete'
 
   get 'user/restore', to: 'users#restore'
+  get 'user/:id/restore/:code', to: 'users#restore_link'
+  post 'user/:id/restore/:code', to: 'users#restore_link_post'
+  post 'user/restore', to: 'users#restore_mail'
   post 'user/restore/mobile', to: 'users#restore_mobile'
 
-  post 'cart/add/:id', to: 'cart#add'
-  post 'cart/delete/:id', to: 'cart#delete_cart'
-  post 'cart/quantity/:id/:quantity', to: 'cart#change_quantity'
-  post 'wish/add/:id/', to: 'wishes#add'
-  post 'wish/delete/:id/', to: 'wishes#delete'
+  post  'cart/add/:id', to: 'cart#add'
+  post  'cart/delete/:id', to: 'cart#delete_cart'
+  post  'cart/quantity/:id/:quantity', to: 'cart#change_quantity'
+  post  'wish/add/:id/', to: 'wishes#add'
+  post  'wish/delete/:id/', to: 'wishes#delete'
 
   #post 'cart/:id/quantity/', to: 'cart#change_quantity'
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}

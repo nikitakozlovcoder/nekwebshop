@@ -1,6 +1,11 @@
 
+
+$(document).on('turbolinks:load', function () {
+
+
     if (get_body().classList.contains('products') && get_body().classList.contains('show')) {
-        function preview_image(input) {
+
+         preview_image = function(input) {
             if (input.files) {
                 //get images count
                 var filesCount = input.files.length;
@@ -50,7 +55,7 @@
 
         let post_review_form = document.querySelector('.post_review_form');
 
-        function delete_review(id) {
+         delete_review = function(id) {
             let post = document.getElementById(id);
             if (post)
                 post.remove();
@@ -215,3 +220,4 @@
         }
     }
 
+})

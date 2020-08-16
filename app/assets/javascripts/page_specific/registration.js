@@ -1,4 +1,4 @@
-
+$(document).on('turbolinks:load', function () {
 
     if (get_body().classList.contains('registration')) {
         let form = document.querySelector('.form');
@@ -93,3 +93,4 @@
     }
 
 
+})

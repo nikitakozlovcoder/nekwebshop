@@ -1,0 +1,47 @@
+<%= render partial: './header.html.erb' %>
+
+
+<section class="contact-us sign-in section">
+  <div class="container">
+    <div class="form-sign-in">
+      <div class="form-main">
+        <div class="title">
+          <h2>Введите новый пароль</h2>
+        </div>
+        <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
+          <div class="error-list">
+            <% @user.errors.messages.values.each do |msg| %>
+              <%msg.each do  |m| %>
+                <li><%= m %></li>
+              <%end %>
+            <% end %>
+          <% if @invalid_code %>
+            <li> Сылка недействительна или содержит ошибку. <%= link_to 'Отправить повторно.', controller: 'users', action: 'restore' %></li>
+          <% end %>
+          </div>
+          <div class="row">
+            <div class="col-lg-10 col-12">
+              <div class="form-group">
+                <label>Пароль</label>
+                <input name="password" type="password" placeholder="" value="<%= @login %>">
+              </div>
+            </div>
+            <div class="col-lg-10 col-12">
+              <div class="form-group">
+                <label>Повторите пароль</label>
+                <input name="password_confirmation" type="password" placeholder="">
+              </div>
+            </div>
+
+            <div class="button-sign-in col-lg-10 col-12">
+              <div class="form-group button">
+                <button type="submit" class="btn">Изменить</button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
