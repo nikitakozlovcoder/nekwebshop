@@ -257,7 +257,7 @@
                 </div>
               </div>
               <div class="product-content">
-                <h3><a href="product-details.html"><%= el.title %></a></h3>
+                <h3> <%= link_to(controller: "products", action: "show", id: el.id) do %><%= el.title %><% end %></h3>
                 <div class="product-price">
                   <span>₽ <%= el.price %></span>
                 </div>
