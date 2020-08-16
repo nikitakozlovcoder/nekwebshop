@@ -52,7 +52,7 @@ section.restore {
 //Profile
 
 .section-profile{
-  padding: 35px 0;
+  padding: 35px 0 100px 0;
 }
 
 .sidebar-container{
@@ -66,8 +66,8 @@ section.restore {
 }
 
 .profile-main{
-  padding: 5px 40px;
-
+  padding: 5px 20px 0;
+  flex-grow: 1;
 }
 
 .profile-main h2{
@@ -271,18 +271,113 @@ section.restore {
 
 //end-shop_id
 
+//wishlist
+
+.wishlist-container{
+  flex-wrap: nowrap;
+}
+
+.wishlist-element{
+  display: flex;
+  align-items: center;
+  padding: 25px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.wishlist-element .element-inform{
+  display: flex;
+  flex-grow: 1;
+}
+
+.wishlist .product-name a {
+  font-weight: 600;
+  color: #282828;
+  font-size: 17px;
+}
+
+.wishlist p {
+  font-size: 14px;
+  color: #666;
+}
+
+.wishlist .product-image{
+  width: 90px;
+  min-width: 90px;
+}
+
+.wishlist .product-inform{
+  flex-grow: 1;
+  padding: 0 20px;
+  min-width: 160px;
+}
+
+.wishlist .price,
+.wishlist .delete{
+  font-size: 20px;
+  white-space: nowrap;
+  padding: 0 20px;
+}
+
+
+
+
+//wishlist-end
+
 @media only screen and (max-width: 992px){
    .right-bar div{
     margin-right: 10px !important;
   }
 }
 
+@media only screen and (max-width: 780px) {
+  .wishlist .price{
+    padding: 0;
+  }
+  .element-inform{
+    padding-right: 10px;
+  }
+}
 
 @media only screen and (max-width: 685px) {
   .sidebar-container{
     width: 100%;
   }
+  .wishlist-container{
+    flex-wrap: wrap;
+  }
+  .product-inform{
+    padding-right: 0 !important;
+  }
 }
+
+@media only screen and (max-width: 640px) {
+  .wishlist .product-image{
+    width: 80px;
+  }
+  .wishlist-element{
+    flex-wrap: wrap;
+  }
+  .wishlist-main{
+    padding: 5px 15px 80px;
+  }
+  .wishlist-element{
+    padding: 15px;
+  }
+  .wishlist .price{
+    flex-grow: 1;
+    padding: 20px 0 0;
+  }
+  .wishlist .delete{
+    padding: 25px 0 0;
+  }
+}
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 768px) {
   .seller_profile_main{
