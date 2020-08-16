@@ -1,5 +1,8 @@
 class Product < ApplicationRecord
 
+  has_many :posts, dependent: :delete_all
+  has_many :carts, dependent: :delete_all
+  has_many :wishes, dependent: :delete_all
   validates :title, presence: { :message => :title_blank }
   validates :quantity, :numericality => { :greater_than_or_equal_to => 0 }
   validates_length_of :title, :in => 5..50
@@ -13,7 +16,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :maker
   belongs_to :shop
-  has_many :fields, foreign_key: "product_id", class_name: "Attribute", dependent: :destroy
+  has_many :fields, foreign_key: "product_id", class_name: "Attribute", dependent: :delete_all
 
   #def main_photo?
    # if !self.main_photo.attached?

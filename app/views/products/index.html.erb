@@ -9,8 +9,21 @@
       <div class="col-12">
         <div class="bread-inner">
           <ul class="bread-list">
-            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-            <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+            <li><%= link_to(controller: 'products', action: 'index', category_id: "") do %> Все
+              <% if @category %>
+                <i class="ti-arrow-right"></i>
+              <% end %>
+            <% end %></li>
+            <% if @category %>
+              <% @category.path.each do |el| %>
+                <li><%= link_to(controller: 'products', action: 'index', category_id: el.id) do %>
+                   <%= el.name %>
+                    <% if el != @category.path.last %>
+                      <i class="ti-arrow-right"></i>
+                    <% end %>
+                  <% end %></li>
+              <% end %>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -27,31 +40,74 @@
         <div class="shop-sidebar">
           <!-- Single Widget -->
           <div class="single-widget category">
-            <h3 class="title">Categories</h3>
-            <ul class="categor-list">
-              <li><a href="#">T-shirts</a></li>
-              <li><a href="#">jacket</a></li>
-              <li><a href="#">jeans</a></li>
-              <li><a href="#">sweatshirts</a></li>
-              <li><a href="#">trousers</a></li>
-              <li><a href="#">kitwears</a></li>
-              <li><a href="#">accessories</a></li>
+
+            <h3 class="title">
+              <% if @category %>
+              <%= link_to({controller: "products", action: "index", category_id: @category && @category.parent ? @category.parent.id : ''}, data: {'turbolinks-no-scroll'=> 'true'}) do  %>
+                <
+              <% end %>
+              <% end %>
+              Категория: <%= @category ? @category.name : 'Все' %>
+            </h3>
+            <ul class="categor-list list_lowercase">
+             <% @categories = @category ? @category.children : all_categories.roots %>
+
+             <%  @categories.each do |el| %>
+
+              <li><%= link_to({controller: "products", action: "index", category_id: el.id}, data: {'turbolinks-no-scroll'=> 'true'})  do%>
+                 <%= el.name %>  <%= el.is_template ? "(#{el.products.count})" : "" %>
+                  <% end %>
+              </li>
+            <% end %>
+
+
             </ul>
           </div>
           <!--/ End Single Widget -->
           <!-- Shop By Price -->
+          <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get", data: {'turbolinks-form'=>'true'} do %>
           <div class="single-widget range">
             <h3 class="title">Shop by Price</h3>
             <div class="price-filter">
               <div class="price-filter-inner">
-                <div id="slider-range"></div>
+                <div id="slider-range" data-max="<%= @max_price %>" data-min="<%= @min_price%>"></div>
                 <div class="price_slider_amount">
                   <div class="label-input">
-                    <span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price"/>
+                    <div>Range:</div>
+                    <!--<input type="text" id="amount" name="price" placeholder="Add Your Price"/>-->
+                    <div style="display: flex">
+                    <input type="text" id="amount_min" name="price_min" placeholder="" style="width: 105px" value="<%= params[:price_min] ? params[:price_min] : @min_price %>"/>
+                      /
+                    <input type="text" id="amount_max" name="price_max" placeholder="" style="width: 105px" value="<%= params[:price_max] ? params[:price_max] : @max_price  %>"/>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div class="filters-wrap">
+              <% @template.each do |el| %>
+                <% if el['type'] == 'Number' %>
+                  <div class="filter-title"><%= el['name'] %></div>
+                  <div class="form-group">
+                    <label for="">От</label>
+                    <input name="<%= el['id'].to_s+"_min" %>" type="number" placeholder="" value="<%= params[el['id'].to_s+"_min"]%>">
+                    <label for="">До</label>
+                    <input name="<%= el['id'].to_s+"_max" %>" type="number" placeholder="" value="<%= params[el['id'].to_s+"_max"]%>">
+                  </div>
+                <% elsif el['type'] == 'Bool' %>
+                  <div class="filter-title"><%= el['name'] %></div>
+                  <div class="form-group">
+                    <label for="">Любое</label>
+                    <input name="<%= el['id'].to_s%>" type="radio" placeholder=""  value="" <%= params[el['id'].to_s ]== 'No' || params[el['id'].to_s ]== 'Yes' ? '': 'checked' %>>
+                    <label for="">Нет</label>
+                    <input name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No" <%= params[el['id'].to_s ]== 'No' ? 'checked' : '' %>>
+                    <label for="">Да</label>
+                    <input name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes" <%= params[el['id'].to_s ]== 'Yes' ? 'checked' : '' %>>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <!--
             <ul class="check-box-list">
               <li>
                 <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox">$20 - $50<span class="count">(3)</span></label>
@@ -62,8 +118,26 @@
               <li>
                 <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">$100 - $250<span class="count">(8)</span></label>
               </li>
-            </ul>
+            </ul>-->
+            <% if @makers %>
+              <div class="single-widget category">
+                <h3 class="title">Производители</h3>
+                <ul class="categor-list">
+                  <% @makers.each do |el|%>
+                    <li>
+                      <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" > <span class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">  <%= el.name %> (<%= el.products.where(category_id: params[:category_id]).count  %>)</span>
+                     <!-- <a href="?&makers[]=<%= el.id%>" class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">-->
+
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group button">
+              <button type="submit" class="btn">Найти</button>
+            </div>
           </div>
+            <% end %>
           <!--/ End Shop By Price -->
           <!-- Single Widget -->
           <div class="single-widget recent-post">
@@ -124,18 +198,7 @@
             <!-- End Single Post -->
           </div>
           <!--/ End Single Widget -->
-          <!-- Single Widget -->
-          <div class="single-widget category">
-            <h3 class="title">Manufacturers</h3>
-            <ul class="categor-list">
-              <li><a href="#">Forever</a></li>
-              <li><a href="#">giordano</a></li>
-              <li><a href="#">abercrombie</a></li>
-              <li><a href="#">ecko united</a></li>
-              <li><a href="#">zara</a></li>
-            </ul>
-          </div>
-          <!--/ End Single Widget -->
+
         </div>
       </div>
       <div class="col-lg-9 col-md-8 col-12">
@@ -194,7 +257,7 @@
                 </div>
               </div>
               <div class="product-content">
-                <h3><a href="product-details.html"><%= el.title %></a></h3>
+                <h3> <%= link_to(controller: "products", action: "show", id: el.id) do %><%= el.title %><% end %></h3>
                 <div class="product-price">
                   <span>₽ <%= el.price %></span>
                 </div>

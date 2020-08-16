@@ -5,20 +5,42 @@
         <div class="title">
           <h2>Регистрация</h2>
         </div>
-        <form class = "form" novalidate>
+        <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
+          <div class="error-list">
+            <% @errors.each do |msg| %>
+              <li>
+                <%= msg %>
+              </li>
+            <% end %>
+            <% @user.errors.messages.values.each do |msg| %>
+              <%msg.each do  |m| %>
+                <li><%= m %></li>
+              <%end %>
+            <% end %>
+          </div>
         <div class="form form_row">
           <div class="row">
             <div class="col-lg-6 col-12">
 
                 <div class="form-group Email" data-min="5" data-max="50">
                     <label>Эл. почта<span>*</span></label>
-                    <input name="email" type="email" placeholder="" novalidate>
+                    <input name="email" type="email" placeholder=""  value="<%= @user.email %>">
                     <div class="error-list"></div>
                 </div>
+                <div class="form-group Name" data-min="0">
+                  <label>Имя<span>*</span></label>
+                  <input name="name" placeholder=""  value="<%= @user.name %>">
+                  <div class="error-list"></div>
+                </div>
+              <div class="form-group Name" data-min="0">
+                <label>Фамилия<span>*</span></label>
+                <input name="surname" placeholder=""  value="<%= @user.surname %>">
+                <div class="error-list"></div>
+              </div>
 
                 <div class="form-group Password" data-min="8" data-max="50">
                     <label>Пароль<span>*</span></label>
-                    <input name="pass" type="password" placeholder="">
+                    <input name="password" type="password" placeholder="">
                     <div class="error-list"></div>
                 </div>
 
@@ -28,13 +50,50 @@
                     <div class="error-list"></div>
                 </div>
 
-                <div class="form-group Tel_Number" data-min="5" data-max="50">
+
+           <!--     <div class="form-group Tel_Number" data-min="5" data-max="50">
                     <label>Телефон<span>*</span></label>
-                    <input name="login" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
+                    <input name="phone" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
                     <div class="error-list"></div>
-                </div>
-                
+                </div>  -->
+              <div id="locationField" class="form-group">
+                <label>Адрес<span>*</span></label>
+                <input type="search" id="address-input" />
+                <p>Выбрано: <strong id="address-value">---</strong></p>
+              </div>
+
+              <div style="display: none">
+                <input name="street" class="field" id="form-street"/>
+                <input name="city" class="field" id="form-city" />
+                <input name="state" class="field" id="form-administrative" />
+                <input name="zip" class="field" id="form-zip" />
+                <input name="country" class="field" id="form-country" />
+                <input name="county" class="field" id="form-county" />
+                <input name="suburb" class="field" id="form-suburb"/>
+              </div>
+
+
+
             </div>
+
+            </div>
+          <!--  <div class = "col-12 col-lg-6">
+
+              <div class="form-group Category">
+                    <label>Выберите город<span>*</span></label>
+                    <p style="display: flex" >
+                        <select name="category" class="category_select">
+                          <option value="" disabled selected>--------</option>
+                          <option value="Taganrog">Таганрог</option>
+                          <option value="Rostov">Ростов</option>
+                          <option value="Moscow">Москва</option>
+                          <option value="Smolensk">Смоленск</option>
+                        </select>
+                    </p>
+                    <div class="error-list"></div>
+                  </div>
+
+            </div> -->
 
             <div class="col-lg-10 col-12">
               <div class="form-group button">
@@ -43,7 +102,30 @@
             </div>
           </div>
         </div>
-        </form>
+        <% end %>
     </div>
   </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+    var placesAutocomplete_register = places({
+        appId: 'pl95AIU49SL1',
+        apiKey: 'd63ea66c7015964fa631d4f72045e333',
+        container: document.querySelector('#address-input')
+    });
+    var $address = document.querySelector('#address-value')
+    placesAutocomplete_register.on('change', function resultSelected(e) {
+        $address.textContent = e.suggestion.value
+        document.querySelector('#form-street').value = e.suggestion.name || '';
+        document.querySelector('#form-city').value = e.suggestion.city || '';
+        document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+        document.querySelector('#form-administrative').value = e.suggestion.administrative || '';
+        document.querySelector('#form-country').value = e.suggestion.country || '';
+        document.querySelector('#form-suburb').value = e.suggestion.suburb || '';
+        document.querySelector('#form-county').value = e.suggestion.county || '';
+    });
+    placesAutocomplete_register.on('clear', function() {
+        $address.textContent = 'none';
+    });
+</script>
+

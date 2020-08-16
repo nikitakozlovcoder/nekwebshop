@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_102836) do
+ActiveRecord::Schema.define(version: 2020_08_15_113307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2020_07_29_102836) do
     t.integer "code"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "quantity"
+    t.string "uuid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -73,6 +82,17 @@ ActiveRecord::Schema.define(version: 2020_07_29_102836) do
     t.boolean "is_another"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.text "body"
+    t.integer "mark"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_posts_on_ancestry"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.float "price"
@@ -90,6 +110,33 @@ ActiveRecord::Schema.define(version: 2020_07_29_102836) do
 
   create_table "shops", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "phone"
+    t.string "name"
+    t.string "surname"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "restore_date"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.integer "zip"
+    t.string "suburb"
+    t.string "county"
+    t.string "restore_code"
+    t.datetime "restore_code_task_started"
+  end
+
+  create_table "wishes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

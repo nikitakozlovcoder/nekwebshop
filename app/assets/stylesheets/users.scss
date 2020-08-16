@@ -3,7 +3,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 @import "vars";
-
+//restore
+section.restore {
+  max-width: 550px !important;
+  margin: 0 auto !important;
+}
 .seller_profile_main{
   display: flex;
 }
@@ -418,4 +422,110 @@
     width: 100%;
   }
 }
+
+
+.restore .section .btn{
+  cursor: pointer;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+//start choice-container styles
+.choice-container{
+  box-shadow: 0px 0px 15px #0000001a;
+  transition: all 0.2s ease;
+}
+.choice-container .container-header{
+  box-shadow: 0px 4px 15px #0000001a;
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+  padding-bottom: 6px;
+}
+.choice-container .options{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.choice-container .options label{
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.choice-container .options label:hover, .active{
+  color: #F6971C;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.4s ease;
+}
+
+.choice-container .radios{
+  display: flex;
+  justify-content: space-evenly;
+}
+.choice-container .radios > div{
+  margin-right: 10px;
+}
+//start radio button styles
+.choice-container .radios input[type="radio"] {
+  display:none;
+}
+.choice-container .radios input[type="radio"] + div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 12px;
+  border: 1px solid #00000056;
+  background: #fff;
+  box-shadow: 0px 0px 6px #00000056;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.choice-container .radios input[type="radio"] + div > div{
+  width: 16px;
+  height: 6px;
+  background: #F6971C;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.choice-container .radios input[type="radio"]:not(:checked) + div > div {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+.choice-container .radios input[type="radio"]:checked + div > div {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.choice-container .radios input[type="radio"]:checked + div{
+  border-color: #F6971C;
+  box-shadow:  0px 0px 6px #F6971C;
+}
+//end radio button styles
+
+.choice-container .container-body{
+  padding: 30px;
+}
+//hide all option by default
+.choice-container .container-body .option{
+  height: 0;
+  overflow: hidden;
+}
+.choice-container .container-body .option.show{
+  height: 100%;
+}
+.step{
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 1s ease, opacity 0.5s ease;
+  transition: max-height 1s ease, opacity 0.5s ease;
+}
+.step.active{
+  max-height: 520px;
+  opacity: 1;
+}
+//end choice-container styles
+//end-restore
 

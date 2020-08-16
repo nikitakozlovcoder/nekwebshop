@@ -7,18 +7,25 @@
         <div class="title">
           <h2>Вход</h2>
         </div>
-        <div class="form">
-          <div class="row">
+        <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
+          <div class="error-list">
+            <% if @error %>
+              <li>
+                Некорректные данные для входа
+              </li>
+            <% end %>
+          </div>
+      <div class="row">
             <div class="col-lg-10 col-12">
               <div class="form-group">
                 <label>Эл. почта или телефон</label>
-                <input name="login" type="text" placeholder="">
+                <input name="login" type="text" placeholder="" value="<%= @login %>">
               </div>
             </div>
             <div class="col-lg-10 col-12">
               <div class="form-group">
                 <label>Пароль</label>
-                <input name="pass" type="password" placeholder="">
+                <input name="password" type="password" placeholder="">
               </div>
             </div>
             <div class="col-lg-10 col-12">
@@ -26,13 +33,13 @@
               <div>
                 <div class="checkbox">
                   <label class="checkbox-inline" for="2">
-                    <input name="news" id="2" type="checkbox">
+                    <input name="remember" id="2" type="checkbox">
                     Запомнить меня
                   </label>
                 </div>
               </div>
               <div class="recovery-pass">
-                <a href="">Забыли пароль?</a>
+                <%= link_to 'Забыли пароль?', controller: 'users', action: 'restore' %>
               </div>
               </div>
             </div>
@@ -42,7 +49,7 @@
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

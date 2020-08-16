@@ -36,6 +36,7 @@
                     <div class="label-container">
                       <label for = "main_image" class = "btn">Load image...</label>
                       <input id = "main_image" type="file" accept="image/*" onchange="preview_image(this)" name="main_photo">
+                      <input name="main_photo_changed" type="text" value = "No">
                       <div class="error-list"></div>
                     </div>
                   </div>
@@ -45,7 +46,8 @@
                 <div class="col-12 col-lg-6">
                   <div class="form-group Number form-group-quantity" data-min="0" data-max="">
                     <label>Количество товаров<span>*</span></label>
-                    <input name="quantity" type="number" placeholder="" value="<%= @product.quantity %>" class="inp_quantity">
+
+                    <input name="quantity" type="number" placeholder="<%= @product.quantity %>" value="<%= @product.quantity %>" class="inp_quantity">
                     <div class="error-list"></div>
                   </div>
                   <div class="form-group Bool" data-min="" data-max=""><label>Неограниченное количество</label><input name="is_inf_quantity" type="checkbox" placeholder="" style="width: 25px; height: 25px; display: block" class="inf_quantity" <%= @product.is_inf_quantity ? "checked" : "" %>><div class="error-list"></div></div>
@@ -102,7 +104,7 @@
                 </div>
                 <div class="col-12">
                   <div class="form-group button">
-                    <button type="submit" class="btn ">Send Message</button>
+                    <button type="submit" class="btn ">Отправить</button>
                   </div>
                 </div>
 

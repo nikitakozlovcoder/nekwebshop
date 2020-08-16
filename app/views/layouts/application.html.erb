@@ -3,12 +3,12 @@
 <head>
 
   <title><%= @page_title ?  @page_title : "NekMarket" %></title>
-
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
+  <meta name="turbolinks-cache-control" content="no-cache">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
-
+  <script src="<%= javascript_path("general/main")  %>"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
 
   <%= favicon_link_tag 'favicon.svg'%>
 
@@ -23,14 +23,16 @@
 
 </head>
 <div class="fix-bug"></div>
-<body class="js <%= controller_name %> <%= action_name %>" style="overflow: auto">
+<body class="js <%= controller_name %> <%= action_name %> " style="overflow: auto">
 
 <%= yield %>
 <%= render partial: './footer.html.erb' %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
+
 <% if action_name == 'contact'%>
 <%= javascript_include_tag 'mapman', 'data-turbolinks-track'=> 'reload' %>
 <% end %>
 </body>
 
 </html>
+
+
