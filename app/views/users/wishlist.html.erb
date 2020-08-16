@@ -1,0 +1,79 @@
+<%= render partial: './header.html.erb' %>
+
+<section class="section-profile">
+  <div class="container">
+    <div class="row wishlist-container">
+      <div class="sidebar-container">
+        <div class="shop-sidebar">
+          <div class="single-widget category">
+            <h3 class="title">Категории</h3>
+            <ul class="categor-list">
+              <li><%= link_to 'Мои данные', :profile %></li>
+              <li><%= link_to 'Корзина', :cart_index %></li>
+              <li><a href="#">Мои заказы</a></li>
+              <li><a href="#">Мои отзывы</a></li>
+              <li><a href="#">Список желаний</a></li>
+              <li><a href="#">Просмотренные товары</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="profile-main shop wishlist-main">
+        <h2>Список желаний</h2>
+        <div class="wishlist">
+          <div class="wishlist-element">
+            <div class="element-inform">
+              <div class="product-image">
+                <img class="image" src="https://via.placeholder.com/100x100" alt="#">
+              </div>
+              <div class="product-inform">
+                <p class="product-name"><a href="#">Women Dress</a></p>
+                <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+              </div>
+            </div>
+              <div class="price">
+                <span>13 900 &#8381;</span>
+              </div>
+              <div class="delete">
+                <a href="#"><i class="ti-trash remove-icon"></i></a>
+              </div>
+          </div>
+          <div class="wishlist-element">
+            <div class="element-inform">
+              <div class="product-image">
+                <img class="image" src="https://via.placeholder.com/100x100" alt="#">
+              </div>
+              <div class="product-inform">
+                <p class="product-name"><a href="#">Women Dress</a></p>
+                <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+              </div>
+            </div>
+            <div class="price">
+              <span>13 900 &#8381;</span>
+            </div>
+            <div class="delete">
+              <a href="#"><i class="ti-trash remove-icon"></i></a>
+            </div>
+          </div>
+          <div class="wishlist-element">
+            <div class="element-inform">
+              <div class="product-image">
+                <img class="image" src="https://via.placeholder.com/100x100" alt="#">
+              </div>
+              <div class="product-inform">
+                <p class="product-name"><a href="#">Women Dress</a></p>
+                <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+              </div>
+            </div>
+            <div class="price">
+              <span>13 900 &#8381;</span>
+            </div>
+            <div class="delete">
+              <a href="#"><i class="ti-trash remove-icon"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
