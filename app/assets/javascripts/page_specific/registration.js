@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function () {
 
-    if (document.querySelector('body').classList.contains('registration')) {
+    if (get_body().classList.contains('registration')) {
         let form = document.querySelector('.form');
         form.addEventListener('submit', (e) => {
             e.preventDefault();

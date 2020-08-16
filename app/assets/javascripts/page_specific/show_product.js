@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function () {
                 }
             });
 
-        function preview_image(input) {
+         preview_image = function(input) {
             if (input.files) {
                 //get images count
                 var filesCount = input.files.length;
@@ -82,7 +82,7 @@ $(document).on('turbolinks:load', function () {
 
         let post_review_form = document.querySelector('.post_review_form');
 
-        function delete_review(id) {
+         delete_review = function(id) {
             let post = document.getElementById(id);
             if (post)
                 post.remove();
@@ -233,6 +233,18 @@ $(document).on('turbolinks:load', function () {
 
                 post_review()
             })
+
+        function addtoCart(id){
+            fetch(`../cart/add/${id}`, {
+                method: 'POST'
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data)=>{
+                console.log(data);
+            });
+        }
     }
 
 })

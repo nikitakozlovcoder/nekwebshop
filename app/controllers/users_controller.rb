@@ -8,14 +8,55 @@ class UsersController < ApplicationController
     @errors = []
   end
   def restore
-
+    puts "!!!!!!!!!!!!!!"
+    puts
+    @submitted = false
+    @errors = []
+    @main = nil
   end
   def restore_mail
-
+    @errors = []
+    @submitted = false
+    @mail = params[:mail]
+    @user = User.find_by(email: @mail)
+    if @user
+      code = SecureRandom.hex(10)
+      @user.skip_pass = true
+      @user.restore_code = code
+      @user.save
+      @submitted = true
+      UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/restore/"+code).restore.deliver_later
+      time = Time.now.getutc
+      @user.restore_code_task_started = time
+      UserClearCodeJob.set(wait: 10.minutes).perform_later(@user, time)
+      render :restore
+    else
+      @errors << "Не найден пользователь с данным адресом электронной почты"
+      render :restore
+    end
   end
 
   def restore_link
+    @user = User.new
+  end
+  def restore_link_post
+    @user = User.find_by(id: params[:id])
+    if @user and @user.restore_code and @user.restore_code == params[:code]
 
+      @user.password = params[:password]
+      @user.password_confirmation = params[:password_confirmation]
+      @user.restore_date = Time.now.getutc
+      @user.restore_code_task_started = nil
+      @user.restore_code = nil
+      if @user.save
+        redirect_to :sign_in
+      else
+        render :restore_link
+      end
+    else
+      @invalid_code = true
+      render :restore_link
+    end
   end
   def restore_mobile
     hash = {success: true, errors: []}

@@ -35,6 +35,9 @@ $color-border: rgba(175, 175, 175, 0.86);
 .header_slow{
   animation: fadeInDown 1s both 0.2s;
 }
+.error-list a{
+  text-decoration: underline;
+}
 .review_imgs img{
   width: 80px;
   height: 80px;
@@ -358,9 +361,11 @@ tbody tr:hover {
   display: inline-block;
   padding: 10px;
   margin-bottom: 10px;
+
 }
-.inside_title {
+.title.inside_title {
   padding-top: 20px;
+  margin-bottom: 18px;
 }
 .reviews {
   width: 100%;
@@ -435,6 +440,11 @@ tbody tr:hover {
     max-height: 60px !important;
   }
 
+}
+
+.shopping-summery tbody tr img {
+  width: auto !important;
+  max-width: 120px;
 }
 
 
