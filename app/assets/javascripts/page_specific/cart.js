@@ -30,4 +30,13 @@ if (get_body().classList.contains('cart')){
         elem.innerHTML = `₽${Math.round(total*10)/10}`
     }
     updateTotal();
+
+    document.querySelectorAll('.cart-item-wrap').forEach((el)=>{
+        let id = el.getAttribute('data-code');
+        console.log(id);
+        el.querySelector('.action span').addEventListener('click', ()=>{
+            deleteItem(id);
+            el.remove();
+        });
+    });
 }

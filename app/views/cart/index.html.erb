@@ -35,7 +35,7 @@
           </thead>
           <tbody>
           <% @carts.each do |cart| %>
-            <tr data-code = "<%= cart.id %>">
+            <tr data-code = "<%= cart.id %>" class = "cart-item-wrap">
               <td class="image" data-title="No"><%= image_tag cart.product.main_photo %></td>
               <td class="product-des" data-title="Description">
                 <p class="product-name"><%= link_to cart.product.title, controller: "products", action: "show", id: cart.product.id  %></p>
@@ -59,7 +59,7 @@
                 <!--/ End Input Order -->
               </td>
               <td class="total-amount" data-title="Total"><span>₽<%=  cart.product.price * cart.quantity %></span></td>
-              <td class="action" data-title="Remove"><a href="#" onclick = "deleteItem(<%= cart.product.id %>)"><i class="ti-trash remove-icon"></i></a></td>
+              <td class="action" data-title="Remove"><span><i class="ti-trash remove-icon"></i></span></td>
             </tr>
           <% end %>
 
