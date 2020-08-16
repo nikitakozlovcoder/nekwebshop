@@ -1,5 +1,4 @@
 
-//= require general/main.js
 //= require jquery.min.js
 //= require jquery-migrate-3.0.0.js
 //= require jquery-ui.min.js
@@ -24,6 +23,7 @@
 //= require page_specific/show_product.js
 //= require page_specific/restore.js
 //= require turbolinks
+
 
 
 

@@ -30,10 +30,21 @@ Version:1.0
 =========================================
 [End Activation Code]
 =========================================*/
-
-
-
-
+$(document).on('turbolinks:load', function () {
+	for (let i = 0; i < document.forms.length; i++) {
+		const form = document.forms[i]
+		if (form.method == "get" && form.dataset['remote'] == "true") {
+			form.addEventListener("submit", (e) => {
+				e.preventDefault();
+				const entries = [...new FormData(e.target).entries()]
+				const params = "?" + entries.map(e => e.map(encodeURIComponent).join('=')).join('&')
+				turbolinks_control.setEnabled();
+				Turbolinks.visit(form.action + params);
+			});
+		}
+		;
+	};
+});
 
 $(document).on('turbolinks:load', function () {
 	(function ($) {
