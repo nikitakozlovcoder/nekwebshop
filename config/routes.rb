@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'profile', to:'users#profile'
   get 'sign_in', to: 'users#sign_in'
   get 'shop_id', to: 'users#shop_id'
+  get 'wishlist', to: 'users#wishlist'
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'
   post 'shop/:id/add_product', to:'products#create'
