@@ -24,7 +24,7 @@
 
 							<div class = "row form-row" style="padding-left: 10px; padding-right: 10px;">
 								<div class="col-lg-6">
-									<%= image_tag @product.main_photo %>
+									<%= image_tag @product.main_photo, :class=>"show_main_photo"%>
 
 
 									<div class="quickview-ratting-review">
@@ -140,7 +140,7 @@
 										<%el.files.each do |image| %>
 											<div class="single-product">
 											<div class="product-img">
-												<%= image_tag image, :class=>"default-img" %>
+												<%= image_tag image, :class=>"default-img show_default_img" %>
 
 											</div>
 
