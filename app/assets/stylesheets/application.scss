@@ -38,6 +38,13 @@ $color-border: rgba(175, 175, 175, 0.86);
 .error-list a{
   text-decoration: underline;
 }
+.all-category li ul{
+  left: calc(100% - 25px) !important;
+
+}
+.btn{
+  cursor: pointer;
+}
 .review_imgs img{
   width: 80px;
   height: 80px;

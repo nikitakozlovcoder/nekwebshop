@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   post 'product/:id', to:'posts#create'
   post '/post/:id/delete', to: 'posts#delete'
-
+  get 'shops', to: 'shops#all'
   get 'user/restore', to: 'users#restore'
   get 'user/:id/restore/:code', to: 'users#restore_link'
   post 'user/:id/restore/:code', to: 'users#restore_link_post'
