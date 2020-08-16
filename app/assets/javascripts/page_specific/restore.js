@@ -1,3 +1,4 @@
+
 $(document).on('turbolinks:load', function () {
 
     if (get_body().classList.contains('restore') || get_body().classList.contains('restore_mail')) {
@@ -161,3 +162,4 @@ $(document).on('turbolinks:load', function () {
         }
     }
 })
+

@@ -363,9 +363,12 @@ tbody tr:hover {
 .categories>p {
   background-color: #dadada;
   display: inline-block;
+  padding: 0 4px 0 4px;
+  margin-right: 6px;
 }
-.inside_title {
+.title.inside_title {
   padding-top: 20px;
+  margin-bottom: 18px;
 }
 .reviews {
   width: 100%;
@@ -426,6 +429,11 @@ tbody tr:hover {
     width: 100%;
   }
 
+}
+
+.shopping-summery tbody tr img {
+  width: auto !important;
+  max-width: 120px;
 }
 
 

@@ -22,6 +22,7 @@
         </div>
         <div class = "container-body">
             <div class = "option show">
+
               <% if @submitted %>
                 <h6>Ссылка для восставноления пароля отправлена на указанный адрес</h6>
               <% end %>
@@ -44,14 +45,18 @@
                     <button type="submit" class="btn">Восстановить</button>
                 </div>
                 <% end %>
+
             </div>
 
             <div class = "option">
+
                 <form class = "form">
-                <div class="form-group Tel_Number" data-min="5" data-max="50">
-                    <label>Телефон<span>*</span></label>
-                    <input name="phone" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
-                    <div class="error-list"></div>
+                <div class = "step active">
+                    <div class="form-group Tel_Number" data-min="5" data-max="50">
+                        <label>Телефон<span>*</span></label>
+                        <input name="phone" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">
+                        <div class="error-list"></div>
+                    </div>
                 </div>
                 <div class = "step">
                     <div class="form-group Code" data-min="6" data-max="6">
@@ -74,6 +79,7 @@
                     <button type="submit" class="btn">Восстановить</button>
                 </div>
                 </form>
+
             </div>
 
         </div>
