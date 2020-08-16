@@ -60,8 +60,8 @@
 										<h3 class = "left product_price"><%= @product.price == @product.price.floor ? @product.price.to_i : @product.price %>₽</h3>
 										<div class = "buttons_group product_add_to">
 
-											<a href="#" onclick="addtoCart(<%= @product.id %>)" class="btn">Add to cart</a>
-											<a href="#" class="btn min"><i class="ti-heart"></i></a>
+											<span onclick="addtoCart(<%= @product.id %>)" class="btn">Add to cart</span>
+											<span class="btn min"><i class="ti-heart"></i></span>
 										</div>
 									</div>
 									<h4>Характеристики</h4>

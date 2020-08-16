@@ -8,4 +8,7 @@ class ShopsController < ApplicationController
   def dashboard
 
   end
+  def all
+
+  end
 end

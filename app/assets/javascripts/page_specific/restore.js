@@ -57,9 +57,12 @@ $(document).on('turbolinks:load', function () {
                         })
                         .then((data) => {
                             if (data.success) {
+                                console.log( form[1].querySelectorAll('.step'));
+                                form[1].querySelectorAll('.step').forEach((el)=>{
 
+                                    el.classList.toggle('active');
+                                });
                                 step++;
-                                document.querySelector('.step').classList.toggle('active');
                             } else {
                                 valid = false;
                                 data.errors.forEach((msg) => {
