@@ -42,8 +42,8 @@ Rails.application.routes.draw do
   post  'cart/add/:id', to: 'cart#add'
   post  'cart/delete/:id', to: 'cart#delete_cart'
   post  'cart/quantity/:id/:quantity', to: 'cart#change_quantity'
-  post  'wish/add/:id/', to: 'wishes#add'
-  post  'wish/delete/:id/', to: 'wishes#delete'
+  get  'wish/add/:id/', to: 'wishes#add'
+  get  'wish/delete/:id/', to: 'wishes#delete'
 
   #post 'cart/:id/quantity/', to: 'cart#change_quantity'
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
