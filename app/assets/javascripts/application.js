@@ -1,6 +1,4 @@
-
-//= require jquery.min.js
-//= require jquery-migrate-3.0.0.js
+//= require jquery
 //= require jquery-ui.min.js
 //= require popper.min.js
 //= require bootstrap.min.js

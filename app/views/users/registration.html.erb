@@ -5,7 +5,8 @@
         <div class="title">
           <h2>Регистрация</h2>
         </div>
-        <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
+        <% if !@success %>
+        <%= form_with class: "form", id: 'registration_form',:html =>{'novalidate'=>''}, multipart: true do %>
           <div class="error-list">
             <% @errors.each do |msg| %>
               <li>
@@ -103,6 +104,9 @@
           </div>
         </div>
         <% end %>
+        <% else %>
+        <p>На указанный адрес электронной почты была отправлена ссылка для подтвержения почты.</p>
+          <% end %>
     </div>
   </div>
 </section>

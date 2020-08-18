@@ -17,7 +17,7 @@ Attribute.delete_all
 Shop.create(name: 'China International')
 Shop.create(name: 'РашнБестБайСторЕвер')
 Shop.create(name: 'Семерочка')
-test_user = User.new(name: 'John', surname: 'Doe', password: '12345678', password_confirmation: '12345678', phone: '88005553535', email: 'john.doe@gmail.com')
+test_user = User.new(name: 'John', surname: 'Doe', password: '12345678', password_confirmation: '12345678', phone: '88005553535', email: 'john.doe@gmail.com', confirmed: true)
 test_user.restore_date = Time.now.getutc
 test_user.save
 

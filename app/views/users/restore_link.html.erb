@@ -10,12 +10,14 @@
         </div>
         <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
           <div class="error-list">
+            <% if @user %>
             <% @user.errors.messages.values.each do |msg| %>
               <%msg.each do  |m| %>
                 <li><%= m %></li>
               <%end %>
             <% end %>
-          <% if @invalid_code %>
+            <% end %>
+          <% if @invalid_code || !@user %>
             <li> Сылка недействительна или содержит ошибку. <%= link_to 'Отправить повторно.', controller: 'users', action: 'restore' %></li>
           <% end %>
           </div>

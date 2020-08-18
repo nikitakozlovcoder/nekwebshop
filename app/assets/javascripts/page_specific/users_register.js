@@ -105,7 +105,7 @@ $(document).on('turbolinks:load', function () {
                         //   }
 
                         if (valid) {
-                                form.submit();
+                                $("#registration_form").submit();
                         }
                 });
 

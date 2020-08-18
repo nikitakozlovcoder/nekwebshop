@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_113307) do
+ActiveRecord::Schema.define(version: 2020_08_18_073700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_113307) do
     t.string "county"
     t.string "restore_code"
     t.datetime "restore_code_task_started"
+    t.boolean "confirmed"
   end
 
   create_table "wishes", force: :cascade do |t|
