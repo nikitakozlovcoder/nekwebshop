@@ -536,5 +536,18 @@ section.restore {
 .shops .option .desription h3{
   margin-bottom: 10px;
 }
+.shops .choice-container tbody td a:hover{
+  color: #F7941D;
+}
+.shops .hidden{
+  margin-left: 15px;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 1s ease;
+  transition: opacity 1s ease;
+}
+.shops .choice-container tbody tr:hover .hidden{
+  opacity: 1;
+} 
 //shop-end
 
