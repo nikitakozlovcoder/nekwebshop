@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'registration', to: 'users#registration'
   post 'registration', to: 'users#create'
+  put 'registration', to: 'users#change_mail'
 
   get 'product/:id', to:'products#show', as: :show_product_path
 

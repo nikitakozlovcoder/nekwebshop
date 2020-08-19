@@ -178,8 +178,30 @@ class UsersController < ApplicationController
       @user.restore_code = code
       @user.save
       @success = true
+      cookies.signed[:temp_id] = @user.id
       UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/confirm/"+code).confirm.deliver_later
       UserClearCodeJob.set(wait: 7.days).perform_later(@user, time)
+    end
+    render :registration
+  end
+  def change_mail
+    @success = true
+    @errors = []
+    if cookies.signed[:temp_id]
+      @user = User.find_by(id: cookies.signed[:temp_id], confirmed: false)
+      if @user
+        @user.skip_pass = true
+        @user.email = params[:email]
+        code = SecureRandom.hex(10)
+        time = Time.now.getutc
+        @user.restore_code_task_started = time
+        @user.restore_code = code
+        @user.save
+        UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/confirm/"+code).confirm.deliver_later
+        UserClearCodeJob.set(wait: 7.days).perform_later(@user, time)
+      end
+    else
+      @user = User.new
     end
     render :registration
   end

@@ -4,9 +4,9 @@ class CartController < ApplicationController
   # normal cart table
   def index
     if current_user
-      @carts = current_user.carts
+      @carts = current_user.carts.order(:created_at)
     elsif cookies.signed[:uuid]
-      @carts = Cart.where(uuid:  cookies.signed[:uuid])
+      @carts = Cart.where(uuid:  cookies.signed[:uuid]).order(:created_at)
     else
       @carts = []
     end
