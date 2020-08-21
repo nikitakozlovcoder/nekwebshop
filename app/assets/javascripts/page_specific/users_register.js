@@ -38,48 +38,57 @@ $(document).on('turbolinks:load', function () {
                         }
                         //Validate Password element
                         {
+
                                 let password = document.querySelector('.Password');
-                                let password_val_1 = password.querySelector('input').value;
-                                let error_list_1 = password.querySelector('.error-list');
-                                let min = password.getAttribute("data-min");
-                                let max = password.getAttribute("data-max");
-                                if (password_val_1 == "") {
-                                        valid = false;
-                                        error_list_1.innerHTML += `<li>Придумайте пароль</li>`;
-                                } else if (min && (password_val_1.length < min)) {
-                                        valid = false;
-                                        error_list_1.innerHTML += `<li>Пароль слишком короткий, минимальная длина - ${min} cимволов</li>`;
-                                } else if (max && (password_val_1.length > max)) {
-                                        valid = false;
-                                        error_list_1.innerHTML += `<li>Пароль слишком длинный, максимальная длина - ${max} cимволов</li>`;
-                                } else {
-                                        let double_password = document.querySelector('.Double_Password');
-                                        let password_val_2 = double_password.querySelector('input').value;
-                                        let error_list_2 = double_password.querySelector('.error-list');
-                                        if (password_val_1 != password_val_2) {
+                                if (password)
+                                {
+                                        let password_val_1 = password.querySelector('input').value;
+                                        let error_list_1 = password.querySelector('.error-list');
+                                        let min = password.getAttribute("data-min");
+                                        let max = password.getAttribute("data-max");
+                                        if (password_val_1 == "") {
                                                 valid = false;
-                                                error_list_2.innerHTML += `<li>Пароли не совпадают</li>`;
+                                                error_list_1.innerHTML += `<li>Придумайте пароль</li>`;
+                                        } else if (min && (password_val_1.length < min)) {
+                                                valid = false;
+                                                error_list_1.innerHTML += `<li>Пароль слишком короткий, минимальная длина - ${min} cимволов</li>`;
+                                        } else if (max && (password_val_1.length > max)) {
+                                                valid = false;
+                                                error_list_1.innerHTML += `<li>Пароль слишком длинный, максимальная длина - ${max} cимволов</li>`;
+                                        } else {
+                                                let double_password = document.querySelector('.Double_Password');
+                                                let password_val_2 = double_password.querySelector('input').value;
+                                                let error_list_2 = double_password.querySelector('.error-list');
+                                                if (password_val_1 != password_val_2) {
+                                                        valid = false;
+                                                        error_list_2.innerHTML += `<li>Пароли не совпадают</li>`;
+                                                }
                                         }
                                 }
+
                         }
                         // Validate Name element
                         {
                                 let names = document.querySelectorAll('.Name');
-                                let t = ['имя', 'фамилию'];
-                                names.forEach((el, i) => {
+                                if(names)
+                                {
+                                        let t = ['имя', 'фамилию'];
+                                        names.forEach((el, i) => {
 
-                                        let name_inp = el.querySelector('input');
+                                                let name_inp = el.querySelector('input');
 
-                                        let error_list = el.querySelector('.error-list');
-                                        error_list.innerHTML = "";
+                                                let error_list = el.querySelector('.error-list');
+                                                error_list.innerHTML = "";
 
-                                        if (name_inp.value.trim() == "") {
-                                                valid = false;
+                                                if (name_inp.value.trim() == "") {
+                                                        valid = false;
 
-                                                error_list.innerHTML += `<li>Укажите ${t[i]}</li>`
-                                        }
+                                                        error_list.innerHTML += `<li>Укажите ${t[i]}</li>`
+                                                }
 
-                                })
+                                        })
+                                }
+
                         }
 
                         //Validate Tel_Number element

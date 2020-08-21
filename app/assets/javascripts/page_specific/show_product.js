@@ -236,6 +236,8 @@ $(document).on('turbolinks:load', function () {
             })
 
          addtoCart = function(id){
+            document.querySelector('.already_in_cart').style.display = 'inline-block';
+            document.querySelector('.add_to_cart_wrapper').style.display = 'none';
             fetch(`../cart/add/${id}`, {
                 method: 'POST'
             })
