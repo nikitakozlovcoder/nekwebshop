@@ -423,7 +423,7 @@ section.restore {
   }
 }
 
-
+//start-restore
 .restore .section .btn{
   cursor: pointer;
   margin-left: 5px;
@@ -436,83 +436,48 @@ section.restore {
 }
 .choice-container .container-header{
   box-shadow: 0px 4px 15px #0000001a;
-  display: flex;
-  flex-direction: column;
-  padding-top: 12px;
-  padding-bottom: 6px;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
 }
-.choice-container .options{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-.choice-container .options label{
+
+.choice-container .container-header .option{
+  display: table-cell;
   cursor: pointer;
   font-weight: 700;
   font-size: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 12px;
+  padding-bottom: 6px;
 }
-.choice-container .options label:hover, .active{
-  color: #F6971C;
+.choice-container .container-header .hidden{
+  display: none;
+}
+.choice-container .container-header .option:hover, .choice-container .container-header .option.active{
+  color: #fff;
   -webkit-transition: all 0.2s ease;
   transition: all 0.4s ease;
 }
-
-.choice-container .radios{
-  display: flex;
-  justify-content: space-evenly;
+.choice-container .container-header .option.active, .choice-container .container-header .option:hover.active{
+  background-color: #F6971C;
 }
-.choice-container .radios > div{
-  margin-right: 10px;
+.choice-container .container-header .option:hover{
+  background-color: #ffae44;
 }
-//start radio button styles
-.choice-container .radios input[type="radio"] {
-  display:none;
-}
-.choice-container .radios input[type="radio"] + div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 26px;
-  height: 12px;
-  border: 1px solid #00000056;
-  background: #fff;
-  box-shadow: 0px 0px 6px #00000056;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-.choice-container .radios input[type="radio"] + div > div{
-  width: 16px;
-  height: 6px;
-  background: #F6971C;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-.choice-container .radios input[type="radio"]:not(:checked) + div > div {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-.choice-container .radios input[type="radio"]:checked + div > div {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-.choice-container .radios input[type="radio"]:checked + div{
-  border-color: #F6971C;
-  box-shadow:  0px 0px 6px #F6971C;
-}
-//end radio button styles
-
 .choice-container .container-body{
   padding: 30px;
 }
 //hide all option by default
 .choice-container .container-body .option{
   height: 0;
+  opacity: 0;
   overflow: hidden;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 .choice-container .container-body .option.show{
+  opacity: 1;
   height: 100%;
 }
 .step{
@@ -528,4 +493,61 @@ section.restore {
 }
 //end choice-container styles
 //end-restore
+
+//shop-start
+.shops table thead th{
+  color: #fff;
+}
+.shops .column1{
+  width: 40%;
+}
+.shops .column2{
+  width: 60%;
+}
+.shops .column2.centered{
+  text-align: center;
+}
+
+.shops table thead tr{
+  height: 50px;
+}
+
+.shops table tbody tr.sub{
+  height: 40px;
+}
+.shops table tbody tr.sub .column1{
+  padding-left: 80px;
+}
+
+.shops table tbody td {
+  //padding: 0px 10px 0px 10px;
+}
+.shops .choice-container .container-body {
+  padding: 0px;
+}
+.shops .choice-container .container-body table{
+  border-radius: 0px;
+}
+
+.shops .option .desription{
+  padding: 20px 20px 0 20px;
+  font-size: 1rem;
+}
+.shops .option .desription h3{
+  margin-bottom: 10px;
+}
+.shops .choice-container tbody td a:hover{
+  color: #F7941D;
+}
+.shops .hidden{
+  margin-left: 15px;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: opacity 1s ease;
+  transition: opacity 1s ease;
+}
+.shops .choice-container tbody tr:hover .hidden{
+  opacity: 1;
+} 
+//shop-end
 

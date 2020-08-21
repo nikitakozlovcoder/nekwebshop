@@ -21,6 +21,7 @@
 //= require page_specific/show_product.js
 //= require page_specific/restore.js
 //= require page_specific/cart.js
+//= require page_specific/shop.js
 //= require turbolinks
 
 

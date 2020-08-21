@@ -454,5 +454,11 @@ tbody tr:hover {
   max-width: 120px;
 }
 
+//for header maybe (remove gaps)
+.header.shop .nav li {
+  margin-right: 0px !important;
+}
 
-
+.header.shop .nav.main-menu > li:hover > a{
+  background: #ffae44;
+}
