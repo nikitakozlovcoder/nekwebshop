@@ -21,57 +21,26 @@
       <div class="profile-main shop wishlist-main">
         <h2>Список желаний</h2>
         <div class="wishlist">
-          <div class="wishlist-element">
+          <% @wishes.each do |el| %>
+            <div class="wishlist-element">
             <div class="element-inform">
               <div class="product-image">
-                <img class="image" src="https://via.placeholder.com/100x100" alt="#">
+                <%= image_tag el.product.main_photo, class: 'image' %>
               </div>
               <div class="product-inform">
-                <p class="product-name"><a href="#">Women Dress</a></p>
-                <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+                <p class="product-name"><%= link_to el.product.title, controller: 'products', action: 'show', id: el.product.id %></p>
+                <p class="descr"><%= el.product.description[0..45] %><%= el.product.description.length > 45 ? "..." : "" %></p>
               </div>
             </div>
               <div class="price">
-                <span>13 900 &#8381;</span>
+                <span><%= el.product.price %> &#8381;</span>
               </div>
               <div class="delete">
-                <a href="#"><i class="ti-trash remove-icon"></i></a>
+               <%= link_to({controller: 'wishes', action: 'delete', id: el.id}, data:{'turbolinks-no-scroll'=>true}) do %><i class="ti-trash remove-icon"></i><% end %>
               </div>
           </div>
-          <div class="wishlist-element">
-            <div class="element-inform">
-              <div class="product-image">
-                <img class="image" src="https://via.placeholder.com/100x100" alt="#">
-              </div>
-              <div class="product-inform">
-                <p class="product-name"><a href="#">Women Dress</a></p>
-                <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-              </div>
-            </div>
-            <div class="price">
-              <span>13 900 &#8381;</span>
-            </div>
-            <div class="delete">
-              <a href="#"><i class="ti-trash remove-icon"></i></a>
-            </div>
-          </div>
-          <div class="wishlist-element">
-            <div class="element-inform">
-              <div class="product-image">
-                <img class="image" src="https://via.placeholder.com/100x100" alt="#">
-              </div>
-              <div class="product-inform">
-                <p class="product-name"><a href="#">Women Dress</a></p>
-                <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-              </div>
-            </div>
-            <div class="price">
-              <span>13 900 &#8381;</span>
-            </div>
-            <div class="delete">
-              <a href="#"><i class="ti-trash remove-icon"></i></a>
-            </div>
-          </div>
+          <% end %>
+
         </div>
       </div>
     </div>

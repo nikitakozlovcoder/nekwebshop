@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function () {
             let carousel_images = document.querySelectorAll('.single-product');
             let nav_arrows = document.querySelector('.owl-nav');
             if(nav_arrows){
-            if ((carousel_images.length == 1 && window.screen.width > 0) || (carousel_images.length == 2 && window.screen.width > 500) || (carousel_images.length == 3 && window.screen.width > 768)) {
+            if ((carousel_images.length == 1 && window.screen.width > 500) || (carousel_images.length == 2 && window.screen.width > 768) || (carousel_images.length == 3 && window.screen.width > 1170)) {
                  
                  nav_arrows.style.display = "none";
             }
@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function () {
                 //let nav_arrows = document.querySelector('.owl-nav');
             
            
-                if ((carousel_images.length == 1 && window.screen.width > 0) || (carousel_images.length == 2 && window.screen.width > 500) || (carousel_images.length == 3 && window.screen.width > 768)) {
+                if ((carousel_images.length == 1 && window.screen.width > 500) || (carousel_images.length == 2 && window.screen.width > 768) || (carousel_images.length == 3 && window.screen.width > 1170)) {
                    
                     nav_arrows.style.display = "none";
                   
@@ -177,7 +177,7 @@ $(document).on('turbolinks:load', function () {
 													<div class = "reviewer_name">
 														${data.user_name}
 													</div>
-													<img src="${data.avatar}">
+													<img class = "reviewer_photo" src="${data.avatar}">
 
 
 													<div class = "view_review_rating">
@@ -236,6 +236,8 @@ $(document).on('turbolinks:load', function () {
             })
 
          addtoCart = function(id){
+            document.querySelector('.already_in_cart').style.display = 'inline-block';
+            document.querySelector('.add_to_cart_wrapper').style.display = 'none';
             fetch(`../cart/add/${id}`, {
                 method: 'POST'
             })

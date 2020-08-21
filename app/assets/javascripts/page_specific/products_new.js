@@ -312,7 +312,9 @@ $(document).on('turbolinks:load', function () {
 			})
 		}
 
+
 	preview_image = function (input) {
+
 		if (input.files) {
 		  //get images count
 		  var filesCount = input.files.length;

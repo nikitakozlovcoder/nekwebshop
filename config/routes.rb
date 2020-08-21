@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'registration', to: 'users#registration'
   post 'registration', to: 'users#create'
+  put 'registration', to: 'users#change_mail'
 
   get 'product/:id', to:'products#show', as: :show_product_path
 
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
   get 'shops', to: 'shops#all'
   get 'user/restore', to: 'users#restore'
   get 'user/:id/restore/:code', to: 'users#restore_link'
+  get 'user/:id/confirm/:code', to: 'users#confirm'
   post 'user/:id/restore/:code', to: 'users#restore_link_post'
   post 'user/restore', to: 'users#restore_mail'
   post 'user/restore/mobile', to: 'users#restore_mobile'
@@ -42,8 +44,10 @@ Rails.application.routes.draw do
   post  'cart/add/:id', to: 'cart#add'
   post  'cart/delete/:id', to: 'cart#delete_cart'
   post  'cart/quantity/:id/:quantity', to: 'cart#change_quantity'
-  post  'wish/add/:id/', to: 'wishes#add'
-  post  'wish/delete/:id/', to: 'wishes#delete'
+  post 'wish/add/:id/', to: 'wishes#add'
+  get  'wish/delete/:id/', to: 'wishes#delete'
+
+
 
   #post 'cart/:id/quantity/', to: 'cart#change_quantity'
   resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
