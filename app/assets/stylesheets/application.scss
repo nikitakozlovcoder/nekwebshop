@@ -45,6 +45,9 @@ $color-border: rgba(175, 175, 175, 0.86);
 .btn{
   cursor: pointer;
 }
+.owl-carousel {
+  touch-action: manipulation;
+}
 .review_imgs img{
   width: 80px;
   height: 80px;
@@ -434,17 +437,30 @@ tbody tr:hover {
 
 @media (max-width: 580px) {
   .single_review {
-    flex-direction: column;
+    flex-direction: row;
   }
-  .review_text,
+  .review_text {
+    width: 70%;
+  }
   .user_attributes {
-    width: 100%;
+    min-width: 100px;
+    text-align: center;
+    width: 30%;
+    margin-right: 20px;
   }
   .show_main_photo {
     max-height: 300px;
   }
   .user_photo_review {
-    max-height: 60px !important;
+    text-align: center;
+    max-height: 40px !important;
+  }
+  .reviewer_photo {
+    text-align: center;
+    max-height: 40px;
+  }
+  .view_review_rating > span {
+    font-size: 16px;
   }
 
 }
@@ -452,6 +468,23 @@ tbody tr:hover {
 .shopping-summery tbody tr img {
   width: auto !important;
   max-width: 120px;
+}
+
+
+.name-shop {
+  font-size: 15px;
+}
+.left-shop-inform-container_second {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 15px #dadada;
+}
+
+.left-shop-inform_second {
+  padding-left: 10px;
+}
+.single_shop_container {
+  margin-top: 10px;
 }
 
 //for header maybe (remove gaps)
@@ -462,3 +495,4 @@ tbody tr:hover {
 .header.shop .nav.main-menu > li:hover > a{
   background: #ffae44;
 }
+
