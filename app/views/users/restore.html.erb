@@ -2,23 +2,9 @@
 <section class="contact-us restore section">
     <div class ="choice-container">
         <div class ="container-header">
-            <div class = "options">
-                <label class = "active" for = "0">Эл. почта</label>
-                <label for = "1">Моб. телефон</label>
-            </div>
-            <div class = "radios">
-                <input type = "radio" id="0" name="radio-group" onclick = "choice_container(this)" checked>
-                <div>
-                    <div>
-                    </div>
-                </div>
-                <input type = "radio" id="1" name="radio-group" onclick = "choice_container(this)">
-                <div>
-                    <div>
-                    </div>
-                </div>
-                <input type="hidden" value = "0"/>
-            </div>
+            <div class = "option active">Эл. почта</div>
+            <div class = "option">Моб. телефон</div>
+            <div class = "hidden" data-last = "0"></div>
         </div>
         <div class = "container-body">
             <div class = "option show">
@@ -52,6 +38,7 @@
 
                 <form class = "form">
                 <div class = "step active">
+                    <div class="error-list"></div>
                     <div class="form-group Tel_Number" data-min="5" data-max="50">
                         <label>Телефон<span>*</span></label>
                         <input name="phone" type="tel" placeholder="+7-(XXX)-XXX-XX-XX">

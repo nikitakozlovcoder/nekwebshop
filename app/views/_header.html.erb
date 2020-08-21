@@ -268,7 +268,7 @@
             <!-- Search Form -->
             <% if current_user %>
             <div class="sinlge-bar">
-              <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+              <%= link_to({controller: 'wishes', action: 'index'}, class: 'single-icon') do %> <i class="fa fa-heart-o" aria-hidden="true"></i><% end %>
             </div>
             <div class="sinlge-bar">
               <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>

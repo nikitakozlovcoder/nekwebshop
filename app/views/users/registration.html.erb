@@ -5,7 +5,8 @@
         <div class="title">
           <h2>Регистрация</h2>
         </div>
-        <%= form_with class: "form",:html =>{'novalidate'=>''}, multipart: true do %>
+        <% if !@success %>
+        <%= form_with class: "form", id: 'registration_form',:html =>{'novalidate'=>''}, multipart: true do %>
           <div class="error-list">
             <% @errors.each do |msg| %>
               <li>
@@ -103,11 +104,30 @@
           </div>
         </div>
         <% end %>
+        <% else %>
+        <p>На указанный адрес электронной почты была отправлена ссылка для подтвержения почты.</p>
+          <% if cookies.signed[:temp_id] %>
+            <%= form_with class: "form", :html =>{'novalidate'=>''}, multipart: true, method: :put do %>
+            <div class="form-group Email" data-min="5" data-max="50" style="max-width: 500px">
+              <input name="email" type="email" placeholder=""  value="<%= @user.email %>">
+              <div class="error-list"></div>
+            </div>
+              <div class="col-lg-10 col-12">
+                <div class="form-group button">
+                  <button type="submit" class="btn">Отправить повторно</button>
+                </div>
+              </div>
+              <% end %>
+          <% else %>
+            <%= @user.email %>
+          <% end %>
+       <% end %>
     </div>
   </div>
 </section>
 
 <script>
+  if ( document.querySelector('#address-input')){
     var placesAutocomplete_register = places({
         appId: 'pl95AIU49SL1',
         apiKey: 'd63ea66c7015964fa631d4f72045e333',
@@ -127,5 +147,6 @@
     placesAutocomplete_register.on('clear', function() {
         $address.textContent = 'none';
     });
+  }
 </script>
 

@@ -3,9 +3,9 @@ class User < ApplicationRecord
     has_many :wishes
     attr_accessor :skip_pass
     has_one_attached :avatar
-    has_many :posts
+    has_many :posts, :dependent => :delete_all
     has_secure_password
-    validates_uniqueness_of :email
+    #validates_uniqueness_of :email
     validates :email, presence: true
     validates :name, presence: true
     validates :surname, presence: true
