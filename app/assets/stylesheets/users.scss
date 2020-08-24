@@ -545,6 +545,33 @@ section.restore {
 }
 .shops .choice-container tbody tr:hover .hidden{
   opacity: 1;
+}
+
+@media (max-width: 840px){
+  .hidden{
+    display: none;
+  }
+}
+@media (max-width: 440px){
+  .shops .choice-container .container-header{
+    display: flex;
+    flex-direction: column;
+  } 
+  .shops .column1{
+    padding-left: 18px;
+  }
+  .shops .column2{
+    padding-left: 17px;
+  }
+  .shops table tbody tr.sub .column1{
+    padding-left: 44px;
+  }
+  .shops .choice-container h3{
+    font-size: 1.2rem;
+  } 
+  .shop-name h2{
+    font-size: 30px;
+  }
 } 
 //shop-end
 
