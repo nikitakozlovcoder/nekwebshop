@@ -519,9 +519,6 @@ section.restore {
   padding-left: 80px;
 }
 
-.shops table tbody td {
-  //padding: 0px 10px 0px 10px;
-}
 .shops .choice-container .container-body {
   padding: 0px;
 }
@@ -551,3 +548,12 @@ section.restore {
 } 
 //shop-end
 
+//Wish list and Cart delete transition
+.wishlist .delete a > i, .shopping-cart .shopping-summery .action span > i{
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.wishlist .delete a:hover > i, .shopping-cart .shopping-summery .action span:hover > i {
+  color: #F7941D;
+}

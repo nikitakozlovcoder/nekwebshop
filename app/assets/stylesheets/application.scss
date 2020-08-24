@@ -24,6 +24,7 @@ $color-border: rgba(175, 175, 175, 0.86);
  *= require css/owl-carousel.css
  *= require css/slicknav.min.css
  *= require css/reset.css
+ *= require css/ion.rangeSlider.min.css
  *= require style.css
  *= require css/responsive.css
  *= require users.css
@@ -499,3 +500,33 @@ tbody tr:hover {
 .header.shop .logo {
   margin: 24px 0 0 !important;
 }
+//product grid styles start
+.shop .range .label-input{
+  text-align: center;
+}
+.shop .range .label-input input{
+  text-align: center;
+}
+.shop .range .price-filter{
+  margin-bottom: 20px;;
+}
+//range-slider styles
+.range-slider .irs--sharp .irs .irs-min,
+.range-slider .irs--sharp .irs .irs-max,
+.range-slider .irs--sharp .irs .irs-from,
+.range-slider .irs--sharp .irs .irs-to,
+.range-slider .irs--sharp .irs .irs-single,
+.range-slider .irs--sharp .irs-bar,
+.range-slider .irs--sharp .irs-handle
+{
+  background-color: #F6971C !important;
+}
+.range-slider .irs--sharp .irs .irs-single:before,
+.range-slider .irs--sharp .irs .irs-from:before,
+.range-slider .irs--sharp .irs .irs-to:before,
+.range-slider .irs--sharp .irs-handle>i:first-child
+{
+  border-top-color: #F6971C;
+}
+
+//product grid styles end
