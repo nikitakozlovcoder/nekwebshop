@@ -95,12 +95,18 @@ class ProductsController < ApplicationController
           SELECT COUNT(id) AS QTY, product_id FROM attributes WHERE (#{query2}) GROUP BY product_id
         ) AS attr WHERE (attr.QTY = #{sum} and #{query})) #{order_by}
       ")
+      @products = Product.where(id: @products.map(&:id))
     end
 
 
     if @products.count > 0
-      @max_price = @products.max_by{|el| el.price}.price
-      @min_price = @products.min_by{|el| el.price}.price
+      if t
+        @max_price = Product.where(category_id: t).max_by{|el| el.price}.price
+        @min_price = Product.where(category_id: t).min_by{|el| el.price}.price
+      else
+        @max_price = Product.maximum(:price)
+        @min_price = Product.minimum(:price)
+      end
     end
 
 
@@ -213,6 +219,7 @@ class ProductsController < ApplicationController
 
        end
        @product.fields.where("code  > ?", data.last['id']).delete_all
+       @shop.update_top_cat_on_add @product
        redirect_to action: 'show', id: @product.id
      else
 
@@ -317,7 +324,7 @@ class ProductsController < ApplicationController
 
           @product.fields << a
       end
-
+      @shop.update_top_cat_on_add @product
       redirect_to action: 'show', id: @product.id
     else
 

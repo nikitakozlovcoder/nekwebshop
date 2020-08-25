@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'
   post 'shop/:id/add_product', to:'products#create'
-  get 'shop/:id/', to:'shops#index'
+  get 'shop/:id', to:'shops#index'
+  get 'shop/:id/:category_id', to:'shops#index'
 
   get 'registration', to: 'users#registration'
   post 'registration', to: 'users#create'

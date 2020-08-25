@@ -23,5 +23,13 @@ class Product < ApplicationRecord
     #  errors.add(:base, "not attached");
    # end
   #end
+  def recalc_mark
 
+    if self.posts.count == 0
+      self.mark = 0.0
+    else
+      self.mark =  self.posts.average(:mark).to_f
+    end
+    self.save
+  end
 end
