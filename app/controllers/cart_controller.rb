@@ -3,18 +3,13 @@
 class CartController < ApplicationController
   # normal cart table
   def index
-    if current_user
-      @carts = current_user.carts.order(:created_at)
-    elsif cookies.signed[:uuid]
-      @carts = Cart.where(uuid:  cookies.signed[:uuid]).order(:created_at)
-    else
-      @carts = []
-    end
+    get_carts
   end
   # make order
   def new
-
-
+    get_carts
+    @sum = 0
+    @carts.each{|a| @sum+=a.product.price}
   end
 
   def delete_cart
@@ -73,5 +68,15 @@ class CartController < ApplicationController
 
     end
     render json: hash
+  end
+  private
+  def get_carts
+    if current_user
+      @carts = current_user.carts.order(:created_at)
+    elsif cookies.signed[:uuid]
+      @carts = Cart.where(uuid:  cookies.signed[:uuid]).order(:created_at)
+    else
+      @carts = []
+    end
   end
 end

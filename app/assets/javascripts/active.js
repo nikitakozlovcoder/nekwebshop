@@ -32,6 +32,7 @@ Version:1.0
 =========================================*/
 
 $(document).on('turbolinks:load', function () {
+
 	(function ($) {
 
 		"use strict";
@@ -328,9 +329,7 @@ $(document).on('turbolinks:load', function () {
 			/*====================================
             18. Nice Select JS
             ======================================*/
-
 			$('select').niceSelect();
-
 			/*=====================================
              Others JS
             ======================================*/

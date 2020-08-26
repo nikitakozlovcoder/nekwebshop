@@ -102,7 +102,8 @@ $(document).on('turbolinks:load', function () {
         if (form.method == "get" && form.dataset['remote'] == "true") {
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
-                const entries = [...new FormData(e.target).entries()]
+                const entries = [...new FormData(form).entries()]
+                console.log(entries)
                 const params = "?" + entries.map(e => e.map(encodeURIComponent).join('=')).join('&')
                 turbolinks_control.setEnabled();
                 if (form.dataset['scrolltotop'] == 'true')
