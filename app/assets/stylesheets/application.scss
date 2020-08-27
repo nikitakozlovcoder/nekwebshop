@@ -462,6 +462,9 @@ tbody tr:hover {
   .view_review_rating > span {
     font-size: 16px;
   }
+  .inform-profile >div {
+    display: block;
+  }
 
 }
 
@@ -496,3 +499,28 @@ tbody tr:hover {
   background: #ffae44;
 }
 
+.email_change {
+  flex-direction: column;
+}
+
+.change {
+  display: none;
+  flex-direction: column;
+}
+.change_confirmation_btn {
+  display: none;
+}
+.password_change {
+  display: none;
+}
+.product_title_show {
+  display: flex;
+  justify-content: space-between;
+}
+.product_title_show > a {
+  font-size: 28px;
+}
+.change_user_password, 
+.change_user_data {
+  cursor: pointer;
+}
