@@ -23,71 +23,76 @@
     <div class="profile-main">
       <h2>Мои данные</h2>
       <div class="inform-profile">
-        <div>
-          <p>Имя</p>
-          <p class="data">Владислав Гришак</p>
-          <section class="change name_change">
-            <label>Новое имя<span>*</span></label>
-            <input name="name" type="email" placeholder="" value="">
-            <div class="error-list"></div>
+        <form class = "form">
+          <div>
+            <p>Имя</p>
+            <p class="data">Владислав Гришак</p>
+            <section class="change name_change">
+              <label>Новое имя<span>*</span></label>
+              <input name="name" type="email" placeholder="" value="">
+              <div class="error-list"></div>
+            </section>
+          </div>
+          <div>
+            <p>Электронная почта</p>
+            <p class="data email_data">grishakvlad@gmail.com</p>
+            <section class="change email_change">
+              <label>Новый адрес электронной почты<span>*</span></label>
+              <input name="name" type="email" placeholder="" value="">
+              <label>Повторите адрес электронной почты<span>*</span></label>
+              <input name="name" type="email" placeholder="" value="">
+              <div class="error-list"></div>
+            </section>
+          </div>
+          <div>
+            <p>Телефон</p>
+            <p class="data">+7 918 567 03 94</p>
+            <section class="change phone_change">
+              <label>Новый номер телефона<span>*</span></label>
+              <input name="name" type="text" placeholder="" value="">
+              <div class="error-list"></div>
+            </section>
+          </div>
+          <div>
+            <p>Домашний адрес</p>
+            <p class="data">г. Таганрог, ул. Чехова, д. 22, кв. 148</p>
+            <section class="change adress_change">
+              <label>Новый адрес<span>*</span></label>
+              <input name="name" type="text" placeholder="" value="">
+              <div class="error-list"></div>
+              
+            </section>
+          </div>
+          <div>
+            <p>Тип аккаунта</p>
+            <p class="data">Юридическое лицо</p>
+          </div>
+          <section class="change_confirmation_btn">
+                <div class="form-group button">
+                    <button type="submit" class="btn">Подтвердить изменения</button>
+                </div>
           </section>
         </div>
-        <div>
-          <p>Электронная почта</p>
-          <p class="data email_data">grishakvlad@gmail.com</p>
-          <section class="change email_change">
-            <label>Новый адрес электронной почты<span>*</span></label>
-            <input name="name" type="email" placeholder="" value="">
-            <label>Повторите адрес электронной почты<span>*</span></label>
-            <input name="name" type="email" placeholder="" value="">
-            <div class="error-list"></div>
-          </section>
-        </div>
-        <div>
-          <p>Телефон</p>
-          <p class="data">+7 918 567 03 94</p>
-          <section class="change phone_change">
-            <label>Новый номер телефона<span>*</span></label>
-            <input name="name" type="text" placeholder="" value="">
-            <div class="error-list"></div>
-          </section>
-        </div>
-        <div>
-          <p>Домашний адрес</p>
-          <p class="data">г. Таганрог, ул. Чехова, д. 22, кв. 148</p>
-          <section class="change adress_change">
-            <label>Новый адрес<span>*</span></label>
-            <input name="name" type="text" placeholder="" value="">
-            <div class="error-list"></div>
-            
-          </section>
-        </div>
-        <div>
-          <p>Тип аккаунта</p>
-          <p class="data">Юридическое лицо</p>
-        </div>
-        <section class="change_confirmation_btn">
-              <div class="form-group button">
-                  <button type="submit" class="btn">Подтвердить изменения</button>
-              </div>
-        </section>
-      </div>
+      </form>
       <div class="actions">
         <a class = "change_user_data" >Редактировать личные данные</a>
         <a class = "change_user_password">Изменить пароль</a>
-        <div class = "password_change">
-          <div>
-            <label>Новый пароль<span>*</span></label>
-            <input class = "new_passwd" name="name" type="password" placeholder="" value="">
-            <div class="error-list"></div>
-            <label>Подтвердите пароль<span>*</span></label>
-            <input class = "new_passwd_confirm" name="name" type="password" placeholder="" value="">
-            <div class="error-list"></div>
-            <div class="form-group button">
-                  <button type="submit" class="btn">Подтвердить изменения</button>
+        <form class = "form">
+          <div class = "password_change">
+            <div>
+              <label>Новый пароль<span>*</span></label>
+              <input class = "new_passwd" name="name" type="password" placeholder="" value="">
+              <div class="error-list"></div>
+              <label>Подтвердите пароль<span>*</span></label>
+              <input class = "new_passwd_confirm" name="name" type="password" placeholder="" value="">
+              
+              <div class="error-list"></div>
+              <div class="form-group button">
+                    <button type="submit" class="btn">Подтвердить изменения</button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
         <a href="#">Удалить аккаунт</a>
         <a href="#">Выйти</a>
       </div>
