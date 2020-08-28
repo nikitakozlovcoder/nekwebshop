@@ -2,10 +2,15 @@
 
 $(document).on('turbolinks:load', function () {
 
+
     
-            
 
     if (get_body().classList.contains('products') && get_body().classList.contains('show')) {
+
+            document.querySelector('.return_prev').addEventListener('click', function() {
+                window.history.back();
+            });
+
             let carousel_images = document.querySelectorAll('.single-product');
             let nav_arrows = document.querySelector('.owl-nav');
             if(nav_arrows){

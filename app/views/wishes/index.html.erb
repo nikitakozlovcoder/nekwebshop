@@ -22,6 +22,7 @@
         <h2>Список желаний</h2>
         <div class="wishlist">
           <% @wishes.each do |el| %>
+            <%= link_to(controller: 'products', action: 'show', id: el.product.id) do %>
             <div class="wishlist-element">
             <div class="element-inform">
               <div class="product-image">
@@ -39,6 +40,7 @@
                <%= link_to({controller: 'wishes', action: 'delete', id: el.id}, data:{'turbolinks-no-scroll'=>true}) do %><i class="ti-trash remove-icon"></i><% end %>
               </div>
           </div>
+              <% end %>
           <% end %>
 
         </div>

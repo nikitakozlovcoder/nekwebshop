@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :carts
     has_many :wishes
+    has_many :orders
     attr_accessor :skip_pass
     has_one_attached :avatar
     has_many :posts, :dependent => :delete_all
@@ -15,5 +16,10 @@ class User < ApplicationRecord
     validates :password, confirmation: { case_sensitive: true }, unless: :skip_pass
    # validates :password, presence: true
     validates_length_of  :password, in: 8..50, unless: :skip_pass
+
+    def location
+       location = [self.street, self.city, self.state, self.country ]
+       location.any?{|a| a.nil?} ? '' : location.join(', ')
+    end
 end
 

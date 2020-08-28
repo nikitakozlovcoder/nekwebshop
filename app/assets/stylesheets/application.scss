@@ -33,15 +33,29 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+#address-input{
+  padding-right: 33px;
+}
+.search-bar .nice-select span{
+  display: block;
+  width: 100px;
+  overflow: hidden;
+}
 .header_slow{
   animation: fadeInDown 1s both 0.2s;
 }
 .error-list a{
   text-decoration: underline;
 }
+.yellow{
+  color: orange;
+}
 .all-category li ul{
   left: calc(100% - 25px) !important;
 
+}
+.product-action-2 a{
+  text-transform: inherit !important;
 }
 .btn{
   cursor: pointer;
@@ -463,6 +477,9 @@ tbody tr:hover {
   .view_review_rating > span {
     font-size: 16px;
   }
+  .inform-profile >div {
+    display: block;
+  }
 
 }
 
@@ -497,6 +514,32 @@ tbody tr:hover {
   background: #ffae44;
 }
 
+.email_change {
+  flex-direction: column;
+}
+
+.change {
+  display: none;
+  flex-direction: column;
+}
+.change_confirmation_btn {
+  display: none;
+}
+.password_change {
+  display: none;
+}
+.product_title_show {
+  display: flex;
+  justify-content: space-between;
+}
+.product_title_show > a {
+  font-size: 28px;
+}
+.change_user_password, 
+.change_user_data {
+  cursor: pointer;
+}
+
 .header.shop .logo {
   margin: 24px 0 0 !important;
 }
@@ -529,7 +572,15 @@ tbody tr:hover {
 {
   border-top-color: #F6971C;
 }
+<<<<<<< HEAD
 //product grid styles end
 .footer .about .text {
   margin-bottom: 20px;
 }
+=======
+input.hidden{
+  display: none;
+}
+//product grid styles end
+
+>>>>>>> eb890f7915cd9502dcd2597dc04fd3b226c28c9c

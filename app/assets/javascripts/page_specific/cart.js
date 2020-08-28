@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function () {
-    if (get_body().classList.contains('cart')) {
+    if (get_body().classList.contains('cart') && get_body().classList.contains('index')) {
         function deleteItem(id) {
             fetch(`cart/delete/${id}`, {
                 method: 'POST'
