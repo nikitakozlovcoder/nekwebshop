@@ -7,11 +7,14 @@
 			<div class="row">
 				<div class = "add_product_section">
 					<div class="form-main">
+						<div class = "product_title_show">
+								<h3><%= @product.title %></h3>
+								<a href = "#" class="fa fa-times return_prev" aria-hidden="true"></a>
+						</div>
 						<div class="title col-lg-6">
 
 
 
-							<h3><%= @product.title %></h3>
 							<p>В наличии:
 							<% if @product.is_inf_quantity %>
 									неограничено

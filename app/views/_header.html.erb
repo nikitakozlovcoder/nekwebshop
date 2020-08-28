@@ -271,7 +271,7 @@
               <%= link_to({controller: 'wishes', action: 'index'}, class: 'single-icon') do %> <i class="fa fa-heart-o" aria-hidden="true"></i><% end %>
             </div>
             <div class="sinlge-bar">
-              <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+              <%= link_to({controller: 'users', action: 'profile'}, class: 'single-icon') do %><i class="fa fa-user-circle-o" aria-hidden="true"></i><% end %>
             </div>
              <% end %>
             <div class="sinlge-bar shopping"  style=" ">
@@ -409,8 +409,8 @@
                   <div class="nav-inner">
                     <ul class="nav main-menu menu navbar-nav">
                       <li class="active"><%= link_to 'Home', :root %></li>
-                      <li><a>Продукты</a></li>
-                      <li><a>Сервис</a></li>
+                      <li><%= link_to 'Магазины', :shops %></li>
+                      <li><%= link_to 'Избранное', :wishlist %></li>
                       <li><a>Магазин<i class="ti-angle-down"></i><span class="new">New</span></a>
                         <ul class="dropdown">
                           <li><%= link_to 'Shop Grid', :products %></li>
@@ -419,13 +419,13 @@
                         </ul>
                       </li>
                       <li><a>Страницы</a></li>
-                      <li><a>Блог<i class="ti-angle-down"></i></a>
+                      <!--<li><a>Блог<i class="ti-angle-down"></i></a>
                         <ul class="dropdown">
                           <li><a href="blog">Blog Single Sidebar</a></li>
                         </ul>
-                      </li>
+                      </li>-->
 
-                      <li><%= link_to 'Contact Us', :contact %></li>
+                      <li><%= link_to 'Связаться с нами', :contact %></li>
                     </ul>
                   </div>
                 </div>

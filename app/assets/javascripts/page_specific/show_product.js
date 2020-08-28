@@ -3,9 +3,41 @@
 $(document).on('turbolinks:load', function () {
 
     
-            
+   
+        if (get_body().classList.contains('users')){
+            //choice-container functionality
+
+            /*document.querySelector('.change_user_data').addEventListener("click", function() {
+                console.log('hi');
+                document.querySelector('.change').style.display = "block";
+            })*/
+            document.querySelector('.change_user_data').addEventListener("click", function() {
+                let change_value = document.querySelectorAll('.change');
+                let change_data = document.querySelectorAll('.data');
+
+                for (var i = 0; i<change_value.length; i++) {
+                    change_value[i].style.display = "flex";
+                    change_data[i].style.display = "none";
+                }
+                document.querySelector('.change_confirmation_btn').style.display = "flex";
+                document.querySelector('.change_user_data').style.display = "none";
+            });
+            document.querySelector('.change_user_password').addEventListener("click", function() {
+                
+                document.querySelector('.password_change').style.display = "block";
+                document.querySelector('.new_passwd').style.display = "block";
+                document.querySelector('.new_passwd_confirm').style.display = "block";
+                document.querySelector('.change_user_password').style.display = "none";
+            });
+        }
+    
 
     if (get_body().classList.contains('products') && get_body().classList.contains('show')) {
+
+            document.querySelector('.return_prev').addEventListener('click', function() {
+                window.history.back();
+            });
+
             let carousel_images = document.querySelectorAll('.single-product');
             let nav_arrows = document.querySelector('.owl-nav');
             if(nav_arrows){
