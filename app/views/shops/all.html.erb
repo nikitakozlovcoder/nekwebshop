@@ -24,7 +24,7 @@
 <!-- Product Style -->
 <section class="product-area shop-sidebar shop section">
   <div class="container">
-    <div class="shop-name"><h2>Магазмины</h2></div>
+    <div class="shop-name"><h2>Магазины</h2></div>
     <div class="row">
       <div class="col-lg-3 col-md-4 col-12">
         <div class="shop-sidebar">
@@ -148,429 +148,93 @@
             <div class="shop-top">
               <div class="shop-shorter">
                 <div class="single-shorter">
-                  <label>Show :</label>
+                 <!-- <label>Show :</label>
                   <select>
                     <option selected="selected">09</option>
                     <option>15</option>
                     <option>25</option>
                     <option>30</option>
                   </select>
-                </div>
+                </div>-->
                 <div class="single-shorter">
-                  <label>Sort By :</label>
+                  <label>Сортировать :</label>
                   <select>
-                    <option selected="selected">Name</option>
-                    <option>Price</option>
-                    <option>Size</option>
+                    <option selected="selected">Рейтинг</option>
+                    <option>Название</option>
+                    <option>Количество товаров</option>
+
                   </select>
                 </div>
               </div>
+                <!--
               <ul class="view-mode">
                 <li class="active"><a href="shop-grid.html"><i class="fa fa-th-large"></i></a></li>
                 <li><a href="shop-list.html"><i class="fa fa-th-list"></i></a></li>
-              </ul>
+              </ul>-->
             </div>
             <!--/ End Shop Top -->
           </div>
         </div>
         <div class="row">
+					<% @shops.each do |shop| %>
+						<%= link_to(controller: 'shops', action: 'index', id: shop.id) do || %>
           <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
+            <div class="left-shop-inform-container left-shop-inform-container_second" style="height: 100%">
 	          <div class="left-shop-inform left-shop-inform_second">
 	            <div class="logo-shop">
 	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
 	            </div>
 	            <div class="data-shop">
 	              <div class="name-shop">
-	                <h3>My shop</h3>
+	                <h5 style="word-break: break-all"><%= shop.name %></h5>
 	              </div>
 	              <div class="rating-shop">
 	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
+										<% (1..shop.mark.round()).each do |i| %>
+											<li class="yellow"><i class="ti-star"></i></li>
+										<% end %>
+										<% (shop.mark.round()..4).each do |i| %>
+											<li><i class="ti-star"></i></li>
+										<% end %>
 	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
+	                <a class="reviews-shop" href="#">Отзывов <%= shop.posts.count %></a>
 	              </div>
 	              <div class="location-shop">
 	                <p>Расположение</p>
 	                <p class="data">Таганрог</p>
 	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
+                <p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
+	              <div class="categories_shop" style="padding-top: 25px">
+	                <p>Категории магазина:</p>
+	                <div class="categories" >
+                    <% if JSON.parse(shop.top_cat).any? %>
+                    <% JSON.parse(shop.top_cat).each do |a| %>
+						          <p><%=  Category.find(a).name %></p>
+					        <% end %>
+                      <% else %>
+                    <p>У данного магазина нет товаров</p>
+                      <% end %>
 	                </div>
 	              </div>
 	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
+
+
 	              </div>
 	            </div>
 	          </div>
         	</div>
           </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-times" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-12 single_shop_container">
-            <div class="left-shop-inform-container left-shop-inform-container_second">
-	          <div class="left-shop-inform left-shop-inform_second">
-	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
-	            </div>
-	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h3>Not my shop</h3>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li class="yellow"><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                  <li><i class="ti-star"></i></li>
-	                </ul>
-	                <a class="reviews-shop" href="#">5 отзывов</a>
-	              </div>
-	              <div class="location-shop">
-	                <p>Расположение</p>
-	                <p class="data">Таганрог</p>
-	              </div>
-	              <div class="categories_shop">
-	                <p>Категории магазина</p>
-	                <div class="categories">
-						<p>Смартфоны</p>
-						<p>Телевизоры</p>
-						<p>Нгоутубки</p>
-	                </div>
-	              </div>
-	              <div>
-	              	<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>
-	              	
-	              </div>
-	              
-	            </div>
-	          </div>
-        	</div>
-          </div>
+						<% end %>
+          <%  end %>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
 <!--/ End Product Style 1  -->
 
-<!-- Start Shop Newsletter  -->
-<section class="shop-newsletter section">
-  <div class="container">
-    <div class="inner-top">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-12">
-          <!-- Start Newsletter Inner -->
-          <div class="inner">
-            <h4>Newsletter</h4>
-            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
-            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-              <input name="EMAIL" placeholder="Your email address" required="" type="email">
-              <button class="btn">Subscribe</button>
-            </form>
-          </div>
-          <!-- End Newsletter Inner -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End Shop Newsletter -->
+
 
 
 

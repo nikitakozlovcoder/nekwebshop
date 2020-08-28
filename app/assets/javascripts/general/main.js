@@ -13,10 +13,15 @@ function get_body()
 class TurbolinksControl  {
     constructor(x, y) {
         this.enabled = false;
+        this.scrollToTop = false
     }
     setEnabled()
     {
         this.enabled = true;
+    }
+    setScrollToTop()
+    {
+        this.scrollToTop = true;
     }
     run (){
         let scrollPosition = null;
@@ -48,12 +53,38 @@ class TurbolinksControl  {
                 if (scrollPosition > 200) {
                     header.classList.add("sticky");
 
-                    fix_bug.classList.add('fix-bug-active');
+                   fix_bug.classList.add('fix-bug-active');
                 } else {
                     header.classList.remove("sticky");
                     fix_bug.classList.remove('fix-bug-active');
                 }
+
+                if(scrollPosition>640)
+                {
+                    scrollPosition-=0;
+                }
+                console.log(scrollPosition)
+                let anchor;
+                if (this.scrollToTop && document.body.clientWidth>=768)
+                {
+                     anchor = document.querySelector('#turbolinks_top').getBoundingClientRect().top-55;
+                }
+                if (this.scrollToTop && document.body.clientWidth<768)
+                {
+                    anchor = document.querySelector('#turbolinks_bot').getBoundingClientRect().top-55;
+                }
+
                 window.scrollTo(0, scrollPosition)
+                if (this.scrollToTop)
+                {
+
+
+                    window.scrollTo({
+                        top: anchor,
+                        behavior: "smooth"
+                    });
+                    this.scrollToTop = false
+                }
 
             }
         })
@@ -65,3 +96,24 @@ class TurbolinksControl  {
 
 turbolinks_control = new TurbolinksControl();
 turbolinks_control.run();
+$(document).on('turbolinks:load', function () {
+    for (let i = 0; i < document.forms.length; i++) {
+        const form = document.forms[i]
+        if (form.method == "get" && form.dataset['remote'] == "true") {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const entries = [...new FormData(form).entries()]
+                console.log(entries)
+                const params = "?" + entries.map(e => e.map(encodeURIComponent).join('=')).join('&')
+                turbolinks_control.setEnabled();
+                if (form.dataset['scrolltotop'] == 'true')
+                {
+                    turbolinks_control.setScrollToTop();
+                }
+
+                Turbolinks.visit(form.action + params);
+            });
+        }
+        ;
+    };
+});

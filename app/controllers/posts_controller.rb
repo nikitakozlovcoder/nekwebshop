@@ -2,6 +2,7 @@
 # TODO implement actions functionality
 class PostsController < ApplicationController
   # create comment
+
   def new
 
   end
@@ -9,7 +10,9 @@ class PostsController < ApplicationController
     puts "!!!!!!!!!!!!!!!!!!!!!!!!!"
     @post = Post.find params[:id]
     if current_user && @post.user.id == current_user.id
+      product = @post.product
       @post.delete
+      product.recalc_mark
     end
   end
   # TODO add actions for:
@@ -40,6 +43,7 @@ class PostsController < ApplicationController
         hash[:post] = @post
         hash[:current_user] = current_user.id
         @post.images.each { |img| hash[:images] << url_for(img) }
+        Product.find(@post.product_id).recalc_mark
         render json: hash
       else
         hash[:success] = false
