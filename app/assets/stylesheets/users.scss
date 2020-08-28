@@ -503,6 +503,7 @@ section.restore {
 }
 .shops .column2{
   width: 60%;
+  padding-right: 6px;
 }
 .shops .column2.centered{
   text-align: center;
@@ -519,9 +520,6 @@ section.restore {
   padding-left: 80px;
 }
 
-.shops table tbody td {
-  //padding: 0px 10px 0px 10px;
-}
 .shops .choice-container .container-body {
   padding: 0px;
 }
@@ -548,6 +546,44 @@ section.restore {
 }
 .shops .choice-container tbody tr:hover .hidden{
   opacity: 1;
+}
+
+@media (max-width: 840px){
+  .hidden{
+    display: none;
+  }
+}
+@media (max-width: 440px){
+  .shops .choice-container .container-header{
+    display: flex;
+    flex-direction: column;
+  } 
+  .shops .column1{
+    padding-left: 18px;
+  }
+  .shops .column2{
+    padding-left: 17px;
+    font-size: 14px;
+    word-break: break-all;
+  }
+  .shops table tbody tr.sub .column1{
+    padding-left: 44px;
+  }
+  .shops .choice-container h3{
+    font-size: 1.2rem;
+  } 
+  .shop-name h2{
+    font-size: 30px;
+  }
 } 
 //shop-end
 
+//Wish list and Cart delete transition
+.wishlist .delete a > i, .shopping-cart .shopping-summery .action span > i{
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.wishlist .delete a:hover > i, .shopping-cart .shopping-summery .action span:hover > i {
+  color: #F7941D;
+}
