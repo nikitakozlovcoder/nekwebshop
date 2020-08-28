@@ -1,0 +1,25 @@
+<div class="single-widget recent-post">
+  <h3 class="title">Лучшее</h3>
+  <!-- Single Post -->
+  <% products.sort_by(&:mark).reverse[0..3].each do |product| %>
+  <div class="single-post first">
+    <div class="image">
+     <%= image_tag product.main_photo %>
+    </div>
+    <div class="content">
+      <h5 style="word-break: break-word"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h5>
+      <p class="price"><%= product.price %>₽</p>
+      <ul class="reviews">
+        <% (1..product.mark.round()).each do |i| %>
+        <li class="yellow"><i class="ti-star"></i></li>
+        <% end %>
+        <% (product.mark.round()..4).each do |i| %>
+          <li><i class="ti-star"></i></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+    <% end %>
+  <!-- End Single Post -->
+
+</div>

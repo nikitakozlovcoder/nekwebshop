@@ -24,6 +24,7 @@ $color-border: rgba(175, 175, 175, 0.86);
  *= require css/owl-carousel.css
  *= require css/slicknav.min.css
  *= require css/reset.css
+ *= require css/ion.rangeSlider.min.css
  *= require style.css
  *= require css/responsive.css
  *= require users.css
@@ -32,15 +33,29 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+#address-input{
+  padding-right: 33px;
+}
+.search-bar .nice-select span{
+  display: block;
+  width: 100px;
+  overflow: hidden;
+}
 .header_slow{
   animation: fadeInDown 1s both 0.2s;
 }
 .error-list a{
   text-decoration: underline;
 }
+.yellow{
+  color: orange;
+}
 .all-category li ul{
   left: calc(100% - 25px) !important;
 
+}
+.product-action-2 a{
+  text-transform: inherit !important;
 }
 .btn{
   cursor: pointer;
@@ -524,3 +539,41 @@ tbody tr:hover {
 .change_user_data {
   cursor: pointer;
 }
+
+.header.shop .logo {
+  margin: 24px 0 0 !important;
+}
+//product grid styles start
+.range .price_slider_amount .label-input{
+  text-align: center;
+  margin-bottom: 15px;
+}
+.range .price_slider_amount .label-input input{
+  text-align: center;
+}
+.range .price_slider_amount .price-filter{
+  margin-bottom: 20px;
+}
+//range-slider styles
+.range-slider .irs--sharp .irs .irs-min,
+.range-slider .irs--sharp .irs .irs-max,
+.range-slider .irs--sharp .irs .irs-from,
+.range-slider .irs--sharp .irs .irs-to,
+.range-slider .irs--sharp .irs .irs-single,
+.range-slider .irs--sharp .irs-bar,
+.range-slider .irs--sharp .irs-handle
+{
+  background-color: #F6971C !important;
+}
+.range-slider .irs--sharp .irs .irs-single:before,
+.range-slider .irs--sharp .irs .irs-from:before,
+.range-slider .irs--sharp .irs .irs-to:before,
+.range-slider .irs--sharp .irs-handle>i:first-child
+{
+  border-top-color: #F6971C;
+}
+input.hidden{
+  display: none;
+}
+//product grid styles end
+

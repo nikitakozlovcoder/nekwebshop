@@ -6,8 +6,11 @@
       <div class="col-12">
         <div class="bread-inner">
           <ul class="bread-list">
-            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-            <li class="active"><a href="blog-single.html">Cart</a></li>
+            <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <% if current_user %>
+              <li><%= link_to(controller: 'users', action: 'profile') do %>Профиль<i class="ti-arrow-right"></i><% end %></li>
+            <% end %>
+            <li class="active"><a href="">Корзина</a></li>
           </ul>
         </div>
       </div>
@@ -97,8 +100,7 @@
                   <li class="last">You Pay<span>$310.00</span></li>
                 </ul>
                 <div class="button5">
-                  <a href="#" class="btn">Checkout</a>
-                  <a href="#" class="btn">Continue shopping</a>
+                  <%= link_to 'Заказ', {controller: 'cart', action: 'new'}, class: 'btn' %>
                 </div>
               </div>
             </div>
