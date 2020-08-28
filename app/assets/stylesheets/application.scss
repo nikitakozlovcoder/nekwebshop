@@ -33,15 +33,29 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+#address-input{
+  padding-right: 33px;
+}
+.search-bar .nice-select span{
+  display: block;
+  width: 100px;
+  overflow: hidden;
+}
 .header_slow{
   animation: fadeInDown 1s both 0.2s;
 }
 .error-list a{
   text-decoration: underline;
 }
+.yellow{
+  color: orange;
+}
 .all-category li ul{
   left: calc(100% - 25px) !important;
 
+}
+.product-action-2 a{
+  text-transform: inherit !important;
 }
 .btn{
   cursor: pointer;

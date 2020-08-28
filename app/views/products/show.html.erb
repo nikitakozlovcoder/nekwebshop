@@ -27,20 +27,20 @@
 									<%= image_tag @product.main_photo, :class=>"show_main_photo"%>
 
 
-									<div class="quickview-ratting-review">
+									<div class="quickview-ratting-review" style="margin: 15px 0 0">
 										<div class="quickview-ratting-wrap">
-											<div class="quickview-ratting">
+											<div class="quickview-ratting" style="font-size: 24px">
+
+												<% (1..@product.mark.round()).each do |i| %>
 												<i class="yellow fa fa-star"></i>
-												<i class="yellow fa fa-star"></i>
-												<i class="yellow fa fa-star"></i>
-												<i class="yellow fa fa-star"></i>
-												<i class="fa fa-star"></i>
+												<% end %>
+												<% (@product.mark.round()..4).each do |i| %>
+													<i class="fa fa-star"></i>
+												<% end %>
 											</div>
 											<a href="#"> (Отзывов о товаре: <%= @product.posts.count %>)</a>
 										</div>
-										<div class="quickview-stock">
-											<span><i class="fa fa-check-circle-o"></i> in stock</span>
-										</div>
+
 									</div>
 									<div class = "title inside_title">
 										<h3>Категории</h3>
