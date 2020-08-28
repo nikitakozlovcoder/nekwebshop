@@ -1,7 +1,8 @@
 <div class="single-widget recent-post">
   <h3 class="title">Лучшее</h3>
   <!-- Single Post -->
-  <% products.sort_by(&:mark).reverse[0..3].each do |product| %>
+  <% products = (cat_id ?  Product.where(category_id: cat_id) :  Product.all) %>
+  <% products.where("products.mark >= 3").sort_by{|a| [a.mark, a.posts.where("posts.mark >= 3").count]}.reverse[0..3].each do |product| %>
   <div class="single-post first">
     <div class="image">
      <%= image_tag product.main_photo %>

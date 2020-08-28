@@ -158,10 +158,10 @@
                 </div>-->
                 <div class="single-shorter">
                   <label>Сортировать :</label>
-                  <select>
-                    <option selected="selected">Рейтинг</option>
-                    <option>Название</option>
-                    <option>Количество товаров</option>
+                  <select onchange = "sort_handler(this)">
+                    <option <%= !params[:order] || params[:order] == 'mark' ? 'selected': '' %> value="mark">Рейтинг</option>
+                    <option <%= params[:order] == 'name' ? 'selected': '' %> value="name">Название</option>
+                    <option <%= params[:order] == 'qty' ? 'selected': '' %> value="qty">Количество товаров</option>
 
                   </select>
                 </div>

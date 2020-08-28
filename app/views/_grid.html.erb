@@ -146,7 +146,7 @@
 
           <!--/ End Shop By Price -->
           <!-- Single Widget -->
-          <%= render partial: './best.html.erb', locals:{:products=> @products} %>
+          <%= render partial: './best.html.erb', locals:{:cat_id=> @category.try(:subtree)  } %>
 
           <!--/ End Single Widget -->
 
