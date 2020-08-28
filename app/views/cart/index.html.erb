@@ -7,6 +7,9 @@
         <div class="bread-inner">
           <ul class="bread-list">
             <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <% if current_user %>
+              <li><%= link_to(controller: 'users', action: 'profile') do %>Профиль<i class="ti-arrow-right"></i><% end %></li>
+            <% end %>
             <li class="active"><a href="">Корзина</a></li>
           </ul>
         </div>

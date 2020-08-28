@@ -2,6 +2,7 @@
 # TODO implement actions functionality
 class PostsController < ApplicationController
   # create comment
+
   def new
 
   end

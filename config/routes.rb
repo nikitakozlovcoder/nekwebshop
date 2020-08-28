@@ -51,5 +51,7 @@ Rails.application.routes.draw do
 
 
   #post 'cart/:id/quantity/', to: 'cart#change_quantity'
-  resources 'cart', only: [:index, :new], path_names: {new: 'checkout'}
+  get 'cart', to: 'cart#index', as: :cart_index
+  get 'cart/checkout', to: 'cart#new', as: :new_cart
+  post 'cart/checkout', to: 'cart#create'
 end

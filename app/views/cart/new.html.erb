@@ -7,6 +7,9 @@
         <div class="bread-inner">
           <ul class="bread-list">
             <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <% if current_user %>
+              <li><%= link_to(controller: 'users', action: 'profile') do %>Профиль<i class="ti-arrow-right"></i><% end %></li>
+            <% end %>
             <li><%= link_to(controller: 'cart', action: 'index') do %>Корзина<i class="ti-arrow-right"></i><% end %></li>
             <li class="active"><a href="">Заказ</a></li>
           </ul>
@@ -18,7 +21,9 @@
 <!-- End Breadcrumbs -->
 <% if @carts.count > 0 %>
 <!-- Start Checkout -->
+
 <section class="shop checkout section">
+  <%= form_with class: 'form' do %>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-12">
@@ -26,7 +31,7 @@
           <h2>Make Your Checkout Here</h2>
           <p>Please register in order to checkout more quickly</p>
           <!-- Form -->
-          <form class="form" method="post" action="#">
+
             <div class="row">
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
@@ -37,7 +42,7 @@
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                   <label>Last Name<span>*</span></label>
-                  <input type="text" name="name" placeholder="" required="required" value="<%= current_user ? current_user.surname : '' %>">
+                  <input type="text" name="surname" placeholder="" required="required" value="<%= current_user ? current_user.surname : '' %>">
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-12">
@@ -49,15 +54,33 @@
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                   <label>Phone Number<span>*</span></label>
-                  <input type="number" name="number" placeholder="" required="required" value="<%= current_user && !current_user.phone.blank? ? current_user.phone : '' %>">
+                  <input type="number" name="phone" placeholder="" required="required" value="<%= current_user && !current_user.phone.blank? ? current_user.phone : '' %>">
                 </div>
               </div>
 
-              <div class="col-lg-12 col-md-12 col-12">
+              <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
                   <label>Postal Code<span>*</span></label>
-                  <input type="text" name="post" placeholder="" required="required" value="<%= current_user && !current_user.zip.blank? ? current_user.zip : '' %>">
+                  <input type="text" name="zip" id="postal-code" required="required" value="<%= current_user && !current_user.zip.blank? ? current_user.zip : '' %>">
                 </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-12">
+                <div class="form-group">
+              <div id="locationField" class="form-group">
+                <label>Адрес<span>*</span></label>
+                <input type="search" id="address-input" value="<%= current_user ? current_user.location : '' %>"/>
+                <p>Выбрано: <strong id="address-value"><%= current_user and !current_user.location.blank? ? current_user.location : '---'%></strong></p>
+              </div>
+                </div>
+              <div style="display: none">
+                <input name="street" class="field" id="form-street"  value="<%= current_user ? current_user.street : '' %>"/>
+                <input name="city" class="field" id="form-city"  value="<%= current_user ? current_user.city : '' %>"/>
+                <input name="state" class="field" id="form-administrative"  value="<%= current_user ? current_user.state : '' %>"/>
+                <input name="" class="field" id="form-zip"  value="<%= current_user ? current_user.zip : '' %>"/>
+                <input name="country" class="field" id="form-country" value="<%= current_user ? current_user.country : '' %>"/>
+                <input name="county" class="field" id="form-county" value="<%= current_user ? current_user.county : '' %>"/>
+                <input name="suburb" class="field" id="form-suburb" value="<%= current_user ? current_user.suburb : '' %>"/>
+              </div>
               </div>
              <!-- <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
@@ -81,7 +104,7 @@
                 </div>
               </div>-->
             </div>
-          </form>
+
           <!--/ End Form -->
         </div>
       </div>
@@ -122,7 +145,7 @@
           <div class="single-widget get-button">
             <div class="content">
               <div class="button">
-                <a href="#" class="btn">Заказать</a>
+                <button class="btn" type="submit">Заказать</button>
               </div>
             </div>
           </div>
@@ -131,6 +154,7 @@
       </div>
     </div>
   </div>
+    <% end %>
 </section>
 <!--/ End Checkout -->
 
@@ -148,71 +172,28 @@
     </div>
   </section>
 <% end %>
-<!-- Start Shop Services Area  -->
-<section class="shop-services section home">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-rocket"></i>
-          <h4>Free shiping</h4>
-          <p>Orders over $100</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-reload"></i>
-          <h4>Free Return</h4>
-          <p>Within 30 days returns</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-lock"></i>
-          <h4>Sucure Payment</h4>
-          <p>100% secure payment</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-tag"></i>
-          <h4>Best Peice</h4>
-          <p>Guaranteed price</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End Shop Services -->
-
-<!-- Start Shop Newsletter  -->
-<section class="shop-newsletter section">
-  <div class="container">
-    <div class="inner-top">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-12">
-          <!-- Start Newsletter Inner -->
-          <div class="inner">
-            <h4>Newsletter</h4>
-            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
-            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-              <input name="EMAIL" placeholder="Your email address" required="" type="email">
-              <button class="btn">Subscribe</button>
-            </form>
-          </div>
-          <!-- End Newsletter Inner -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- End Shop Newsletter -->
+    <%= render './promote'%>
+<script>
+    if ( document.querySelector('#address-input')){
+        var placesAutocomplete_register = places({
+            appId: 'pl95AIU49SL1',
+            apiKey: 'd63ea66c7015964fa631d4f72045e333',
+            container: document.querySelector('#address-input')
+        });
+        var $address = document.querySelector('#address-value')
+        placesAutocomplete_register.on('change', function resultSelected(e) {
+            $address.textContent = e.suggestion.value;
+            document.querySelector('#form-street').value = e.suggestion.name || '';
+            document.querySelector('#form-city').value = e.suggestion.city || '';
+            document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+            document.querySelector('#postal-code').value = e.suggestion.postcode || '';
+            document.querySelector('#form-administrative').value = e.suggestion.administrative || '';
+            document.querySelector('#form-country').value = e.suggestion.country || '';
+            document.querySelector('#form-suburb').value = e.suggestion.suburb || '';
+            document.querySelector('#form-county').value = e.suggestion.county || '';
+        });
+        placesAutocomplete_register.on('clear', function() {
+            $address.textContent = 'none';
+        });
+    }
+</script>

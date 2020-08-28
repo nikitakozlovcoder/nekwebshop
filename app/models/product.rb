@@ -17,7 +17,8 @@ class Product < ApplicationRecord
   belongs_to :maker
   belongs_to :shop
   has_many :fields, foreign_key: "product_id", class_name: "Attribute", dependent: :delete_all
-
+  has_many :ordered_products, dependent: :destroy
+  has_many :orders, through: :ordered_products
   #def main_photo?
    # if !self.main_photo.attached?
     #  errors.add(:base, "not attached");
