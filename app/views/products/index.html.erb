@@ -219,12 +219,13 @@
                   </select>
                 </div>
                 <div class="single-shorter">
-                  <label>Sort By :</label>
-                  <select>
-                    <option selected="selected">Name</option>
-                    <option>Price</option>
-                    <option>Size</option>
+                  <label>Сортировать по :</label>
+                  <select onchange = "sort_handler(this)">
+                    <option value = "name" selected="selected">Названию</option>
+                    <option value = "price">Цене</option>
+                    <!--<option>Size</option>-->
                   </select>
+                  <input type = "text" name = "order" class = "hidden">
                 </div>
               </div>
               <ul class="view-mode">

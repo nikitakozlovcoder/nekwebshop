@@ -503,6 +503,7 @@ section.restore {
 }
 .shops .column2{
   width: 60%;
+  padding-right: 6px;
 }
 .shops .column2.centered{
   text-align: center;
@@ -562,6 +563,8 @@ section.restore {
   }
   .shops .column2{
     padding-left: 17px;
+    font-size: 14px;
+    word-break: break-all;
   }
   .shops table tbody tr.sub .column1{
     padding-left: 44px;

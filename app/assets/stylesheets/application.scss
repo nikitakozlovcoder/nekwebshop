@@ -501,14 +501,15 @@ tbody tr:hover {
   margin: 24px 0 0 !important;
 }
 //product grid styles start
-.shop .range .label-input{
+.range .price_slider_amount .label-input{
+  text-align: center;
+  margin-bottom: 15px;
+}
+.range .price_slider_amount .label-input input{
   text-align: center;
 }
-.shop .range .label-input input{
-  text-align: center;
-}
-.shop .range .price-filter{
-  margin-bottom: 20px;;
+.range .price_slider_amount .price-filter{
+  margin-bottom: 20px;
 }
 //range-slider styles
 .range-slider .irs--sharp .irs .irs-min,
@@ -528,5 +529,7 @@ tbody tr:hover {
 {
   border-top-color: #F6971C;
 }
-
+input.hidden{
+  display: none;
+}
 //product grid styles end
