@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
   helper_method  :all_categories
   helper_method  :current_user
   helper_method  :is_in_cart
+  helper_method  :cat_count
+  def cat_count qty, id
+    if !qty or qty == 'yes'
+      Product.where(category_id: id).where("(products.quantity > 0 OR products.is_inf_quantity)").count
+    else
+      Product.where(category_id: id).count
+    end
+
+  end
   def all_categories
     Category.all
   end
@@ -66,32 +75,37 @@ class ApplicationController < ActionController::Base
     query2 = query2.join ' or '
     pp query
     if sum == 0
-      @products = Product.where(query).order(order).distinct
-    else
-      order_by = "ORDER BY products.title ASC"
-
-      if params['order'] == 'price'
-        order_by = "ORDER BY products.price ASC"
+      if order == :title
+        @products = Product.where(query).order('LOWER(products.title)')
+      else
+        @products = Product.where(query).order(:price)
       end
+
+    else
       @products = Product.find_by_sql("
        SELECT DISTINCT * FROM products WHERE id IN (SELECT attr.product_id FROM
         (
           SELECT COUNT(id) AS QTY, product_id FROM attributes WHERE (#{query2}) GROUP BY product_id
-        ) AS attr WHERE (attr.QTY = #{sum} and #{query})) #{order_by}
-                                      ")
-      @products = Product.where(id: @products.map(&:id))
+        ) AS attr WHERE (attr.QTY = #{sum} and #{query}))
+            ")
+      if order == :title
+        @products = Product.where(id: @products.map(&:id)).order('LOWER(products.title)')
+      else
+        @products = Product.where(query).order(:price)
+      end
+
     end
 
-
-    if @products.count > 0
       if t
-        @max_price = Product.where(category_id: t).max_by {|el| el.price}.price
-        @min_price = Product.where(category_id: t).min_by {|el| el.price}.price
+        @max_price = Product.where(category_id: t).maximum(:price)
+        @min_price = Product.where(category_id: t).minimum(:price)
       else
         @max_price = Product.maximum(:price)
         @min_price = Product.minimum(:price)
       end
-    end
+    @max_price = 0 if !@max_price
+    @min_price = 0 if !@min_price
+
     @makers = @makers.nil? ? nil : @makers.sort_by(&:name).sort_by{|el| el.is_another ? 1 : 0}
   end
   def is_in_cart(id)

@@ -53,7 +53,7 @@
               <%  @categories.each do |el| %>
 
                 <li><%= link_to({controller: controller, action: "index", category_id: el.id}, data: {'turbolinks-no-scroll'=> 'true'})  do%>
-                    <%= el.name %>  <%= el.is_template ? "(#{@products.where(category_id: el.id).count})" : "" %>
+                    <%= el.name %>  <%= el.is_template ? "(#{cat_count(params[:qty], el.id)})" : "" %>
                   <% end %>
                 </li>
               <% end %>
@@ -68,7 +68,10 @@
               <h3 class="title">Shop by Price</h3>
               <div class="price-filter">
                 <div class="price-filter-inner">
-                  <div id="slider-range" data-max="<%= @max_price %>" data-min="<%= @min_price%>"></div>
+                  <div class="range-slider" data-max="<%= @max_price %>" data-min="<%= @min_price%>">
+                    <input type="text" class="js-range-slider" value="" />
+                  </div>
+
                   <div class="price_slider_amount">
                     <div class="label-input">
                       <div>Range:</div>
@@ -157,7 +160,7 @@
               <div class="shop-shorter">
                 <div class="single-shorter">
                   <label>Sort By :</label>
-                  <select name="order">
+                  <select name="order" onchange = "sort_handler(this)">
                     <option <%= !params[:order] || params[:order] == 'name' ? 'selected': '' %> value="name">Название</option>
                     <option <%=  params[:order] == 'price' ? 'selected': '' %> value="price">Цена</option>
                   </select>

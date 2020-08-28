@@ -1,11 +1,11 @@
 $(document).on('turbolinks:load', function () {
-    if (get_body().classList.contains('products')&&get_body().classList.contains('index')){
-        let slider_block = document.querySelector('.range-slider');
+    let slider_block = document.querySelector('.range-slider');
+    if (slider_block){
         let min_val = parseFloat(slider_block.getAttribute('data-min'));
         let max_val = parseFloat(slider_block.getAttribute('data-max'));
         let slider_inputs = document.querySelectorAll('.price-filter .label-input input');
-        slider_inputs[0].value = min_val;
-        slider_inputs[1].value = max_val;
+        slider_inputs[0].value = document.querySelector('#amount_min').value;
+        slider_inputs[1].value = document.querySelector('#amount_max').value;
         $(".js-range-slider").ionRangeSlider({
             skin: "sharp",
             type: "double",
@@ -56,13 +56,14 @@ $(document).on('turbolinks:load', function () {
             })
         });
         
-        sort_handler = function(el){
-            turbolinks_control.setEnabled();
-            if(document.location.search){
-                Turbolinks.visit(document.location.href+'&order='+el.value);
-            } else{
-                Turbolinks.visit(document.location.href+'?order='+el.value);
-            }
-        }
+
     }
 })
+sort_handler = function(el){
+    turbolinks_control.setEnabled();
+    if(document.location.search){
+        Turbolinks.visit(document.location.href+'&order='+el.value);
+    } else{
+        Turbolinks.visit(document.location.href+'?order='+el.value);
+    }
+}
