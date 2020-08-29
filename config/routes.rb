@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'wishlist', to:'wishes#index'
   get 'contact', to:'home#contact'
   get 'profile', to:'users#profile'
+  post 'profile', to:'users#profile_change'
   get 'sign_in', to: 'users#sign_in'
   post 'sign_in', to: 'users#sign_in_post'
   get 'exit', to: 'users#exit'

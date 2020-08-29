@@ -18,12 +18,21 @@ $(document).on('turbolinks:load', function () {
             document.querySelector('.change_confirmation_btn').style.display = "flex";
             document.querySelector('.change_user_data').style.display = "none";
         });
+        let password_visible = false
         document.querySelector('.change_user_password').addEventListener("click", function() {
+            if(!password_visible)
+            {
+                document.querySelector('.password_change').style.display = "block";
+            }
+            else
+            {
+                document.querySelector('.password_change').style.display = "none";
+            }
+            password_visible = !password_visible;
 
-            document.querySelector('.password_change').style.display = "block";
-            document.querySelector('.new_passwd').style.display = "block";
+           /* document.querySelector('.new_passwd').style.display = "block";
             document.querySelector('.new_passwd_confirm').style.display = "block";
-            document.querySelector('.change_user_password').style.display = "none";
+            document.querySelector('.change_user_password').style.display = "none";*/
         });
     }
 })

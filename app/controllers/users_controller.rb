@@ -2,7 +2,18 @@
 # there will also be functionality for creating a new store.
 # TODO implement actions functionality
 class UsersController < ApplicationController
-
+  def profile
+    if !current_user
+      redirect_to :sign_in
+      return
+    end
+    @user = User.find(current_user.id)
+  end
+  def profile_change
+    @user = User.find(current_user.id)
+    @user.skip_pass = true
+    render plain: 'ok!'
+  end
   def sign_in
     @login = nil
     @errors = []

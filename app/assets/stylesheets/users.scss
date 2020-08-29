@@ -337,7 +337,12 @@ section.restore {
     padding-right: 10px;
   }
 }
-
+@media only screen and (max-width: 765px)
+{
+  .users.profile .sidebar-container{
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 685px) {
   .sidebar-container{
     width: 100%;

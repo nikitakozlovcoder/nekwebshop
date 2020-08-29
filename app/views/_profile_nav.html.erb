@@ -1,0 +1,15 @@
+<div class="sidebar-container">
+  <div class="shop-sidebar">
+    <div class="single-widget category">
+      <h3 class="title">Категории</h3>
+      <ul class="categor-list list_lowercase">
+        <li><%= link_to 'Мои данные', :profile %></li>
+        <li><%= link_to 'Корзина', :cart_index %></li>
+        <li><a href="#">Мои заказы</a></li>
+        <li><a href="#">Мои отзывы</a></li>
+        <li><%= link_to 'Список желаний', controller: 'wishes', action: 'index' %></li>
+        <li><a href="#">Просмотренные товары</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
