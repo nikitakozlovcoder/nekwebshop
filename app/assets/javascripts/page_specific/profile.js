@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function () {
-    if (get_body().classList.contains('users') && get_body().classList.contains('profile')){
+    if (get_body().classList.contains('users') && (get_body().classList.contains('profile') || get_body().classList.contains('profile_change'))){
 
         //choice-container functionality
 
@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
             console.log('hi');
             document.querySelector('.change').style.display = "block";
         })*/
-        document.querySelector('.change_user_data').addEventListener("click", function() {
+        function show_user_edit() {
             let change_value = document.querySelectorAll('.change');
             let change_data = document.querySelectorAll('.data');
 
@@ -17,8 +17,17 @@ $(document).on('turbolinks:load', function () {
             }
             document.querySelector('.change_confirmation_btn').style.display = "flex";
             document.querySelector('.change_user_data').style.display = "none";
+        }
+
+        if (document.querySelector('.section-profile').dataset.showMain == 'true')
+        {
+           show_user_edit();
+        }
+
+        document.querySelector('.change_user_data').addEventListener("click", function() {
+            show_user_edit();
         });
-        let password_visible = false
+        let password_visible = false;
         document.querySelector('.change_user_password').addEventListener("click", function() {
             if(!password_visible)
             {

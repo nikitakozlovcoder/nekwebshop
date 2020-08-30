@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'user/restore', to: 'users#restore'
   get 'user/:id/restore/:code', to: 'users#restore_link'
   get 'user/:id/confirm/:code', to: 'users#confirm'
+  get 'user/:id/change/:code', to: 'users#update_mail'
   post 'user/:id/restore/:code', to: 'users#restore_link_post'
   post 'user/restore', to: 'users#restore_mail'
   post 'user/restore/mobile', to: 'users#restore_mobile'

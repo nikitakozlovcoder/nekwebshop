@@ -3,16 +3,82 @@
 # TODO implement actions functionality
 class UsersController < ApplicationController
   def profile
+
+    @errors_main = []
+    @errors_password = []
     if !current_user
       redirect_to :sign_in
       return
     end
     @user = User.find(current_user.id)
+    @old_user = @user
+    puts "!!!!!!!!!!!!!!!!"
+    pp @user.email_temp_change
   end
   def profile_change
+
+    @errors_main = []
+    @errors_password = []
     @user = User.find(current_user.id)
+    @old_user =  User.find(current_user.id)
     @user.skip_pass = true
-    render plain: 'ok!'
+    @user.name = params[:name]
+    @user.email_temp = params[:email]
+    @user.surname = params[:surname]
+    @user.suburb = params[:suburb]
+    @user.county = params[:county]
+    @user.street = params[:street]
+    @user.city = params[:city]
+    @user.state = params[:state]
+    @user.country = params[:country]
+    @user.zip = params[:zip]
+    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
+      @errors_main << ["Введите полный адрес"]
+    end
+    @user.should_validate_temp_mail = true
+    if @user.valid? and @errors_main.count == 0
+      if(@user.email != @user.email_temp)
+        code = SecureRandom.hex(10)
+        time = Time.now.getutc
+        @user.email_temp_code = code
+        @user.change_code_task_started = time
+        puts "!!!!!!!!!!!!"
+        puts @user.email_temp
+        UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/change/"+code).change.deliver_later
+        UserClearTempCodeJob.set(wait: 10.minutes).perform_later(@user, time)
+        @mail_change = true
+      end
+
+      @user.save
+      @old_user = @user
+
+    else
+      @errors_main << @user.errors.messages[:name]
+      @errors_main << @user.errors.messages[:surname]
+      @errors_main << @user.errors.messages[:email_temp]
+      pp @errors_main
+
+    end
+    render :profile
+  end
+  def update_mail
+    @user = User.find_by(id: params[:id], email_temp_code: params[:code] )
+    if @user and @user.email_temp != nil and @user.email_temp_code != nil
+      @temp = User.find_by(email: @user.email_temp)
+      if @temp
+        render :update_mail
+      else
+        @user.skip_pass = true
+        @user.email = @user.email_temp
+        @user.email_temp = @user.email_temp_code = nil
+        @user.change_code_task_started = nil
+        @user.save
+        redirect_to :profile
+      end
+    else
+      render :update_mail
+    end
+
   end
   def sign_in
     @login = nil
@@ -36,7 +102,7 @@ class UsersController < ApplicationController
       @user.restore_code_task_started = time
       @user.save
       @submitted = true
-      UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/restore/"+code).restore.deliver_later
+      UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/restore/"+code).confirm.deliver_later
 
 
       UserClearCodeJob.set(wait: 10.minutes).perform_later(@user, time)
@@ -121,7 +187,7 @@ class UsersController < ApplicationController
 
     @error = false
 
-    @user = User.where(phone: @login).or(User.where(email: @login)).first
+    @user = User.where(phone: @login, confirmed: true).or(User.where(email: @login, confirmed: true)).first
     pp @user
     if @user && @user.authenticate(@password)
       fill_cart

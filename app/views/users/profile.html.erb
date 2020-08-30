@@ -2,7 +2,7 @@
 <%= render partial: './header.html.erb' %>
 
 
-<section class="section-profile">
+<section class="section-profile" data-show-main="<%= @errors_main.count > 0 ? 'true' : 'false' %>">
 <div class="container">
   <div class="row">
    <%= render './profile_nav.html.erb' %>
@@ -10,9 +10,19 @@
       <h2>Мои данные</h2>
       <div class="inform-profile">
         <%= form_with class: "form" do %>
+          <% if @mail_change %>
+            <li>На указанный адрес отправлена ссылка для подтверждения эл.почты</li>
+          <% end %>
+          <div class="error-list" style="display: block;">
+            <% @errors_main.each do |messages| %>
+                <% messages.each do |error| %>
+                <li> <%= error %> </li>
+                <% end %>
+            <% end %>
+          </div>
           <div>
             <p>Имя</p>
-            <p class="data"><%= @user.name %></p>
+            <p class="data"><%= @old_user.name %></p>
             <section class="change name_change">
               <input name="name" type="text" placeholder="" value="<%= @user.name %>">
               <div class="error-list"></div>
@@ -20,7 +30,7 @@
           </div>
           <div>
             <p>Фамилия</p>
-            <p class="data"><%= @user.surname %></p>
+            <p class="data"><%= @old_user.surname %></p>
             <section class="change name_change">
               <input name="surname" type="text" placeholder="" value="<%= @user.surname %>">
               <div class="error-list"></div>
@@ -28,15 +38,15 @@
           </div>
           <div>
             <p>Электронная почта</p>
-            <p class="data email_data"><%= @user.email %></p>
+            <p class="data email_data"><%= @old_user.email %></p>
             <section class="change email_change">
-              <input name="email" type="email" placeholder="" value="<%= @user.email %>">
+              <input name="email" type="email" placeholder="" value="<%= @user.email_temp_change == nil ? @user.email : @user.email_temp %>">
               <div class="error-list"></div>
             </section>
           </div>
           <div>
             <p>Телефон</p>
-            <p class="data"><%= @user.phone ? @user.phone : '---' %></p>
+            <p class="data"><%= @old_user.phone ? @old_user.phone : '---' %></p>
             <section class="change phone_change">
               <input name="phone" type="text" placeholder="" value="<%= @user.phone ? @user.phone : '---' %>">
               <div class="error-list"></div>
@@ -44,21 +54,21 @@
           </div>
           <div>
             <p>Домашний адрес</p>
-            <p class="data"><%= @user.location %></p>
+            <p class="data"><%= @old_user.location %></p>
             <section class="change adress_change">
 
               <div id="locationField" class="form-group">
-                <input type="search" id="address-input" value="<%= current_user ? current_user.location : '' %>"/>
-                <p style="width: 300px;">Выбрано: <strong id="address-value"><%= current_user and !current_user.location.blank? ? current_user.location : ' ---'%></strong></p>
+                <input type="search" id="address-input" value="<%=  @user.location  %>"/>
+                <p style="width: 300px;">Выбрано: <strong id="address-value"><%=  !@user.location.blank? ? @user.location : ' ---'%></strong></p>
               </div>
               <div style="display: none">
-                <input name="street" class="field" id="form-street"  value="<%= current_user ? current_user.street : '' %>"/>
-                <input name="city" class="field" id="form-city"  value="<%= current_user ? current_user.city : '' %>"/>
-                <input name="state" class="field" id="form-administrative"  value="<%= current_user ? current_user.state : '' %>"/>
-                <input name="" class="field" id="form-zip"  value="<%= current_user ? current_user.zip : '' %>"/>
-                <input name="country" class="field" id="form-country" value="<%= current_user ? current_user.country : '' %>"/>
-                <input name="county" class="field" id="form-county" value="<%= current_user ? current_user.county : '' %>"/>
-                <input name="suburb" class="field" id="form-suburb" value="<%= current_user ? current_user.suburb : '' %>"/>
+                <input name="street" class="field" id="form-street"  value="<%=  @user.street %>"/>
+                <input name="city" class="field" id="form-city"  value="<%=  @user.city  %>"/>
+                <input name="state" class="field" id="form-administrative"  value="<%= @user.state %>"/>
+                <input name="zip" class="field" id="form-zip"  value="<%=  @user.zip  %>"/>
+                <input name="country" class="field" id="form-country" value="<%= @user.country %>"/>
+                <input name="county" class="field" id="form-county" value="<%=  @user.county %>"/>
+                <input name="suburb" class="field" id="form-suburb" value="<%=  @user.suburb  %>"/>
               </div>
             </section>
           </div>
@@ -117,7 +127,6 @@
             document.querySelector('#form-street').value = e.suggestion.name || '';
             document.querySelector('#form-city').value = e.suggestion.city || '';
             document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-            document.querySelector('#postal-code').value = e.suggestion.postcode || '';
             document.querySelector('#form-administrative').value = e.suggestion.administrative || '';
             document.querySelector('#form-country').value = e.suggestion.country || '';
             document.querySelector('#form-suburb').value = e.suggestion.suburb || '';

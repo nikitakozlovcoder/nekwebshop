@@ -89,6 +89,18 @@ $color-border: rgba(175, 175, 175, 0.86);
   flex-wrap: wrap;
 
 }
+.ap-dataset-places{
+  width: max-content;
+
+}
+.ap-suggestion-icon{
+  padding-top: 8px;
+
+}
+ .ap-dropdown-menu.ap-with-places{
+   width: max-content;
+   max-width: 90vw;
+ }
 .ap-footer{
   display: none !important;
 }

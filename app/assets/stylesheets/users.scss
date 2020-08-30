@@ -66,10 +66,12 @@ section.restore {
 }
 
 .profile-main{
-  padding: 5px 20px 0;
+  padding: 10px;
   flex-grow: 1;
 }
-
+.ap-suggestion{
+  padding: 5px;
+}
 .profile-main h2{
   padding-bottom: 20px;
   font-size: 38px;
