@@ -69,6 +69,7 @@
 
 											<%= link_to('Уже в корзине', {controller: 'cart', action: 'index'}, class: 'btn', ) %>
 										</span>
+											<!-- <= is_in_wishlist(@product.id) ? 'active' : '' %> -->
 											<span class="btn min" onclick = "addtoWishlist(<%= @product.id %>)"><i class="ti-heart"></i></span>
 										</div>
 									</div>

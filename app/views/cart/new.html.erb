@@ -28,39 +28,39 @@
     <div class="row">
       <div class="col-lg-8 col-12">
         <div class="checkout-form">
-          <h2>Make Your Checkout Here</h2>
-          <p>Please register in order to checkout more quickly</p>
+          <h2>Оформите свой заказ здесь</h2>
+          <p>Пожалуйста зарегистрируйтесь, чтобы сделать оформление заказа более быстрым</p>
           <!-- Form -->
 
             <div class="row">
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                  <label>First Name<span>*</span></label>
+                  <label>Имя<span>*</span></label>
                   <input type="text" name="name" placeholder="" required="required" value="<%= current_user ? current_user.name : '' %>">
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                  <label>Last Name<span>*</span></label>
+                  <label>Фамилия<span>*</span></label>
                   <input type="text" name="surname" placeholder="" required="required" value="<%= current_user ? current_user.surname : '' %>">
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                  <label>Email Address<span>*</span></label>
+                  <label>Эл. Почта<span>*</span></label>
                   <input type="email" name="email" placeholder="" required="required" value="<%= current_user ? current_user.email : '' %>">
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                  <label>Phone Number<span>*</span></label>
+                  <label>Номер Телефона<span>*</span></label>
                   <input type="number" name="phone" placeholder="" required="required" value="<%= current_user && !current_user.phone.blank? ? current_user.phone : '' %>">
                 </div>
               </div>
 
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="form-group">
-                  <label>Postal Code<span>*</span></label>
+                  <label>Почтовый Код<span>*</span></label>
                   <input type="text" name="zip" id="postal-code" required="required" value="<%= current_user && !current_user.zip.blank? ? current_user.zip : '' %>">
                 </div>
               </div>
@@ -112,11 +112,11 @@
         <div class="order-details">
           <!-- Order Widget -->
           <div class="single-widget">
-            <h2>CART  TOTALS</h2>
+            <h2>ИТОГО В КОРЗИНЕ</h2>
             <div class="content">
               <ul>
                 <li>Сумма<span> <%= @sum %>₽</span></li>
-                <li>(+) Доаствка<span>10.0₽</span></li>
+                <li>(+) Доставка<span>10.0₽</span></li>
                 <li class="last">Всего<span><%= @sum +10%>₽</span></li>
               </ul>
             </div>
@@ -124,11 +124,11 @@
           <!--/ End Order Widget -->
           <!-- Order Widget -->
           <div class="single-widget">
-            <h2>Payments</h2>
+            <h2>Способ оплаты</h2>
             <div class="content">
               <div class="checkbox">
-                <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
-                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
+                <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox">С помощью чека</label>
+                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Наличными при доставке</label>
                 <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
               </div>
             </div>
