@@ -2,23 +2,46 @@
 # there will also be functionality for creating a new store.
 # TODO implement actions functionality
 class UsersController < ApplicationController
-  def profile
-
-    @errors_main = []
-    @errors_password = []
-    if !current_user
+  before_action :require_login, only: [:profile, :password_change, :profile_change]
+  def require_login
+    unless current_user
       redirect_to :sign_in
-      return
     end
+  end
+  def profile
+    @errors_main = []
+
+
     @user = User.find(current_user.id)
     @old_user = @user
-    puts "!!!!!!!!!!!!!!!!"
-    pp @user.email_temp_change
+
+
   end
-  def profile_change
+  def password_change
 
     @errors_main = []
-    @errors_password = []
+
+    @user = User.find(current_user.id)
+    @old_user = @user
+    if @user.authenticate(params[:old_password])
+        @user.password = params[:password]
+        @user.password_confirmation = params[:password_confirmation]
+        if !@user.save
+          flash[:errors_password] = []
+          flash[:errors_password] <<  @user.errors.messages[:password]
+          flash[:errors_password] <<  @user.errors.messages[:password_confirmation]
+        end
+    else
+      flash[:errors_password] = []
+       flash[:errors_password]  << ['Введен неверный пароль']
+      end
+
+      redirect_to :profile
+  end
+
+  def profile_change
+    @errors_main = []
+
     @user = User.find(current_user.id)
     @old_user =  User.find(current_user.id)
     @user.skip_pass = true

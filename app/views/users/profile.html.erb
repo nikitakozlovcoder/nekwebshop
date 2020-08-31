@@ -2,7 +2,8 @@
 <%= render partial: './header.html.erb' %>
 
 
-<section class="section-profile" data-show-main="<%= @errors_main.count > 0 ? 'true' : 'false' %>">
+<section class="section-profile" data-show-main="<%= @errors_main.count > 0 ? 'true' : 'false' %>"
+         data-show-password="<%= flash[:errors_password] ? 'true' : 'false' %>">
 <div class="container">
   <div class="row">
    <%= render './profile_nav.html.erb' %>
@@ -87,24 +88,32 @@
       <div class="actions">
         <a class = "change_user_data" >Редактировать личные данные</a>
         <a class = "change_user_password">Изменить пароль</a>
-        <form class = "form">
+        <%= form_with  method: :put, calss: 'form' do %>
           <div class = "password_change">
-            
             <div>
+              <div class="error-list" style="display: block;">
+                <% if flash[:errors_password] %>
+                  <% flash[:errors_password].each do |messages| %>
+                    <% messages.each do |error| %>
+                      <li> <%= error %> </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
               <label>Старый пароль</label>
-              <input type="text" name="old_password"  type="password">
+              <input type="password" name="old_password">
               <label>Новый пароль</label>
               <input class = "" name="password" type="password" placeholder="" value="">
 
               <label>Подтвердите пароль</label>
-              <input class = "" name="passwprd_confirmation" type="password" placeholder="" value="">
+              <input class = "" name="password_confirmation" type="password" placeholder="" value="">
 
               <div class="form-group button">
                     <button type="submit" class="btn">Подтвердить изменения</button>
               </div>
             </div>
           </div>
-        </form>
+        <% end %>
         <a href="#">Удалить аккаунт</a>
         <a href="#">Выйти</a>
       </div>

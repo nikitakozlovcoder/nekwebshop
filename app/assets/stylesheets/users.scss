@@ -98,12 +98,12 @@ section.restore {
 
 .actions{
   padding-top: 15px;
-  text-decoration: underline;
   display: flex;
   flex-direction: column;
 }
 
 .actions a{
+  text-decoration: underline !important;
   margin: 8px 0;
   width: max-content;
 }
