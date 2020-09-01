@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method  :all_categories
   helper_method  :current_user
   helper_method  :is_in_cart
+  helper_method  :is_in_wishlist
   helper_method  :cat_count
   def cat_count qty, id
     if !qty or qty == 'yes'
@@ -116,6 +117,13 @@ class ApplicationController < ActionController::Base
       result = true
     end
      result
+  end
+  def is_in_wishlist(id)
+    if current_user and current_user.wishes.find_by(product_id: id )
+      true
+    else
+      false
+    end
   end
   def current_user
 

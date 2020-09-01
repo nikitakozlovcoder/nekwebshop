@@ -3,24 +3,16 @@
 <section class="section-profile">
   <div class="container">
     <div class="row wishlist-container">
-      <div class="sidebar-container">
-        <div class="shop-sidebar">
-          <div class="single-widget category">
-            <h3 class="title">Категории</h3>
-            <ul class="categor-list">
-              <li><%= link_to 'Мои данные', :profile %></li>
-              <li><%= link_to 'Корзина', :cart_index %></li>
-              <li><a href="#">Мои заказы</a></li>
-              <li><a href="#">Мои отзывы</a></li>
-              <li><a href="#">Список желаний</a></li>
-              <li><a href="#">Просмотренные товары</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <%= render './profile_nav.html.erb' %>
       <div class="profile-main shop wishlist-main">
         <h2>Список желаний</h2>
+        <hr>
         <div class="wishlist">
+
+          <% if @wishes.count == 0 %>
+            <h3 style="width: 100%; text-align: center">В вашем списке желаний пока пусто.  <%=link_to 'Начать покупки', {controller: 'products', action: 'index'}, style: 'font-weight: inherit; text-decoration: underline' %>.</h3>
+          <%end %>
+
           <% @wishes.each do |el| %>
             <%= link_to(controller: 'products', action: 'show', id: el.product.id) do %>
             <div class="wishlist-element">

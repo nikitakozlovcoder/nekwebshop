@@ -70,6 +70,9 @@
 
           </tbody>
         </table>
+        <% if @carts.count == 0 %>
+          <h3 style="width: 100%; text-align: center; padding: 80px 0">В корзине пока пусто.  <%=link_to 'Начать покупки', {controller: 'products', action: 'index'}, style: 'font-weight: inherit; text-decoration: underline' %>.</h3>
+        <% end %>
         <!--/ End Shopping Summery -->
       </div>
     </div>

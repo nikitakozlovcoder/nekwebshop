@@ -115,9 +115,9 @@
             <h2>ИТОГО В КОРЗИНЕ</h2>
             <div class="content">
               <ul>
-                <li>Сумма<span> <%= @sum %>₽</span></li>
-                <li>(+) Доставка<span>10.0₽</span></li>
-                <li class="last">Всего<span><%= @sum +10%>₽</span></li>
+                <li>Сумма<span> <%= @sum.round(2) %>₽</span></li>
+                <li>(+) Доаствка<span>10.0₽</span></li>
+                <li class="last">Всего<span><%= @sum.round(2) +10%>₽</span></li>
               </ul>
             </div>
           </div>

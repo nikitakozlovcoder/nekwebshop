@@ -2,97 +2,118 @@
 <%= render partial: './header.html.erb' %>
 
 
-<section class="section-profile">
+<section class="section-profile" data-show-main="<%= @errors_main.count > 0 ? 'true' : 'false' %>"
+         data-show-password="<%= flash[:errors_password] ? 'true' : 'false' %>">
 <div class="container">
   <div class="row">
-    <div class="sidebar-container">
-      <div class="shop-sidebar">
-        <div class="single-widget category">
-          <h3 class="title">Категории</h3>
-          <ul class="categor-list list_lowercase">
-            <li><%= link_to 'Мои данные', :profile %></li>
-            <li><%= link_to 'Корзина', :cart_index %></li>
-            <li><a href="#">Мои заказы</a></li>
-            <li><a href="#">Мои отзывы</a></li>
-            <li><a href="#">Список желаний</a></li>
-            <li><a href="#">Просмотренные товары</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+   <%= render './profile_nav.html.erb' %>
     <div class="profile-main">
       <h2>Мои данные</h2>
       <div class="inform-profile">
-        <form class = "form">
+        <%= form_with class: "form" do %>
+          <% if @mail_change %>
+            <li>На указанный адрес отправлена ссылка для подтверждения эл.почты</li>
+          <% end %>
+          <div class="error-list" style="display: block;">
+            <% @errors_main.each do |messages| %>
+                <% messages.each do |error| %>
+                <li> <%= error %> </li>
+                <% end %>
+            <% end %>
+          </div>
           <div>
             <p>Имя</p>
-            <p class="data">Владислав Гришак</p>
+            <p class="data"><%= @old_user.name %></p>
             <section class="change name_change">
-              <label>Новое имя<span>*</span></label>
-              <input name="name" type="email" placeholder="" value="">
+              <input name="name" type="text" placeholder="" value="<%= @user.name %>">
+              <div class="error-list"></div>
+            </section>
+          </div>
+          <div>
+            <p>Фамилия</p>
+            <p class="data"><%= @old_user.surname %></p>
+            <section class="change name_change">
+              <input name="surname" type="text" placeholder="" value="<%= @user.surname %>">
               <div class="error-list"></div>
             </section>
           </div>
           <div>
             <p>Электронная почта</p>
-            <p class="data email_data">grishakvlad@gmail.com</p>
+            <p class="data email_data"><%= @old_user.email %></p>
             <section class="change email_change">
-              <label>Новый адрес электронной почты<span>*</span></label>
-              <input name="name" type="email" placeholder="" value="">
-              <label>Повторите адрес электронной почты<span>*</span></label>
-              <input name="name" type="email" placeholder="" value="">
+              <input name="email" type="email" placeholder="" value="<%= @user.email_temp_change == nil ? @user.email : @user.email_temp %>">
               <div class="error-list"></div>
             </section>
           </div>
           <div>
             <p>Телефон</p>
-            <p class="data">+7 918 567 03 94</p>
+            <p class="data"><%= @old_user.phone ? @old_user.phone : '---' %></p>
             <section class="change phone_change">
-              <label>Новый номер телефона<span>*</span></label>
-              <input name="name" type="text" placeholder="" value="">
+              <input name="phone" type="text" placeholder="" value="<%= @user.phone ? @user.phone : '---' %>">
               <div class="error-list"></div>
             </section>
           </div>
           <div>
             <p>Домашний адрес</p>
-            <p class="data">г. Таганрог, ул. Чехова, д. 22, кв. 148</p>
+            <p class="data"><%= @old_user.location %></p>
             <section class="change adress_change">
-              <label>Новый адрес<span>*</span></label>
-              <input name="name" type="text" placeholder="" value="">
-              <div class="error-list"></div>
-              
+
+              <div id="locationField" class="form-group">
+                <input type="search" id="address-input" value="<%=  @user.location  %>"/>
+                <p style="width: 300px;">Выбрано: <strong id="address-value"><%=  !@user.location.blank? ? @user.location : ' ---'%></strong></p>
+              </div>
+              <div style="display: none">
+                <input name="street" class="field" id="form-street"  value="<%=  @user.street %>"/>
+                <input name="city" class="field" id="form-city"  value="<%=  @user.city  %>"/>
+                <input name="state" class="field" id="form-administrative"  value="<%= @user.state %>"/>
+                <input name="zip" class="field" id="form-zip"  value="<%=  @user.zip  %>"/>
+                <input name="country" class="field" id="form-country" value="<%= @user.country %>"/>
+                <input name="county" class="field" id="form-county" value="<%=  @user.county %>"/>
+                <input name="suburb" class="field" id="form-suburb" value="<%=  @user.suburb  %>"/>
+              </div>
             </section>
           </div>
-          <div>
+        <!--  <div>
             <p>Тип аккаунта</p>
             <p class="data">Юридическое лицо</p>
-          </div>
+          </div> -->
+
           <section class="change_confirmation_btn">
                 <div class="form-group button">
                     <button type="submit" class="btn">Подтвердить изменения</button>
                 </div>
           </section>
-        </div>
-      </form>
+      <% end %>
+      </div>
       <div class="actions">
         <a class = "change_user_data" >Редактировать личные данные</a>
         <a class = "change_user_password">Изменить пароль</a>
-        <form class = "form">
+        <%= form_with  method: :put, calss: 'form' do %>
           <div class = "password_change">
             <div>
-              <label>Новый пароль<span>*</span></label>
-              <input class = "new_passwd" name="name" type="password" placeholder="" value="">
-              <div class="error-list"></div>
-              <label>Подтвердите пароль<span>*</span></label>
-              <input class = "new_passwd_confirm" name="name" type="password" placeholder="" value="">
-              
-              <div class="error-list"></div>
+              <div class="error-list" style="display: block;">
+                <% if flash[:errors_password] %>
+                  <% flash[:errors_password].each do |messages| %>
+                    <% messages.each do |error| %>
+                      <li> <%= error %> </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+              <label>Старый пароль</label>
+              <input type="password" name="old_password">
+              <label>Новый пароль</label>
+              <input class = "" name="password" type="password" placeholder="" value="">
+
+              <label>Подтвердите пароль</label>
+              <input class = "" name="password_confirmation" type="password" placeholder="" value="">
+
               <div class="form-group button">
                     <button type="submit" class="btn">Подтвердить изменения</button>
               </div>
             </div>
           </div>
-        </form>
+        <% end %>
         <a href="#">Удалить аккаунт</a>
         <a href="#">Выйти</a>
       </div>
@@ -102,3 +123,26 @@
 </section>
 
 
+<script>
+    if ( document.querySelector('#address-input')){
+        var placesAutocomplete_register = places({
+            appId: 'pl95AIU49SL1',
+            apiKey: 'd63ea66c7015964fa631d4f72045e333',
+            container: document.querySelector('#address-input')
+        });
+        var $address = document.querySelector('#address-value')
+        placesAutocomplete_register.on('change', function resultSelected(e) {
+            $address.textContent = e.suggestion.value;
+            document.querySelector('#form-street').value = e.suggestion.name || '';
+            document.querySelector('#form-city').value = e.suggestion.city || '';
+            document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+            document.querySelector('#form-administrative').value = e.suggestion.administrative || '';
+            document.querySelector('#form-country').value = e.suggestion.country || '';
+            document.querySelector('#form-suburb').value = e.suggestion.suburb || '';
+            document.querySelector('#form-county').value = e.suggestion.county || '';
+        });
+        placesAutocomplete_register.on('clear', function() {
+            $address.textContent = 'none';
+        });
+    }
+</script>

@@ -3,7 +3,7 @@ class UserClearCodeJob < ApplicationJob
 
   def perform(user, time)
     # Do something later
-    if time == user.restore_code_task_started
+    if time.to_s == user.restore_code_task_started.to_s
       user.skip_pass = true
       user.restore_code = nil
       user.save
