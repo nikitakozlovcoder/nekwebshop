@@ -125,7 +125,7 @@ class UsersController < ApplicationController
       @user.restore_code_task_started = time
       @user.save
       @submitted = true
-      UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/restore/"+code).confirm.deliver_later
+      UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/restore/"+code).restore.deliver_later
 
 
       UserClearCodeJob.set(wait: 10.minutes).perform_later(@user, time)
