@@ -238,36 +238,8 @@ $(document).on('turbolinks:load', function () {
                 e.preventDefault();
 
                 post_review()
-            })
-
-        addtoCart = function(id){
-            document.querySelector('.already_in_cart').style.display = 'inline-block';
-            document.querySelector('.add_to_cart_wrapper').style.display = 'none';
-            fetch(`../cart/add/${id}`, {
-                method: 'POST'
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data)=>{
-                console.log(data);
             });
-        }
 
-        addtoWishlist = function(id){
-            /* Other styles
-            document.querySelector('.already_in_cart').style.display = 'inline-block';
-            document.querySelector('.add_to_cart_wrapper').style.display = 'none'; */
-            fetch(`../wish/add/${id}`, {
-                method: 'POST'
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data)=>{
-                console.log(data);
-            });
-        }
     }
 
 })

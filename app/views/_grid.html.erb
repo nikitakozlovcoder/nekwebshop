@@ -193,11 +193,12 @@
                       <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
                     </div>
                     <div class="product-action-2" style="padding-left:  10px">
-                      <% if(!is_in_cart(el.id)) %>
-                        <a title="Добавить в корзину" href="#">Добавить в корзину</a>
-                      <% else %>
-                        <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe' %>
-                     <% end %>
+                      <span>
+                        <a title="Добавить в корзину" style="display: <%= !is_in_cart(el.id) ? 'inline-block' : 'none' %>">Добавить в корзину</a>
+                      </span>
+                     <span> 
+                        <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe', style: "display: #{ is_in_cart(el.id) ? 'inline-block' : 'none' }"%>
+                    </span>
                     </div>
                   </div>
                 </div>
@@ -210,11 +211,11 @@
                     <div class="product-action" style="padding-right:  20px">
                      <!-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>-->
                       <a title="Избранное" href="#"><i class=" ti-heart "></i><span>В избранное</span></a>
-                      <% if(!is_in_cart(el.id)) %>
-                      <a title="Добавить в корзину" href="#">Добавить в корзину</a>
-                      <% else %>
+                    
+                      <a title="Добавить в корзину" href="#" st>Добавить в корзину</a>
+                      
                       <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe' %>
-                      <% end %>
+                      
                       <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
                     </div>
                   </div>
