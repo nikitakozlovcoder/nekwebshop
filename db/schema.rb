@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_113307) do
+ActiveRecord::Schema.define(version: 2020_08_28_055837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 2020_08_15_113307) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "city"
+    t.string "street"
+    t.string "state"
+    t.string "country"
+    t.string "zip"
+    t.string "suburb"
+    t.string "county"
+    t.integer "shop_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "attributes", force: :cascade do |t|
@@ -82,6 +95,37 @@ ActiveRecord::Schema.define(version: 2020_08_15_113307) do
     t.boolean "is_another"
   end
 
+  create_table "ordered_products", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.text "data"
+    t.string "title"
+    t.text "description"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "surname"
+    t.string "phone"
+    t.string "email"
+    t.integer "shop_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders_products", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "product_id"
@@ -106,12 +150,14 @@ ActiveRecord::Schema.define(version: 2020_08_15_113307) do
     t.text "description"
     t.integer "quantity"
     t.boolean "is_inf_quantity"
+    t.float "mark", default: 0.0
   end
 
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "top_cat", default: "[]"
   end
 
   create_table "users", force: :cascade do |t|
@@ -132,6 +178,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_113307) do
     t.string "county"
     t.string "restore_code"
     t.datetime "restore_code_task_started"
+    t.boolean "confirmed"
   end
 
   create_table "wishes", force: :cascade do |t|

@@ -1,0 +1,18 @@
+<%= render partial: './header.html.erb' %>
+
+<section class="contact-us sign-in section">
+  <div class="container">
+    <div class="form-sign-in">
+      <div class="form-main">
+        <p style="font-weight: bold">
+          <% if @err == 1 %>
+            Ссылка недейсвтительна или содержит ошибку.
+          <% else %>
+            Пользователь с данным адресом электронной почты уже существует. <%= link_to 'Войдите', controller: 'users', action: 'sign_in' %> или <%= link_to 'восстановите пароль', controller: 'users', action: 'restore' %>
+          <% end %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>

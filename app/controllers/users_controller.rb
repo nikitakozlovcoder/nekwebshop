@@ -2,14 +2,112 @@
 # there will also be functionality for creating a new store.
 # TODO implement actions functionality
 class UsersController < ApplicationController
+  before_action :require_login, only: [:profile, :password_change, :profile_change]
+  def require_login
+    unless current_user
+      redirect_to :sign_in
+    end
+  end
+  def profile
+    @errors_main = []
 
+
+    @user = User.find(current_user.id)
+    @old_user = @user
+
+
+  end
+  def password_change
+
+    @errors_main = []
+
+    @user = User.find(current_user.id)
+    @old_user = @user
+    if @user.authenticate(params[:old_password])
+        @user.password = params[:password]
+        @user.password_confirmation = params[:password_confirmation]
+        if !@user.save
+          flash[:errors_password] = []
+          flash[:errors_password] <<  @user.errors.messages[:password]
+          flash[:errors_password] <<  @user.errors.messages[:password_confirmation]
+        end
+    else
+      flash[:errors_password] = []
+       flash[:errors_password]  << ['Введен неверный пароль']
+      end
+
+      redirect_to :profile
+  end
+
+  def profile_change
+    @errors_main = []
+
+    @user = User.find(current_user.id)
+    @old_user =  User.find(current_user.id)
+    @user.skip_pass = true
+    @user.name = params[:name]
+    @user.email_temp = params[:email]
+    @user.surname = params[:surname]
+    @user.suburb = params[:suburb]
+    @user.county = params[:county]
+    @user.street = params[:street]
+    @user.city = params[:city]
+    @user.state = params[:state]
+    @user.country = params[:country]
+    @user.zip = params[:zip]
+    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
+      @errors_main << ["Введите полный адрес"]
+    end
+    @user.should_validate_temp_mail = true
+    if @user.valid? and @errors_main.count == 0
+      if(@user.email != @user.email_temp)
+        code = SecureRandom.hex(10)
+        time = Time.now.getutc
+        @user.email_temp_code = code
+        @user.change_code_task_started = time
+        puts "!!!!!!!!!!!!"
+        puts @user.email_temp
+        UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/change/"+code).change.deliver_later
+        UserClearTempCodeJob.set(wait: 10.minutes).perform_later(@user, time)
+        @mail_change = true
+      end
+
+      @user.save
+      @old_user = @user
+
+    else
+      @errors_main << @user.errors.messages[:name]
+      @errors_main << @user.errors.messages[:surname]
+      @errors_main << @user.errors.messages[:email_temp]
+      pp @errors_main
+
+    end
+    render :profile
+  end
+  def update_mail
+    @user = User.find_by(id: params[:id], email_temp_code: params[:code] )
+    if @user and @user.email_temp != nil and @user.email_temp_code != nil
+      @temp = User.find_by(email: @user.email_temp)
+      if @temp
+        render :update_mail
+      else
+        @user.skip_pass = true
+        @user.email = @user.email_temp
+        @user.email_temp = @user.email_temp_code = nil
+        @user.change_code_task_started = nil
+        @user.save
+        redirect_to :profile
+      end
+    else
+      render :update_mail
+    end
+
+  end
   def sign_in
     @login = nil
     @errors = []
   end
   def restore
-    puts "!!!!!!!!!!!!!!"
-    puts
     @submitted = false
     @errors = []
     @main = nil
@@ -18,16 +116,18 @@ class UsersController < ApplicationController
     @errors = []
     @submitted = false
     @mail = params[:mail]
-    @user = User.find_by(email: @mail)
+    @user = User.find_by(email: @mail, confirmed: true)
     if @user
       code = SecureRandom.hex(10)
+      time = Time.now.getutc
       @user.skip_pass = true
       @user.restore_code = code
+      @user.restore_code_task_started = time
       @user.save
       @submitted = true
       UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/restore/"+code).restore.deliver_later
-      time = Time.now.getutc
-      @user.restore_code_task_started = time
+
+
       UserClearCodeJob.set(wait: 10.minutes).perform_later(@user, time)
       render :restore
     else
@@ -40,8 +140,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def restore_link_post
-    @user = User.find_by(id: params[:id])
-    if @user and @user.restore_code and @user.restore_code == params[:code]
+    @user = User.find_by(id: params[:id], confirmed: true)
+    if @user and !@user.nil? and @user.restore_code and @user.restore_code == params[:code]
 
       @user.password = params[:password]
       @user.password_confirmation = params[:password_confirmation]
@@ -110,7 +210,7 @@ class UsersController < ApplicationController
 
     @error = false
 
-    @user = User.where(phone: @login).or(User.where(email: @login)).first
+    @user = User.where(phone: @login, confirmed: true).or(User.where(email: @login, confirmed: true)).first
     pp @user
     if @user && @user.authenticate(@password)
       fill_cart
@@ -132,11 +232,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm
+    user = User.find_by(id: params[:id], restore_code: params[:code], confirmed: false)
+    @err = nil
+    if !user
+      @err = 1
+      render :confirm
+    elsif User.find_by(email: user.email, confirmed: true)
+      @err = 2
+        render :confirm
+    else
+      user.skip_pass = true
+      user.confirmed = true
+      user.restore_code = nil
+      user.save
+      redirect_to action: 'sign_in'
+    end
 
+
+  end
   def create
+    @success = false
     @errors = []
     #phone: params[:phone].delete("^0-9")
     @user = User.new(email: params[:email], password_confirmation: params[:pass], name: params[:name], surname: params[:surname])
+    @errors << 'адрес электронной почты уже используется, выполните вход или восстановите пароль' if User.find_by(email: @user.email, confirmed: true)
     @user.password = params[:password]
     @user.restore_date = Time.now.getutc
     @user.suburb = params[:suburb]
@@ -146,16 +266,47 @@ class UsersController < ApplicationController
     @user.state = params[:state]
     @user.country = params[:country]
     @user.zip = params[:zip]
+    @user.confirmed = false
     if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
       @errors << "Введите полный адрес"
     end
-    if @errors.count <= 0 && @user.save
-      redirect_to :sign_in
-    else
-      render :registration
+    if  @user.valid? and @errors.count <= 0
+      puts "SAVEDUSER"
+      code = SecureRandom.hex(10)
+      time = Time.now.getutc
+      @user.restore_code_task_started = time
+      @user.restore_code = code
+      @user.save
+      @success = true
+      cookies.signed[:temp_id] = @user.id
+      UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/confirm/"+code).confirm.deliver_later
+      UserClearCodeJob.set(wait: 7.days).perform_later(@user, time)
     end
+    render :registration
+  end
+  def change_mail
+    @success = true
+    @errors = []
+    if cookies.signed[:temp_id]
+      @user = User.find_by(id: cookies.signed[:temp_id], confirmed: false)
+      if @user
+        @user.skip_pass = true
+        @user.email = params[:email]
+        code = SecureRandom.hex(10)
+        time = Time.now.getutc
+        @user.restore_code_task_started = time
+        @user.restore_code = code
+        @user.save
+        UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/confirm/"+code).confirm.deliver_later
+        UserClearCodeJob.set(wait: 7.days).perform_later(@user, time)
+      end
+    else
+      @user = User.new
+    end
+    render :registration
   end
   def registration
+    @success = false
     @errors = []
     @user = User.new
   end

@@ -1,0 +1,125 @@
+<%= render partial: './header.html.erb' %>
+
+<section id="contact-us" class="contact-us section">
+  <div class="container">
+    <div class="contact-head">
+      <div class="row">
+        <div class = "add_product_section">
+          <div class="form-main">
+            <div class="title">
+              <h3>Создать новый магазин</h3>
+            </div>
+
+            <form class = "form">
+              
+              <div class="row form_row">
+                <div class="col-12">
+                  <div class="form-group Text" data-min="5" data-max="50">
+                    <label>Название магазина<span>*</span></label>
+                    <input name="name" type="text" placeholder="" value="">
+                    <div class="error-list"></div>
+                  </div>
+                 <div class="form-group img-preloader Image">
+                    <div class="label-container">
+                      <label for = "main_image" class = "btn">Загрузить изображение...</label>
+                      <input id = "main_image" type="file" accept="image/*" onchange="preview_image(this)" name="main_photo">
+                      <input name="main_photo_changed" type="text" value = "No">
+                      <div class="error-list"></div>
+                    </div>
+                  </div>
+                  <div class="form-group Email" data-min="5" data-max="50">
+	                    <label>Эл. почта<span>*</span></label>
+	                    <input name="email" type="email" placeholder=""  value="">
+	                    <div class="error-list"></div>
+	              </div>
+	              <div class="form-group Phone" data-min="5" data-max="50">
+	                    <label>Номер телефона<span>*</span></label>
+	                    <input name="phone" type="tel" placeholder=""  value="" >
+	                    <div class="error-list"></div>
+	              </div>
+
+               
+                </div>
+
+                <!--<div class="col-12 col-lg-6">
+                  <div class="form-group Number form-group-quantity" data-min="0" data-max="">
+                    <label>Количество товаров<span>*</span></label>
+
+                    <input name="quantity" type="number" placeholder="" value="" class="inp_quantity">
+                    <div class="error-list"></div>
+                  </div>
+                  
+                    <label>Product Category<span>*</span></label>
+                    <p style="display: flex" >
+                        
+
+                    </p>
+                    <div class="error-list"></div>
+                  </div>
+                </div>-->
+                <div class="col-12">
+                  <div id="locationField" class="form-group">
+	                <label>Адрес <span>*</span></label>
+	                <input type="search" id="address-input" />
+	                <p>Выбрано: <strong id="address-value">---</strong></p>
+	              </div>
+	              <div style="display: none">
+	                <input name="street" class="field" id="form-street"/>
+	                <input name="city" class="field" id="form-city" />
+	                <input name="state" class="field" id="form-administrative" />
+	                <input name="zip" class="field" id="form-zip" />
+	                <input name="country" class="field" id="form-country" />
+	                <input name="county" class="field" id="form-county" />
+	                <input name="suburb" class="field" id="form-suburb"/>
+	              </div>
+                  <div class="form-group LongText" data-min="10" data-max="2000">
+                    <label>Описание<span>*</span></label>
+                    <textarea name="description"  placeholder="" ></textarea>
+                    <div class="error-list"></div>
+                  </div>
+                </div>
+               
+
+               
+
+               
+                <div class="col-12">
+                  <div class="form-group button">
+                    <button type="submit" class="btn ">Отправить</button>
+                  </div>
+                </div>
+
+
+              </div>
+           </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  if ( document.querySelector('#address-input')){
+    var placesAutocomplete_register = places({
+        appId: 'pl95AIU49SL1',
+        apiKey: 'd63ea66c7015964fa631d4f72045e333',
+        container: document.querySelector('#address-input')
+    });
+    var $address = document.querySelector('#address-value')
+    placesAutocomplete_register.on('change', function resultSelected(e) {
+        $address.textContent = e.suggestion.value
+        document.querySelector('#form-street').value = e.suggestion.name || '';
+        document.querySelector('#form-city').value = e.suggestion.city || '';
+        document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+        document.querySelector('#form-administrative').value = e.suggestion.administrative || '';
+        document.querySelector('#form-country').value = e.suggestion.country || '';
+        document.querySelector('#form-suburb').value = e.suggestion.suburb || '';
+        document.querySelector('#form-county').value = e.suggestion.county || '';
+    });
+    placesAutocomplete_register.on('clear', function() {
+        $address.textContent = 'none';
+    });
+  }
+</script>

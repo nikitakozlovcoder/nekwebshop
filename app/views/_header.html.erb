@@ -202,7 +202,7 @@
               <li><i class="ti-location-pin"></i> Выбрать локализацию</li>
               <% if current_user %>
               <li><i class="ti-alarm-clock"></i> <a href="#">Запланированные покупки</a></li>
-              <li><i class="ti-user"></i> <a href="#">Профиль</a></li>
+              <li><i class="ti-user"></i><%= link_to 'Профиль', controller: 'users', action: 'profile'   %></li>
               <li><i class="ti-power-off"></i><%= link_to "Выход", controller: "users", action: "exit"  %></li>
               <% else %>
               <li><i class="ti-user"></i><%= link_to "Регистрация", controller: "users", action: "registration"  %></li>
@@ -231,13 +231,13 @@
           <!--/ End Logo -->
           <!-- Search Form -->
           <div class="search-top">
-            <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+            <div class="top-search"><a><i class="ti-search"></i></a></div>
             <!-- Search Form -->
             <div class="search-top">
-              <form class="search-form">
+              <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get", class: 'search-form' do  %>
                 <input type="text" placeholder="Search here..." name="search">
                 <button value="search" type="submit"><i class="ti-search"></i></button>
-              </form>
+              <% end %>
             </div>
             <!--/ End Search Form -->
           </div>
@@ -247,18 +247,21 @@
         <div class="col-lg-8 col-md-7 col-12">
           <div class="search-bar-top">
             <div class="search-bar">
-              <select>
-                <option selected="selected">Все категории</option>
-                <% all_categories.roots.each  do |el| %>
-                  <option><%= el.name %></option>
-                  <%= el.children.each do |e| %>
-                    <option><%= e.name %></option>
+
+             <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get",:html => { style: 'display: inline-flex'} do %>
+                <!--<select onchange="">
+                  <option <%= !params[:category_id] ? 'selected' : '' %> value="">Все категории</option>
+                  <% all_categories.roots.each  do |el| %>
+                    <option  <%= params[:category_id] == el.id ? 'selected' : '' %> value="<%= el.id %>"><%= el.name %></option>
+                    <%= el.children.each do |e| %>
+                      <option  <%= params[:category_id] == e.id ? 'selected' : '' %> value="<%= e.id %>"><%= e.name %></option>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </select>
-             <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get" do %>
+                </select>-->
+
                 <input name="search" placeholder="Поиск товаров....." type="search" value="<%= params[:search] %>">
                 <button class="btnn"><i class="ti-search"></i></button>
+
               <% end %>
             </div>
           </div>
@@ -268,10 +271,10 @@
             <!-- Search Form -->
             <% if current_user %>
             <div class="sinlge-bar">
-              <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+              <%= link_to({controller: 'wishes', action: 'index'}, class: 'single-icon') do %> <i class="fa fa-heart-o" aria-hidden="true"></i><% end %>
             </div>
             <div class="sinlge-bar">
-              <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+              <%= link_to({controller: 'users', action: 'profile'}, class: 'single-icon') do %><i class="fa fa-user-circle-o" aria-hidden="true"></i><% end %>
             </div>
              <% end %>
             <div class="sinlge-bar shopping"  style=" ">
@@ -409,8 +412,8 @@
                   <div class="nav-inner">
                     <ul class="nav main-menu menu navbar-nav">
                       <li class="active"><%= link_to 'Home', :root %></li>
-                      <li><a>Продукты</a></li>
-                      <li><a>Сервис</a></li>
+                      <li><%= link_to 'Магазины', :shops %></li>
+                      <li><%= link_to 'Избранное', :wishlist %></li>
                       <li><a>Магазин<i class="ti-angle-down"></i><span class="new">New</span></a>
                         <ul class="dropdown">
                           <li><%= link_to 'Shop Grid', :products %></li>
@@ -419,13 +422,13 @@
                         </ul>
                       </li>
                       <li><a>Страницы</a></li>
-                      <li><a>Блог<i class="ti-angle-down"></i></a>
+                      <!--<li><a>Блог<i class="ti-angle-down"></i></a>
                         <ul class="dropdown">
                           <li><a href="blog">Blog Single Sidebar</a></li>
                         </ul>
-                      </li>
+                      </li>-->
 
-                      <li><%= link_to 'Contact Us', :contact %></li>
+                      <li><%= link_to 'Связаться с нами', :contact %></li>
                     </ul>
                   </div>
                 </div>
