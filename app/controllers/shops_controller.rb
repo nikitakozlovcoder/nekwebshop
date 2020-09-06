@@ -12,6 +12,11 @@ class ShopsController < ApplicationController
   def dashboard
 
   end
+
+  def profile
+
+  end
+
   def all
     @shops  = Shop.all
     if params[:mark] and params[:mark].to_i > 0

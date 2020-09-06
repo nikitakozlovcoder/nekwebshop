@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   post 'wish/add/:id/', to: 'wishes#add'
   get  'wish/delete/:id/', to: 'wishes#delete'
 
-
+  get 'shops/profile/:id', to: 'shops#profile';
 
   #post 'cart/:id/quantity/', to: 'cart#change_quantity'
   get 'cart', to: 'cart#index', as: :cart_index
