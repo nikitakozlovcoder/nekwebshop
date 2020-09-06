@@ -96,6 +96,14 @@
         <a href="#">Удалить аккаунт</a>
         <a href="#">Выйти</a>
       </div>
+      <div class = "my_shops_list">
+        <div class = "my_shops_title">
+          <h3>Мои магазины</h3>
+          <div class = "add_shop_button">
+            <%= link_to({controller: 'shops', action: 'new'}, class: 'single-icon') do %><i class="fa fa-plus" aria-hidden="true"></i><% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
