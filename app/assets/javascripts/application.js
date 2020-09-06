@@ -23,6 +23,7 @@
 //= require page_specific/cart.js
 //= require page_specific/shop.js
 //= require page_specific/products.js
+//= require page_specific/profile.js
 //= require turbolinks
 //= require ion.rangeSlider.min.js
 

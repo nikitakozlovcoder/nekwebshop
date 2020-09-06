@@ -33,6 +33,7 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+
 #address-input{
   padding-right: 33px;
 }
@@ -59,6 +60,9 @@ $color-border: rgba(175, 175, 175, 0.86);
 }
 .btn{
   cursor: pointer;
+}
+.btn.active{
+  background: #F7941D;
 }
 .owl-carousel {
   touch-action: manipulation;
@@ -88,8 +92,20 @@ $color-border: rgba(175, 175, 175, 0.86);
   flex-wrap: wrap;
 
 }
+.ap-dataset-places{
+  width: max-content;
+
+}
+.ap-suggestion-icon{
+  padding-top: 8px;
+
+}
+ .ap-dropdown-menu.ap-with-places{
+   width: max-content;
+   max-width: 90vw;
+ }
 .ap-footer{
-  display: none;
+  display: none !important;
 }
 .qty i{
   color: #2b2b2b;
@@ -484,8 +500,10 @@ tbody tr:hover {
 }
 
 .shopping-summery tbody tr img {
-  width: auto !important;
+  width: 90px !important;
+  height: 90px;
   max-width: 120px;
+  object-fit: cover;
 }
 
 
@@ -513,6 +531,10 @@ tbody tr:hover {
 .header.shop .nav.main-menu > li:hover > a{
   background: #ffae44;
 }
+//discapitalize header buttons
+.header.shop .nav li a {
+  text-transform: none;
+}
 
 .email_change {
   flex-direction: column;
@@ -521,12 +543,17 @@ tbody tr:hover {
 .change {
   display: none;
   flex-direction: column;
+  width: 300px;
 }
 .change_confirmation_btn {
   display: none;
 }
 .password_change {
   display: none;
+}
+.password_change input{
+  display: block;
+  margin-bottom: 15px;
 }
 .product_title_show {
   display: flex;
@@ -550,6 +577,7 @@ tbody tr:hover {
 }
 .range .price_slider_amount .label-input input{
   text-align: center;
+  width: 50% !important;
 }
 .range .price_slider_amount .price-filter{
   margin-bottom: 20px;
@@ -572,8 +600,147 @@ tbody tr:hover {
 {
   border-top-color: #F6971C;
 }
-input.hidden{
-  display: none;
-}
 //product grid styles end
 
+//footer paragraphs
+.footer .about .text {
+  margin-bottom: 20px;
+}
+//side image icons distortion fix
+.shop-sidebar .single-post .image img {
+  object-fit: cover;
+}
+
+//products grid addaptivity - start
+
+//fix side-bar wrap
+.shop-sidebar .single-widget.recent-post{
+  padding: 15px;
+}
+
+.mobile-buttons{
+  display: none;
+}
+@media only screen and (max-width: 767px){
+  .single-product {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .single-product .product-img{
+    width: 224px;
+    height: 224px;
+    margin-right: 20px;
+  }
+  .single-product .product-img a img.hover-img{
+    display: none;
+  }
+  .single-product .product-content{
+    width: 320px;
+  }
+  .mobile-buttons{
+    display: block;
+    margin-top: 10px;
+  }
+  .mobile-buttons .product-action a{
+    margin-right: 10px;
+  }
+  .mobile-buttons .product-action a i{
+    margin-right: 5px;
+  } 
+}
+@media only screen and (max-width: 595px){
+  .single-product {
+    flex-direction: column;
+    align-items: center;
+  }
+  .single-product .product-img{
+    width: 243px;
+    height: 243px;
+    margin-right: 0;
+  }
+  .single-product .product-content{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 252px;
+  }
+  .single-product .product-content .product-action{
+    padding-right: 0 !important;
+  }
+  .shop .single-shorter:last-child{
+    width: 260px;
+  }
+  .shop .nice-select{
+    width: 70%;
+  }
+}
+//products grid addaptivity - end
+
+
+//fix coupon button (cart)
+.shopping-cart .total-amount .left .coupon form .btn {
+  color: #333 !important;
+  width: 220px;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+//fix container size change (cart)
+.shopping-summery tbody .total-amount{
+  min-width: 130px;
+  padding: 30px 10px 30px 10px;
+}
+//cart addaptivity fix - start
+.shopping-cart .table p.product-des{
+  word-break: break-word;
+}
+@media only screen and (max-width: 767px){
+  .shopping-cart .table td::before {
+    width: 120px !important;
+    background: #F6F7FB !important;
+    color: #282828 !important;
+    box-shadow: 5px 0px 15px #0000001a;
+  } 
+  .shopping-cart .table td {
+    padding-left: 140px !important;
+    margin-top: 0;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-bottom: none;
+    //border: none;
+  }
+  .shopping-summery tbody tr {
+    border-bottom: none
+  }
+}
+@media only screen and (max-width: 400px){
+  .shopping-cart .table td {
+    padding-left: 120px !important;
+  }
+  .shopping-cart .table td::before{
+    padding: 10px 10px;
+    width: 105px !important;
+  }
+}
+//cart addaptivity fix - enx
+
+//wishlist addaptivity - start
+.wishlist .product-image img{
+  object-fit: cover;
+  height: 90px;
+  width: 90px;
+}
+.wishlist .product-inform{
+  word-break: break-word;
+}
+//wishlist addaptivity - end
+@media only screen and (max-width: 767px)
+{
+  .header.shop .logo{
+    margin: 0 !important;
+    width: 150px;
+  }
+}
+
+//grid product heart color
+.single-product .product-img .product-action a.active, .single-product .product-img .product-action-2 a.active{
+  color: #F6971C;
+}

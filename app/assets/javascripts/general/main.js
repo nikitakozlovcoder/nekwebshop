@@ -116,4 +116,42 @@ $(document).on('turbolinks:load', function () {
         }
         ;
     };
+
+    addtoCart = function(id, el){
+        if(el.classList.contains('active')){
+            document.location = '../cart';
+        } else{
+            el.innerHTML = 'Уже в корзине';
+            el.classList.add('active');
+            fetch(`../cart/add/${id}`, {
+                method: 'POST'
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data)=>{
+                console.log(data);
+            });
+        }
+    }
+
+    addtoWishlist = function(id, el){
+        if (el.classList.contains('active')){
+            document.location = '../wishlist'; 
+        } else{
+            let el_i = el.querySelector('i');
+            el_i.classList.remove('ti-heart');
+            el_i.classList.add('fa',  'fa-heart');
+            el.classList.add('active');
+            fetch(`../wish/add/${id}`, {
+                method: 'POST'
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data)=>{
+                console.log(data);
+            });
+        }
+    }
 });
