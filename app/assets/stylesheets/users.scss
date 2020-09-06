@@ -75,8 +75,13 @@ section.restore {
   font-size: 38px;
 }
 
-.inform-profile{
+.inform-profile,
+.list-shops{
   border-bottom: 1px solid #ddd;
+}
+
+.list-shops{
+  padding-top: 15px;
 }
 
 .inform-profile div{
@@ -104,6 +109,53 @@ section.restore {
 .actions a{
   margin: 8px 0;
   width: max-content;
+}
+
+.shop-list{
+  list-style: none;
+}
+
+.shop-list li{
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.shop-list li:last-child{
+  border-bottom: none;
+}
+
+.shop-inform{
+  display: flex;
+  flex-grow: 1;
+}
+
+.shop-list .shop-name a{
+  font-weight: 600;
+  color: #282828;
+  font-size: 18px;
+}
+
+.shop-image{
+  margin: 0 15px 0 10px;
+  width: 70px;
+  min-width: 70px;
+}
+
+
+.shop-list .edit-shop{
+  margin: 15px 15px 15px 45px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #282828;
+}
+
+.shop-list .edit-shop .ti-settings{
+  font-size: 24px;
+  margin-left: 10px;
 }
 
 //End-Profile
@@ -401,26 +453,9 @@ section.restore {
 
 
 @media only screen and (max-width: 600px) {
-
-  .seller_row{
-    flex-direction: column;
-    box-shadow: 9px 10px 9px $color-border;
-  }
-  .seller_cell:last-child{
-    border: 0;
-  }
-  .seller_cell{
-    width: 100%;
-    border-right: 0;
-  }
-  .seller_row-idx{
-    margin-top: 10px;
-    border-bottom: 0;
-    width: 100%;
-  }
-  .seller_row-idx-box{
-    width: 100%;
-  }
+   .shop-list li{
+     flex-wrap: wrap;
+   }
 }
 
 
