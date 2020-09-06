@@ -617,6 +617,7 @@ tbody tr:hover {
 .shop-sidebar .single-widget.recent-post{
   padding: 15px;
 }
+
 .mobile-buttons{
   display: none;
 }
@@ -737,4 +738,9 @@ tbody tr:hover {
     margin: 0 !important;
     width: 150px;
   }
+}
+
+//grid product heart color
+.single-product .product-img .product-action a.active, .single-product .product-img .product-action-2 a.active{
+  color: #F6971C;
 }
