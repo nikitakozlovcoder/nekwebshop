@@ -2,34 +2,7 @@
 
 $(document).on('turbolinks:load', function () {
 
-    
-   
-        if (get_body().classList.contains('users')){
-            //choice-container functionality
 
-            /*document.querySelector('.change_user_data').addEventListener("click", function() {
-                console.log('hi');
-                document.querySelector('.change').style.display = "block";
-            })*/
-            document.querySelector('.change_user_data').addEventListener("click", function() {
-                let change_value = document.querySelectorAll('.change');
-                let change_data = document.querySelectorAll('.data');
-
-                for (var i = 0; i<change_value.length; i++) {
-                    change_value[i].style.display = "flex";
-                    change_data[i].style.display = "none";
-                }
-                document.querySelector('.change_confirmation_btn').style.display = "flex";
-                document.querySelector('.change_user_data').style.display = "none";
-            });
-            document.querySelector('.change_user_password').addEventListener("click", function() {
-                
-                document.querySelector('.password_change').style.display = "block";
-                document.querySelector('.new_passwd').style.display = "block";
-                document.querySelector('.new_passwd_confirm').style.display = "block";
-                document.querySelector('.change_user_password').style.display = "none";
-            });
-        }
     
 
     if (get_body().classList.contains('products') && get_body().classList.contains('show')) {
@@ -271,36 +244,8 @@ $(document).on('turbolinks:load', function () {
                 e.preventDefault();
 
                 post_review()
-            })
-
-        addtoCart = function(id){
-            document.querySelector('.already_in_cart').style.display = 'inline-block';
-            document.querySelector('.add_to_cart_wrapper').style.display = 'none';
-            fetch(`../cart/add/${id}`, {
-                method: 'POST'
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data)=>{
-                console.log(data);
             });
-        }
 
-        addtoWishlist = function(id){
-            /* Other styles
-            document.querySelector('.already_in_cart').style.display = 'inline-block';
-            document.querySelector('.add_to_cart_wrapper').style.display = 'none'; */
-            fetch(`../wish/add/${id}`, {
-                method: 'POST'
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data)=>{
-                console.log(data);
-            });
-        }
     }
 
 })

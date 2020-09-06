@@ -29,7 +29,7 @@ $(document).on('turbolinks:load', function () {
             let field = quantity.parentNode;
             let price = field.querySelector('.price span').innerHTML;
             price = parseFloat(price.slice(1));
-            field.querySelector('.total-amount span').innerHTML = `₽${parseFloat(num*price).toFixed(1)}`;
+            field.querySelector('.total-amount span').innerHTML = `₽${parseFloat(num*price).toFixed(2)}`;
             updateTotal();
         }
 
@@ -39,7 +39,7 @@ $(document).on('turbolinks:load', function () {
             document.querySelectorAll('table .total-amount span').forEach((el) => {
                 total += parseFloat(el.innerHTML.slice(1));
             });
-            elem.innerHTML = `₽${parseFloat(total).toFixed(1)}`
+            elem.innerHTML = `₽${parseFloat(total).toFixed(2)}`
         }
 
         function ToggleMinusButton(val, qty_elem, option){

@@ -159,8 +159,8 @@
             <!-- Shop Top -->
             <div class="shop-top">
               <div class="shop-shorter">
-                <div class="single-shorter">
-                 <!-- <label>Show :</label>
+                <!--<div class="single-shorter">
+                  <label>Show :</label>
                   <select>
                     <option selected="selected">09</option>
                     <option>15</option>
@@ -170,10 +170,10 @@
                 </div>-->
                 <div class="single-shorter">
                   <label>Сортировать :</label>
-                  <select>
-                    <option selected="selected">Рейтинг</option>
-                    <option>Название</option>
-                    <option>Количество товаров</option>
+                  <select onchange = "sort_handler(this)">
+                    <option <%= !params[:order] || params[:order] == 'mark' ? 'selected': '' %> value="mark">Рейтинг</option>
+                    <option <%= params[:order] == 'name' ? 'selected': '' %> value="name">Название</option>
+                    <option <%= params[:order] == 'qty' ? 'selected': '' %> value="qty">Количество товаров</option>
 
                   </select>
                 </div>
@@ -187,7 +187,7 @@
             <!--/ End Shop Top -->
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="width: 100%">
 					<% @shops.each do |shop| %>
 						<%= link_to(controller: 'shops', action: 'index', id: shop.id) do || %>
           <div class="col-lg-4 col-md-6 col-12 single_shop_container">

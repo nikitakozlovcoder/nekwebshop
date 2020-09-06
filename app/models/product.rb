@@ -33,4 +33,5 @@ class Product < ApplicationRecord
     end
     self.save
   end
+
 end

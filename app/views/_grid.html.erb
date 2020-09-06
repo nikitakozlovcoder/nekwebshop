@@ -53,7 +53,7 @@
               <%  @categories.each do |el| %>
 
                 <li><%= link_to({controller: controller, action: "index", category_id: el.id}, data: {'turbolinks-no-scroll'=> 'true'})  do%>
-                    <%= el.name %>  <%= el.is_template ? "(#{@products.where(category_id: el.id).count})" : "" %>
+                    <%= el.name %>  <%= el.is_template ? "(#{cat_count(params[:qty], el.id)})" : "" %>
                   <% end %>
                 </li>
               <% end %>
@@ -68,7 +68,10 @@
               <h3 class="title">Shop by Price</h3>
               <div class="price-filter">
                 <div class="price-filter-inner">
-                  <div id="slider-range" data-max="<%= @max_price %>" data-min="<%= @min_price%>"></div>
+                  <div class="range-slider" data-max="<%= @max_price %>" data-min="<%= @min_price%>">
+                    <input type="text" class="js-range-slider" value="" />
+                  </div>
+
                   <div class="price_slider_amount">
                     <div class="label-input">
                       <div>Range:</div>
@@ -143,7 +146,7 @@
 
           <!--/ End Shop By Price -->
           <!-- Single Widget -->
-          <%= render partial: './best.html.erb', locals:{:products=> @products} %>
+          <%= render partial: './best.html.erb', locals:{:cat_id=> @category.try(:subtree)  } %>
 
           <!--/ End Single Widget -->
 
@@ -157,7 +160,7 @@
               <div class="shop-shorter">
                 <div class="single-shorter">
                   <label>Sort By :</label>
-                  <select name="order">
+                  <select name="order" onchange = "sort_handler(this)">
                     <option <%= !params[:order] || params[:order] == 'name' ? 'selected': '' %> value="name">Название</option>
                     <option <%=  params[:order] == 'price' ? 'selected': '' %> value="price">Цена</option>
                   </select>
@@ -180,21 +183,20 @@
                   <%= link_to(controller: 'products', action: "show", id: el.id) do %>
                     <%= image_tag el.main_photo, :class => "default-img" %>
                     <%= image_tag el.main_photo, :class => "hover-img" %>
-
-
                   <% end %>
+                  
                   <div class="button-head">
                     <div class="product-action" style="padding-right:  20px">
                      <!-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>-->
-                      <a title="Избранное" href="#"><i class=" ti-heart "></i><span>В избранное</span></a>
+                      <a title="Избранное" onclick = "addtoWishlist(<%= el.id %>, this)" class = "<%= is_in_wishlist(el.id) ? 'active' : ''%>"><i class="<%= is_in_wishlist(el.id) ? 'fa fa-heart' : 'ti-heart' %>"></i><span>В избранное</span></a>
                       <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
                     </div>
                     <div class="product-action-2" style="padding-left:  10px">
-                      <% if(!is_in_cart(el.id)) %>
-                        <a title="Добавить в корзину" href="#">Добавить в корзину</a>
-                      <% else %>
-                        <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe' %>
-                     <% end %>
+                        <% if !is_in_cart(el.id) %>
+                          <a title="Добавить в корзину" onclick = "addtoCart(<%= el.id %>, this)">Добавить в корзину</a>
+                        <% else %>
+                          <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe', class: 'active'%>
+                        <% end %>
                     </div>
                   </div>
                 </div>
@@ -203,8 +205,21 @@
                     <span>₽ <%= el.price %></span>
                   </div>
                   <h3> <%= link_to(controller: 'products', action: "show", id: el.id) do %><%= el.title %><% end %></h3>
-
+                  <div class = "mobile-buttons">
+                    <div class="product-action" style="padding-right:  20px">
+                     <!-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>-->
+                      <a title="Избранное" href="#"><i class=" ti-heart "></i><span>В избранное</span></a>
+                    
+                      <a title="Добавить в корзину" href="#" st>Добавить в корзину</a>
+                      
+                      <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe' %>
+                      
+                      <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
+                    </div>
+                  </div>
                 </div>
+            
+
               </div>
             </div>
           <% end %>

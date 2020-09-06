@@ -66,10 +66,12 @@ section.restore {
 }
 
 .profile-main{
-  padding: 5px 20px 0;
+  padding: 10px;
   flex-grow: 1;
 }
-
+.ap-suggestion{
+  padding: 5px;
+}
 .profile-main h2{
   padding-bottom: 20px;
   font-size: 38px;
@@ -96,12 +98,12 @@ section.restore {
 
 .actions{
   padding-top: 15px;
-  text-decoration: underline;
   display: flex;
   flex-direction: column;
 }
 
 .actions a{
+  text-decoration: underline !important;
   margin: 8px 0;
   width: max-content;
 }
@@ -337,7 +339,12 @@ section.restore {
     padding-right: 10px;
   }
 }
-
+@media only screen and (max-width: 765px)
+{
+  .users.profile .sidebar-container{
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 685px) {
   .sidebar-container{
     width: 100%;
