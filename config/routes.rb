@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get 'product/:id/load_fields', to: 'products#load_fields'
   get 'shop/:shop_id/update_product/:id', to: 'products#update'
+  get 'shops/new', to: 'shops#new'
   post 'shop/:shop_id/update_product/:id', to: 'products#update_product'
   get 'category/load/:id', to:'categories#show'
 
