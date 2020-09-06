@@ -748,10 +748,8 @@ tbody tr:hover {
   display: flex;
   justify-content: space-between;
   background-color: #F6F7FB;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 10px;
+  align-items: center;
 }
 .add_shop_button > .single-icon {
   font-size: 26px;

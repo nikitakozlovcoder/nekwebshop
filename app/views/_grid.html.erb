@@ -159,7 +159,7 @@
             <div class="shop-top">
               <div class="shop-shorter">
                 <div class="single-shorter">
-                  <label>Sort By :</label>
+                  <label>Сортировать по :</label>
                   <select name="order" onchange = "sort_handler(this)">
                     <option <%= !params[:order] || params[:order] == 'name' ? 'selected': '' %> value="name">Название</option>
                     <option <%=  params[:order] == 'price' ? 'selected': '' %> value="price">Цена</option>
