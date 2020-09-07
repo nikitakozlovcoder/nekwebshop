@@ -1,4 +1,6 @@
 class Shop < ApplicationRecord
+  has_one_attached :main_photo
+  has_one :address
   has_many :products
   has_many :orders
   has_many :posts, through: :products

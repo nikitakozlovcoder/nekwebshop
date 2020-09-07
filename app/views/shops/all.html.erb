@@ -1,14 +1,14 @@
 <%= render partial: './header.html.erb' %>
 
 <!-- Breadcrumbs -->
-<div class="breadcrumbs">
+<div class="breadcrumbs"  id="turbolinks_top">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="bread-inner">
           <ul class="bread-list">
-            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-            <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+            <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <li class="active"><%= link_to(controller: 'shops', action: 'all') do %>Магазины<% end %></li>
           </ul>
         </div>
       </div>
@@ -67,77 +67,27 @@
               </li>
             </ul>
           </div>-->
+          <%= form_with :url => url_for(controller:'shops', action: 'all'), method: "get", data: {'turbolinks-form'=>'true', 'scrollToTop'=>true} do %>
           <div class = "single-widget">
             <h3 class = "title">Shop by rating</h3>
             <div class="quickview-ratting post_review_ratting set_rating">
-                      <span class="post_review_ratting_el">☆</span>
-                      <span class="post_review_ratting_el">☆</span>
-                      <span class="post_review_ratting_el">☆</span>
-                      <span class="post_review_ratting_el">☆</span>
-                      <span class="post_review_ratting_el">☆</span>
+                      <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=5 ? 'ratting_star': '' %>">☆</span>
+                      <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=4 ? 'ratting_star': '' %>">☆</span>
+                      <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=3 ? 'ratting_star': '' %>">☆</span>
+                      <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=2 ? 'ratting_star': '' %>">☆</span>
+                      <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=1 ? 'ratting_star': '' %>" %>☆</span>
 
             </div>
-            <input type="number" class="ratting_inp" style="display: none" value="0">
+              <input type="number" name="mark" class="ratting_inp" style="display: none" value="0">
+
+            <div class="form-group button" style="margin-top: 20px;">
+              <button type="submit" class="btn" data-turbolinks_scrolltop="true">Найти</button>
+            </div>
           </div>
+
           <!--/ End Shop By Price -->
           <!-- Single Widget -->
-          <div class="single-widget recent-post">
-            <h3 class="title">Recent post</h3>
-            <!-- Single Post -->
-            <div class="single-post first">
-              <div class="image">
-                <img src="https://via.placeholder.com/75x75" alt="#">
-              </div>
-              <div class="content">
-                <h5><a href="#">Girls Dress</a></h5>
-                <p class="price">$99.50</p>
-                <ul class="reviews">
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                </ul>
-              </div>
-            </div>
-            <!-- End Single Post -->
-            <!-- Single Post -->
-            <div class="single-post first">
-              <div class="image">
-                <img src="https://via.placeholder.com/75x75" alt="#">
-              </div>
-              <div class="content">
-                <h5><a href="#">Women Clothings</a></h5>
-                <p class="price">$99.50</p>
-                <ul class="reviews">
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li><i class="ti-star"></i></li>
-                </ul>
-              </div>
-            </div>
-            <!-- End Single Post -->
-            <!-- Single Post -->
-            <div class="single-post first">
-              <div class="image">
-                <img src="https://via.placeholder.com/75x75" alt="#">
-              </div>
-              <div class="content">
-                <h5><a href="#">Man Tshirt</a></h5>
-                <p class="price">$99.50</p>
-                <ul class="reviews">
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                  <li class="yellow"><i class="ti-star"></i></li>
-                </ul>
-              </div>
-            </div>
-            <!-- End Single Post -->
-          </div>
+          <%= render partial: './best.html.erb', locals:{:cat_id=> @category.try(:subtree)  } %>
           <!--/ End Single Widget -->
           <!-- Single Widget -->
           <!--<div class="single-widget category">
@@ -153,6 +103,7 @@
           <!--/ End Single Widget -->
         </div>
       </div>
+
       <div class="col-lg-9 col-md-8 col-12">
         <div class="row">
           <div class="col-12">
@@ -168,9 +119,10 @@
                     <option>30</option>
                   </select>
                 </div>-->
+
                 <div class="single-shorter">
                   <label>Сортировать :</label>
-                  <select onchange = "sort_handler(this)">
+                  <select onchange = "sort_handler(this)" name="order">
                     <option <%= !params[:order] || params[:order] == 'mark' ? 'selected': '' %> value="mark">Рейтинг</option>
                     <option <%= params[:order] == 'name' ? 'selected': '' %> value="name">Название</option>
                     <option <%= params[:order] == 'qty' ? 'selected': '' %> value="qty">Количество товаров</option>
@@ -187,6 +139,7 @@
             <!--/ End Shop Top -->
           </div>
         </div>
+          <% end %>
         <div class="row" style="width: 100%">
 					<% @shops.each do |shop| %>
 						<%= link_to(controller: 'shops', action: 'index', id: shop.id) do || %>
@@ -194,7 +147,11 @@
             <div class="left-shop-inform-container left-shop-inform-container_second" style="height: 100%">
 	          <div class="left-shop-inform left-shop-inform_second">
 	            <div class="logo-shop">
-	              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
+                <% if shop.main_photo.attached? %>
+                  <%= image_tag shop.main_photo, class: 'logo-shop' %>
+                <% else %>
+                  <%= image_tag url_for('shop.png'), class: 'logo-shop' %>
+                <% end %>
 	            </div>
 	            <div class="data-shop">
 	              <div class="name-shop">
@@ -250,7 +207,7 @@
 
 
 
-<!-- Modal -->
+<!--
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -260,7 +217,6 @@
       <div class="modal-body">
         <div class="row no-gutters">
           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-            <!-- Product Slider -->
             <div class="product-gallery">
               <div class="quickview-slider-active">
                 <div class="single-slider">
@@ -277,7 +233,7 @@
                 </div>
               </div>
             </div>
-            <!-- End Product slider -->
+
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <div class="quickview-content">
@@ -324,7 +280,7 @@
                 </div>
               </div>
               <div class="quantity">
-                <!-- Input Order -->
+
                 <div class="input-group">
                   <div class="button minus">
                     <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
@@ -338,7 +294,7 @@
                     </button>
                   </div>
                 </div>
-                <!--/ End Input Order -->
+
               </div>
               <div class="add-to-cart">
                 <a href="#" class="btn">Add to cart</a>
@@ -361,5 +317,5 @@
     </div>
   </div>
 </div>
-<!-- Modal end -->
+ -->
 

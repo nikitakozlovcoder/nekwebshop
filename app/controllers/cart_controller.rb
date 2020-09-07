@@ -47,16 +47,26 @@ class CartController < ApplicationController
   end
   # make order
   def new
+    @errors = []
     get_carts
     @sum = 0
     @carts.each{|a| @sum+=a.product.price*a.quantity}
   end
   def create
-
+    @errors = []
+    get_carts
+    @sum = 0
+    @carts.each{|a| @sum+=a.product.price*a.quantity}
+    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
+      @errors << "Введите полный адрес"
+    end
+    if @errors.count == 0
     user_carts = get_carts.group_by{|a| a.product.shop_id}
+
     user_carts.each do |shop_id, carts|
-      puts "USER!!!!!!!!!!!!!!"
-      puts current_user
+
+
+
       order = Order.new
       order.name = params[:name]
       order.surname = params[:surname]
@@ -71,6 +81,9 @@ class CartController < ApplicationController
       order.save
     end
     get_carts.destroy_all
+    else
+      render :new
+    end
   end
   def delete_cart
     hash = {success: false}

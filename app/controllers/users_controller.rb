@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     @user.city = params[:city]
     @user.state = params[:state]
     @user.country = params[:country]
+    @user.phone = params[:phone]
     @user.zip = params[:zip]
     if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
       @errors_main << ["Введите полный адрес"]
@@ -79,6 +80,7 @@ class UsersController < ApplicationController
       @errors_main << @user.errors.messages[:name]
       @errors_main << @user.errors.messages[:surname]
       @errors_main << @user.errors.messages[:email_temp]
+      @errors_main << @user.errors.messages[:phone]
       pp @errors_main
 
     end

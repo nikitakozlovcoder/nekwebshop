@@ -30,6 +30,11 @@
         <div class="checkout-form">
           <h2>Оформите свой заказ здесь</h2>
           <p>Пожалуйста зарегистрируйтесь, чтобы сделать оформление заказа более быстрым</p>
+          <div class="error-list">
+            <% @errors.each do |err| %>
+            <li><%= err %></li>
+            <% end %>
+          </div>
           <!-- Form -->
 
             <div class="row">
