@@ -128,93 +128,27 @@
         </div>
       </div>
       <div class="list-shops">
-        <h2>Мои магазины</h2>
         <div>
           <ul class="shop-list">
+            <% @shops.each do |shop| %>
             <li>
               <div class="shop-inform">
                 <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
+                  <% if shop.main_photo.attached? %>
+                    <%= image_tag shop.main_photo, class: 'image' %>
+                  <% else %>
+                    <%= image_tag url_for('shop.png'), class: 'image' %>
+                  <% end %>
                 </div>
                 <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
+                  <%= link_to shop.name, controller: 'shops', action: 'index', id: shop.id %>
+                  <p class="descr"> <%= shop.description %></p>
+                  <p><%= shop.location %></p>
                 </div>
               </div>
               <div class="link-settings"><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
             </li>
-            <li>
-              <div class="shop-inform">
-                <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
-                </div>
-                <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                </div>
-              </div>
-              <div><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
-            </li>
-            <li>
-              <div class="shop-inform">
-                <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
-                </div>
-                <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                </div>
-              </div>
-              <div><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
-            </li>
-            <li>
-              <div class="shop-inform">
-                <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
-                </div>
-                <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                </div>
-              </div>
-              <div><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
-            </li>
-            <li>
-              <div class="shop-inform">
-                <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
-                </div>
-                <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                </div>
-              </div>
-              <div><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
-            </li>
-            <li>
-              <div class="shop-inform">
-                <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
-                </div>
-                <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                </div>
-              </div>
-              <div><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
-            </li>
-            <li>
-              <div class="shop-inform">
-                <div class="shop-image">
-                  <img class="image" src="https://via.placeholder.com/70x70" alt="">
-                </div>
-                <div class="shop-name">
-                  <a href="">Women Dress</a>
-                  <p class="descr">Lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</p>
-                </div>
-              </div>
-              <div><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>

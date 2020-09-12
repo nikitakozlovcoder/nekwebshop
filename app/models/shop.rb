@@ -5,7 +5,7 @@ class Shop < ApplicationRecord
   has_many :orders
   has_many :posts, through: :products
   has_many :categories, through: :products
-  #belongs_to :user
+  belongs_to :user
   def mark
     if self.products.count == 0
        0.0
@@ -37,6 +37,11 @@ class Shop < ApplicationRecord
     self.top_cat = JSON.generate arr[0..3]
     self.save
   end
+  def location
+    location = [self.address.street, self.address.city, self.address.state, self.address.country ]
+
+    location.any?{|a| a.nil? or a.blank? } ? '' : location.join(', ')
+  end
   private
   def get_cat category
       if category.parent.nil? || category.parent.parent.nil?
@@ -44,4 +49,5 @@ class Shop < ApplicationRecord
       end
     return get_cat category.parent
   end
+
 end

@@ -53,7 +53,7 @@
               <%  @categories.each do |el| %>
 
                 <li><%= link_to({controller: controller, action: "index", category_id: el.id}, data: {'turbolinks-no-scroll'=> 'true'})  do%>
-                    <%= el.name %>  <%= el.is_template ? "(#{cat_count(params[:qty], el.id)})" : "" %>
+                    <%= el.name %>  <%= el.is_template ? "(#{cat_count(params[:qty], el.id, shop_id)})" : "" %>
                   <% end %>
                 </li>
               <% end %>

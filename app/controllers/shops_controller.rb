@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
   def index
 
     @shop = Shop.find(params[:id])
-    show_products "products.shop_id in (#{params[:id]})"
+    show_products "products.shop_id in (#{params[:id]})", @shop.id
 
 
   end
@@ -46,7 +46,7 @@ class ShopsController < ApplicationController
 
   end
   def new
-    redirect_to controller: 'users', action: 'sign_in'
+    redirect_to controller: 'users', action: 'sign_in' if !current_user
     @errors = []
     @shop = Shop.new
   end
@@ -62,8 +62,8 @@ class ShopsController < ApplicationController
     @shop.mail = params[:mail]
     @shop.phone = params[:phone]
     @shop.description = params[:description]
-    @shop.main_photo = params[:main_image]
-
+    @shop.main_photo.attach(params[:main_photo])
+    @shop.user = current_user
     if @shop.valid? and @errors.count == 0
       @shop.save
       redirect_to :profile

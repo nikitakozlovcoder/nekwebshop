@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :shops
     has_many :carts
     has_many :wishes
     has_many :orders

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
 
     @user = User.find(current_user.id)
+    @shops = @user.shops
     @old_user = @user
 
 
