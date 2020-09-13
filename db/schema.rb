@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_09_12_080057) do
     t.integer "shop_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id"
   end
 
   create_table "attributes", force: :cascade do |t|
