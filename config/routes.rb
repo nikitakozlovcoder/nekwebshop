@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'products', to:'products#index'
   get 'products/:category_id', to:'products#index'
-  get 'shop/profile/:id', to: 'shops#profile'
   post 'products/load', to:'products#load'
   get 'blog', to:'posts#index'
   get 'wishlist', to:'wishes#index'
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
   get 'exit', to: 'users#exit'
 
   #get 'shop_id', to: 'users#shop_id'
+  get 'shop/profile/:id', to: 'shops#profile';
 
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'
@@ -52,8 +52,6 @@ Rails.application.routes.draw do
   post  'cart/quantity/:id/:quantity', to: 'cart#change_quantity'
   post 'wish/add/:id/', to: 'wishes#add'
   get  'wish/delete/:id/', to: 'wishes#delete'
-
-
 
   #post 'cart/:id/quantity/', to: 'cart#change_quantity'
   get 'cart', to: 'cart#index', as: :cart_index
