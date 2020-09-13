@@ -21,5 +21,20 @@ $(document).on('turbolinks:load', function () {
                 });
             });
         });
+
+        //order menu functionality
+        ShowOrder = function(el){
+            el.parentNode.classList.toggle('active');
+            let arrow_list = el.querySelector('.inf_btn i').classList;
+            if(arrow_list.contains('ti-angle-down')){
+                arrow_list.remove('ti-angle-down');
+                arrow_list.add('ti-angle-up');
+            } else{
+                arrow_list.remove('ti-angle-up');
+                arrow_list.add('ti-angle-down');
+            }
+        }
+
+        
     }
 })

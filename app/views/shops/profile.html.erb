@@ -55,26 +55,720 @@
                 </tbody>
               </table>
               </div>
+
               <div class = "option">
-              <table>
-                <div class = "desription">
-                <h3>Адреса</h3>
+                <div class = "orders_header">
+                  <div class = "number">
+                      №
+                  </div>
+                  <div class = "customer_name">
+                      Имя заказчика
+                  </div>
+                  <div class = "order_date">
+                      Дата
+                  </div>
+                  <div class = "total_amount">
+                      Сумма
+                  </div>
+                  <div class = "tel">
+                      Моб. телефон  
+                  </div>
                 </div>
-                <tbody>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Комсомольская 134, ТЦ Мармелад (3 этаж)</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">ул. Петровкая 12, Рынок "Радуга"</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Красноармейскаб пер. 17, Сэконд-хенд "Голубушка"</td>
-								  </tr>
-                  <tr>
-								    <td class="column1">Сэконawdaowkjdpoawjdop a;wdmo awd,lp д-хенд "Голубушка", г. Таганрог, ул. Красноармейскаб пер. 17</td>
-								  </tr>
-                </tbody>
-              </table>
+                <div class = "orders_container">
+
+                  <div class = "order">
+                    <div class = "title" onclick = "ShowOrder(this)">
+                      <div class = "number">
+                        1.
+                      </div>
+                      <div class = "customer_name">
+                        Константин Всеволод
+                      </div>
+                      <div class = "order_date">
+                        14:34 12.09.2020
+                      </div>
+                      <div class = "total_amount">
+                        1234.4₽
+                      </div>
+                      <div class = "tel">
+                        8(878)243-34-32  
+                      </div>
+                      <div class = "inf_btn">
+                        Подробнее
+                        <i class="ti-angle-down"></i>
+                      </div>
+                    </div>
+                    <div class = "inner_info">
+                      <div class = "wrapper">
+
+                        <div class = "description">
+                          <h3>Информация о заказчике</h3>
+                        </div>
+                        <div class = "main_info">
+                          <div>
+                            <p>Ф.И.О.</p>
+                          </div>
+                          <div class = "content">
+                            Всеволод Константин Сергеевич
+                          </div>
+                          <div>
+                            <p>Моб. телефон</p>
+                          </div>
+                          <div class = "content">
+                            88005553535
+                          </div>
+                          <div>
+                            <p>Адрес</p>
+                          </div>
+                          <div class = "content">
+                            ул. Воронина, д. 12, г. Ростов-на-Дону
+                          </div>
+                        </div>
+
+                        <div class = "description">
+                          <h3>Список товаров заказа</h3>
+                        </div>
+
+                        <div class = "items_header">
+                          <div>
+                            Товар
+                          </div>
+                          <div>
+                            Описание
+                          </div>
+                          <div>
+                            Цена
+                          </div>
+                          <div>
+                            Количество
+                          </div>
+                          <div>
+                            Подытог
+                          </div>
+                        </div>
+                        <div class = "items_container">
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+                          
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class = "items_footer">
+                          <div class = "total_name">
+                            Итого
+                          </div>
+                          <div class = "total">
+                            1233.4₽
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class = "order">
+                    <div class = "title" onclick = "ShowOrder(this)">
+                      <div class = "number">
+                        2.
+                      </div>
+                      <div class = "customer_name">
+                        Константин Всеволод
+                      </div>
+                      <div class = "order_date">
+                        14:34 12.09.2020
+                      </div>
+                      <div class = "total_amount">
+                        1234.4₽
+                      </div>
+                      <div class = "tel">
+                        8(878)243-34-32  
+                      </div>
+                      <div class = "inf_btn">
+                        Подробнее
+                        <i class="ti-angle-down"></i>
+                      </div>
+                    </div>
+                    <div class = "inner_info">
+                      <div class = "wrapper">
+
+                        <div class = "description">
+                          <h3>Информация о заказчике</h3>
+                        </div>
+                        <div class = "main_info">
+                          <div>
+                            <p>Ф.И.О.</p>
+                          </div>
+                          <div class = "content">
+                            Всеволод Константин Сергеевич
+                          </div>
+                          <div>
+                            <p>Моб. телефон</p>
+                          </div>
+                          <div class = "content">
+                            88005553535
+                          </div>
+                          <div>
+                            <p>Адрес</p>
+                          </div>
+                          <div class = "content">
+                            ул. Воронина, д. 12, г. Ростов-на-Дону
+                          </div>
+                        </div>
+
+                        <div class = "description">
+                          <h3>Список товаров заказа</h3>
+                        </div>
+
+                        <div class = "items_header">
+                          <div>
+                            Товар
+                          </div>
+                          <div>
+                            Описание
+                          </div>
+                          <div>
+                            Цена
+                          </div>
+                          <div>
+                            Количество
+                          </div>
+                          <div>
+                            Подытог
+                          </div>
+                        </div>
+                        <div class = "items_container">
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+                          
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class = "items_footer">
+                          <div class = "total_name">
+                            Итого
+                          </div>
+                          <div class = "total">
+                            1233.4₽
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class = "order">
+                    <div class = "title" onclick = "ShowOrder(this)">
+                      <div class = "number">
+                        3.
+                      </div>
+                      <div class = "customer_name">
+                        Константин Всеволод
+                      </div>
+                      <div class = "order_date">
+                        14:34 12.09.2020
+                      </div>
+                      <div class = "total_amount">
+                        1234.4₽
+                      </div>
+                      <div class = "tel">
+                        8(878)243-34-32  
+                      </div>
+                      <div class = "inf_btn">
+                        Подробнее
+                        <i class="ti-angle-down"></i>
+                      </div>
+                    </div>
+                    <div class = "inner_info">
+                      <div class = "wrapper">
+
+                        <div class = "description">
+                          <h3>Информация о заказчике</h3>
+                        </div>
+                        <div class = "main_info">
+                          <div>
+                            <p>Ф.И.О.</p>
+                          </div>
+                          <div class = "content">
+                            Всеволод Константин Сергеевич
+                          </div>
+                          <div>
+                            <p>Моб. телефон</p>
+                          </div>
+                          <div class = "content">
+                            88005553535
+                          </div>
+                          <div>
+                            <p>Адрес</p>
+                          </div>
+                          <div class = "content">
+                            ул. Воронина, д. 12, г. Ростов-на-Дону
+                          </div>
+                        </div>
+
+                        <div class = "description">
+                          <h3>Список товаров заказа</h3>
+                        </div>
+
+                        <div class = "items_header">
+                          <div>
+                            Товар
+                          </div>
+                          <div>
+                            Описание
+                          </div>
+                          <div>
+                            Цена
+                          </div>
+                          <div>
+                            Количество
+                          </div>
+                          <div>
+                            Подытог
+                          </div>
+                        </div>
+                        <div class = "items_container">
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+                          
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class = "items_footer">
+                          <div class = "total_name">
+                            Итого
+                          </div>
+                          <div class = "total">
+                            1233.4₽
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class = "order">
+                    <div class = "title" onclick = "ShowOrder(this)">
+                      <div class = "number">
+                        4.
+                      </div>
+                      <div class = "customer_name">
+                        Константин Всеволод
+                      </div>
+                      <div class = "order_date">
+                        14:34 12.09.2020
+                      </div>
+                      <div class = "total_amount">
+                        1234.4₽
+                      </div>
+                      <div class = "tel">
+                        8(878)243-34-32  
+                      </div>
+                      <div class = "inf_btn">
+                        Подробнее
+                        <i class="ti-angle-down"></i>
+                      </div>
+                    </div>
+                    <div class = "inner_info">
+                      <div class = "wrapper">
+
+                        <div class = "description">
+                          <h3>Информация о заказчике</h3>
+                        </div>
+                        <div class = "main_info">
+                          <div>
+                            <p>Ф.И.О.</p>
+                          </div>
+                          <div class = "content">
+                            Всеволод Константин Сергеевич
+                          </div>
+                          <div>
+                            <p>Моб. телефон</p>
+                          </div>
+                          <div class = "content">
+                            88005553535
+                          </div>
+                          <div>
+                            <p>Адрес</p>
+                          </div>
+                          <div class = "content">
+                            ул. Воронина, д. 12, г. Ростов-на-Дону
+                          </div>
+                        </div>
+
+                        <div class = "description">
+                          <h3>Список товаров заказа</h3>
+                        </div>
+
+                        <div class = "items_header">
+                          <div>
+                            Товар
+                          </div>
+                          <div>
+                            Описание
+                          </div>
+                          <div>
+                            Цена
+                          </div>
+                          <div>
+                            Количество
+                          </div>
+                          <div>
+                            Подытог
+                          </div>
+                        </div>
+                        <div class = "items_container">
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+                          
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                          <div class = "item">
+                            <div class = "image">
+                              <img src="https://via.placeholder.com/70x70">
+                            </div>
+                            <div class = "des">
+                              <p class = "product-name">Товар 1</p>
+                              <p class = "product-des">Some beutiful gooawd awd awd awddd dfedf fefe w awdd awd awdd ds</p>
+                            </div>
+                            <div class = "price">
+                              <p>4.3₽</p>
+                            </div>
+                            <div class = "qty">
+                              <p>24</p>
+                            </div>
+                            <div class = "sub-total">
+                              134,2₽
+                            </div>
+
+                            <div class = "price_name">
+                              Цена
+                            </div>
+                            <div class = "qty_name">
+                              Количество
+                            </div>
+                            <div class = "sub-total_name">
+                              Подытог
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class = "items_footer">
+                          <div class = "total_name">
+                            Итого
+                          </div>
+                          <div class = "total">
+                            1233.4₽
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
               <div class = "option">
               </div>

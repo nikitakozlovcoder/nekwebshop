@@ -629,3 +629,361 @@ section.restore {
 .wishlist .delete a:hover > i, .shopping-cart .shopping-summery .action span:hover > i {
   color: #F7941D;
 }
+
+//shop profile control orders start
+.shops.profile .orders_header{
+  font-weight: 700;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 5% 25% 15% 20% 20% 120px;
+  background: #F6F7FB;
+  box-shadow: 0px 2px 15px #0000002f;
+  padding: 10px;
+}
+.shops.profile .orders_header div{
+  text-align: center;
+}
+
+.shops.profile .orders_container{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 13px 0px #0000001a;
+}
+
+.shops.profile .orders_container .order:nth-child(even){
+  background-color: #f5f5f5;
+}
+
+.shops.profile .orders_container .order .title{
+  cursor: pointer;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 5% 25% 15% 20% 20% 120px; 
+  padding: 12px;
+  grid-template-areas: "num name date total tel inf";
+}
+.shops.profile .orders_container .order .title > div{
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin: auto;
+}
+
+.shops.profile .number {
+  margin-right: 0px;
+}
+
+.shops.profile .orders_container .order .title .number{
+  text-align: left;
+  grid-area: num;
+}
+
+.shops.profile .orders_container .order .title .customer_name{
+  grid-area: name;
+}
+
+.shops.profile .orders_container .order .title .order_date{
+  grid-area: date;
+}
+
+.shops.profile .orders_container .order .title .total_amount{
+  font-weight: 700;
+  grid-area: total;
+}
+
+.shops.profile .orders_container .order .title .tel{
+  grid-area: tel;
+}
+
+.shops.profile .orders_container .order .title .inf_btn{
+  margin-right: 10px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  grid-area: inf;
+}
+
+.shops.profile .orders_container .order .title .inf_btn i{
+  margin-left: 6px;
+}
+
+.shops.profile .orders_container .order .title:hover {
+  background-color: #f5f5f5;
+}
+
+.shops.profile .orders_container .order .title:hover .inf_btn{
+  color:#F6971C;
+}
+
+.shops.profile .orders_container .order .inner_info{
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.4s ease, opacity 0.5s ease;
+  -moz-transition: max-height 0.4s ease, opacity 0.5s ease;
+  transition: max-height 0.4s ease, opacity 0.5s ease;
+}
+
+.shops.profile .orders_container .order.active .inner_info{
+
+  max-height: 1200px;
+  height: 100%;
+  opacity: 1;
+  -webkit-transition: max-height 1s ease, opacity 0.5s ease;
+  -moz-transition: max-height 1s ease, opacity 0.5s ease;
+  transition: max-height 1s ease, opacity 0.5s ease;
+}
+
+
+.shops.profile .order .inner_info .wrapper{
+  padding: 20px 20px 20px 40px;
+}
+
+.shops.profile .order .inner_info .description{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.shops.profile .order .inner_info .description h3{
+  font-size: 24px;
+}
+.shops.profile .order .inner_info .main_info{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  font-size: 21px;
+}
+
+.shops.profile .order .inner_info .main_info > div{
+  margin-bottom: 12px;
+}
+
+.shops.profile .order .inner_info .main_info .content{
+  color:#282828;
+  font-weight: 700;
+}
+
+.shops.profile .order .inner_info .items_header,
+.shops.profile .order .inner_info .items_footer
+{
+  display: grid;
+  grid-template-columns: 80px 1fr 130px 110px 350px;
+
+  color: #fff;
+  background: #333;
+  font-weight: 600;
+  border-radius: 10px 10px 0px 0px;
+  padding: 5px;
+  text-align: center;
+}
+.shops.profile .order .inner_info .items_footer{
+  grid-template-areas: "empty empty empty total_name total";
+  border-radius: 0px 0px 10px 10px;
+}
+.shops.profile .order .inner_info .items_footer .total_name{
+  grid-area: total_name;
+}
+.shops.profile .order .inner_info .items_footer .total{
+  grid-area: total;
+}
+
+.shops.profile .order .inner_info .items_container{
+  display: flex;
+  flex-direction: column;
+}
+
+.shops.profile .order .inner_info .items_header.scrollable {
+  grid-template-columns: 80px 1fr 140px 90px 380px;
+}
+
+.shops.profile .order .inner_info .items_header.scrollable ~ .items_container{
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.shops.profile .order .inner_info .items_container .item{
+  display: grid;
+  grid-template-columns: 90px 1fr 120px 120px 340px;
+  grid-template-areas: "img des price qty sub-total";
+  padding: 10px;
+  background-color: #fff;
+  align-items: center;
+}
+
+.order .inner_info .items_container .item .image{
+  grid-area: img;
+}
+.order .inner_info .items_container .item .des{
+  grid-area: des;
+}
+.order .inner_info .items_container .item .price{
+  grid-area: price;
+}
+.order .inner_info .items_container .item .qty{
+  grid-area: qty;
+}
+.order .inner_info .items_container .item .sub-total{
+  grid-area: sub-total;
+}
+
+.order .inner_info .items_container .item .image img{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.order .inner_info .items_container .item .price,
+.order .inner_info .items_container .item .qty,
+.order .inner_info .items_container .item .sub-total
+{
+  text-align: center;
+}
+
+.order .inner_info .items_container .item .price_name,
+.order .inner_info .items_container .item .qty_name,
+.order .inner_info .items_container .item .sub-total_name{
+  display: none;
+}
+
+.order .inner_info .items_container .item .price_name{
+  grid-area: price_name;
+}
+.order .inner_info .items_container .item .qty_name{
+  grid-area: qty_name;
+}
+.order .inner_info .items_container .item .sub-total_name{
+  grid-area: sub-total_name;
+}
+
+.order .inner_info .items_container .item .sub-total
+{
+  font-weight: 700;
+}
+
+.shops.profile .order .inner_info .items_container .item .des .product-name{
+  color: #282828;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+//shop control orders addaptivity
+@media (max-width: 950px){
+  .shops.profile .orders_header{
+    display: none;
+  }
+  .shops.profile .orders_container .order .title{
+    grid-template-columns: 5% 1fr 250px;
+    grid-template-rows: repeat(4, 30px);
+    grid-template-areas: 
+            "num name inf"
+            "num tel inf"
+            "num date inf"
+            "num total inf";
+  }
+
+  .shops.profile .orders_container .order .title > div{
+    margin-left: 0px;
+  }
+
+  .shops.profile .order .inner_info .items_container .item{
+    grid-template-columns: 90px 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: 
+        "img des des"
+        "empty  price_name price"
+        "empty qty_name  qty"
+        "empty sub-total_name sub-total";
+  }
+
+  .order .inner_info .items_container .item .price,
+  .order .inner_info .items_container .item .qty,
+  .order .inner_info .items_container .item .sub-total,
+  .shops.profile .order .inner_info .items_footer .total
+  {
+    text-align: start;
+  }
+
+  .order .inner_info .items_container .item .price_name,
+  .order .inner_info .items_container .item .qty_name,
+  .order .inner_info .items_container .item .sub-total_name,
+  .shops.profile .order .inner_info .items_footer .total_name
+  {
+    display: block;
+    text-align: end;
+    margin-right: 20px;
+  }
+
+  .shops.profile .order .inner_info .items_footer{
+    grid-template-columns: 90px 1fr 1fr;
+    grid-template-areas: "emtpy total_name total";
+  }
+
+  .shops.profile .order .inner_info .items_header{
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .shops.profile .order .inner_info .items_header > div{
+    display: none;
+  }
+}
+
+@media (max-width: 750px){
+  .shops.profile .order .inner_info .main_info{
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 600px){
+  .shops.profile .orders_container .order .title{
+    grid-template-columns: 25px 1fr 150px;
+  }
+
+  .shops.profile .order .inner_info .main_info{
+    grid-template-columns: 1fr;
+  }
+
+  .shops.profile .order .inner_info .main_info > div{
+    margin-bottom: 6px;
+  }
+
+  .shops.profile .order .inner_info .wrapper{
+    padding: 20px;
+  }
+
+  .shops.profile .order .inner_info .items_container .item{
+    grid-template-columns: 90px 1fr;
+    grid-template-areas: 
+        "img des "
+        "price_name price"
+        "qty_name  qty"
+        "sub-total_name sub-total";
+  }
+  .shops.profile .order .inner_info .items_footer{
+    grid-template-columns: 90px 1fr;
+    grid-template-areas: "total_name total";
+  }
+
+  .shops.profile .order .inner_info .items_container .item .image,
+  .shops.profile .order .inner_info .items_container .item .des
+  {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 500px){
+  .shops.profile .orders_container .order .title {
+    grid-template-columns: 25px 1fr;
+    grid-template-areas: 
+        "num name"
+        "num tel"
+        "num date"
+        "num total"
+        "num inf";
+  }
+  .shops.profile .order .inner_info .description h3{
+    font-size: 20px;
+    text-align: center;
+  }
+  .shops.profile .order .inner_info .wrapper{
+    padding: 10px;
+  }
+}
+// end
