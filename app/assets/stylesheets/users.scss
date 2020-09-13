@@ -719,9 +719,9 @@ section.restore {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  -webkit-transition: max-height 0.4s ease, opacity 0.5s ease;
-  -moz-transition: max-height 0.4s ease, opacity 0.5s ease;
-  transition: max-height 0.4s ease, opacity 0.5s ease;
+  -webkit-transition: max-height 0.6s ease, opacity 0.5s ease;
+  -moz-transition: max-height 0.6s ease, opacity 0.5s ease;
+  transition: max-height 0.6s ease, opacity 0.5s ease;
 }
 
 .shops.profile .orders_container .order.active .inner_info{
@@ -729,9 +729,6 @@ section.restore {
   max-height: 1200px;
   height: 100%;
   opacity: 1;
-  -webkit-transition: max-height 1s ease, opacity 0.5s ease;
-  -moz-transition: max-height 1s ease, opacity 0.5s ease;
-  transition: max-height 1s ease, opacity 0.5s ease;
 }
 
 
