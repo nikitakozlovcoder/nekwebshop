@@ -50,6 +50,11 @@
 	                    <input name="phone" type="tel" placeholder="" required>
 	                    <div class="error-list"></div>
 	              </div>
+	              <div class="form-group Text" data-min="5" data-max="50">
+                    <label>Добавить ИНН<span>*</span></label>
+                    <input name="inn" type="text" placeholder="" value="">
+                    <div class="error-list"></div>
+                  </div>
 	              <div class="form-group img-preloader Image">
                     <div class="label-container">
                       <label for = "main_image" class = "btn">Обновить изображение...</label>
@@ -63,14 +68,7 @@
                     <textarea name=""  placeholder="" required minlength="20" maxlength="2000"></textarea>
                     <div class="error-list"></div>
                   </div>
-                  <div class="title">
-		              <h4>Добавить данные</h4>
-		           </div>
-                  <div class="form-group Text" data-min="5" data-max="50">
-                    <label>Добавить ИНН<span>*</span></label>
-                    <input name="inn" type="text" placeholder="" value="">
-                    <div class="error-list"></div>
-                  </div>
+                  
                  
                   
 
@@ -93,10 +91,35 @@
                     <div class="error-list"></div>
                   </div>
                 </div>-->
+                <div style="padding: 0 15px">
+                	<table>
+                <div class = "desription">
+                <h3>Адреса</h3>
+                </div>
+                <tbody>
+                  <tr>
+									  <td class="column1">г. Таганрог, ул. Комсомольская 134, ТЦ Мармелад (3 этаж)</td>
+								  </tr>
+                  <tr>
+									  <td class="column1">ул. Петровкая 12, Рынок "Радуга"</td>
+								  </tr>
+                  <tr>
+									  <td class="column1">г. Таганрог, ул. Красноармейскаб пер. 17, Сэконд-хенд "Голубушка"</td>
+								  </tr>
+                  <tr>
+								    <td class="column1">Сэконawdaowkjdpoawjdop a;wdmo awd,lp д-хенд "Голубушка", г. Таганрог, ул. Красноармейскаб пер. 17</td>
+								  </tr>
+                </tbody>
+              </table>
+                </div>
                 <div class="col-12">
                   <div id="locationField" class="form-group">
 	                <label>Добавить новую торговую точку <span>*</span></label>
-	                <input type="search" id="address-input" />
+	                <div style="display: flex; align-items: center;">
+	                	<input type="search" id="address-input" />
+	                	<i class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px"></i>
+	                </div>
+	                
 	                <p>Выбрано: <strong id="address-value">---</strong></p>
 	              </div>
 	              <div style="display: none">
