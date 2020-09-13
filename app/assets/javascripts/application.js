@@ -26,6 +26,7 @@
 //= require page_specific/products.js
 //= require page_specific/shops_new.js
 //= require page_specific/profile.js
+//= require page_specific/shop_profile.js
 //= require turbolinks
 //= require ion.rangeSlider.min.js
 

@@ -248,7 +248,7 @@
           <div class="search-bar-top">
             <div class="search-bar">
 
-             <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get",:html => { style: 'display: inline-flex'} do %>
+             <%= form_with :url => url_for(controller:'products', action: 'index'), method: "get",:html => { style: 'display: inline-flex; width: 100%; padding-right: 58px;'} do %>
                 <!--<select onchange="">
                   <option <%= !params[:category_id] ? 'selected' : '' %> value="">Все категории</option>
                   <% all_categories.roots.each  do |el| %>
@@ -259,7 +259,7 @@
                   <% end %>
                 </select>-->
 
-                <input name="search" placeholder="Поиск товаров....." type="search" value="<%= params[:search] %>">
+                <input name="search" style="width: 100%" placeholder="Поиск товаров....." type="search" value="<%= params[:search] %>">
                 <button class="btnn"><i class="ti-search"></i></button>
 
               <% end %>
