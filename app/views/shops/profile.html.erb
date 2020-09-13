@@ -9,51 +9,164 @@
             <div class = "container-body">
 
               <div class = "option show">
-              <div class = "desription">
-                <h3>Описание</h3>
-                Некотрое описание магазина. Некотрое описание магазина.
-                Некотрое описание магазина. Некотрое описание магазина.
-              </div>
-              <div class = "desription">
-                <h3>Владелец</h3>
-                Иванов Иван Иваныч
-              </div>
-              <div class = "desription">
-                <h3>Контактная информация</h3>
-              </div>
-              <table>
-                <tbody>
-                  <tr>
-								    <td class="column1">Моб. телефон</td>
-									  <td class="column2">88005553535</td>
-								  </tr>
-                  <tr>
-								    <td class="column1">Эл. почта</td>
-									  <td class="column2">example@gmail.com</td>
-								  </tr>
-                  <tr>
-                    <!-- Если есть -->
-                    <td class="column1">ИНН</td>
-                    <td class="column2"><a href = "https://egrul.nalog.ru/index.html">823186817531</a> <a href = "https://egrul.nalog.ru/index.html" class = "hidden">Проверить на сайте ИФНС?</a></td>
-                  </tr>
-                  <tr>
-                    <td class="column1">Соц. сети</td>
-                    <td class="column2"></td>
-                  </tr>
-                  <tr class = "sub">
-								    <td class="column1">ВКонтакте</td>
-									  <td class="column2"><a>vk.com/best_seller</a></td>
-								  </tr>
-                  <tr class = "sub">
-								    <td class="column1">WhatsUp</td>
-									  <td class="column2">7 600 154-64-42</td>
-								  </tr>
-                  <tr class = "sub">
-								    <td class="column1">Telegram</td>
-									  <td class="column2"><a>t.me/best_seller</a></td>
-								  </tr>
-                </tbody>
-              </table>
+                <section id="contact-us" class="contact-us section">
+                  <div class="container">
+                    <div class="contact-head">
+                      <div class="row">
+                        <div class = "add_product_section">
+                          <div class="form-main">
+                            <div class="title">
+                              <h3>Редактировать данные магазина</h3>
+                            </div>
+
+
+                            <form class = "form">
+                              <div class="row form_row">
+                                <div class="col-12">
+                                  <div class="error-list">
+
+                                  </div>
+                                  <div class="title">
+                                    <h4>Изменить данные</h4>
+                                  </div>
+
+                                  <div class="form-group Text" data-min="5" data-max="50">
+                                    <label>Изменить название<span>*</span></label>
+                                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
+                                    <div class="error-list"></div>
+                                  </div>
+                                  <div class="form-group Email" data-min="5" data-max="50">
+                                    <label>Новый адрес эл. почты<span>*</span></label>
+                                    <input name="mail" type="email" placeholder="" required value="">
+                                    <div class="error-list"></div>
+                                  </div>
+                                  <div class="form-group Phone" data-min="5" data-max="50">
+                                    <label>Новый номер телефона<span>*</span></label>
+                                    <input name="phone" type="tel" placeholder="" required>
+                                    <div class="error-list"></div>
+                                  </div>
+                                  <div class="form-group Text" data-min="5" data-max="50">
+                                    <label>Добавить ИНН<span>*</span></label>
+                                    <input name="inn" type="text" placeholder="" value="">
+                                    <div class="error-list"></div>
+                                  </div>
+                                  <div class="form-group img-preloader Image">
+                                    <div class="label-container">
+                                      <label for = "main_image" class = "btn">Обновить изображение...</label>
+                                      <input id = "main_image" type="file" accept="image/*" onchange="preview_image(this)" name="main_photo">
+                                      <input name="main_photo_changed" type="text" value = "No">
+                                      <div class="error-list"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group LongText" data-min="10" data-max="2000">
+                                    <label>Изменить описание<span>*</span></label>
+                                    <textarea name=""  placeholder="" required minlength="20" maxlength="2000"></textarea>
+                                    <div class="error-list"></div>
+                                  </div>
+
+
+
+
+
+                                </div>
+
+                                <!--<div class="col-12 col-lg-6">
+                                  <div class="form-group Number form-group-quantity" data-min="0" data-max="">
+                                    <label>Количество товаров<span>*</span></label>
+
+                                    <input name="quantity" type="number" placeholder="" value="" class="inp_quantity">
+                                    <div class="error-list"></div>
+                                  </div>
+
+                                    <label>Product Category<span>*</span></label>
+                                    <p style="display: flex" >
+
+
+                                    </p>
+                                    <div class="error-list"></div>
+                                  </div>
+                                </div>-->
+                                <div style="padding: 0 15px">
+                                  <table>
+                                    <div class = "desription">
+                                      <h3>Адреса</h3>
+                                    </div>
+                                    <tbody>
+                                    <tr>
+                                      <td class="column1">г. Таганрог, ул. Комсомольская 134, ТЦ Мармелад (3 этаж)</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="column1">ул. Петровкая 12, Рынок "Радуга"</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="column1">г. Таганрог, ул. Красноармейскаб пер. 17, Сэконд-хенд "Голубушка"</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="column1">Сэконawdaowkjdpoawjdop a;wdmo awd,lp д-хенд "Голубушка", г. Таганрог, ул. Красноармейскаб пер. 17</td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <div class="col-12">
+                                  <div id="locationField" class="form-group">
+                                    <label>Добавить новую торговую точку <span>*</span></label>
+                                    <div style="display: flex; align-items: center;">
+                                      <input type="search" id="address-input" />
+                                      <i class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px"></i>
+                                    </div>
+
+                                    <p>Выбрано: <strong id="address-value">---</strong></p>
+                                  </div>
+                                  <div style="display: none">
+                                    <input name="street" class="field" id="form-street"/>
+                                    <input name="city" class="field" id="form-city" />
+                                    <input name="state" class="field" id="form-administrative" />
+                                    <input name="zip" class="field" id="form-zip" />
+                                    <input name="country" class="field" id="form-country" />
+                                    <input name="county" class="field" id="form-county" />
+                                    <input name="suburb" class="field" id="form-suburb"/>
+                                  </div>
+
+
+                                  <div class="title">
+                                    <h4>Добавить социальные сети</h4>
+                                  </div>
+
+                                  <div class="form-group Text" data-min="5" data-max="50">
+                                    <label>Вконтакте<span>*</span></label>
+                                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
+                                    <div class="error-list"></div>
+                                  </div>
+                                  <div class="form-group Text" data-min="5" data-max="50">
+                                    <label>WhatsUp<span>*</span></label>
+                                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
+                                    <div class="error-list"></div>
+                                  </div>
+                                  <div class="form-group Text" data-min="5" data-max="50">
+                                    <label>Telegram<span>*</span></label>
+                                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
+                                    <div class="error-list"></div>
+                                  </div>
+                                </div>
+
+
+
+                                <div class="col-12">
+                                  <div class="form-group button">
+                                    <button type="submit" class="btn ">Отправить</button>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
 
               <div class = "option">
@@ -777,235 +890,7 @@
           </div>
 
 
-<div class="col-12">
-        <div class="right-shop-inform">s
-
-          <div class ="choice-container">
-            <div class ="container-header">
-              <div class = "option active">О магазине</div>
-              <div class = "option">Точки продаж</div>
-              <div class = "option">Статистика</div>
-              <div class = "hidden" data-last = "0"></div>
-            </div>
-            <div class = "container-body">
-
-              <div class = "option show">
-              	<section id="contact-us" class="contact-us section">
-  <div class="container">
-    <div class="contact-head">
-      <div class="row">
-        <div class = "add_product_section">
-          <div class="form-main">
-            <div class="title">
-              <h3>Редактировать данные магазина</h3>
-            </div>
-
-
-			<form class = "form">
-              <div class="row form_row">
-                <div class="col-12">
-                  <div class="error-list">
-                    
-                  </div>
-                  <div class="title">
-		              <h4>Изменить данные</h4>
-		            </div>
-
-                  <div class="form-group Text" data-min="5" data-max="50">
-                    <label>Изменить название<span>*</span></label>
-                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
-                    <div class="error-list"></div>
-                  </div>
-                  <div class="form-group Email" data-min="5" data-max="50">
-	                    <label>Новый адрес эл. почты<span>*</span></label>
-	                    <input name="mail" type="email" placeholder="" required value="">
-	                    <div class="error-list"></div>
-	              </div>
-	              <div class="form-group Phone" data-min="5" data-max="50">
-	                    <label>Новый номер телефона<span>*</span></label>
-	                    <input name="phone" type="tel" placeholder="" required>
-	                    <div class="error-list"></div>
-	              </div>
-	              <div class="form-group Text" data-min="5" data-max="50">
-                    <label>Добавить ИНН<span>*</span></label>
-                    <input name="inn" type="text" placeholder="" value="">
-                    <div class="error-list"></div>
-                  </div>
-	              <div class="form-group img-preloader Image">
-                    <div class="label-container">
-                      <label for = "main_image" class = "btn">Обновить изображение...</label>
-                      <input id = "main_image" type="file" accept="image/*" onchange="preview_image(this)" name="main_photo">
-                      <input name="main_photo_changed" type="text" value = "No">
-                      <div class="error-list"></div>
-                    </div>
-                  </div>
-                  <div class="form-group LongText" data-min="10" data-max="2000">
-                    <label>Изменить описание<span>*</span></label>
-                    <textarea name=""  placeholder="" required minlength="20" maxlength="2000"></textarea>
-                    <div class="error-list"></div>
-                  </div>
-                  
-                 
-                  
-
-               
-                </div>
-
-                <!--<div class="col-12 col-lg-6">
-                  <div class="form-group Number form-group-quantity" data-min="0" data-max="">
-                    <label>Количество товаров<span>*</span></label>
-
-                    <input name="quantity" type="number" placeholder="" value="" class="inp_quantity">
-                    <div class="error-list"></div>
-                  </div>
-                  
-                    <label>Product Category<span>*</span></label>
-                    <p style="display: flex" >
-                        
-
-                    </p>
-                    <div class="error-list"></div>
-                  </div>
-                </div>-->
-                <div style="padding: 0 15px">
-                	<table>
-                <div class = "desription">
-                <h3>Адреса</h3>
-                </div>
-                <tbody>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Комсомольская 134, ТЦ Мармелад (3 этаж)</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">ул. Петровкая 12, Рынок "Радуга"</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Красноармейскаб пер. 17, Сэконд-хенд "Голубушка"</td>
-								  </tr>
-                  <tr>
-								    <td class="column1">Сэконawdaowkjdpoawjdop a;wdmo awd,lp д-хенд "Голубушка", г. Таганрог, ул. Красноармейскаб пер. 17</td>
-								  </tr>
-                </tbody>
-              </table>
-                </div>
-                <div class="col-12">
-                  <div id="locationField" class="form-group">
-	                <label>Добавить новую торговую точку <span>*</span></label>
-	                <div style="display: flex; align-items: center;">
-	                	<input type="search" id="address-input" />
-	                	<i class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px"></i>
-	                </div>
-	                
-	                <p>Выбрано: <strong id="address-value">---</strong></p>
-	              </div>
-	              <div style="display: none">
-	                <input name="street" class="field" id="form-street"/>
-	                <input name="city" class="field" id="form-city" />
-	                <input name="state" class="field" id="form-administrative" />
-	                <input name="zip" class="field" id="form-zip" />
-	                <input name="country" class="field" id="form-country" />
-	                <input name="county" class="field" id="form-county" />
-	                <input name="suburb" class="field" id="form-suburb"/>
-	              </div>
-                  
-
-                  <div class="title">
-		              <h4>Добавить социальные сети</h4>
-		            </div>
-
-	                <div class="form-group Text" data-min="5" data-max="50">
-	                    <label>Вконтакте<span>*</span></label>
-	                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
-	                    <div class="error-list"></div>
-	                  </div>
-	                  <div class="form-group Text" data-min="5" data-max="50">
-	                    <label>WhatsUp<span>*</span></label>
-	                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
-	                    <div class="error-list"></div>
-	                  </div>
-	                  <div class="form-group Text" data-min="5" data-max="50">
-	                    <label>Telegram<span>*</span></label>
-	                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="">
-	                    <div class="error-list"></div>
-	                  </div>
-                </div>
-
-				
-
-                <div class="col-12">
-                  <div class="form-group button">
-                    <button type="submit" class="btn ">Отправить</button>
-                  </div>
-                </div>
-
-
-              </div>
-          </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-              </div>
-              <div class = "option">
-              <table>
-                <div class = "desription">
-                <h3>Адреса</h3>
-                </div>
-                <tbody>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Комсомольская 134, ТЦ Мармелад (3 этаж)</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">ул. Петровкая 12, Рынок "Радуга"</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Красноармейскаб пер. 17, Сэконд-хенд "Голубушка"</td>
-								  </tr>
-                  <tr>
-								    <td class="column1">Сэконawdaowkjdpoawjdop a;wdmo awd,lp д-хенд "Голубушка", г. Таганрог, ул. Красноармейскаб пер. 17</td>
-								  </tr>
-                </tbody>
-              </table>
-
-              </div>
-              <div class = "option">
-                <table>
-                  <tbody>
-                    <tr>
-								      <td class="column1">Общее количество продаж</td>
-									    <td class="column2 centered">124</td>
-								    </tr>
-                    <tr>
-								      <td class="column1">Количество отзывов пользователей</td>
-									    <td class="column2 centered"></td>
-								    </tr>
-                    <tr class = "sub">
-								      <td class="column1">положительных</td>
-									    <td class="column2 centered"></td>
-								    </tr>
-                    <tr class = "sub">
-								      <td class="column1">отрицательных</td>
-									    <td class="column2 centered"></td>
-								    </tr>
-                    <tr>
-								      <td class="column1">Количество размещнных товаров</td>
-									    <td class="column2 centered"></td>
-								    </tr>
-										
-
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-          </div>
-
-        <!--</div>-->
-      </div>
-      <script>
+<script>
   if ( document.querySelector('#address-input')){
     var placesAutocomplete_register = places({
         appId: 'pl95AIU49SL1',
