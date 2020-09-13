@@ -6,6 +6,10 @@ ru:
   activerecord:
     errors:
       models:
+        shop:
+          attributes:
+            name:
+             taken: 'такое название магазина уже используется'
         post:
           attributes:
             body:

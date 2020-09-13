@@ -741,9 +741,6 @@ tbody tr:hover {
 }
 
 
-.my_shops_list {
-  
-}
 .my_shops_title {
   display: flex;
   justify-content: space-between;
@@ -760,4 +757,8 @@ tbody tr:hover {
 .single-product .product-img .product-action a.active, .single-product .product-img .product-action-2 a.active{
   color: #F6971C;
 
+}
+
+.shops.profile .choice-container{
+  margin: 40px;
 }

@@ -57,13 +57,14 @@ class ShopsController < ApplicationController
       @errors << "Введите полный адрес"
     end
 
-    @shop.address = create_addr
+    @shop.address << create_addr
     @shop.name = params[:name]
     @shop.mail = params[:mail]
     @shop.phone = params[:phone]
     @shop.description = params[:description]
     @shop.main_photo.attach(params[:main_photo])
     @shop.user = current_user
+    @shop.inn = params[:inn]
     if @shop.valid? and @errors.count == 0
       @shop.save
       redirect_to :profile
