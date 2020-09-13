@@ -10,13 +10,30 @@
               <h3>Создать новый магазин</h3>
             </div>
 
-            <form class = "form">
-              
+
+              <%= form_with class: 'form', multipart: true do %>
               <div class="row form_row">
                 <div class="col-12">
+                  <div class="error-list">
+                    <% @errors.each do |msg| %>
+                      <li>
+                        <%= msg %>
+                      </li>
+                    <% end %>
+                    <% @shop.errors.messages.values.each do |msg| %>
+                      <%msg.each do  |m| %>
+                        <li><%= m %></li>
+                      <%end %>
+                    <% end %>
+                  </div>
                   <div class="form-group Text" data-min="5" data-max="50">
                     <label>Название магазина<span>*</span></label>
-                    <input name="name" type="text" placeholder="" value="">
+                    <input name="name" type="text" placeholder=""  required maxlength="25" minlength="5" value="<%= @shop.name %>">
+                    <div class="error-list"></div>
+                  </div>
+                  <div class="form-group Text" data-min="5" data-max="50">
+                    <label>ИНН<span>*</span></label>
+                    <input name="inn" type="text" placeholder="" value="<%= @shop.inn %>">
                     <div class="error-list"></div>
                   </div>
                  <div class="form-group img-preloader Image">
@@ -29,12 +46,12 @@
                   </div>
                   <div class="form-group Email" data-min="5" data-max="50">
 	                    <label>Эл. почта<span>*</span></label>
-	                    <input name="email" type="email" placeholder=""  value="">
+	                    <input name="mail" type="email" placeholder="" required value="<%=  @shop.mail ? @shop.mail : current_user.email %>">
 	                    <div class="error-list"></div>
 	              </div>
 	              <div class="form-group Phone" data-min="5" data-max="50">
 	                    <label>Номер телефона<span>*</span></label>
-	                    <input name="phone" type="tel" placeholder=""  value="" >
+	                    <input name="phone" type="tel" placeholder="" required <%=  @shop.phone ? @shop.phone : current_user.phone %>">
 	                    <div class="error-list"></div>
 	              </div>
 
@@ -74,15 +91,11 @@
 	              </div>
                   <div class="form-group LongText" data-min="10" data-max="2000">
                     <label>Описание<span>*</span></label>
-                    <textarea name="description"  placeholder="" ></textarea>
+                    <textarea name="description"  placeholder="" required minlength="20" maxlength="2000"><%= @shop.description %></textarea>
                     <div class="error-list"></div>
                   </div>
                 </div>
-               
 
-               
-
-               
                 <div class="col-12">
                   <div class="form-group button">
                     <button type="submit" class="btn ">Отправить</button>
@@ -91,7 +104,7 @@
 
 
               </div>
-           </form>
+           <% end %>
           </div>
         </div>
 

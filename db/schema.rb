@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_055837) do
+ActiveRecord::Schema.define(version: 2020_09_13_150257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_055837) do
     t.integer "shop_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
   end
 
   create_table "attributes", force: :cascade do |t|
@@ -158,6 +159,11 @@ ActiveRecord::Schema.define(version: 2020_08_28_055837) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "top_cat", default: "[]"
+    t.string "mail"
+    t.text "description"
+    t.string "phone"
+    t.integer "user_id"
+    t.string "inn"
   end
 
   create_table "users", force: :cascade do |t|
@@ -179,6 +185,9 @@ ActiveRecord::Schema.define(version: 2020_08_28_055837) do
     t.string "restore_code"
     t.datetime "restore_code_task_started"
     t.boolean "confirmed"
+    t.string "email_temp"
+    t.string "email_temp_code"
+    t.datetime "change_code_task_started"
   end
 
   create_table "wishes", force: :cascade do |t|

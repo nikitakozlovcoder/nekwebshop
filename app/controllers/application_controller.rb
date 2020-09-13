@@ -5,19 +5,22 @@ class ApplicationController < ActionController::Base
   helper_method  :is_in_cart
   helper_method  :is_in_wishlist
   helper_method  :cat_count
-  def cat_count qty, id
+  def cat_count qty, id, shop_id
     if !qty or qty == 'yes'
-      Product.where(category_id: id).where("(products.quantity > 0 OR products.is_inf_quantity)").count
+     p =  Product.where(category_id: id).where("(products.quantity > 0 OR products.is_inf_quantity)")
     else
-      Product.where(category_id: id).count
+    p =   Product.where(category_id: id)
     end
-
+    if shop_id != nil
+      p = p.where(shop_id: shop_id)
+    end
+    p.count
   end
   def all_categories
     Category.all
   end
 
-  def show_products(str = nil)
+  def show_products(str = nil, shop_id = nil)
 
     @category = nil
     @data = nil
@@ -98,11 +101,16 @@ class ApplicationController < ActionController::Base
     end
 
       if t
-        @max_price = Product.where(category_id: t).maximum(:price)
-        @min_price = Product.where(category_id: t).minimum(:price)
+        puts "HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        pr = Product.where(category_id: t)
+        pr = pr.where(shop_id: shop_id) if shop_id
+        @max_price = pr.maximum(:price)
+        @min_price = pr.minimum(:price)
       else
-        @max_price = Product.maximum(:price)
-        @min_price = Product.minimum(:price)
+        pr = Product.all
+        pr = pr.where(shop_id: shop_id) if shop_id
+        @max_price = pr.maximum(:price)
+        @min_price = pr.minimum(:price)
       end
     @max_price = 0 if !@max_price
     @min_price = 0 if !@min_price

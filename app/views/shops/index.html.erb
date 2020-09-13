@@ -10,7 +10,12 @@
         <div class="left-shop-inform-container">
           <div class="left-shop-inform">
             <div class="logo-shop">
-              <img class="logo-shop" src="https://via.placeholder.com/200x200" alt="#">
+							<% if @shop.main_photo.attached? %>
+								<%= image_tag @shop.main_photo, class: 'logo-shop' %>
+							<% else %>
+								<%= image_tag url_for('shop.png'), class: 'logo-shop'%>
+							<% end %>
+
             </div>
             <div class="data-shop">
               <div class="name-shop">
@@ -174,5 +179,5 @@
   </div>
 </section>
 
-<%= render partial: './grid.html.erb', locals:{:controller=>'shops'} %>
+<%= render partial: './grid.html.erb', locals:{:controller=>'shops', shop_id: @shop.id} %>
 

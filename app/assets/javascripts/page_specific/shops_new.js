@@ -1,7 +1,7 @@
 
 
 $(document).on('turbolinks:load', function () {
-	if (get_body().classList.contains('shops') && get_body().classList.contains('new')) {
+	if (get_body().classList.contains('shops') && (get_body().classList.contains('new') || get_body().classList.contains('create'))) {
 		 
 
 		

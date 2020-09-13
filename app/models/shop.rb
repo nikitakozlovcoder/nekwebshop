@@ -1,9 +1,12 @@
 class Shop < ApplicationRecord
+  has_one_attached :main_photo
+  has_many :address
   has_many :products
   has_many :orders
   has_many :posts, through: :products
   has_many :categories, through: :products
-  #belongs_to :user
+  belongs_to :user
+  validates :name, uniqueness: true
   def mark
     if self.products.count == 0
        0.0
@@ -35,6 +38,7 @@ class Shop < ApplicationRecord
     self.top_cat = JSON.generate arr[0..3]
     self.save
   end
+
   private
   def get_cat category
       if category.parent.nil? || category.parent.parent.nil?
@@ -42,4 +46,5 @@ class Shop < ApplicationRecord
       end
     return get_cat category.parent
   end
+
 end

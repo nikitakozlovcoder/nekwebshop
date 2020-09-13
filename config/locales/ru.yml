@@ -6,6 +6,10 @@ ru:
   activerecord:
     errors:
       models:
+        shop:
+          attributes:
+            name:
+             taken: 'такое название магазина уже используется'
         post:
           attributes:
             body:
@@ -20,6 +24,7 @@ ru:
             surname:
               blank: 'фамилия не должна быть пустой'
             phone:
+              invalid: 'номер телефона не соответствует формату'
               taken: 'этот номер телефона уже используется'
             email:
               blank: 'введите адрес электронной почты'

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :shops
     has_many :carts
     has_many :wishes
     has_many :orders
@@ -11,6 +12,7 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :surname, presence: true
     validates_uniqueness_of :phone, :allow_nil => true
+    validates_format_of :phone, :with => /\+?[0-9]+/
     validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
     validates_format_of :email_temp, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, if: :should_validate_temp_mail
