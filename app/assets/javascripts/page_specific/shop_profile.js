@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function () {
-    if (get_body().classList.contains('shops')&&get_body().classList.contains('profile')){
+    if (get_body().classList.contains('shops')&& (get_body().classList.contains('profile') || get_body().classList.contains('update'))){
 
 
         function AppendPhoto(container, src) {
@@ -10,10 +10,6 @@ $(document).on('turbolinks:load', function () {
     }
 
     preview_image = function (input) {
-
-        if (input.files) {
-          //get images count
-          var filesCount = input.files.length;
           //get outter_container
           var container = input.parentNode.parentNode;
           //mark that images changed
@@ -23,6 +19,9 @@ $(document).on('turbolinks:load', function () {
           while (elements[0]) {
              elements[0].parentNode.removeChild(elements[0]);
           }
+        if (input.files) {
+            //get images count
+            var filesCount = input.files.length;
           //add images
           for(var i = 0; i<filesCount; i++){
               var reader = new FileReader();

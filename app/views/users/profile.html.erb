@@ -39,6 +39,14 @@
             </section>
           </div>
           <div>
+            <p>Отчество</p>
+            <p class="data"><%= @old_user.third_name %></p>
+            <section class="change name_change">
+              <input name="third_name" type="text" placeholder="" value="<%= @user.third_name %>">
+              <div class="error-list"></div>
+            </section>
+          </div>
+          <div>
             <p>Электронная почта</p>
             <p class="data email_data"><%= @old_user.email %></p>
             <section class="change email_change">
@@ -50,7 +58,7 @@
             <p>Телефон</p>
             <p class="data"><%= @old_user.phone ? @old_user.phone : '---' %></p>
             <section class="change phone_change">
-              <input name="phone" type="text" placeholder="" value="<%= @user.phone ? @user.phone : '---' %>">
+              <input name="phone" type="text" placeholder="---" value="<%= @user.phone ? @user.phone : '' %>">
               <div class="error-list"></div>
             </section>
           </div>
@@ -116,8 +124,8 @@
             </div>
           </div>
         <% end %>
-        <a href="#">Удалить аккаунт</a>
-        <a href="#">Выйти</a>
+      <!--  <a href="#">Удалить аккаунт</a>
+        <a href="#">Выйти</a> -->
       </div>
       <div class = "my_shops_list">
         <div class = "my_shops_title">
@@ -130,7 +138,7 @@
       <div class="list-shops">
         <div>
           <ul class="shop-list">
-            <% @shops.each do |shop| %>
+            <% @user.shops.each do |shop| %>
             <li>
               <div class="shop-inform">
                 <div class="shop-image">
@@ -145,7 +153,11 @@
                   <p class="descr"> <%= shop.description %></p>
                 </div>
               </div>
-              <div class="link-settings"><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
+              <div class="link-settings">
+                <%= link_to({controller: 'shops', action: 'profile', id: shop.id}, {class: 'edit-shop'} ) do%>
+                  Редактировать<i class="ti-settings remove-icon"></i>
+                <% end %>
+              </div>
             </li>
             <% end %>
           </ul>

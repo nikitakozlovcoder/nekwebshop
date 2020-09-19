@@ -517,7 +517,7 @@ tbody tr:hover {
 }
 
 .left-shop-inform_second {
-  padding-left: 10px;
+  //padding-left: 10px;
 }
 .single_shop_container {
   margin-top: 10px;
@@ -759,6 +759,6 @@ tbody tr:hover {
 
 }
 
-.shops.profile .choice-container{
+.shops.profile .choice-container, .shops.update .choice-container{
   margin: 40px;
 }
