@@ -5,21 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Category.delete_all
-Maker.delete_all
-Shop.delete_all
-Product.delete_all
-Attribute.delete_all
+Category.destroy_all
+Maker.destroy_all
+Shop.destroy_all
+Product.destroy_all
+Attribute.destroy_all
+Wish.destroy_all
+Cart.destroy_all
+Order.destroy_all
+User.destroy_all
 
 
 
-
-Shop.create(name: 'China International')
-Shop.create(name: 'РашнБестБайСторЕвер')
-Shop.create(name: 'Семерочка')
 test_user = User.new(name: 'John', surname: 'Doe', password: '12345678', password_confirmation: '12345678', phone: '88005553535', email: 'john.doe@gmail.com', confirmed: true)
 test_user.restore_date = Time.now.getutc
 test_user.save
+Shop.create(name: 'China International', user_id: test_user.id)
+Shop.create(name: 'РашнБестБайСторЕвер', user_id: test_user.id)
+Shop.create(name: 'Семерочка', user_id: test_user.id)
+
 
 Category.add 'Компьютерные мыши', [
     {:name=> "Разрешение cенсора", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "DPI", is_int: true},

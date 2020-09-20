@@ -32,13 +32,13 @@
                 </ul>
                 <a class="reviews-shop" href="#">Отзывов: <%= @shop.posts.count%></a>
               </div>
-              <div class="location-shop">
+            <!--  <div class="location-shop">
                 <p>Расположение</p>
                 <p class="data">Таганрог</p>
-              </div>
+              </div> -->
               <div class="date-shop">
                 <p>Дата регистрации</p>
-                <p class="data">15.04.2020</p>
+                <p class="data"><%= @shop.created_at.strftime("%d.%m.%Y")  %></p>
               </div>
             </div>
           </div>
@@ -59,12 +59,11 @@
               <div class = "option show">
               <div class = "desription">
                 <h3>Описание</h3>
-                Некотрое описание магазина. Некотрое описание магазина.
-                Некотрое описание магазина. Некотрое описание магазина.
+                <%= @shop.description %>
               </div>
               <div class = "desription">
                 <h3>Владелец</h3>
-                Иванов Иван Иваныч
+                <%= @shop.user.name %> <%= @shop.user.surname %>
               </div>
               <div class = "desription">
                 <h3>Контактная информация</h3>
@@ -73,33 +72,49 @@
                 <tbody>
                   <tr>
 								    <td class="column1">Моб. телефон</td>
-									  <td class="column2">88005553535</td>
+									  <td class="column2"><%= @shop.phone %></td>
 								  </tr>
                   <tr>
 								    <td class="column1">Эл. почта</td>
-									  <td class="column2">example@gmail.com</td>
+									  <td class="column2"><%= @shop.mail %></td>
 								  </tr>
+									<% if !(@shop.inn.blank?) %>
                   <tr>
                     <!-- Если есть -->
                     <td class="column1">ИНН</td>
-                    <td class="column2"><a href = "https://egrul.nalog.ru/index.html">823186817531</a> <a href = "https://egrul.nalog.ru/index.html" class = "hidden">Проверить на сайте ИФНС?</a></td>
+                    <td class="column2"><a href = "https://egrul.nalog.ru/index.html"><%= @shop.inn %></a> <a href = "https://egrul.nalog.ru/index.html" class = "hidden">Проверить на сайте ИФНС?</a></td>
                   </tr>
+									<% end %>
+									<% if !(@shop.vk.blank? && @shop.fb.blank? && @shop.tg.blank? && @shop.wu.blank?) %>
                   <tr>
                     <td class="column1">Соц. сети</td>
                     <td class="column2"></td>
                   </tr>
+									<% end %>
+									<% if !(@shop.vk.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">ВКонтакте</td>
-									  <td class="column2"><a>vk.com/best_seller</a></td>
+									  <td class="column2"><a><%= @shop.vk %></a></td>
 								  </tr>
+									<% end %>
+									<% if !(@shop.wu.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">WhatsUp</td>
-									  <td class="column2">7 600 154-64-42</td>
+									  <td class="column2"><a><%= @shop.wu %></a></td>
 								  </tr>
+									<% end %>
+									<% if !(@shop.tg.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">Telegram</td>
-									  <td class="column2"><a>t.me/best_seller</a></td>
+									  <td class="column2"><a><%= @shop.tg %></a></td>
 								  </tr>
+									<% end %>
+									<% if !(@shop.fb.blank?) %>
+									<tr class = "sub">
+										<td class="column1">Facebook</td>
+										<td class="column2"><a><%= @shop.fb %></a></td>
+									</tr>
+								<% end %>
                 </tbody>
               </table>
               </div>
@@ -128,8 +143,8 @@
                 <table>
                   <tbody>
                     <tr>
-								      <td class="column1">Общее количество продаж</td>
-									    <td class="column2 centered">124</td>
+								      <td class="column1">Общее количество заказов</td>
+									    <td class="column2 centered"><%= @shop.orders.count %></td>
 								    </tr>
                     <tr>
 								      <td class="column1">Количество отзывов пользователей</td>
@@ -148,7 +163,7 @@
 									    <td class="column2 centered"><%= @shop.products.count%></td>
 								    </tr>
 										<% all_categories.roots.each do |cat| %>
-											<% if cat.is_template && (count = Product.where(category_id: cat.id ).where(shop_id: @shop.id).count ) %>
+											<% if cat.is_template && (count = Product.where(category_id: cat.id ).where(shop_id: @shop.id).count != 0 ) %>
 												<tr class = "sub">
 													<td class="column1"><%= cat.name %></td>
 													<td class="column2 centered"><%= count %></td>

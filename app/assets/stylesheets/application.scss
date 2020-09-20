@@ -71,6 +71,8 @@ $color-border: rgba(175, 175, 175, 0.86);
   width: 80px;
   height: 80px;
   object-fit: cover;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 .post_review_ratting{
   cursor: pointer;
@@ -402,7 +404,7 @@ tbody tr:hover {
   display: inline-block;
   padding: 10px;
   margin-bottom: 10px;
-
+  margin-right: 10px;
 }
 .title.inside_title {
   padding-top: 20px;
@@ -410,6 +412,7 @@ tbody tr:hover {
 }
 .reviews {
   width: 100%;
+  margin-top: 25px;
 }
 .set_rating {
   unicode-bidi: bidi-override;
@@ -438,6 +441,7 @@ tbody tr:hover {
 .user_attributes {
   width: 20%;
   text-align: center;
+  padding-right: 10px;
 }
 .single_review {
   padding: 10px;
@@ -452,6 +456,7 @@ tbody tr:hover {
 }
 .review_text {
   margin-top: 20px;
+  margin-bottom: 10px;
   color: #757575;
 }
 .date {
@@ -477,7 +482,6 @@ tbody tr:hover {
     min-width: 100px;
     text-align: center;
     width: 30%;
-    margin-right: 20px;
   }
   .show_main_photo {
     max-height: 300px;
@@ -517,10 +521,10 @@ tbody tr:hover {
 }
 
 .left-shop-inform_second {
-  padding-left: 10px;
+  //padding-left: 10px;
 }
 .single_shop_container {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 //for header maybe (remove gaps)
@@ -738,10 +742,22 @@ tbody tr:hover {
     margin: 0 !important;
     width: 150px;
   }
+  .shop-profile_container{
+    margin: 0 !important;
+  }
+
 }
 
+@media only screen and (max-width: 991px)
+{
 
-.my_shops_title {
+
+  .categories_header_wrap{
+    display: none !important;
+  }
+}
+
+.my_shops_title, .my_orders_title {
   display: flex;
   justify-content: space-between;
   background-color: #F6F7FB;
@@ -759,9 +775,10 @@ tbody tr:hover {
 
 }
 
-.shops.profile .choice-container{
+.shops.profile .choice-container, .shops.update .choice-container{
   margin: 40px;
 }
+
 
 
 .current_photo > img {
@@ -796,3 +813,14 @@ tbody tr:hover {
 .description > p{
   padding-left: 5px;
 }
+
+//promote color fix
+.shop-services.section{
+  background: #F6F7FB !important;
+}
+
+.cart.index .shop-services.section{
+  background: #fff !important;
+}
+
+

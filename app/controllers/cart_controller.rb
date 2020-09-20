@@ -19,27 +19,25 @@ class CartController < ApplicationController
     t.product = cart.product
     t.quantity = cart.quantity
     t.price = cart.product.price
-    t.description = cart.product.price
+    t.description = cart.product.description
     t.title = cart.product.title
     name = cart.product.maker_name
     name2 = cart.product.maker ? cart.product.maker.name : ''
     arr = []
-    arr << {name: 'Производитель', value: name ? name : name2 , hint: ''}
-    arr << {name: 'Категория', value: cart.product.category.name , hint: ''}
+    arr << {name: 'Производитель', value: name ? name : name2 , hint: nil}
+    arr << {name: 'Категория', value: cart.product.category.name , hint: nil}
     cart.product.fields.each do |field|
       if field.type_name == "Number"
         hash={name: field.name, value: field.num , hint: field.hint}
       elsif field.type_name == "Bool"
-        hash={name: field.name, value: field.check , hint: field.hint}
+        hash={name: field.name, value: field.check ? 'Да': 'Нет' , hint: field.hint}
       elsif field.type_name == "Text" || field.type_name == "LongText"
         hash={name: field.name, value: field.text , hint: field.hint}
       end
-
-      arr << hash
-      t.data = JSON.generate arr
-      return t
+      arr << hash  if hash
     end
-
+    t.data = JSON.generate arr
+    return t
   end
   # normal cart table
   def index

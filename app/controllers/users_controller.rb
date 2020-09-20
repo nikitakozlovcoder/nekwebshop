@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
 
     @user = User.find(current_user.id)
-    @shops = @user.shops
     @old_user = @user
 
 
@@ -47,6 +46,7 @@ class UsersController < ApplicationController
     @old_user =  User.find(current_user.id)
     @user.skip_pass = true
     @user.name = params[:name]
+    @user.third_name = params[:third_name]
     @user.email_temp = params[:email]
     @user.surname = params[:surname]
     @user.suburb = params[:suburb]
@@ -258,7 +258,7 @@ class UsersController < ApplicationController
     @success = false
     @errors = []
     #phone: params[:phone].delete("^0-9")
-    @user = User.new(email: params[:email], password_confirmation: params[:pass], name: params[:name], surname: params[:surname])
+    @user = User.new(email: params[:email], password_confirmation: params[:pass], name: params[:name], surname: params[:surname], third_name: params[:third_name])
     @errors << 'адрес электронной почты уже используется, выполните вход или восстановите пароль' if User.find_by(email: @user.email, confirmed: true)
     @user.password = params[:password]
     @user.restore_date = Time.now.getutc

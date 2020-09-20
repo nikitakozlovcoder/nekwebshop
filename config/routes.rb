@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'products/load', to:'products#load'
   get 'blog', to:'posts#index'
   get 'wishlist', to:'wishes#index'
+  get 'orders', to:'users#orders'
   get 'contact', to:'home#contact'
   get 'profile', to:'users#profile'
   post 'profile', to:'users#profile_change'
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
 
   #get 'shop_id', to: 'users#shop_id'
   get 'shop/profile/:id', to: 'shops#profile'
+  post 'shop/profile/:id', to: 'shops#update'
 
 
   get 'seller_profile', to:'users#profile_seller'
