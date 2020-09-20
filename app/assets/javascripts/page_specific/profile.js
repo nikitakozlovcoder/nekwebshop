@@ -52,6 +52,6 @@ $(document).on('turbolinks:load', function () {
            /* document.querySelector('.new_passwd').style.display = "block";
             document.querySelector('.new_passwd_confirm').style.display = "block";
             document.querySelector('.change_user_password').style.display = "none";*/
-        });
+        });        
     }
 })

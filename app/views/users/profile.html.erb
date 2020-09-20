@@ -1,6 +1,20 @@
 
 <%= render partial: './header.html.erb' %>
-
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="bread-inner">
+          <ul class="bread-list">
+            <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <li class="active"><a href="">Профиль</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="section-profile" data-show-main="<%= @errors_main.count > 0 ? 'true' : 'false' %>"
          data-show-password="<%= flash[:errors_password] ? 'true' : 'false' %>">
