@@ -738,9 +738,19 @@ tbody tr:hover {
     margin: 0 !important;
     width: 150px;
   }
+  .shop-profile_container{
+    margin: 0 !important;
+  }
+
 }
 
+@media only screen and (max-width: 991px)
+{
 
+  .categories_header_wrap{
+    display: none !important;
+  }
+}
 .my_shops_title {
   display: flex;
   justify-content: space-between;
@@ -762,3 +772,4 @@ tbody tr:hover {
 .shops.profile .choice-container, .shops.update .choice-container{
   margin: 40px;
 }
+
