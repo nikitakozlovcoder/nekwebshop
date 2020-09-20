@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   get 'exit', to: 'users#exit'
 
   #get 'shop_id', to: 'users#shop_id'
-  get 'shop/profile/:id', to: 'shops#profile';
+  get 'shop/profile/:id', to: 'shops#profile'
+
 
   get 'seller_profile', to:'users#profile_seller'
   get 'shop/:id/add_product', to:'products#new'

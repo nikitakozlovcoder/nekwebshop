@@ -762,3 +762,37 @@ tbody tr:hover {
 .shops.profile .choice-container{
   margin: 40px;
 }
+
+
+.current_photo > img {
+  
+
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+
+}
+
+.current_photo {
+
+}
+
+.inform_profile{
+  display: flex;
+  flex-direction: row;
+}
+
+.user_photo_change {
+  display: none;
+}
+
+@media only screen and (max-width: 455px)
+{
+  .product_title_show {
+    padding: 10px;
+  }
+}
+.description > p{
+  padding-left: 5px;
+}
