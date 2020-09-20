@@ -11,7 +11,7 @@ Shop.destroy_all
 Product.destroy_all
 Attribute.destroy_all
 Wish.destroy_all
-Cart.destroy_all
+Cart.destroy_allws
 Order.destroy_all
 User.destroy_all
 

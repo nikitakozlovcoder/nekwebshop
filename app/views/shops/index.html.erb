@@ -50,7 +50,9 @@
           <div class ="choice-container">
             <div class ="container-header">
               <div class = "option active">О магазине</div>
+							<% if @shop.address.count != 0 %>
               <div class = "option">Точки продаж</div>
+							<% end %>
               <div class = "option">Статистика</div>
               <div class = "hidden" data-last = "0"></div>
             </div>
@@ -118,27 +120,22 @@
                 </tbody>
               </table>
               </div>
-              <div class = "option">
+							<% if @shop.address.count != 0 %>
+              	<div class = "option">
               <table>
                 <div class = "desription">
                 <h3>Адреса</h3>
                 </div>
                 <tbody>
+								<% @shop.address.each do |ad| %>
                   <tr>
-									  <td class="column1">г. Таганрог, ул. Комсомольская 134, ТЦ Мармелад (3 этаж)</td>
+									  <td class="column1"><%= ad.location %></td>
 								  </tr>
-                  <tr>
-									  <td class="column1">ул. Петровкая 12, Рынок "Радуга"</td>
-								  </tr>
-                  <tr>
-									  <td class="column1">г. Таганрог, ул. Красноармейскаб пер. 17, Сэконд-хенд "Голубушка"</td>
-								  </tr>
-                  <tr>
-								    <td class="column1">Сэконawdaowkjdpoawjdop a;wdmo awd,lp д-хенд "Голубушка", г. Таганрог, ул. Красноармейскаб пер. 17</td>
-								  </tr>
+								<% end %>
                 </tbody>
               </table>
               </div>
+							<% end %>
               <div class = "option">
                 <table>
                   <tbody>
