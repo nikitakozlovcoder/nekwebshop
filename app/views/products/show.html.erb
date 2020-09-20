@@ -27,7 +27,12 @@
 
 							<div class = "row form-row" style="padding-left: 10px; padding-right: 10px;">
 								<div class="col-lg-6">
-									<%= image_tag @product.main_photo, :class=>"show_main_photo"%>
+									<%= link_to @product.main_photo, :target => "_blank" do%>
+										<%= image_tag @product.main_photo, :class=>"show_main_photo"%>
+									<% end %>
+									
+									
+
 
 
 									<div class="quickview-ratting-review" style="margin: 15px 0 0">
@@ -150,7 +155,10 @@
 										<%el.files.each do |image| %>
 											<div class="single-product">
 											<div class="product-img">
-												<%= image_tag image, :class=>"default-img show_default_img" %>
+												<%= link_to image, :target => "_blank" do%>
+													<%= image_tag image, :class=>"default-img show_default_img" %>
+												<% end %>
+												
 
 											</div>
 
@@ -227,7 +235,9 @@
 													</div>
 													<div class="review_imgs" style="margin-top: auto;">
 														<% post.images.each do |img| %>
-															<%= image_tag img %>
+														    <%= link_to img, :target => "_blank" do%>
+																<%= image_tag img %>
+															<% end %>
 														<% end %>
 													</div>
 													<div style=" padding-top: 10px">

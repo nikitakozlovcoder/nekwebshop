@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function () {
                 //let carousel_images = document.querySelectorAll('.single-product');
                 //let nav_arrows = document.querySelector('.owl-nav');
             
-           
+                
                 if ((carousel_images.length == 1 && window.screen.width > 500) || (carousel_images.length == 2 && window.screen.width > 768) || (carousel_images.length == 3 && window.screen.width > 1170)) {
                    
                     nav_arrows.style.display = "none";
@@ -138,7 +138,7 @@ $(document).on('turbolinks:load', function () {
         function set_imgs(images) {
             let out = ``;
             images.forEach((el) => {
-                out += `<img src="${el}" style="padding: 2px;">`
+                out += `<a href = "${el}" target = "_blank"><img src="${el}" style="padding: 2px;"></a>`
             });
             return out;
         }
@@ -188,7 +188,10 @@ $(document).on('turbolinks:load', function () {
 													<div class = "reviewer_name">
 														${data.user_name}
 													</div>
-													<img class = "reviewer_photo" src="${data.avatar}">
+                                                    
+                                                        <img class = "reviewer_photo" src="${data.avatar}">
+                                                   
+													
 
 
 													<div class = "view_review_rating">
