@@ -25,7 +25,7 @@
 
 </head>
 <div class="fix-bug"></div>
-<body class="js <%= controller_name %> <%= action_name %> " style="overflow: auto">
+<body class="js <%= controller_name %> <%= action_name %> <%= controller_name == 'shops' and action_name=='update' ? 'profile' : '' %>" style="overflow: auto">
 
 <%= yield %>
 <%= render partial: './footer.html.erb' %>

@@ -521,7 +521,7 @@ tbody tr:hover {
 }
 
 .left-shop-inform_second {
-  padding-left: 10px;
+  //padding-left: 10px;
 }
 .single_shop_container {
   margin-top: 20px;
@@ -742,8 +742,20 @@ tbody tr:hover {
     margin: 0 !important;
     width: 150px;
   }
+  .shop-profile_container{
+    margin: 0 !important;
+  }
+
 }
 
+@media only screen and (max-width: 991px)
+{
+
+
+  .categories_header_wrap{
+    display: none !important;
+  }
+}
 
 .my_shops_title, .my_orders_title {
   display: flex;
@@ -763,9 +775,10 @@ tbody tr:hover {
 
 }
 
-.shops.profile .choice-container{
+.shops.profile .choice-container, .shops.update .choice-container{
   margin: 40px;
 }
+
 
 //promote color fix
 .shop-services.section{
@@ -775,3 +788,4 @@ tbody tr:hover {
 .cart.index .shop-services.section{
   background: #fff !important;
 }
+
