@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
     end
     query << str if str
     if !params[:search].blank?
-      query << "products.title like '%#{params[:search]}%'"
+      query << "lower(products.title) like '%#{params[:search].downcase}%'"
     end
     if params['makers']
       query << 'products.maker_id in (' + params[:makers].join(', ') + ')'

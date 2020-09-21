@@ -199,7 +199,7 @@
           <!-- Top Right -->
           <div class="right-content">
             <ul class="list-main">
-              <li><i class="ti-location-pin"></i> Выбрать локализацию</li>
+             <!-- <li><i class="ti-location-pin"></i> Выбрать локализацию</li> -->
               <% if current_user %>
               <li><i class="ti-alarm-clock"></i> <a href="#">Запланированные покупки</a></li>
               <li><i class="ti-user"></i><%= link_to 'Профиль', controller: 'users', action: 'profile'   %></li>
@@ -244,7 +244,7 @@
           <!--/ End Search Form -->
           <div class="mobile-nav"></div>
         </div>
-        <div class="col-lg-8 col-md-7 col-12">
+        <div class="col-lg-7 col-md-7 col-12">
           <div class="search-bar-top">
             <div class="search-bar">
 
@@ -413,14 +413,20 @@
                     <ul class="nav main-menu menu navbar-nav">
                       <li class="active"><%= link_to 'Домой', :root %></li>
                       <li><%= link_to 'Магазины', :shops %></li>
-                      <li><%= link_to 'Избранное', :wishlist %></li>
-                      <li><a>Магазин<i class="ti-angle-down"></i><span class="new">New</span></a>
+                      <li><%= link_to 'Товары', :products %></li>
+                      <li><%= link_to 'Корзина', :cart_index %></li>
+                      <% if current_user %>
+                        <li><%= link_to 'Избранное', :wishlist %></li>
+                      <% end %>
+
+
+                      <!--<li><a>Магазин<i class="ti-angle-down"></i><span class="new">New</span></a>
                         <ul class="dropdown">
                           <li><%= link_to 'Shop Grid', :products %></li>
                           <li><%= link_to 'Cart', :cart_index %></li>
                           <li><%= link_to 'Checkout', :new_cart %></li>
                         </ul>
-                      </li>
+                      </li>-->
                       <!-- <li><a>Страницы</a></li> -->
                       <!--<li><a>Блог<i class="ti-angle-down"></i></a>
                         <ul class="dropdown">
