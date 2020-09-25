@@ -25,7 +25,7 @@
     <div class="profile-main">
       <h2>Мои данные</h2>
       <div class="inform-profile">
-        <%= form_with class: "form" do %>
+        <%= form_with class: "form", multipart: true do %>
           <% if @mail_change %>
             <li>На указанный адрес отправлена ссылка для подтверждения эл.почты</li>
           <% end %>
@@ -39,7 +39,12 @@
           <div class = "user_photo">
             <div class = "current_photo">
               <p>Ваше фото</p>
-              <img src="https://cdni0.trtworld.com/w960/h540/q75/55878_USA2019AP_1558293073903.jpg">
+              <!--<img src="https://cdni0.trtworld.com/w960/h540/q75/55878_USA2019AP_1558293073903.jpg">-->
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar %>
+                <% else %>
+                <%= image_tag "no_avatar.png"%>
+              <% end %>
             </div>
               
               <section class="change name_change">

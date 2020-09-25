@@ -47,8 +47,11 @@ $(document).on('turbolinks:load', function () {
 
             for (var i = 0; i<change_value.length; i++) {
                 change_value[i].style.display = "flex";
-                change_data[i].style.display = "none";
+
             }
+            change_data.forEach((el)=>{
+                el.style.display = "none";
+            });
             
             document.querySelector('.change_user_data').style.display = "none";
 

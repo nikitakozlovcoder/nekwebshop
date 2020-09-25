@@ -211,7 +211,7 @@
 														<%= post.user.name%>
 													</div>
 													<% if post.user.avatar.attached? %>
-														<%= image_tag image, :class=>"user_photo_review" %>
+														<%= image_tag post.user.avatar, :class=>"user_photo_review" %>
 													<% else%>
 														<%= image_tag "no_avatar.png", :class=>"user_photo_review" %>
 													<% end %>
@@ -242,7 +242,7 @@
 													</div>
 													<div style=" padding-top: 10px">
 														<div>
-															<%= post.created_at %>
+															<%= post.created_at.strftime("%H:%M %d.%m.%Y") %>
 														</div>
 														<% if current_user and current_user.id == post.user.id %>
 														<div onclick="delete_review(<%= post.id %>)">
