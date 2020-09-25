@@ -201,7 +201,7 @@
             <ul class="list-main">
              <!-- <li><i class="ti-location-pin"></i> Выбрать локализацию</li> -->
               <% if current_user %>
-              <li><i class="ti-alarm-clock"></i> <a href="#">Запланированные покупки</a></li>
+              <!--<li><i class="ti-alarm-clock"></i> <a href="#">Запланированные покупки</a></li>-->
               <li><i class="ti-user"></i><%= link_to 'Профиль', controller: 'users', action: 'profile'   %></li>
               <li><i class="ti-power-off"></i><%= link_to "Выход", controller: "users", action: "exit"  %></li>
               <% else %>
@@ -411,7 +411,7 @@
                 <div class="navbar-collapse">
                   <div class="nav-inner">
                     <ul class="nav main-menu menu navbar-nav">
-                      <li class="active"><%= link_to 'Домой', :root %></li>
+                      <li class="active"><%= link_to 'Главная', :root %></li>
                       <li><%= link_to 'Магазины', :shops %></li>
                       <li><%= link_to 'Товары', :products %></li>
                       <li><%= link_to 'Корзина', :cart_index %></li>

@@ -64,9 +64,9 @@ $(document).on('turbolinks:load', function () {
             toggle_password();
         }
 
-        document.querySelector('.change_user_data').addEventListener("click", function() {
-            show_user_edit();
-        });
+        //document.querySelector('.change_user_data').addEventListener("click", function() {
+            //show_user_edit();
+       // });
 
 
         function toggle_password()
@@ -81,6 +81,37 @@ $(document).on('turbolinks:load', function () {
             }
             password_visible = !password_visible;
         }
+        let user_data_visible = false;
+        function toggle_change_data() {
+            if(!user_data_visible)
+            {
+                let change_value = document.querySelectorAll('.change');
+                let change_data = document.querySelectorAll('.data');
+                document.querySelector('.change_confirmation_btn').style.display = "flex";
+
+                for (var i = 0; i<change_value.length; i++) {
+                    change_value[i].style.display = "flex";
+                    change_data[i].style.display = "none";
+                }
+                //document.querySelector('.password_change').style.display = "block";
+            }
+            else
+            {
+                let change_value = document.querySelectorAll('.change');
+                let change_data = document.querySelectorAll('.data');
+                document.querySelector('.change_confirmation_btn').style.display = "none";
+
+                for (var i = 0; i<change_value.length; i++) {
+                    change_value[i].style.display = "none";
+                    change_data[i].style.display = "flex";
+                }
+                //document.querySelector('.password_change').style.display = "none";
+            }
+            user_data_visible = !user_data_visible;
+        }
+        document.querySelector('.change_user_data').addEventListener("click", function() {
+            toggle_change_data();
+        });
         document.querySelector('.change_user_password').addEventListener("click", function() {
 
             toggle_password();
