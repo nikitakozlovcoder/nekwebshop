@@ -26,6 +26,7 @@ class ShopsController < ApplicationController
   end
 
   def profile
+    redirect_to controler: :users, actioun: :sign_in unless current_user
     @shop = Shop.find_by!(id: params[:id], user_id: current_user.id)
   end
 

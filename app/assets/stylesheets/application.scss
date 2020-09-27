@@ -33,7 +33,6 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
-
 #address-input{
   padding-right: 33px;
 }
@@ -256,7 +255,7 @@ margin-bottom: 15px;
 
 
 .form-group .nice-select{
-  padding-top: 5px;
+  padding-top: 8px;
 }
 
 .form_row{
@@ -724,6 +723,7 @@ tbody tr:hover {
   margin-bottom: 15px;
 }
 .logo-shop img{
+  border-radius: 9px;
   object-fit: cover;
 }
 //fix coupon button (cart)
