@@ -9,7 +9,7 @@
         <div class = "add_product_section">
           <div class="form-main">
             <div class="title">
-              <h3>Add new product</h3>
+              <h3>Добавить товар</h3>
             </div>
 
             <%= form_with class: "form", multipart: true do %>
@@ -28,13 +28,13 @@
               <div class="row form_row">
                 <div class="col-lg-6 col-12">
                   <div class="form-group Text" data-min="5" data-max="50">
-                    <label>Product Name<span>*</span></label>
+                    <label>Наименование<span>*</span></label>
                     <input name="name" type="text" placeholder="" value="<%= @product.title %>">
                     <div class="error-list"></div>
                   </div>
                  <div class="form-group img-preloader Image">
                     <div class="label-container">
-                      <label for = "main_image" class = "btn">Load image...</label>
+                      <label for = "main_image" class = "btn">Загрузите фото</label>
                       <input id = "main_image" type="file" accept="image/*" onchange="preview_image(this)" name="main_photo">
                       <input name="main_photo_changed" type="text" value = "No">
                       <div class="error-list"></div>
@@ -52,7 +52,7 @@
                   </div>
                   <div class="form-group Bool" data-min="" data-max=""><label>Неограниченное количество</label><input name="is_inf_quantity" type="checkbox" placeholder="" style="width: 25px; height: 25px; display: block" class="inf_quantity" <%= @product.is_inf_quantity ? "checked" : "" %>><div class="error-list"></div></div>
                   <div class="form-group Category">
-                    <label>Product Category<span>*</span></label>
+                    <label>Категория<span>*</span></label>
                     <p style="display: flex" >
                         <select name="category" class="category_select" onchange="CategoryCheck(this)">
                           <option value="" disabled <%= @category ? "" : "selected" %> value>-------</option>
@@ -81,7 +81,7 @@
                 </div>
                <div class="col-12">
                   <div class="form-group form-group_dev Maker" style="display: block">
-                    <label>Developer<span>*</span></label>
+                    <label>Производитель<span>*</span></label>
                       <p style="display: flex" >
                         <select  onchange="ListCheck(this)" name="maker" class="form-group_dev_select">
                           <option value="" disabled selected value="">-------</option>
@@ -95,7 +95,7 @@
 
                <div id = "developer_input" class="col-12" style = "display:none;">
                   <div class="form-group">
-                    <label>Your developer name<span>*</span></label>
+                    <label>Наименование производителя<span>*</span></label>
                     <input id = "developer_input_inp" name="custom_maker" type="text" placeholder="">
                   </div>
                 </div>

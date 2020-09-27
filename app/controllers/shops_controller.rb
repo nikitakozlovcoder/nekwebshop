@@ -26,7 +26,29 @@ class ShopsController < ApplicationController
   end
 
   def profile
+    @shop = Shop.find_by!(id: params[:id], user_id: current_user.id)
+  end
 
+  def update
+    @shop = Shop.find_by!(id: params[:id], user_id: current_user.id)
+    @errors = []
+    @shop.name = params[:name]
+    @shop.mail = params[:mail]
+    @shop.phone = params[:phone]
+    @shop.description = params[:description]
+    if params[:main_photo_changed] == "Yes"
+      @shop.main_photo.attach(params[:main_photo])
+    end
+    @shop.user = current_user
+    @shop.inn = params[:inn]
+    @shop.vk = params[:vk]
+    @shop.wu = params[:wu]
+    @shop.fb = params[:fb]
+    @shop.tg = params[:tg]
+    if @shop.valid? and @errors.count == 0
+      @shop.save
+    end
+    render :profile
   end
 
   def all

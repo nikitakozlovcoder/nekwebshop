@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
     end
     query << str if str
     if !params[:search].blank?
-      query << "products.title like '%#{params[:search]}%'"
+      query << "lower(products.title) like '%#{params[:search].downcase}%'"
     end
     if params['makers']
       query << 'products.maker_id in (' + params[:makers].join(', ') + ')'
@@ -137,7 +137,7 @@ class ApplicationController < ActionController::Base
 
     if cookies.signed[:user]
       hash = JSON.parse cookies.signed[:user]
-      @current_user ||= User.find(hash['user_id'])
+      @current_user ||= User.find_by(id: hash['user_id'])
       if @current_user and @current_user.restore_date <= hash['time']
         return @current_user
       else

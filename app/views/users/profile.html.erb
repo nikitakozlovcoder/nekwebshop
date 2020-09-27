@@ -1,6 +1,20 @@
 
 <%= render partial: './header.html.erb' %>
-
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="bread-inner">
+          <ul class="bread-list">
+            <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <li class="active"><a href="">Профиль</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="section-profile" data-show-main="<%= @errors_main.count > 0 ? 'true' : 'false' %>"
          data-show-password="<%= flash[:errors_password] ? 'true' : 'false' %>">
@@ -11,7 +25,7 @@
     <div class="profile-main">
       <h2>Мои данные</h2>
       <div class="inform-profile">
-        <%= form_with class: "form" do %>
+        <%= form_with class: "form", multipart: true do %>
           <% if @mail_change %>
             <li>На указанный адрес отправлена ссылка для подтверждения эл.почты</li>
           <% end %>
@@ -22,6 +36,34 @@
                 <% end %>
             <% end %>
           </div>
+          <div class = "data user_photo">
+            <div class = "current_photo">
+              <p>Ваше фото</p>
+              <!--<img src="https://cdni0.trtworld.com/w960/h540/q75/55878_USA2019AP_1558293073903.jpg">-->
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar %>
+                <% else %>
+                <%= image_tag "no_avatar.png"%>
+              <% end %>
+            </div>
+              
+              
+              <div class = "user_photo_change">
+                
+              </div>
+              
+          </div>
+          <section class="change name_change">
+                <div class="form-group img-preloader Image">
+                       <div class="label-container">
+                            <label for = "main_image" class = "btn">Обновить изображение...</label>
+                           <input id = "main_image" type="file" accept="image/*" onchange="preview_image(this)" name="main_photo">
+                           <input name="main_photo_changed" type="text" value = "No">
+                          <div class="error-list"></div>
+                        </div>
+              </div>
+                <div class="error-list"></div>
+              </section>
           <div>
             <p>Имя</p>
             <p class="data"><%= @old_user.name %></p>
@@ -39,6 +81,14 @@
             </section>
           </div>
           <div>
+            <p>Отчество</p>
+            <p class="data"><%= @old_user.third_name %></p>
+            <section class="change name_change">
+              <input name="third_name" type="text" placeholder="" value="<%= @user.third_name %>">
+              <div class="error-list"></div>
+            </section>
+          </div>
+          <div>
             <p>Электронная почта</p>
             <p class="data email_data"><%= @old_user.email %></p>
             <section class="change email_change">
@@ -50,7 +100,7 @@
             <p>Телефон</p>
             <p class="data"><%= @old_user.phone ? @old_user.phone : '---' %></p>
             <section class="change phone_change">
-              <input name="phone" type="text" placeholder="" value="<%= @user.phone ? @user.phone : '---' %>">
+              <input name="phone" type="text" placeholder="---" value="<%= @user.phone ? @user.phone : '' %>">
               <div class="error-list"></div>
             </section>
           </div>
@@ -78,13 +128,14 @@
             <p>Тип аккаунта</p>
             <p class="data">Юридическое лицо</p>
           </div> -->
-
+          
           <section class="change_confirmation_btn">
                 <div class="form-group button">
                     <button type="submit" class="btn">Подтвердить изменения</button>
                 </div>
           </section>
       <% end %>
+        
       </div>
 
       <div class="actions">
@@ -116,8 +167,8 @@
             </div>
           </div>
         <% end %>
-        <a href="#">Удалить аккаунт</a>
-        <a href="#">Выйти</a>
+      <!--  <a href="#">Удалить аккаунт</a>
+        <a href="#">Выйти</a> -->
       </div>
       <div class = "my_shops_list">
         <div class = "my_shops_title">
@@ -130,7 +181,7 @@
       <div class="list-shops">
         <div>
           <ul class="shop-list">
-            <% @shops.each do |shop| %>
+            <% @user.shops.each do |shop| %>
             <li>
               <div class="shop-inform">
                 <div class="shop-image">
@@ -145,7 +196,12 @@
                   <p class="descr"> <%= shop.description %></p>
                 </div>
               </div>
-              <div class="link-settings"><a class="edit-shop" href="">Редактировать<i class="ti-settings remove-icon"></i></a></div>
+
+              <div class="link-settings">
+                <%= link_to({controller: 'shops', action: 'profile', id: shop.id}, {class: 'edit-shop'} ) do%>
+                  Управление<i class="ti-settings remove-icon"></i>
+                <% end %>
+              </div>
             </li>
             <% end %>
           </ul>

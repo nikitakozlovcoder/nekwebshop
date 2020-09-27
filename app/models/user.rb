@@ -11,8 +11,9 @@ class User < ApplicationRecord
     validates :email, presence: true
     validates :name, presence: true
     validates :surname, presence: true
+    #validates :third_name, presence: true
     validates_uniqueness_of :phone, :allow_nil => true
-    validates_format_of :phone, :with => /\+?[0-9]+/
+    validates_format_of :phone, :with => /\+?[0-9]+/, :allow_nil => true, allow_blank: true
     validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
     validates_format_of :email_temp, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, if: :should_validate_temp_mail

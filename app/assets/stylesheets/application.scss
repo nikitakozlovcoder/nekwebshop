@@ -71,6 +71,8 @@ $color-border: rgba(175, 175, 175, 0.86);
   width: 80px;
   height: 80px;
   object-fit: cover;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 .post_review_ratting{
   cursor: pointer;
@@ -402,7 +404,7 @@ tbody tr:hover {
   display: inline-block;
   padding: 10px;
   margin-bottom: 10px;
-
+  margin-right: 10px;
 }
 .title.inside_title {
   padding-top: 20px;
@@ -410,6 +412,7 @@ tbody tr:hover {
 }
 .reviews {
   width: 100%;
+  margin-top: 25px;
 }
 .set_rating {
   unicode-bidi: bidi-override;
@@ -438,6 +441,7 @@ tbody tr:hover {
 .user_attributes {
   width: 20%;
   text-align: center;
+  padding-right: 10px;
 }
 .single_review {
   padding: 10px;
@@ -452,6 +456,7 @@ tbody tr:hover {
 }
 .review_text {
   margin-top: 20px;
+  margin-bottom: 10px;
   color: #757575;
 }
 .date {
@@ -465,6 +470,15 @@ tbody tr:hover {
  max-height: 200px;
  object-fit: contain;
 }
+.single_review .del_button {
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.single_review .del_button:hover {
+  color: #F6971C;
+}
 
 @media (max-width: 580px) {
   .single_review {
@@ -477,14 +491,13 @@ tbody tr:hover {
     min-width: 100px;
     text-align: center;
     width: 30%;
-    margin-right: 20px;
   }
   .show_main_photo {
     max-height: 300px;
   }
   .user_photo_review {
     text-align: center;
-    max-height: 40px !important;
+    //max-height: 40px !important;
   }
   .reviewer_photo {
     text-align: center;
@@ -514,18 +527,24 @@ tbody tr:hover {
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 15px #dadada;
+  padding: 10px;
 }
 
 .left-shop-inform_second {
-  padding-left: 10px;
+  //padding-left: 10px;
 }
 .single_shop_container {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 //for header maybe (remove gaps)
 .header.shop .nav li {
   margin-right: 0px !important;
+}
+@media only screen and (max-width: 991px) and (min-width: 768px){
+  .header.shop .nav li{
+    margin-right: -4px !important;
+  }
 }
 
 .header.shop .nav.main-menu > li:hover > a{
@@ -635,7 +654,7 @@ tbody tr:hover {
     display: none;
   }
   .single-product .product-content{
-    width: 320px;
+    width: 220px;
   }
   .mobile-buttons{
     display: block;
@@ -646,9 +665,13 @@ tbody tr:hover {
   }
   .mobile-buttons .product-action a i{
     margin-right: 5px;
-  } 
+  }
+  
+  .single-product .button-head {
+    display: none;
+  }
 }
-@media only screen and (max-width: 595px){
+@media only screen and (max-width: 500px){
   .single-product {
     flex-direction: column;
     align-items: center;
@@ -667,14 +690,20 @@ tbody tr:hover {
     padding-right: 0 !important;
   }
   .shop .single-shorter:last-child{
-    width: 260px;
+    width: 250px;
+  }
+  .shop .single-shorter .nice-select{
+    width: 120px;
   }
   .shop .nice-select{
     width: 70%;
   }
+
 }
 //products grid addaptivity - end
-
+.single-widget.range .title{
+  text-transform: none;
+}
 
 //fix coupon button (cart)
 .shopping-cart .total-amount .left .coupon form .btn {
@@ -738,10 +767,24 @@ tbody tr:hover {
     margin: 0 !important;
     width: 150px;
   }
+  .shop-profile_container{
+    margin: 0 !important;
+  }
+
+}
+.data-shop .reviews {
+  margin-top: 0 !important;
+}
+@media only screen and (max-width: 991px)
+{
+
+
+  .categories_header_wrap{
+    display: none !important;
+  }
 }
 
-
-.my_shops_title {
+.my_shops_title, .my_orders_title {
   display: flex;
   justify-content: space-between;
   background-color: #F6F7FB;
@@ -754,11 +797,105 @@ tbody tr:hover {
 }
 
 //grid product heart color
-.single-product .product-img .product-action a.active, .single-product .product-img .product-action-2 a.active{
-  color: #F6971C;
+.single-product a.active{
+  color: #F6971C !important;
 
 }
 
-.shops.profile .choice-container{
+.shops.profile .choice-container, .shops.update .choice-container{
   margin: 40px;
+}
+
+
+
+.current_photo > img {
+  
+
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+
+}
+
+.current_photo {
+
+}
+
+.inform_profile{
+  display: flex;
+  flex-direction: row;
+}
+
+.user_photo_change {
+  display: none;
+}
+
+@media only screen and (max-width: 455px)
+{
+  .product_title_show {
+    padding: 10px;
+  }
+}
+.description > p{
+  padding-left: 5px;
+}
+
+//promote color fix
+.shop-services.section{
+  background: #F6F7FB !important;
+}
+
+.cart.index .shop-services.section{
+  background: #fff !important;
+}
+
+.user_photo_review {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 654px){
+  .user_photo_review {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+
+@media only screen and (max-width: 1000px){
+  .user_attributes {
+    width: 30%;
+    
+  }
+}
+
+.address_table_cell {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.address_show_field .column1 {
+  width: 100%;
+}
+
+.address_show_field .fa-trash {
+  font-size: 20px;
+  
+}
+
+.address_show_field .desription {
+  padding: 0 !important;
+  
+}
+
+
+@media only screen and (max-width: 450px){
+  .submit_shop_changes_button {
+    padding-bottom: 30px;
+    
+  }
 }
