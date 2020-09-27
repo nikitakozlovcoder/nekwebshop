@@ -279,9 +279,9 @@
              <% end %>
             <div class="sinlge-bar shopping"  style=" ">
 
-              <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+              <%= link_to({controller: 'cart', action: 'index'}, class: 'single-icon') do %> <i class="ti-bag"></i><% end %><!--<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>-->
               <!-- Shopping Item -->
-              <div class="shopping-item">
+              <!--<div class="shopping-item">
                 <div class="dropdown-cart-header">
                   <span>2 Items</span>
                   <a href="#">View Cart</a>
@@ -307,7 +307,7 @@
                   </div>
                   <a href="checkout.html" class="btn animate">Checkout</a>
                 </div>
-              </div>
+              </div>-->
               <!--/ End Shopping Item -->
             </div>
           </div>

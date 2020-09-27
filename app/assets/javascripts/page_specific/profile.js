@@ -91,11 +91,16 @@ $(document).on('turbolinks:load', function () {
                 let change_value = document.querySelectorAll('.change');
                 let change_data = document.querySelectorAll('.data');
                 document.querySelector('.change_confirmation_btn').style.display = "flex";
-
-                for (var i = 0; i<change_value.length; i++) {
+                change_value.forEach((el)=>{
+                    el.style.display = "flex";
+                })
+                change_data.forEach((el)=>{
+                    el.style.display = "none";
+                })
+                /*for (var i = 0; i<change_value.length; i++) {
                     change_value[i].style.display = "flex";
                     change_data[i].style.display = "none";
-                }
+                }*/
                 //document.querySelector('.password_change').style.display = "block";
             }
             else
@@ -103,11 +108,16 @@ $(document).on('turbolinks:load', function () {
                 let change_value = document.querySelectorAll('.change');
                 let change_data = document.querySelectorAll('.data');
                 document.querySelector('.change_confirmation_btn').style.display = "none";
-
-                for (var i = 0; i<change_value.length; i++) {
+                change_value.forEach((el)=>{
+                    el.style.display = "none";
+                })
+                change_data.forEach((el)=>{
+                    el.style.display = "flex";
+                })
+                /*for (var i = 0; i<change_value.length; i++) {
                     change_value[i].style.display = "none";
                     change_data[i].style.display = "flex";
-                }
+                }*/
                 //document.querySelector('.password_change').style.display = "none";
             }
             user_data_visible = !user_data_visible;
