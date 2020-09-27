@@ -671,14 +671,20 @@ tbody tr:hover {
     padding-right: 0 !important;
   }
   .shop .single-shorter:last-child{
-    width: 260px;
+    width: 250px;
+  }
+  .shop .single-shorter .nice-select{
+    width: 120px;
   }
   .shop .nice-select{
     width: 70%;
   }
+
 }
 //products grid addaptivity - end
-
+.single-widget.range .title{
+  text-transform: none;
+}
 
 //fix coupon button (cart)
 .shopping-cart .total-amount .left .coupon form .btn {
