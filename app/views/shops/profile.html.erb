@@ -1,15 +1,28 @@
 <%= render partial: './header.html.erb' %>
+
+<div class="shop-name-container">
+  <div class="image">
+    <img src="https://via.placeholder.com/50x50" alt="">
+  </div>
+  <p class="shop-name">Пятёрочка</p>
+</div>
+
+
+
  <div class ="choice-container shop-profile_container">
             <div class ="container-header">
+
               <div class = "option active">Информация</div>
               <div class = "option">Заказы</div>
               <div class = "option">Товары</div>
               <div class = "hidden" data-last = "0"></div>
             </div>
+
             <div class = "container-body">
 
               <div class = "option show">
                 <section id="contact-us" class="contact-us section" style="padding: 0">
+
                   <div class="container">
                     <div class="contact-head">
                       <div class="row">
@@ -103,7 +116,7 @@
                                     <div class="error-list"></div>
                                   </div>
                                 </div>-->
-                                <div style="padding: 0 15px; width: 100%">
+                                <div class = "address_show_field" style="padding: 0 15px; width: 100%">
                                   <table>
                                     <div class = "desription">
                                       <h3>Адреса</h3>
@@ -111,7 +124,11 @@
                                     <tbody>
                                     <% @shop.address.each do |addr| %>
                                       <tr>
-                                        <td class="column1"><%= addr.location %></td>
+                                      	
+                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                        	
+                                    	
+
                                       </tr>
                                     <% end %>
 
@@ -168,7 +185,7 @@
 
 
                                 <div class="col-12">
-                                  <div class="form-group button">
+                                  <div class="form-group button submit_shop_changes_button">
                                     <button type="submit" class="btn ">Отправить</button>
                                   </div>
                                 </div>
@@ -183,6 +200,7 @@
                     </div>
                   </div>
                 </section>
+
               </div>
 
               <div class = "option">
@@ -312,8 +330,6 @@
                             </div>
                           </div>
                           <% end %>
-
-
                         </div>
                         <div class = "items_footer">
                           <div class = "total_name">
@@ -330,12 +346,125 @@
                   <% end %>
 
                 </div>
-              </div>
-              <div class = "option">
-              </div>
-
-            </div>
-          </div>
+    </div>
+    <div class = "option">
+      <ul class="list-products">
+        <li class="shop-product">
+           <div class="shop-product-inform">
+             <div class="product-image">
+               <img src="https://via.placeholder.com/100x100" alt="">
+             </div>
+             <div class="product-inform">
+               <p class="product-name"><a href="#">Women Dress</a></p>
+               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+             </div>
+           </div>
+           <div class="product-elements">
+             <div class="price">
+             <span>13 900 &#8381;</span>
+           </div>
+             <div class="quantity">
+               <p>Количество:</p>
+               <p class="quantity-num">14</p>
+             </div>
+             <div class="icon-link-container">
+               <div class="icon-link">
+                 <a href="#"><i class="ti-settings remove-icon"></i></a>
+               </div>
+               <div class="icon-link">
+                 <a href="#"><i class="ti-trash remove-icon"></i></a>
+               </div>
+             </div>
+           </div>
+         </li>
+        <li class="shop-product">
+           <div class="shop-product-inform">
+             <div class="product-image">
+               <img src="https://via.placeholder.com/100x100" alt="">
+             </div>
+             <div class="product-inform">
+               <p class="product-name"><a href="#">Women Dress</a></p>
+               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+             </div>
+           </div>
+           <div class="product-elements">
+             <div class="price">
+               <span>13 900 &#8381;</span>
+             </div>
+             <div class="quantity">
+               <p>Количество:</p>
+               <p class="quantity-num">14</p>
+             </div>
+             <div class="icon-link-container">
+               <div class="icon-link">
+                 <a href="#"><i class="ti-settings remove-icon"></i></a>
+               </div>
+               <div class="icon-link">
+                 <a href="#"><i class="ti-trash remove-icon"></i></a>
+               </div>
+             </div>
+           </div>
+         </li>
+        <li class="shop-product">
+           <div class="shop-product-inform">
+             <div class="product-image">
+               <img src="https://via.placeholder.com/100x100" alt="">
+             </div>
+             <div class="product-inform">
+               <p class="product-name"><a href="#">Women Dress</a></p>
+               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+             </div>
+           </div>
+           <div class="product-elements">
+             <div class="price">
+               <span>13 900 &#8381;</span>
+             </div>
+             <div class="quantity">
+               <p>Количество:</p>
+               <p class="quantity-num">14</p>
+             </div>
+             <div class="icon-link-container">
+               <div class="icon-link">
+                 <a href="#"><i class="ti-settings remove-icon"></i></a>
+               </div>
+               <div class="icon-link">
+                 <a href="#"><i class="ti-trash remove-icon"></i></a>
+               </div>
+             </div>
+           </div>
+         </li>
+        <li class="shop-product">
+           <div class="shop-product-inform">
+             <div class="product-image">
+               <img src="https://via.placeholder.com/100x100" alt="">
+             </div>
+             <div class="product-inform">
+               <p class="product-name"><a href="#">Women Dress</a></p>
+               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+             </div>
+           </div>
+           <div class="product-elements">
+             <div class="price">
+               <span>13 900 &#8381;</span>
+             </div>
+             <div class="quantity">
+               <p>Количество:</p>
+               <p class="quantity-num">14</p>
+             </div>
+             <div class="icon-link-container">
+               <div class="icon-link">
+                 <a href="#"><i class="ti-settings remove-icon"></i></a>
+               </div>
+               <div class="icon-link">
+                 <a href="#"><i class="ti-trash remove-icon"></i></a>
+               </div>
+             </div>
+           </div>
+         </li>
+       </ul>
+     </div>
+   </div>
+ </div>
 
 
 <script>

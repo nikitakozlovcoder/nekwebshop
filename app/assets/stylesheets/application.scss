@@ -470,6 +470,15 @@ tbody tr:hover {
  max-height: 200px;
  object-fit: contain;
 }
+.single_review .del_button {
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.single_review .del_button:hover {
+  color: #F6971C;
+}
 
 @media (max-width: 580px) {
   .single_review {
@@ -488,7 +497,7 @@ tbody tr:hover {
   }
   .user_photo_review {
     text-align: center;
-    max-height: 40px !important;
+    //max-height: 40px !important;
   }
   .reviewer_photo {
     text-align: center;
@@ -524,6 +533,7 @@ tbody tr:hover {
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 15px #dadada;
+  padding: 10px;
 }
 .data-shop{
   padding: 10px;
@@ -545,6 +555,11 @@ tbody tr:hover {
 //for header maybe (remove gaps)
 .header.shop .nav li {
   margin-right: 0px !important;
+}
+@media only screen and (max-width: 991px) and (min-width: 768px){
+  .header.shop .nav li{
+    margin-right: -4px !important;
+  }
 }
 
 .header.shop .nav.main-menu > li:hover > a{
@@ -654,7 +669,7 @@ tbody tr:hover {
     display: none;
   }
   .single-product .product-content{
-    width: 320px;
+    width: 220px;
   }
   .mobile-buttons{
     display: block;
@@ -665,9 +680,13 @@ tbody tr:hover {
   }
   .mobile-buttons .product-action a i{
     margin-right: 5px;
-  } 
+  }
+  
+  .single-product .button-head {
+    display: none;
+  }
 }
-@media only screen and (max-width: 595px){
+@media only screen and (max-width: 500px){
   .single-product {
     flex-direction: column;
     align-items: center;
@@ -799,8 +818,8 @@ tbody tr:hover {
 }
 
 //grid product heart color
-.single-product .product-img .product-action a.active, .single-product .product-img .product-action-2 a.active{
-  color: #F6971C;
+.single-product a.active{
+  color: #F6971C !important;
 
 }
 
@@ -852,4 +871,52 @@ tbody tr:hover {
   background: #fff !important;
 }
 
+.user_photo_review {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+}
 
+@media only screen and (max-width: 654px){
+  .user_photo_review {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+
+@media only screen and (max-width: 1000px){
+  .user_attributes {
+    width: 30%;
+    
+  }
+}
+
+.address_table_cell {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.address_show_field .column1 {
+  width: 100%;
+}
+
+.address_show_field .fa-trash {
+  font-size: 20px;
+  
+}
+
+.address_show_field .desription {
+  padding: 0 !important;
+  
+}
+
+
+@media only screen and (max-width: 450px){
+  .submit_shop_changes_button {
+    padding-bottom: 30px;
+    
+  }
+}

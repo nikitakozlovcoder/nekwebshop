@@ -247,7 +247,7 @@
 															<%= post.created_at.strftime("%H:%M %d.%m.%Y") %>
 														</div>
 														<% if current_user and current_user.id == post.user.id %>
-														<div onclick="delete_review(<%= post.id %>)">
+														<div class = "del_button" onclick="delete_review(<%= post.id %>)">
 																Удалить
 														</div>
 															<% end %>
