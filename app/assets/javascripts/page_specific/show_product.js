@@ -2,14 +2,25 @@
 
 $(document).on('turbolinks:load', function () {
 
+
     
-            
 
     if (get_body().classList.contains('products') && get_body().classList.contains('show')) {
+
+            document.querySelector('.return_prev').addEventListener('click', function() {
+                window.history.back();
+            });
+
             let carousel_images = document.querySelectorAll('.single-product');
             let nav_arrows = document.querySelector('.owl-nav');
+            if (!nav_arrows) {
+                if (carousel_images.length == 0) {
+                    document.querySelector('.images_title').style.display = "none";
+                }
+            }
             if(nav_arrows){
-            if ((carousel_images.length == 1 && window.screen.width > 0) || (carousel_images.length == 2 && window.screen.width > 500) || (carousel_images.length == 3 && window.screen.width > 768)) {
+                
+            if ((carousel_images.length == 1 && window.screen.width > 500) || (carousel_images.length == 2 && window.screen.width > 768) || (carousel_images.length == 3 && window.screen.width > 1170)) {
                  
                  nav_arrows.style.display = "none";
             }
@@ -23,7 +34,7 @@ $(document).on('turbolinks:load', function () {
                 //let nav_arrows = document.querySelector('.owl-nav');
             
            
-                if ((carousel_images.length == 1 && window.screen.width > 0) || (carousel_images.length == 2 && window.screen.width > 500) || (carousel_images.length == 3 && window.screen.width > 768)) {
+                if ((carousel_images.length == 1 && window.screen.width > 500) || (carousel_images.length == 2 && window.screen.width > 768) || (carousel_images.length == 3 && window.screen.width > 1170)) {
                    
                     nav_arrows.style.display = "none";
                   
@@ -177,7 +188,7 @@ $(document).on('turbolinks:load', function () {
 													<div class = "reviewer_name">
 														${data.user_name}
 													</div>
-													<img src="${data.avatar}">
+													<img class = "reviewer_photo" src="${data.avatar}">
 
 
 													<div class = "view_review_rating">
@@ -233,19 +244,8 @@ $(document).on('turbolinks:load', function () {
                 e.preventDefault();
 
                 post_review()
-            })
-
-         addtoCart = function(id){
-            fetch(`../cart/add/${id}`, {
-                method: 'POST'
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data)=>{
-                console.log(data);
             });
-        }
+
     }
 
 })

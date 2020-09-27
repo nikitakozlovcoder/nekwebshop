@@ -1,0 +1,28 @@
+<%= render partial: './header.html.erb' %>
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="bread-inner">
+          <ul class="bread-list">
+            <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <% if current_user %>
+              <li><%= link_to(controller: 'users', action: 'profile') do %>Профиль<i class="ti-arrow-right"></i><% end %></li>
+            <% end %>
+            <li><%= link_to(controller: 'cart', action: 'index') do %>Корзина<i class="ti-arrow-right"></i><% end %></li>
+            <li class="active"><a href="">Заказ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1 style="width: 100%; padding: 20px; text-align: center">Заказ отправлен</h1>
+<!-- End Breadcrumbs -->
+
+<%= render './promote'%>
+
+
+

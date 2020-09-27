@@ -1,0 +1,25 @@
+<%= render partial: './header.html.erb' %>
+<style>
+  a{
+    text-decoration: underline;
+  }
+</style>
+
+<section class="contact-us sign-in section">
+  <div class="container">
+    <div class="form-sign-in">
+      <div class="form-main">
+
+            <% if !@temp %>
+             <h5> Сылка недействительна или содержит ошибку. <%= link_to 'Отправить повторно.', controller: 'users', action: 'profile' %></h5>
+          <% else %>
+          <h5> Адрес электронной почты уже используется. Выполните  <%= link_to 'вход', controller: 'users', action: 'sign_in' %> или <%= link_to 'восставновите пароль', controller: 'users', action: 'restore' %></h5>
+        <% end %>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+

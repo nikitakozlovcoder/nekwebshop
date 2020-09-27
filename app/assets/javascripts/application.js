@@ -1,6 +1,4 @@
-
-//= require jquery.min.js
-//= require jquery-migrate-3.0.0.js
+//= require jquery
 //= require jquery-ui.min.js
 //= require popper.min.js
 //= require bootstrap.min.js
@@ -23,7 +21,14 @@
 //= require page_specific/show_product.js
 //= require page_specific/restore.js
 //= require page_specific/cart.js
+//= require page_specific/shop.js
+//= require page_specific/shops.js
+//= require page_specific/products.js
+//= require page_specific/shops_new.js
+//= require page_specific/profile.js
+//= require page_specific/shop_profile.js
 //= require turbolinks
+//= require ion.rangeSlider.min.js
 
 
 

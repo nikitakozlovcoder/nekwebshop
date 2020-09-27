@@ -6,8 +6,11 @@
       <div class="col-12">
         <div class="bread-inner">
           <ul class="bread-list">
-            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-            <li class="active"><a href="blog-single.html">Cart</a></li>
+            <li><%= link_to(controller: 'home', action: 'index') do %>Главная<i class="ti-arrow-right"></i><% end %></li>
+            <% if current_user %>
+              <li><%= link_to(controller: 'users', action: 'profile') do %>Профиль<i class="ti-arrow-right"></i><% end %></li>
+            <% end %>
+            <li class="active"><a href="">Корзина</a></li>
           </ul>
         </div>
       </div>
@@ -25,41 +28,41 @@
         <table class="table shopping-summery">
           <thead>
           <tr class="main-hading">
-            <th>PRODUCT</th>
-            <th>NAME</th>
-            <th class="text-center">UNIT PRICE</th>
-            <th class="text-center">QUANTITY</th>
-            <th class="text-center">TOTAL</th>
+            <th>ТОВАР</th>
+            <th>НАЗВАНИЕ</th>
+            <th class="text-center">ЦЕНА</th>
+            <th class="text-center">КОЛИЧЕСТВО</th>
+            <th class="text-center">ПОДЫТОГ</th>
             <th class="text-center"><i class="ti-trash remove-icon"></i></th>
           </tr>
           </thead>
           <tbody>
           <% @carts.each do |cart| %>
             <tr data-code = "<%= cart.id %>" class = "cart-item-wrap">
-              <td class="image" data-title="No"><%= image_tag cart.product.main_photo %></td>
-              <td class="product-des" data-title="Description">
+              <td class="image" data-title="№"><%= image_tag cart.product.main_photo %></td>
+              <td class="product-des" data-title="Описание">
                 <p class="product-name"><%= link_to cart.product.title, controller: "products", action: "show", id: cart.product.id  %></p>
                 <p class="product-des"><%= cart.product.description[0..45] %><%= cart.product.description.length > 45 ? "..." : "" %></p>
               </td>
-              <td class="price" data-title="Price"><span>₽<%=  cart.product.price %></span></td>
-              <td class="qty" data-title="Qty"><!-- Input Order -->
+              <td class="price" data-title="Цена"><span>₽<%=  cart.product.price %></span></td>
+              <td class="qty" data-title="Количество"><!-- Input Order -->
                 <div class="input-group">
                   <div class="button minus">
-                    <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[<%= cart.id %>]" onclick = "updateField(this)"> 
+                    <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="quant[<%= cart.id %>]"> 
                       <i class="ti-minus"></i>
                     </button>
                   </div>
                   <input type="text" name="quant[<%= cart.id %>]" class="input-number" data-min="1" data-max="2147483647" value="<%= cart.quantity %>">
                   <div class="button plus">
-                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[<%= cart.id %>]" onclick = "updateField(this)">
+                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[<%= cart.id %>]">
                       <i class="ti-plus"></i>
                     </button>
                   </div>
                 </div>
                 <!--/ End Input Order -->
               </td>
-              <td class="total-amount" data-title="Total"><span>₽<%=  cart.product.price * cart.quantity %></span></td>
-              <td class="action" data-title="Remove"><span><i class="ti-trash remove-icon"></i></span></td>
+              <td class="total-amount" data-title="Подытог"><span>₽<%=  (cart.product.price * cart.quantity).round(2) %></span></td>
+              <td class="action" data-title="Удалить"><span><i class="ti-trash remove-icon"></i></span></td>
             </tr>
           <% end %>
 
@@ -67,6 +70,9 @@
 
           </tbody>
         </table>
+        <% if @carts.count == 0 %>
+          <h3 style="width: 100%; text-align: center; padding: 80px 0">В корзине пока пусто.  <%=link_to 'Начать покупки', {controller: 'products', action: 'index'}, style: 'font-weight: inherit; text-decoration: underline' %>.</h3>
+        <% end %>
         <!--/ End Shopping Summery -->
       </div>
     </div>
@@ -79,26 +85,25 @@
               <div class="left">
                 <div class="coupon">
                   <form action="#" target="_blank">
-                    <input name="Coupon" placeholder="Enter Your Coupon">
-                    <button class="btn">Apply</button>
+                    <input name="Coupon" placeholder="Введите Ваш Купон">
+                    <button class="btn">Применить</button>
                   </form>
                 </div>
                 <div class="checkbox">
-                  <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Shipping (+10$)</label>
+                  <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Доставка (+10₽)</label>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-7 col-12">
               <div class="right">
                 <ul>
-                  <li>Cart Subtotal<span>$330.00</span></li>
-                  <li>Shipping<span>Free</span></li>
-                  <li>You Save<span>$20.00</span></li>
-                  <li class="last">You Pay<span>$310.00</span></li>
+                  <li>Подытого корзины<span>₽330.00</span></li>
+                  <li>Доставка<span>Бесплатно</span></li>
+                  <li>Вы экономите<span>₽20.00</span></li>
+                  <li class="last">И того<span></span></li>
                 </ul>
                 <div class="button5">
-                  <a href="#" class="btn">Checkout</a>
-                  <a href="#" class="btn">Continue shopping</a>
+                  <%= link_to 'Оформить заказ', {controller: 'cart', action: 'new'}, class: 'btn' %>
                 </div>
               </div>
             </div>
@@ -110,74 +115,8 @@
   </div>
 </div>
 <!--/ End Shopping Cart -->
+<%= render './promote'%>
 
-<!-- Start Shop Services Area  -->
-<section class="shop-services section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-rocket"></i>
-          <h4>Free shiping</h4>
-          <p>Orders over $100</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-reload"></i>
-          <h4>Free Return</h4>
-          <p>Within 30 days returns</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-lock"></i>
-          <h4>Sucure Payment</h4>
-          <p>100% secure payment</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <!-- Start Single Service -->
-        <div class="single-service">
-          <i class="ti-tag"></i>
-          <h4>Best Peice</h4>
-          <p>Guaranteed price</p>
-        </div>
-        <!-- End Single Service -->
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End Shop Newsletter -->
-
-<!-- Start Shop Newsletter  -->
-<section class="shop-newsletter section">
-  <div class="container">
-    <div class="inner-top">
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-12">
-          <!-- Start Newsletter Inner -->
-          <div class="inner">
-            <h4>Newsletter</h4>
-            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
-            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-              <input name="EMAIL" placeholder="Your email address" required="" type="email">
-              <button class="btn">Subscribe</button>
-            </form>
-          </div>
-          <!-- End Newsletter Inner -->
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End Shop Newsletter -->
 
 
 
@@ -293,4 +232,3 @@
   </div>
 </div>
 <!-- Modal end -->
-

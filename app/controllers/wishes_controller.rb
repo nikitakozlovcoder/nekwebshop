@@ -1,6 +1,10 @@
 class WishesController < ApplicationController
   def index
-
+    if current_user
+      @wishes = current_user.wishes
+    else
+      redirect_to controller: 'users', action: 'sign_in'
+    end
   end
   def add
     hash = {success: false}
@@ -21,6 +25,6 @@ class WishesController < ApplicationController
       hash[:success] = true
       current_user.wishes.find(params[:id]).delete
     end
-    render json: hash
+    redirect_to controller: 'wishes', action: 'index'
   end
 end

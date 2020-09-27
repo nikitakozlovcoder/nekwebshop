@@ -146,23 +146,26 @@ $(document).on('turbolinks:load', function () {
         });
 
         //choice-container functionality
-         choice_container = function(el) {
-            let radios = el.parentNode;
-            let header = radios.parentNode;
-            let option_array = header.querySelectorAll('.options label');
-            let option_body_array = header.parentNode.querySelectorAll('.container-body > .option');
+        document.querySelectorAll('.choice-container').forEach((container) =>{
+            let option_arr = container.querySelectorAll('.container-header > .option');
+            let body_arr = container.querySelectorAll('.container-body > .option');
+            let state_elem = container.querySelector('.container-header .hidden');
+            option_arr.forEach((el, i)=>{
+                el.setAttribute('data-id', i);
+                el.addEventListener('click', ()=>{       
+                    let last_value = state_elem.getAttribute('data-last');
+                    let cur_value = el.getAttribute('data-id');
 
-            let option_num = el.id;
-            let state_option = radios.querySelector('input[type="hidden"]');
+                    option_arr[last_value].classList.toggle('active');
+                    option_arr[cur_value].classList.toggle('active');
 
-            option_array[state_option.value].classList.toggle('active');
-            option_array[option_num].classList.toggle('active');
+                    body_arr[last_value].classList.toggle('show');
+                    body_arr[cur_value].classList.toggle('show');
 
-            option_body_array[state_option.value].classList.toggle('show');
-            option_body_array[option_num].classList.toggle('show');
-
-            state_option.value = option_num;
-        }
+                    state_elem.setAttribute('data-last', cur_value);
+                });
+            });
+        });
     }
 })
 
