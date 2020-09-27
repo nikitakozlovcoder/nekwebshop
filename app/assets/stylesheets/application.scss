@@ -531,6 +531,11 @@ tbody tr:hover {
 .header.shop .nav li {
   margin-right: 0px !important;
 }
+@media only screen and (max-width: 991px) and (min-width: 768px){
+  .header.shop .nav li{
+    margin-right: -4px !important;
+  }
+}
 
 .header.shop .nav.main-menu > li:hover > a{
   background: #ffae44;
