@@ -69,7 +69,7 @@
           </div>-->
           <%= form_with :url => url_for(controller:'shops', action: 'all'), method: "get", data: {'turbolinks-form'=>'true', 'scrollToTop'=>true} do %>
           <div class = "single-widget">
-            <h3 class = "title">Shop by rating</h3>
+            <h3 class = "title">Поиск по рейтингу</h3>
             <div class="quickview-ratting post_review_ratting set_rating">
                       <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=5 ? 'ratting_star': '' %>">☆</span>
                       <span class="post_review_ratting_el <%= params[:mark] and params[:mark].to_i >=4 ? 'ratting_star': '' %>">☆</span>
@@ -140,7 +140,7 @@
           </div>
         </div>
           <% end %>
-        <div class="row" style="width: 100%">
+        <div class="row" style="width: 100%; margin: 0; ">
 					<% @shops.each do |shop| %>
 						<%= link_to(controller: 'shops', action: 'index', id: shop.id) do || %>
           <div class="col-lg-4 col-md-6 col-12 single_shop_container">

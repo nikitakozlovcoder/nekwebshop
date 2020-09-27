@@ -76,7 +76,9 @@
 
 											</span>
 											<!-- <= is_in_wishlist(@product.id) ? 'active' : '' %> -->
+											<% if current_user %>
 											<span class="btn min <%= is_in_wishlist(@product.id) ? 'active' : '' %>" onclick = "addtoWishlist(<%= @product.id %>, this)"><i class="<%= is_in_wishlist(@product.id) ? 'fa fa-heart' : 'ti-heart' %>"></i></span>
+											<% end %>
 										</div>
 									</div>
 									<h4>Характеристики</h4>
