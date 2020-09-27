@@ -470,6 +470,15 @@ tbody tr:hover {
  max-height: 200px;
  object-fit: contain;
 }
+.single_review .del_button {
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.single_review .del_button:hover {
+  color: #F6971C;
+}
 
 @media (max-width: 580px) {
   .single_review {

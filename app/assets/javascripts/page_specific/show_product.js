@@ -147,7 +147,7 @@ $(document).on('turbolinks:load', function () {
 
             if (user != owner)
                 return "";
-            return `<div onclick="delete_review(${id})">Удалить</div>`;
+            return `<div class = "del_button" onclick="delete_review(${id})">Удалить</div>`;
         }
 
         function post_review() {
