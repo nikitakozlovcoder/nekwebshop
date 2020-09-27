@@ -639,7 +639,7 @@ tbody tr:hover {
     display: none;
   }
   .single-product .product-content{
-    width: 320px;
+    width: 220px;
   }
   .mobile-buttons{
     display: block;
@@ -650,9 +650,13 @@ tbody tr:hover {
   }
   .mobile-buttons .product-action a i{
     margin-right: 5px;
-  } 
+  }
+  
+  .single-product .button-head {
+    display: none;
+  }
 }
-@media only screen and (max-width: 595px){
+@media only screen and (max-width: 500px){
   .single-product {
     flex-direction: column;
     align-items: center;
@@ -770,8 +774,8 @@ tbody tr:hover {
 }
 
 //grid product heart color
-.single-product .product-img .product-action a.active, .single-product .product-img .product-action-2 a.active{
-  color: #F6971C;
+.single-product a.active{
+  color: #F6971C !important;
 
 }
 

@@ -206,13 +206,15 @@
                   </div>
                   <h3> <%= link_to(controller: 'products', action: "show", id: el.id) do %><%= el.title %><% end %></h3>
                   <div class = "mobile-buttons">
-                    <div class="product-action" style="padding-right:  20px">
+                    <div class="product-action">
                      <!-- <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>-->
-                      <a title="Избранное" href="#"><i class=" ti-heart "></i><span>В избранное</span></a>
+                      <a title="Избранное" onclick = "addtoWishlist(<%= el.id %>, this)" class = "<%= is_in_wishlist(el.id) ? 'active' : ''%>"><i class="<%= is_in_wishlist(el.id) ? 'fa fa-heart' : 'ti-heart' %>"></i><span>В избранное</span></a>
                     
-                      <a title="Добавить в корзину" href="#" st>Добавить в корзину</a>
-                      
-                      <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe' %>
+                      <% if !is_in_cart(el.id) %>
+                          <a title="Добавить в корзину" onclick = "addtoCart(<%= el.id %>, this)">Добавить в корзину</a>
+                      <% else %>
+                          <%=link_to 'Уже в корзинe', {controller: 'cart', action: 'index'}, :title=>'Уже в корзинe', class: 'active'%>
+                      <% end %>
                       
                       <!-- <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
                     </div>
