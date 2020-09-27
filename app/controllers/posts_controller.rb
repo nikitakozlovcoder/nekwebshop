@@ -41,6 +41,7 @@ class PostsController < ApplicationController
         hash[:user_name] = @post.user.name
         hash[:avatar] = @post.user.avatar.attached? ? url_for(@post.user.avatar) : '../assets/no_avatar.png'
         hash[:post] = @post
+        hash[:date] = @post.created_at.strftime("%H:%M %d.%m.%Y")
         hash[:current_user] = current_user.id
         @post.images.each { |img| hash[:images] << url_for(img) }
         Product.find(@post.product_id).recalc_mark

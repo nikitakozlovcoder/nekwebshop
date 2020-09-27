@@ -189,7 +189,7 @@ $(document).on('turbolinks:load', function () {
 														${data.user_name}
 													</div>
                                                     
-                                                        <img class = "reviewer_photo" src="${data.avatar}">
+                                                        <img class = "user_photo_review" src="${data.avatar}">
                                                    
 													
 
@@ -212,7 +212,7 @@ $(document).on('turbolinks:load', function () {
 														
 													</div>
 													<div style=" padding-top: 10px">
-													<div>${data.post.created_at}</div>
+													<div>${data.date}</div>
 													${set_delete_btn(data.current_user, data.post.user_id, data.post.id)}
 													</div>
 												</div>

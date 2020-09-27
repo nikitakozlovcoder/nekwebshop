@@ -45,6 +45,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     @old_user =  User.find(current_user.id)
     @user.skip_pass = true
+    @user.avatar.attach(params[:main_photo]) if params[:main_photo_changed] == "Yes"
     @user.name = params[:name]
     @user.third_name = params[:third_name]
     @user.email_temp = params[:email]

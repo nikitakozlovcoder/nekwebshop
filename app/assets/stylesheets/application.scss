@@ -488,7 +488,7 @@ tbody tr:hover {
   }
   .user_photo_review {
     text-align: center;
-    max-height: 40px !important;
+    //max-height: 40px !important;
   }
   .reviewer_photo {
     text-align: center;
@@ -518,6 +518,7 @@ tbody tr:hover {
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 15px #dadada;
+  padding: 10px;
 }
 
 .left-shop-inform_second {
@@ -671,14 +672,20 @@ tbody tr:hover {
     padding-right: 0 !important;
   }
   .shop .single-shorter:last-child{
-    width: 260px;
+    width: 250px;
+  }
+  .shop .single-shorter .nice-select{
+    width: 120px;
   }
   .shop .nice-select{
     width: 70%;
   }
+
 }
 //products grid addaptivity - end
-
+.single-widget.range .title{
+  text-transform: none;
+}
 
 //fix coupon button (cart)
 .shopping-cart .total-amount .left .coupon form .btn {
@@ -747,7 +754,9 @@ tbody tr:hover {
   }
 
 }
-
+.data-shop .reviews {
+  margin-top: 0 !important;
+}
 @media only screen and (max-width: 991px)
 {
 
@@ -823,4 +832,52 @@ tbody tr:hover {
   background: #fff !important;
 }
 
+.user_photo_review {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+}
 
+@media only screen and (max-width: 654px){
+  .user_photo_review {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+
+@media only screen and (max-width: 1000px){
+  .user_attributes {
+    width: 30%;
+    
+  }
+}
+
+.address_table_cell {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.address_show_field .column1 {
+  width: 100%;
+}
+
+.address_show_field .fa-trash {
+  font-size: 20px;
+  
+}
+
+.address_show_field .desription {
+  padding: 0 !important;
+  
+}
+
+
+@media only screen and (max-width: 450px){
+  .submit_shop_changes_button {
+    padding-bottom: 30px;
+    
+  }
+}
