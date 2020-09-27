@@ -103,7 +103,7 @@
                                     <div class="error-list"></div>
                                   </div>
                                 </div>-->
-                                <div style="padding: 0 15px; width: 100%">
+                                <div class = "address_show_field" style="padding: 0 15px; width: 100%">
                                   <table>
                                     <div class = "desription">
                                       <h3>Адреса</h3>
@@ -111,7 +111,11 @@
                                     <tbody>
                                     <% @shop.address.each do |addr| %>
                                       <tr>
-                                        <td class="column1"><%= addr.location %></td>
+                                      	
+                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                        	
+                                    	
+
                                       </tr>
                                     <% end %>
 
@@ -168,7 +172,7 @@
 
 
                                 <div class="col-12">
-                                  <div class="form-group button">
+                                  <div class="form-group button submit_shop_changes_button">
                                     <button type="submit" class="btn ">Отправить</button>
                                   </div>
                                 </div>

@@ -189,7 +189,7 @@ $(document).on('turbolinks:load', function () {
 														${data.user_name}
 													</div>
                                                     
-                                                        <img class = "reviewer_photo" src="${data.avatar}">
+                                                        <img class = "user_photo_review" src="${data.avatar}">
                                                    
 													
 
