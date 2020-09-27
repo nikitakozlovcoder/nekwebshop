@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
 #gem 'rails-erd', group: :development
 gem 'jquery-rails'
-ruby '2.7.0'
 gem 'activestorage'
 gem 'turbolinks_render'
 gem 'ancestry'
