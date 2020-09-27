@@ -154,25 +154,30 @@
                 <% end %>
 	            </div>
 	            <div class="data-shop">
-	              <div class="name-shop">
-	                <h5 style="word-break: break-all"><%= shop.name %></h5>
-	              </div>
-	              <div class="rating-shop">
-	                <ul class="reviews">
-										<% (1..shop.mark.round()).each do |i| %>
-											<li class="yellow"><i class="ti-star"></i></li>
-										<% end %>
-										<% (shop.mark.round()..4).each do |i| %>
-											<li><i class="ti-star"></i></li>
-										<% end %>
-	                </ul>
-	                <a class="reviews-shop" href="#">Отзывов <%= shop.posts.count %></a>
-	              </div>
+
+								<div>
+									<div class="name-shop">
+										<h5 style="word-break: break-all"><%= shop.name %></h5>
+									</div>
+									<div class="rating-shop">
+										<ul class="reviews">
+											<% (1..shop.mark.round()).each do |i| %>
+												<li class="yellow"><i class="ti-star"></i></li>
+											<% end %>
+											<% (shop.mark.round()..4).each do |i| %>
+												<li><i class="ti-star"></i></li>
+											<% end %>
+										</ul>
+										<a class="reviews-shop" href="#">Отзывов <%= shop.posts.count %></a>
+									</div>
+								</div>
+
 	              <!--<div class="location-shop">
 	                <p>Расположение</p>
 	                <p class="data">Таганрог</p>
-	              </div>-->
-                <!--<p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p>-->
+	              </div>
+                <p>Надежный продавец: <i class="fa fa-check" aria-hidden="true"></i></p> -->
+
 	              <div class="categories_shop" style="padding-top: 25px">
 	                <p>Категории магазина:</p>
 	                <div class="categories" >
