@@ -502,6 +502,11 @@ tbody tr:hover {
   }
 
 }
+.data-shop{
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 210px);
+}
 
 .shopping-summery tbody tr img {
   width: 90px !important;
@@ -515,16 +520,26 @@ tbody tr:hover {
   font-size: 15px;
 }
 .left-shop-inform-container_second {
+  padding: 10px;
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 15px #dadada;
 }
-
+.data-shop{
+  padding: 10px;
+}
+.categories_shop{
+  margin-top: auto;
+}
 .left-shop-inform_second {
+  height: 100%;
+  display: block;
+
   //padding-left: 10px;
 }
 .single_shop_container {
-  margin-top: 20px;
+  padding:  0!important;
+  margin: 20px 0px 0px;
 }
 
 //for header maybe (remove gaps)
@@ -685,7 +700,13 @@ tbody tr:hover {
 .single-widget.range .title{
   text-transform: none;
 }
-
+.logo-shop{
+  height: 210px;
+  margin-bottom: 15px;
+}
+.logo-shop img{
+  object-fit: cover;
+}
 //fix coupon button (cart)
 .shopping-cart .total-amount .left .coupon form .btn {
   color: #333 !important;
