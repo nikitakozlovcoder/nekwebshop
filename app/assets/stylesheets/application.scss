@@ -36,6 +36,17 @@ $color-border: rgba(175, 175, 175, 0.86);
 #address-input{
   padding-right: 33px;
 }
+h4 a{
+  position: relative;
+  font-weight: inherit;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+h4 a:hover{
+  position: relative;
+  font-weight: inherit;
+  border-bottom: 1px solid rgba(255, 125, 10, 0.85);
+}
+
 .search-bar .nice-select span{
   display: block;
   width: 100px;
