@@ -357,12 +357,11 @@
                 </div>
     </div>
     <div class = "option">
-      <ul class="list-products">
-        <% if @shop.products.count == 0 %>
-          <h4 style="text-align: center; padding: 25px">Вы пока не добавили ни одного товара. <br/><%= link_to "Создать товар", controller: "products", action: "new"  %></h4>
-        <% end %>
+      <ul class="list-products" data-count="<%= @shop.products.count %>">
+
+          <h4 class="profile_no_products" style="text-align: center; padding: 25px; display: none;">Вы пока не добавили ни одного товара. <br/><%= link_to "Создать товар", controller: "products", action: "new"  %></h4>
         <% @shop.products.each do |product| %>
-          <li class="shop-product">
+          <li class="shop-product" data-id="<%= product.id %>">
            <div class="shop-product-inform">
              <div class="product-image">
                <%= link_to(controller: 'products', action: 'show', id: product.id) do %>
@@ -370,7 +369,7 @@
                <% end %>
              </div>
              <div class="product-inform">
-               <p class="product-name"><a href="#"><%= product.title %></a></p>
+               <p class="product-name"><a href="#" class="roduct-name_link"><%= product.title %></a></p>
                <p class="descr"><%= product.description[0..45] %><%= product.description.length > 46 ? "..." : "" %></p>
              </div>
            </div>
@@ -387,7 +386,7 @@
                  <%= link_to controller: 'products', action: 'update_product', shop_id: @shop.id, id: product.id do %><i class="ti-settings remove-icon"></i><% end %>
                </div>
                <div class="icon-link delete-product">
-                 <a href="#"><i class="ti-trash remove-icon"></i></a>
+                 <a style="cursor: pointer"><i class="ti-trash remove-icon"></i></a>
                </div>
              </div>
            </div>

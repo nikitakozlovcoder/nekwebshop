@@ -6,6 +6,12 @@ class ProductsController < ApplicationController
 
 
   # all products grid
+   def delete
+     @shop = Shop.find_by!(id: params[:id], user_id: current_user)
+     @product = @shop.products.find(params[:product_id])
+     @product.destroy
+     render json: true
+   end
    def load_fields
      @product = Product.find params[:id]
      out ={}

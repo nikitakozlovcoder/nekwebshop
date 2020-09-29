@@ -193,7 +193,10 @@
                 </div>
                 <div class="shop-name">
                   <%= link_to shop.name, controller: 'shops', action: 'index', id: shop.id %>
-                  <p class="descr"> <%= shop.description %></p>
+                  <% if shop.description %>
+                    <p class="descr" style="font-weight: normal; padding-top: 5px;"> <%= shop.description[0..70] %><%= shop.description.length > 70? "..." : "" %></p>
+                  <% end %>
+
                 </div>
               </div>
 
