@@ -71,7 +71,7 @@
           </tbody>
         </table>
         <% if @carts.count == 0 %>
-          <h3 style="width: 100%; text-align: center; padding: 80px 0">В корзине пока пусто.  <%=link_to 'Начать покупки', {controller: 'products', action: 'index'}, style: 'font-weight: inherit; text-decoration: underline' %>.</h3>
+          <h3 style="width: 100%; text-align: center; padding: 40px 0">В корзине пока пусто.  <%=link_to 'Начать покупки', {controller: 'products', action: 'index'}, style: 'font-weight: inherit; text-decoration: underline' %>.</h3>
         <% end %>
         <!--/ End Shopping Summery -->
       </div>
@@ -90,16 +90,17 @@
                   </form>
                 </div>-->
                 <div class="checkbox">
-                  <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Доставка (+10₽)</label>
+                <!--  <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Доставка (+10₽)</label>-->
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-7 col-12">
               <div class="right">
                 <ul>
+                  <!--
                   <li>Подытого корзины<span>₽330.00</span></li>
                   <li>Доставка<span>Бесплатно</span></li>
-                  <li>Вы экономите<span>₽20.00</span></li>
+                  <li>Вы экономите<span>₽20.00</span></li>-->
                   <li class="last">Итого<span></span></li>
                 </ul>
                 <div class="button5">
