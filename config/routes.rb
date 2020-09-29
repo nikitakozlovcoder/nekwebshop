@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   #get 'shop_id', to: 'users#shop_id'
   get 'shop/profile/:id', to: 'shops#profile'
+  post 'shop/profile/:id/delete_product/:product_id', to: 'products#delete'
   post 'shop/profile/:id', to: 'shops#update'
 
 

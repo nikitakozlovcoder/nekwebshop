@@ -1,6 +1,7 @@
 $(document).on('turbolinks:load', function () {
     if (get_body().classList.contains('users') && (get_body().classList.contains('profile') || get_body().classList.contains('profile_change') || get_body().classList.contains('password_change'))){
 
+
         //choice-container functionality
 
         function AppendPhoto(container, src) {

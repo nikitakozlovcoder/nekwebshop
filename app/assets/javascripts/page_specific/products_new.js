@@ -305,7 +305,7 @@ $(document).on('turbolinks:load', function () {
 					style = "";
 					type = "file";
 
-					text_to_add = `<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><input name="${el.id}_changed" type="text" value = "No"><div class="error-list"></div></div></div>`;
+					text_to_add = `<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Загрузите изображения...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><input name="${el.id}_changed" type="text" value = "No"><div class="error-list"></div></div></div>`;
 
 				}
 				generated_fields.innerHTML += text_to_add;
