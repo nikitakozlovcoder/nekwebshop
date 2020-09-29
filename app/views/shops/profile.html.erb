@@ -2,9 +2,13 @@
 
 <div class="shop-name-container">
   <div class="image">
-    <img src="https://via.placeholder.com/50x50" alt="">
+    <% if @shop.main_photo.attached? %>
+      <%= image_tag @shop.main_photo%>
+    <% else %>
+      <%= image_tag url_for('shop.png')%>
+    <% end %>
   </div>
-  <p class="shop-name">Пятёрочка</p>
+  <p class="shop-name"><%= @shop.name %></p>
 </div>
 
 
@@ -380,9 +384,9 @@
              </div>
              <div class="icon-link-container">
                <div class="icon-link">
-                 <a href="#"><i class="ti-settings remove-icon"></i></a>
+                 <%= link_to controller: 'products', action: 'update_product', shop_id: @shop.id, id: product.id do %><i class="ti-settings remove-icon"></i><% end %>
                </div>
-               <div class="icon-link">
+               <div class="icon-link delete-product">
                  <a href="#"><i class="ti-trash remove-icon"></i></a>
                </div>
              </div>

@@ -36,6 +36,11 @@ $color-border: rgba(175, 175, 175, 0.86);
 #address-input{
   padding-right: 33px;
 }
+.shop-name-container .image{
+  width: 75px !important;
+  height: 75px !important;
+  object-fit: cover;
+}
 h4 a{
   position: relative;
   font-weight: inherit;

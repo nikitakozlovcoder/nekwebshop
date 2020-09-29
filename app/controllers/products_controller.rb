@@ -31,20 +31,23 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @categories = Category.where(is_template: true )
+    redirect_to controller: 'users', action: 'sign_in' if !current_user
+    if current_user
+      @categories = Category.where(is_template: true )
 
-    @shop = Shop.find(params[:shop_id])
-    @product = @shop.products.find(params[:id])
-    @category = @product.category
-    @errors = []
+      @shop = Shop.find(params[:shop_id])
+      @product = @shop.products.find(params[:id])
+      @category = @product.category
+      @errors = []
 
-    render :new
+      render :new
+    end
   end
 
    def update_product
      @errors = []
      valid = true
-     @shop = Shop.find(params[:shop_id])
+     @shop = Shop.find_by!(id: params[:shop_id], user_id: current_user.id)
      @category = Category.find_by(id: params[:category])
      if @category && !@category.is_template
        @category = nil
@@ -163,15 +166,18 @@ class ProductsController < ApplicationController
   # add new product
 
   def new
-    @shop = Shop.find(params[:id])
-    @categories = Category.where(is_template: true )
-    @product = Product.new
-    @errors = []
+    redirect_to controller: 'users', action: 'sign_in' if !current_user
+    if current_user
+      @shop = Shop.find_by!(id: params[:id], user_id: current_user.id)
+      @categories = Category.where(is_template: true )
+      @product = Product.new
+      @errors = []
+    end
   end
   def create
     @errors = []
     valid = true
-    @shop = Shop.find(params[:id])
+    @shop = Shop.find_by!(id: params[:id], user_id: current_user.id)
     @category = Category.find_by(id: params[:category])
     if @category && !@category.is_template
       @category = nil
