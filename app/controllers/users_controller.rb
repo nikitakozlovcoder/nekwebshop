@@ -58,8 +58,8 @@ class UsersController < ApplicationController
     @user.country = params[:country]
     @user.phone = params[:phone]
     @user.zip = params[:zip]
-    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
-      @errors_main << ["Введите полный адрес"]
+    if !is_valid_address
+      @errors_main << ["Введите адрес"]
     end
     @user.should_validate_temp_mail = true
     if @user.valid? and @errors_main.count == 0
@@ -271,8 +271,8 @@ class UsersController < ApplicationController
     @user.country = params[:country]
     @user.zip = params[:zip]
     @user.confirmed = false
-    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
-      @errors << "Введите полный адрес"
+    if !is_valid_address
+      @errors << "Введите адрес"
     end
     if  @user.valid? and @errors.count <= 0
       puts "SAVEDUSER"

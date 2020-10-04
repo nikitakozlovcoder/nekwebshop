@@ -7,7 +7,9 @@ class OrderedProduct < ApplicationRecord
     data = JSON.parse(self.data)
     str=""
     data.each do |d|
-      str+="#{d['name']}#{d['hint'].blank? ? '' : '('+d['hint']+')' }:  #{d['value']}. " if d
+      val = d['value']
+      val = val[0..20] if val.is_a? String
+      str+="#{d['name']}#{d['hint'].blank? ? '' : '('+d['hint']+')' }:  #{val}. " if d
     end
     str
   end

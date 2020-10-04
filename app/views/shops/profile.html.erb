@@ -1,5 +1,15 @@
 <%= render partial: './header.html.erb' %>
-
+<form action="<%= request.base_url %>/shop/<%= @shop.id %>/add_address" id="address-form", method="post">
+  <div style="display: none">
+    <input name="street" class="field" id="form-street"/>
+    <input name="city" class="field" id="form-city" />
+    <input name="state" class="field" id="form-administrative" />
+    <input name="zip" class="field" id="form-zip" />
+    <input name="country" class="field" id="form-country" />
+    <input name="county" class="field" id="form-county" />
+    <input name="suburb" class="field" id="form-suburb"/>
+  </div>
+</form>
 <div class="shop-name-container">
   <div class="image">
     <% if @shop.main_photo.attached? %>
@@ -127,7 +137,7 @@
                                     </div>
                                     <tbody>
                                     <% @shop.address.each do |addr| %>
-                                      <tr>
+                                      <tr style="height: auto;">
                                       	
                                         	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash" aria-hidden="true"></i></td>
                                         	
@@ -144,20 +154,12 @@
                                     <label>Добавить новую торговую точку</label>
                                     <div style="display: flex; align-items: center;">
                                       <input type="search" id="address-input" />
-                                      <i class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px"></i>
+                                      <i onclick="document.querySelector('#address-form').submit();" class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px; cursor: pointer;" ></i>
                                     </div>
 
                                     <p>Выбрано: <strong id="address-value">---</strong></p>
                                   </div>
-                                  <div style="display: none">
-                                    <input name="street" class="field" id="form-street"/>
-                                    <input name="city" class="field" id="form-city" />
-                                    <input name="state" class="field" id="form-administrative" />
-                                    <input name="zip" class="field" id="form-zip" />
-                                    <input name="country" class="field" id="form-country" />
-                                    <input name="county" class="field" id="form-county" />
-                                    <input name="suburb" class="field" id="form-suburb"/>
-                                  </div>
+
 
 
                                   <div class="title">
@@ -185,7 +187,6 @@
                                     <div class="error-list"></div>
                                   </div>
                                 </div>
-
 
 
                                 <div class="col-12">
@@ -305,39 +306,7 @@
                               </div>
                             </div>
                             <div class = "items_container">
-                              <% order.ordered_products.each do |op| %>
-                                <%= link_to controller: 'products', action: 'show', id: op.product.try(:id) ? op.product.try(:id) : -1 do%>
-                                  <div class = "item">
-                                    <div class = "image">
-                                      <%= image_tag op.main_photo %>
-                                    </div>
-                                    <div class = "des">
-                                      <p class = "product-name"><%= op.title %></p>
-                                      <p class = "product-des"><%= op.data_view %></p>
-                                    </div>
-                                    <div class = "price">
-                                      <p><%= op.price %>₽</p>
-                                    </div>
-                                    <div class = "qty">
-                                      <p><%= op.quantity %></p>
-                                    </div>
-                                    <div class = "sub-total">
-                                      <%= (op.price * op.quantity).round(2) %>₽
-                                    </div>
 
-                                    <div class = "price_name">
-                                      Цена
-                                    </div>
-                                    <div class = "qty_name">
-                                      Количество
-                                    </div>
-                                    <div class = "sub-total_name">
-                                      Подытог
-                                    </div>
-                                  </div>
-                                <% end %>
-
-                              <% end %>
                             </div>
                             <div class = "items_footer">
                               <div class = "total_name">

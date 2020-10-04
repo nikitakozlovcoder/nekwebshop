@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'shops/new', to: 'shops#new'
   post 'shops/new', to: 'shops#create'
   post 'shop/:shop_id/update_product/:id', to: 'products#update_product'
+  post 'shop/:shop_id/add_address', to: 'shops#add_address'
   get 'category/load/:id', to:'categories#show'
 
   post 'product/:id', to:'posts#create'

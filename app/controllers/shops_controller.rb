@@ -14,6 +14,11 @@ class ShopsController < ApplicationController
     address.save
     address
   end
+  def add_address
+    @shop = Shop.find_by!(id: params[:shop_id], user_id: current_user.id)
+    @shop.address << create_addr if is_valid_address
+    redirect_to controller: 'shops', action: 'profile', id: params[:shop_id]
+  end
   def index
 
     @shop = Shop.find(params[:id])
@@ -76,7 +81,7 @@ class ShopsController < ApplicationController
   def create
     @errors = []
     @shop = Shop.new
-    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
+    if !is_valid_address
       @errors << "Введите полный адрес"
     end
 
