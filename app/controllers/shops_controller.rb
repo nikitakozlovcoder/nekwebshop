@@ -19,6 +19,11 @@ class ShopsController < ApplicationController
     @shop.address << create_addr if is_valid_address
     redirect_to controller: 'shops', action: 'profile', id: params[:shop_id]
   end
+  def del_address
+    @shop = Shop.find_by!(id: params[:shop_id], user_id: current_user.id)
+    @shop.address.find(params[:id]).destroy
+    render json: "ok"
+  end
   def index
 
     @shop = Shop.find(params[:id])

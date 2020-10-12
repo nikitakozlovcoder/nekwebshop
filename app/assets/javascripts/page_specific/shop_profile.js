@@ -1,5 +1,16 @@
 $(document).on('turbolinks:load', function () {
     if (get_body().classList.contains('shops')&& (get_body().classList.contains('profile') || get_body().classList.contains('update'))){
+        document.querySelectorAll('.del_addr').forEach(el=>{
+            el.addEventListener('click', ()=>{
+                if(confirm("Удалить адрес?"))
+                {
+                    let id  = el.dataset.id;
+                    fetch(window.location.href +`/delete_address/${id}`, {method: 'POST' });
+                    el.parentElement.style.display = "none";
+                }
+
+            })
+        });
        let PRODUCTS_COUNT = Number(document.querySelector('.list-products').dataset.count);
        let profile_no_products = document.querySelector('.profile_no_products');
        function update_no_products()

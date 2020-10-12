@@ -34,7 +34,7 @@ gem 'railroady'
 gem 'uglifier'
 #gem 'coffee-rails'
 gem 'bootsnap', '>= 1.4.2', require: false
-
+gem 'rails-erd'
 group :development, :test do
 
   #gem 'sqlite3'

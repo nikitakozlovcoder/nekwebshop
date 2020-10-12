@@ -139,7 +139,7 @@
                                     <% @shop.address.each do |addr| %>
                                       <tr style="height: auto;">
                                       	
-                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash del_addr" aria-hidden="true" data-id="<%= addr.id %>"></i></td>
                                         	
                                     	
 
