@@ -195,13 +195,32 @@ Category.add 'Смартфоны', [
     {:name=> "GPS", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
     {:name=> "Разрешение камеры", :type => "Number", :id=>8, :min=>0, :max=>nil, hint: "MP", is_int: true},
     {:name=> "Влагозащита", :type => "Bool", :id=>9, :min=>nil , :max=>nil, hint: nil},
-    {:name=> "NFC", :type => "Bool", :id=>9, :min=>nil , :max=>nil, hint: nil},
-    {:name=> "Емкость аккумулятора", :type => "Number", :id=>10, :min=>nil , :max=>nil, hint: nil, is_int: true},
-    {:name=> "Операционная система", :type => "Text", :id=>11, :min=>nil , :max=>nil, hint: nil}
+    {:name=> "NFC", :type => "Bool", :id=>10, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Емкость аккумулятора", :type => "Number", :id=>11, :min=>nil , :max=>nil, hint: nil, is_int: true},
+    {:name=> "Операционная система", :type => "Text", :id=>12, :min=>nil , :max=>nil, hint: nil}
 ]
+Category.add 'Клавиатуры', [
+    {:name=> "Игровая", :type => "Bool", :id=>1, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Тип клавиш", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Тип подключения", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Цвет", :type => "Text", :id=>4, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Цвет подсветки", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: "gb", is_int: true},
+    {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 
+]
+Category.add 'Компьютерные мыши', [
+    {:name=> "Игровая", :type => "Bool", :id=>1, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Разрешение сенсора", :type => "Number", :id=>2, :min=>0, :max=>nil, hint: "DPI", is_int: true},
+    {:name=> "Тип подключения", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Цвет", :type => "Text", :id=>4, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Цвет подсветки", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: "gb", is_int: true},
+    {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
+]
 #Дерево
 с1 = Category.create(name: "Цифровая техника")
+с2 = Category.create(name: "Переферия", parent: с1)
 a1 = Category.where(name:"Фото и видео-техника").first
 a1.makers << another
 a1.parent = с1
@@ -209,4 +228,65 @@ a1.save
 a1 = Category.where(name:"Смартфоны").first
 a1.makers << another
 a1.parent = с1
+a1.save
+a1 = Category.where(name:"Компьютерные мыши").first
+a1.makers << another
+a1.parent = с2
+a1.save
+a1 = Category.where(name:"Клавиатуры").first
+a1.makers << another
+a1.parent = с2
+a1.save
+
+#Товары для дома
+#Категории с полями
+Category.add 'Миксеры', [
+    {:name=> "Максимальная мощность", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "ВТ", is_int: true},
+    {:name=> "Планетарное вращение насадок", :type => "Bool", :id=>2, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Крюки для замешивания теста", :type => "Bool", :id=>3, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Объем чаши", :type => "Number", :id=>4, :min=>0, :max=>nil, hint: "Л", is_int: false},
+    {:name=> "Материал корпуса", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Насадка-блендер", :type => "Bool", :id=>6, :min=>nil , :max=>nil, hint: nil},
+]
+Category.add 'Обогреватели', [
+    {:name=> "Максимальная мощность", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "ВТ", is_int: true},
+    {:name=> "Площадь обогрева", :type => "Number", :id=>2, :min=>0, :max=>nil, hint: "кв.м", is_int: false},
+    {:name=> "Количество секций", :type => "Number", :id=>3, :min=>0, :max=>nil, hint:  nil, is_int: true},
+    {:name=> "Вентилятор", :type => "Bool", :id=>4, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Термостат", :type => "Bool", :id=>5, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Таймер", :type => "Bool", :id=>6, :min=>nil , :max=>nil, hint: nil},
+
+]
+Category.add 'Ножи', [
+    {:name=> "Длина", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "см", is_int: true},
+    {:name=> "Материал режущей части", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Материал ручки", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Зазубренность", :type => "Bool", :id=>4, :min=>nil , :max=>nil, hint: nil},
+]
+Category.add 'Сервировка', [
+    {:name=> "Количество в наборе", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil, is_int: true},
+    {:name=> "Материал", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Цвет", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil}
+
+]
+#Дерево
+с1 = Category.create(name: "Товары для дома")
+с2 = Category.create(name: "Бытовая техника", parent: с1)
+с3 = Category.create(name: "Товары для кухни", parent: с1)
+с4 = Category.create(name: "Посуда", parent: с3)
+a1 = Category.where(name:"Миксеры").first
+a1.makers << another
+a1.parent = с2
+a1.save
+a1 = Category.where(name:"Обогреватели").first
+a1.makers << another
+a1.parent = с2
+a1.save
+a1 = Category.where(name:"Ножи").first
+a1.makers << another
+a1.parent = с3
+a1.save
+a1 = Category.where(name:"Сервировка").first
+a1.makers << another
+a1.parent = с3
 a1.save
