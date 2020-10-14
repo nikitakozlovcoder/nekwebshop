@@ -269,11 +269,55 @@ Category.add 'Сервировка', [
     {:name=> "Цвет", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil}
 
 ]
+Category.add 'Кастрюли', [
+    {:name=> "Объем", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "мл", is_int: true},
+    {:name=> "Материал", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Покрытие", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
+
+
+]
+
+Category.add 'Сковородки', [
+    {:name=> "Диаметр", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "см", is_int: true},
+    {:name=> "Материал", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Покрытие", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
+
+
+]
+Category.add 'Лампы', [
+    {:name=> "Мощность", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "ВТ", is_int: true},
+    {:name=> "Световой поток", :type => "Number", :id=>2, :min=>0, :max=>nil, hint: "Лм", is_int: true},
+    {:name=> "Цветовая температура", :type => "Number", :id=>3, :min=>0, :max=>nil, hint: "К", is_int: true},
+    {:name=> "Энергосберегающая", :type => "Bool", :id=>4, :min=>nil , :max=>nil, hint: nil},
+
+]
+Category.add 'Вазы', [
+    {:name=> "Размер", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil, is_int: true},
+    {:name=> "Материал", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil}
+]
+Category.add 'Полки', [
+    {:name=> "Длина", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "см", is_int: true},
+    {:name=> "Материал", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
+    {:name=> "Цвет", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
+
+]
+Category.add 'Порошки', [
+    {:name=> "Вес", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "кг", is_int: false},
+    {:name=> "Срок годности", :type => "Number", :id=>2, :min=>0, :max=>nil, hint: "мес", is_int: false},
+
+]
+Category.add 'Отбеливатели', [
+    {:name=> "Вес", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "кг", is_int: false},
+    {:name=> "Срок годности", :type => "Number", :id=>2, :min=>0, :max=>nil, hint: "мес", is_int: false},
+
+]
 #Дерево
 с1 = Category.create(name: "Товары для дома")
 с2 = Category.create(name: "Бытовая техника", parent: с1)
 с3 = Category.create(name: "Товары для кухни", parent: с1)
 с4 = Category.create(name: "Посуда", parent: с3)
+с5 = Category.create(name: "Интерьер", parent: с1)
+с6 = Category.create(name: "Бытовая химия", parent: с1)
 a1 = Category.where(name:"Миксеры").first
 a1.makers << another
 a1.parent = с2
@@ -289,4 +333,32 @@ a1.save
 a1 = Category.where(name:"Сервировка").first
 a1.makers << another
 a1.parent = с3
+a1.save
+a1 = Category.where(name:"Сковородки").first
+a1.makers << another
+a1.parent = с4
+a1.save
+a1 = Category.where(name:"Кастрюли").first
+a1.makers << another
+a1.parent = с4
+a1.save
+a1 = Category.where(name:"Лампы").first
+a1.makers << another
+a1.parent = с5
+a1.save
+a1 = Category.where(name:"Вазы").first
+a1.makers << another
+a1.parent = с5
+a1.save
+a1 = Category.where(name:"Полки").first
+a1.makers << another
+a1.parent = с5
+a1.save
+a1 = Category.where(name:"Порошки").first
+a1.makers << another
+a1.parent = с6
+a1.save
+a1 = Category.where(name:"Отбеливатели").first
+a1.makers << another
+a1.parent = с6
 a1.save
