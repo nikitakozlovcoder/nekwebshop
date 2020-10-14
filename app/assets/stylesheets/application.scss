@@ -39,6 +39,10 @@ $color-border: rgba(175, 175, 175, 0.86);
 .shop-profile_container{
   margin-top: 0 !important;
 }
+.nice-select .list{
+  max-height: 400px !important;
+  overflow: auto !important;
+}
 .shop-name-container .image img{
   width: 55px !important;
   height: 55px !important;
