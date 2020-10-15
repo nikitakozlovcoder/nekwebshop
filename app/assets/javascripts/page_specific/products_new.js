@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function () {
 
 		function refill_fields(product) {
 			console.log(product);
-
+			document.querySelectorAll('#developer_input_inp').value = product['custom_maker_name'];
 			//Fill Text elements
 			let texts = document.querySelectorAll('.generated_fields .Text');
 			texts.forEach((el) => {
@@ -252,6 +252,7 @@ $(document).on('turbolinks:load', function () {
 		function generateForm(data) {
 			let dev = document.querySelector('.form-group_dev');
 			let dev_select = document.querySelector('.form-group_dev_select');
+
 			dev.style.display = "block";
 			dev_select.innerHTML = "";
 
@@ -264,7 +265,8 @@ $(document).on('turbolinks:load', function () {
 				}
 
 			});
-
+			if(document.querySelector('select.form-group_dev_select').value == another)
+				document.querySelector('#developer_input').style.display = 'block';
 			$('select').niceSelect('update');
 
 			let generated_fields = document.querySelector(".generated_fields");
