@@ -33,6 +33,9 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.logo-shop{
+  text-align: center;
+}
 #address-input{
   padding-right: 33px;
 }
@@ -941,5 +944,20 @@ tbody tr:hover {
   .submit_shop_changes_button {
     padding-bottom: 30px;
     
+  }
+}
+@media only screen and (max-width: 575px){
+  .left-shop-inform-container_second{
+    width: 320px;
+    margin: auto;
+  }
+  .row-fix2{
+    padding: 0;
+  }
+
+}
+@media only screen and (min-width: 576px){
+  .row-fix3{
+    padding: 0;
   }
 }
