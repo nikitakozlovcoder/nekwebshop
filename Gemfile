@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-
+gem "image_processing"
 #gem 'rails-erd', group: :development
 gem 'jquery-rails'
 gem 'activestorage'

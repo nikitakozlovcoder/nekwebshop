@@ -84,7 +84,6 @@ Category.add 'Овощи', [
 с3 = Category.create(name: "Хлебобулочные изделия", parent: с1)
 a1 = Category.where(name:"Творожные изделия").first
 a1.makers << another
-a1.makers << makers[0]
 a1.parent = с2
 a1.save
 a2 = Category.where(name:"Кисломолочные продукты").first

@@ -938,8 +938,18 @@ tbody tr:hover {
   padding: 0 !important;
   
 }
-
-
+.add_product_round_button_container:hover .add_product_round_button{
+  background-color: #f6971c !important;
+}
+.add_product_round_button_container:hover{
+  color: #f6971c !important;
+}
+.add_product_round_button_container{
+  transition: all 0.2s ease;
+}
+.add_product_round_button{
+  transition: all 0.2s ease;
+}
 @media only screen and (max-width: 450px){
   .submit_shop_changes_button {
     padding-bottom: 30px;
@@ -960,4 +970,8 @@ tbody tr:hover {
   .row-fix3{
     padding: 0;
   }
+}
+.single-list{
+  font-size: 14px !important;
+  font-weight: normal !important;
 }

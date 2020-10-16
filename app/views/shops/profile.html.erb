@@ -10,15 +10,27 @@
     <input name="suburb" class="field" id="form-suburb"/>
   </div>
 </form>
-<div class="shop-name-container">
-  <div class="image">
-    <% if @shop.main_photo.attached? %>
-      <%= image_tag @shop.main_photo%>
-    <% else %>
-      <%= image_tag url_for('shop.png')%>
-    <% end %>
+
+<div class="shop-name-container" style="display: flex; justify-content: space-between;">
+  <div style="display: flex; align-items: center;">
+    <div class="image">
+      <% if @shop.main_photo.attached? %>
+        <%= image_tag @shop.main_photo%>
+      <% else %>
+        <%= image_tag url_for('shop.png')%>
+      <% end %>
+    </div>
+    <p class="shop-name"><%= link_to @shop.name, {controller: 'shops', action: 'index', id: @shop.id}, {style:"font-weight: bold"} %></p>
   </div>
-  <p class="shop-name"><%= @shop.name %></p>
+  <%= link_to controller: 'products', action: 'new', id: @shop.id  do %>
+  <div style="display: flex; align-items: center; flex-flow: row-reverse; cursor: pointer;" class="add_product_round_button_container">
+
+    <div style="display: flex; width: 35px; height: 35px; border-radius: 50%; background-color: #333333; font-size: 22px; color: white; margin-right: 7px;" class="add_product_round_button">
+      <i class="fa fa-plus" aria-hidden="true" style="margin: auto"></i>
+    </div>
+    <div style="font-weight: bold; font-size: 17px; padding: 7px;">Добавить товар</div>
+  </div>
+  <% end %>
 </div>
 
 
@@ -282,6 +294,12 @@
                               <div class = "content">
                                 <%= order.address.location %>
                               </div>
+                              <div>
+                                <p>Почтовый индекс</p>
+                              </div>
+                              <div class = "content">
+                                <%= order.address.zip %>
+                              </div>
                             </div>
 
                             <div class = "description">
@@ -306,7 +324,39 @@
                               </div>
                             </div>
                             <div class = "items_container">
+                              <% order.ordered_products.each do |op| %>
+                                <%= link_to controller: 'products', action: 'show', id: op.product.try(:id) ? op.product.try(:id) : -1 do%>
+                                  <div class = "item">
+                                    <div class = "image">
+                                      <%= image_tag op.main_photo %>
+                                    </div>
+                                    <div class = "des">
+                                      <p class = "product-name"><%= op.title %></p>
+                                      <p class = "product-des"><%= op.data_view %></p>
+                                    </div>
+                                    <div class = "price">
+                                      <p><%= op.price %>₽</p>
+                                    </div>
+                                    <div class = "qty">
+                                      <p><%= op.quantity %></p>
+                                    </div>
+                                    <div class = "sub-total">
+                                      <%= (op.price * op.quantity).round(2) %>₽
+                                    </div>
 
+                                    <div class = "price_name">
+                                      Цена
+                                    </div>
+                                    <div class = "qty_name">
+                                      Количество
+                                    </div>
+                                    <div class = "sub-total_name">
+                                      Подытог
+                                    </div>
+                                  </div>
+                                <% end %>
+
+                              <% end %>
                             </div>
                             <div class = "items_footer">
                               <div class = "total_name">

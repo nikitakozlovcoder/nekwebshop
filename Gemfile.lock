@@ -94,6 +94,9 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.0)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jquery-rails (4.4.0)
@@ -116,6 +119,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
     mimemagic (0.3.4)
+    mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -176,6 +180,8 @@ GEM
     rexml (3.2.4)
     ruby-graphviz (1.2.5)
       rexml
+    ruby-vips (2.0.17)
+      ffi (~> 1.9)
     ruby_dep (1.5.0)
     rubyzip (2.2.0)
     sass-rails (6.0.0)
@@ -246,6 +252,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   cloudinary
+  image_processing
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
