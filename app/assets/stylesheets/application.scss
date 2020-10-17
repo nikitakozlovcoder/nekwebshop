@@ -975,3 +975,11 @@ tbody tr:hover {
   font-size: 14px !important;
   font-weight: normal !important;
 }
+@media only screen and (max-width: 450px){
+  .profile_info_title{
+    padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px !important;
+  }
+}
