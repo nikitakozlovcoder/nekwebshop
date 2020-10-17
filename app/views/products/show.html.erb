@@ -216,7 +216,7 @@
 											<div class = "single_review" id="<%= post.id %>">
 												<div class = "user_attributes">
 													<div class = "reviewer_name">
-														<%= post.user.name%>
+														<%= post.user.name%> <%= post.user.surname%> <%= post.user.third_name%>
 													</div>
 													<% if post.user.avatar.attached? %>
 														<%= image_tag post.user.avatar, :class=>"user_photo_review" %>

@@ -147,4 +147,7 @@ class ApplicationController < ActionController::Base
       return  nil
     end
   end
+  def is_valid_address
+    !params[:suburb].blank? || !params[:county].blank? || !params[:street].blank? || !params[:city].blank? || !params[:state].blank? || !params[:country].blank? || !params[:zip].blank?
+  end
 end

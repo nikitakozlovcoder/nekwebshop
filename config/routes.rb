@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   #get 'shop_id', to: 'users#shop_id'
   get 'shop/profile/:id', to: 'shops#profile'
+  post 'shop/profile/:id/delete_product/:product_id', to: 'products#delete'
   post 'shop/profile/:id', to: 'shops#update'
 
 
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
   get 'shops/new', to: 'shops#new'
   post 'shops/new', to: 'shops#create'
   post 'shop/:shop_id/update_product/:id', to: 'products#update_product'
+  post 'shop/:shop_id/add_address', to: 'shops#add_address'
+  post 'shop/profile/:shop_id/delete_address/:id', to: 'shops#del_address'
   get 'category/load/:id', to:'categories#show'
 
   post 'product/:id', to:'posts#create'

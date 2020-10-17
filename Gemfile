@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-
+gem "image_processing"
 #gem 'rails-erd', group: :development
 gem 'jquery-rails'
 gem 'activestorage'
 gem 'turbolinks_render'
 gem 'ancestry'
 gem 'yui-compressor'
-
+gem 'cloudinary'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'pg'
@@ -34,7 +34,7 @@ gem 'railroady'
 gem 'uglifier'
 #gem 'coffee-rails'
 gem 'bootsnap', '>= 1.4.2', require: false
-
+gem 'rails-erd'
 group :development, :test do
 
   #gem 'sqlite3'
