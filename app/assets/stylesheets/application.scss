@@ -983,3 +983,13 @@ tbody tr:hover {
     margin-bottom: 10px !important;
   }
 }
+@media only screen and (max-width: 767px){
+  .shop-name-container-product{
+   margin-left: 0 !important;
+
+  }
+  .shop-name-container-product p{
+    font-size: 14px !important;
+  }
+}
+
