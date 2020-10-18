@@ -87,7 +87,7 @@
     <div class="row">
       <div class="col-12">
         <div class="section-title">
-          <h2>Trending Item</h2>
+          <h2>Интересные предложения</h2>
         </div>
       </div>
     </div>
@@ -1312,7 +1312,7 @@
     <div class="row">
       <div class="col-12">
         <div class="section-title">
-          <h2>Hot Item</h2>
+          <h2>Популярное</h2>
         </div>
       </div>
     </div>
@@ -1437,11 +1437,11 @@
 <section class="shop-home-list section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-6 col-12">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="row">
           <div class="col-12">
             <div class="shop-section-title">
-              <h1>New</h1>
+              <h1>Новинки</h1>
             </div>
           </div>
         </div>
@@ -1470,11 +1470,11 @@
 
 
       </div>
-      <div class="col-lg-4 col-md-6 col-12">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="row">
           <div class="col-12">
             <div class="shop-section-title">
-              <h1>Best Seller</h1>
+              <h1>Бест-селлеры</h1>
             </div>
           </div>
         </div>
@@ -1499,16 +1499,18 @@
           </div>
         <% end %>
       </div>
-      <div class="col-lg-4 col-md-6 col-12">
+      <div class="col-lg-4 col-md-12 col-sm-12">
         <div class="row">
           <div class="col-12">
             <div class="shop-section-title">
-              <h1>Top rated</h1>
+              <h1>Лучшее</h1>
             </div>
           </div>
         </div>
+        <div class="row" style="margin: 0;">
         <% Product.all.sort_by{|el| [el.mark, el.posts.count]}.last(3).reverse.each do |product| %>
-          <div class="single-list">
+            <div class="col-md-6 col-sm-6 col-lg-12">
+            <div class="single-list ">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="list-image overlay">
@@ -1526,7 +1528,9 @@
               </div>
             </div>
           </div>
+            </div>
         <% end %>
+        </div>
       </div>
     </div>
   </div>

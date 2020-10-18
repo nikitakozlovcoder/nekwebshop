@@ -1068,3 +1068,21 @@ tbody tr:hover {
   visibility: visible;
 }
 //
+@media only screen and (max-width: 450px){
+  .profile_info_title{
+    padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px !important;
+  }
+}
+@media only screen and (max-width: 767px){
+  .shop-name-container-product{
+   margin-left: 0 !important;
+
+  }
+  .shop-name-container-product p{
+    font-size: 14px !important;
+  }
+}
+

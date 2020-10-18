@@ -2,7 +2,25 @@
 
 $(document).on('turbolinks:load', function () {
 	if (get_body().classList.contains('products') && (get_body().classList.contains('new') || get_body().classList.contains('create') || get_body().classList.contains('update'))) {
+		function CATEGORY_SELECT_LISTENER(){
+
+			let textedit = document.querySelector(".Category .current");
+			textedit.contentEditable = true;
+			textedit.focus();
+			let divMO = new window.MutationObserver(function(e) {
+				console.log("NEW!!!!");
+				//SEARCH!
+			});
+			divMO.observe(textedit, { childList: true, subtree: true, characterData: true });
+		}
+		let CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
+		CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
+
+
+		//
 		 CategoryCheck = function(e) {
+		 	console.log("hi!");
+
 			return new Promise(resolve => {
 
 				if (e.value == "") {
@@ -27,6 +45,8 @@ $(document).on('turbolinks:load', function () {
 					})
 					.then(() => {
 						resolve();
+						CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
+						CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
 					});
 
 			});
