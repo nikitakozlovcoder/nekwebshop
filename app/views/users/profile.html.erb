@@ -185,11 +185,13 @@
             <li>
               <div class="shop-inform">
                 <div class="shop-image">
+                <%= link_to controller: 'shops', action: 'index', id: shop.id do%>
                   <% if shop.main_photo.attached? %>
                     <%= image_tag shop.main_photo, class: 'image' %>
                   <% else %>
                     <%= image_tag url_for('shop.png'), class: 'image' %>
                   <% end %>
+                <% end %>
                 </div>
                 <div class="shop-name">
                   <%= link_to shop.name, controller: 'shops', action: 'index', id: shop.id %>

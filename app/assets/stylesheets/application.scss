@@ -694,7 +694,7 @@ tbody tr:hover {
     display: none;
   }
   .single-product .product-content{
-    width: 220px;
+    width: 260px;
   }
   .mobile-buttons{
     display: block;
@@ -711,7 +711,17 @@ tbody tr:hover {
     display: none;
   }
 }
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 540px){
+  .single-product .product-content{
+    width: 160px;
+  }
+  .mobile-buttons .product-action {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 440px){
   .single-product {
     flex-direction: column;
     align-items: center;
@@ -737,6 +747,9 @@ tbody tr:hover {
   }
   .shop .nice-select{
     width: 70%;
+  }
+  .mobile-buttons .product-action {
+    display: block;
   }
 
 }
@@ -867,9 +880,6 @@ tbody tr:hover {
 
 }
 
-.current_photo {
-
-}
 
 .inform_profile{
   display: flex;
@@ -995,3 +1005,66 @@ tbody tr:hover {
   font-size: 14px !important;
   font-weight: normal !important;
 }
+
+//For right font in header (buttons description)
+.header.shop .right-bar .sinlge-bar .single-icon span{
+  font-family: 'Poppins', sans-serif;
+}
+//
+//For inner contanier bax-shadow fix in shop profile
+.shops.profile .contact-us .form-main {
+  box-shadow: none;
+}
+//
+//For transition in link in small shop icon element
+.shop-name-container .shop-name a:hover{
+  color: #F6971C
+}
+//
+//Fix transition in border in shop profile if no products
+.profile_no_products a{
+  border: none;
+}
+.profile_no_products a:hover{
+  color: #F6971C;
+  border: none;
+}
+//
+//Shop profile locationField plus sign transition
+#locationField i {
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+#locationField i:hover {
+  color: #F6971C;
+}
+//Header black strap fix and text transform fix
+.cat-nav-head .categories_header_wrap{
+  padding-right: 0;
+}
+.header.shop .main-category li a {
+  text-transform: none !important;
+}
+// 
+//overlay for products
+.single-product .product-img > a::after{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: #000;
+  content: "";
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.single-product .product-img > a:hover:after {
+  opacity: 0.3;
+  visibility: visible;
+}
+//
