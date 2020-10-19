@@ -258,22 +258,37 @@ Category.add 'Компьютерные мыши', [
     {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 ]
 #Дерево
+maker_samsung = Maker.create(name:"Samsung")
+maker_a4tech = Maker.create(name:"A4Tech")
 с1 = Category.create(name: "Цифровая техника")
 с2 = Category.create(name: "Переферия", parent: с1)
 a1 = Category.where(name:"Фото и видео-техника").first
 a1.makers << another
+a1.makers << maker_samsung
+a1.makers << Maker.create(name:"Pentax")
+a1.makers << Maker.create(name:"Nikon")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Смартфоны").first
 a1.makers << another
+a1.makers << maker_samsung
+a1.makers << maker_xiaomi
+a1.makers << Maker.create(name:"Apple")
+a1.makers << Maker.create(name:"Huawei")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Компьютерные мыши").first
 a1.makers << another
+a1.makers << Maker.create(name:"Genius")
+a1.makers << Maker.create(name:"Trust")
+a1.makers << maker_a4tech
 a1.parent = с2
 a1.save
 a1 = Category.where(name:"Клавиатуры").first
 a1.makers << another
+a1.makers << Maker.create(name:"Oklick")
+a1.makers << Maker.create(name:"Defender")
+a1.makers << maker_a4tech
 a1.parent = с2
 a1.save
 
