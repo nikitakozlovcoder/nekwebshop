@@ -52,6 +52,9 @@
           </div>
       </div>
       <div class = "orders_container">
+        <% if current_user.orders.count == 0 %>
+          <h3 style="text-align: center; padding: 25px">Заказов пока нет.</h3>
+        <% end %>
           <% current_user.orders.each_with_index do |order, idx| %>
             <div class = "order">
               <div class = "title" onclick = "ShowOrder(this)">
