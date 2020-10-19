@@ -3,7 +3,7 @@
 	<div class="shop-name-container shop-name-container-product" style="">
 		<div class="image">
 			<% if @product.shop.main_photo.attached? %>
-				<%= image_tag @shop.main_photo%>
+				<%= image_tag @product.shop.main_photo%>
 			<% else %>
 				<%= image_tag url_for('shop.png')%>
 			<% end %>
