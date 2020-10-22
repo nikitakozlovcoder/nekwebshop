@@ -13,12 +13,15 @@
 
 <div class="shop-name-container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <div style="display: flex; align-items: center;">
+
     <div class="image" style="width: 55px; height: 55px;">
+
       <% if @shop.main_photo.attached? %>
         <%= image_tag @shop.main_photo%>
       <% else %>
         <%= image_tag url_for('shop.png')%>
       <% end %>
+    <% end %>
     </div>
     <p class="shop-name"><%= link_to @shop.name, {controller: 'shops', action: 'index', id: @shop.id}, {style:"font-weight: bold"} %></p>
   </div>

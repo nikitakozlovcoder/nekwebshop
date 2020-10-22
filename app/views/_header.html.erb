@@ -271,15 +271,15 @@
             <!-- Search Form -->
             <% if current_user %>
             <div class="sinlge-bar">
-              <%= link_to({controller: 'wishes', action: 'index'}, class: 'single-icon') do %> <i class="fa fa-heart-o" aria-hidden="true"></i><% end %>
+              <%= link_to({controller: 'wishes', action: 'index'}, class: 'single-icon') do %> <i class="fa fa-heart-o" aria-hidden="true"></i><span>Избранное</span><% end %>
             </div>
             <div class="sinlge-bar">
-              <%= link_to({controller: 'users', action: 'profile'}, class: 'single-icon') do %><i class="fa fa-user-circle-o" aria-hidden="true"></i><% end %>
+              <%= link_to({controller: 'users', action: 'profile'}, class: 'single-icon') do %><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Профиль</span><% end %>
             </div>
              <% end %>
             <div class="sinlge-bar shopping"  style=" ">
 
-              <%= link_to({controller: 'cart', action: 'index'}, class: 'single-icon') do %> <i class="ti-bag"></i><% end %><!--<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>-->
+              <%= link_to({controller: 'cart', action: 'index'}, class: 'single-icon') do %> <i class="ti-bag"></i><span>Корзина</span><% end %><!--<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>-->
               <!-- Shopping Item -->
               <!--<div class="shopping-item">
                 <div class="dropdown-cart-header">
