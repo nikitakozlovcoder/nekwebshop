@@ -23,9 +23,8 @@ class User < ApplicationRecord
     validates_length_of  :password, in: 8..50, unless: :skip_pass
 
     def location
-       location = [self.street, self.city, self.state, self.country ]
-
-       location.any?{|a| a.nil? or a.blank? } ? '' : location.join(', ')
+      location = [self.street, self.city, self.state, self.country ]
+      location.select{|a| a != nil && a != "" }.join(', ')
     end
 end
 

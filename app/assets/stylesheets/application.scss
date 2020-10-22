@@ -33,8 +33,18 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.logo-shop{
+  text-align: center;
+}
 #address-input{
   padding-right: 33px;
+}
+.shop-profile_container{
+  margin-top: 0 !important;
+}
+.nice-select .list{
+  max-height: 400px !important;
+  overflow: auto !important;
 }
 .shop-name-container .image img{
   width: 55px !important;
@@ -928,11 +938,63 @@ tbody tr:hover {
   padding: 0 !important;
   
 }
-
-
+.add_product_round_button_container:hover .add_product_round_button{
+  background-color: #f6971c !important;
+}
+.add_product_round_button_container:hover{
+  color: #f6971c !important;
+}
+.add_product_round_button_container{
+  transition: all 0.2s ease;
+}
+.add_product_round_button{
+  transition: all 0.2s ease;
+}
 @media only screen and (max-width: 450px){
   .submit_shop_changes_button {
     padding-bottom: 30px;
     
   }
 }
+@media only screen and (max-width: 575px){
+  .left-shop-inform-container_second{
+    width: 320px;
+    margin: auto;
+  }
+  .row-fix2{
+    padding: 0;
+  }
+
+}
+@media only screen and (min-width: 576px){
+  .row-fix3{
+    padding: 0;
+  }
+}
+.single-list{
+  font-size: 14px !important;
+  font-weight: normal !important;
+}
+@media only screen and (max-width: 450px){
+  .profile_info_title{
+    padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px !important;
+  }
+}
+@media only screen and (max-width: 767px){
+  .shop-name-container-product{
+   margin-left: 0 !important;
+
+  }
+  .shop-name-container-product p{
+    font-size: 14px !important;
+  }
+
+  .list-image-fix{
+    width: 100% !important;
+    height: 300px !important;
+  }
+}
+

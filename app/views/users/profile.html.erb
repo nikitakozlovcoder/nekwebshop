@@ -22,7 +22,7 @@
 
   <div class="row">
    <%= render './profile_nav.html.erb' %>
-    <div class="profile-main">
+    <div class="profile-main col-lg-8 col-md-8">
       <h2>Мои данные</h2>
       <div class="inform-profile">
         <%= form_with class: "form", multipart: true do %>
@@ -182,7 +182,7 @@
         <div>
           <ul class="shop-list">
             <% @user.shops.each do |shop| %>
-            <li>
+            <li style="position: relative; padding-bottom: 35px;">
               <div class="shop-inform">
                 <div class="shop-image">
                   <% if shop.main_photo.attached? %>
@@ -191,16 +191,16 @@
                     <%= image_tag url_for('shop.png'), class: 'image' %>
                   <% end %>
                 </div>
-                <div class="shop-name">
+                <div class="shop-name" style="word-break: break-all">
                   <%= link_to shop.name, controller: 'shops', action: 'index', id: shop.id %>
                   <% if shop.description %>
-                    <p class="descr" style="font-weight: normal; padding-top: 5px;"> <%= shop.description[0..70] %><%= shop.description.length > 70? "..." : "" %></p>
+                    <p class="descr" style="font-weight: normal; font-size: 14px; padding-top: 5px;"> <%= shop.description[0..30] %><%= shop.description.length > 30? "..." : "" %></p>
                   <% end %>
 
                 </div>
               </div>
 
-              <div class="link-settings">
+              <div class="link-settings" style="position: absolute; bottom: -10px; right: 0;">
                 <%= link_to({controller: 'shops', action: 'profile', id: shop.id}, {class: 'edit-shop'} ) do%>
                   Управление<i class="ti-settings remove-icon"></i>
                 <% end %>

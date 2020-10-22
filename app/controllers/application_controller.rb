@@ -74,6 +74,11 @@ class ApplicationController < ActionController::Base
         query2 << "(attributes.code = '#{el['id']}' and attributes.num <= '#{params[el['id'].to_s + "_max"]}')"
       end
     end
+    @template.select {|el| el['type'] == "Bool"}.each do |el|
+      if !params[el['id'].to_s].blank?
+        query2 << "(attributes.code = '#{el['id']}' and attributes.check = #{params[el['id'].to_s] == "Yes"})"
+      end
+    end
     query = query.join ' and '
     sum = query2.count
     query2 = query2.join ' or '
@@ -95,7 +100,7 @@ class ApplicationController < ActionController::Base
       if order == :title
         @products = Product.where(id: @products.map(&:id)).order('LOWER(products.title)')
       else
-        @products = Product.where(query).order(:price)
+        @products = Product.where(id: @products.map(&:id)).order(:price)
       end
 
     end
@@ -146,5 +151,8 @@ class ApplicationController < ActionController::Base
     else
       return  nil
     end
+  end
+  def is_valid_address
+    !params[:suburb].blank? || !params[:county].blank? || !params[:street].blank? || !params[:city].blank? || !params[:state].blank? || !params[:country].blank? || !params[:zip].blank?
   end
 end

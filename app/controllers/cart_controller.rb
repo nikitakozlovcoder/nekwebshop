@@ -55,8 +55,8 @@ class CartController < ApplicationController
     get_carts
     @sum = 0
     @carts.each{|a| @sum+=a.product.price*a.quantity}
-    if params[:suburb].blank? || params[:county].blank? || params[:street].blank? || params[:city].blank? || params[:state].blank? || params[:country].blank? || params[:zip].blank?
-      @errors << "Введите полный адрес"
+    if !is_valid_address
+      @errors << "Введите адрес"
     end
     if @errors.count == 0
     user_carts = get_carts.group_by{|a| a.product.shop_id}
