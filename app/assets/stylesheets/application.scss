@@ -970,12 +970,12 @@ tbody tr:hover {
 }
 
 //shop title in product fix
-.products.show .shop-name-container{
-  margin-bottom: -70px;
+.products.show .section{
+  padding-top: 0;
 }
 @media only screen and (max-width: 991px) {
   .products.show .shop-name-container{
-    margin-bottom: -30px;
+    //margin-bottom: -30px;
   }
 }
 //end shop title in product fix
@@ -1063,7 +1063,7 @@ tbody tr:hover {
   transition: all 0.4s ease;
 }
 
-.single-product .product-img > a:hover:after {
+.single-product .product-img:hover > a:after {
   opacity: 0.3;
   visibility: visible;
 }
@@ -1084,5 +1084,9 @@ tbody tr:hover {
   .shop-name-container-product p{
     font-size: 14px !important;
   }
+}
+//fix of add shop button
+.section-profile .add_shop_button {
+  position: relative;
 }
 

@@ -174,7 +174,7 @@
         <div class = "my_shops_title">
           <h3>Мои магазины</h3>
           <div class = "add_shop_button">
-            <%= link_to({controller: 'shops', action: 'new'}, class: 'single-icon') do %><i class="fa fa-plus" aria-hidden="true"></i><% end %>
+            <%= link_to({controller: 'shops', action: 'new'}, class: 'single-icon') do %><i class="fa fa-plus" aria-hidden="true"></i><span>Создать магазин</span><% end %>
           </div>
         </div>
       </div>
@@ -182,7 +182,7 @@
         <div>
           <ul class="shop-list">
             <% @user.shops.each do |shop| %>
-            <li style="position: relative; padding-bottom: 35px;">
+            <li style="position: relative">
               <div class="shop-inform">
                 <div class="shop-image">
                 <%= link_to controller: 'shops', action: 'index', id: shop.id do%>
@@ -202,7 +202,7 @@
                 </div>
               </div>
 
-              <div class="link-settings" style="position: absolute; bottom: -10px; right: 0;">
+              <div class="link-settings" style="position: absolute; right: 0;">
                 <%= link_to({controller: 'shops', action: 'profile', id: shop.id}, {class: 'edit-shop'} ) do%>
                   Управление<i class="ti-settings remove-icon"></i>
                 <% end %>

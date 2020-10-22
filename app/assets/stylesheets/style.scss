@@ -1851,8 +1851,10 @@ Version:1.0
 .single-product .product-img .product-action a i {
   line-height: 40px;
 }
+//For description (small text) of button (3 styles below)
 .single-product .product-img .product-action a span,
-.header.shop .right-bar .sinlge-bar .single-icon span {
+.header.shop .right-bar .sinlge-bar .single-icon span,
+.section-profile .add_shop_button > .single-icon span {
 	visibility: hidden;
 	position: absolute;
 	background: #F7941D !important;
@@ -1875,7 +1877,8 @@ Version:1.0
 	border-radius:15px 0 0 15px;
 }
 .single-product .product-img .button-head .product-action a span::after,
-.header.shop .right-bar .sinlge-bar .single-icon span::after {
+.header.shop .right-bar .sinlge-bar .single-icon span::after,
+.section-profile .add_shop_button > .single-icon span::after {
 	position: absolute;
 	content: "";
 	right: 0;
@@ -1885,17 +1888,20 @@ Version:1.0
 	border-right:6px solid transparent;
 	border-bottom:6px solid transparent;
 }
-.single-product .product-img .product-action a:hover {
-	color:#F7941D;
-}
 .single-product .product-img .product-action a:hover span,
-.header.shop .right-bar .sinlge-bar .single-icon:hover span {
+.header.shop .right-bar .sinlge-bar .single-icon:hover span,
+.section-profile .add_shop_button > .single-icon:hover span {
   visibility: visible;
   opacity: 1;
   color:#333;
   background:#fff;
   margin-top: -12px;
 }
+//
+.single-product .product-img .product-action a:hover {
+	color:#F7941D;
+}
+
 .single-product .product-img .product-action.pro-action-width-dec a {
   width: 30px;
   height: 30px;

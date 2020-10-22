@@ -1,6 +1,19 @@
 <%= render partial: './header.html.erb' %>
-<div class="container">
-	<div class="shop-name-container shop-name-container-product" style="">
+<div class = "container">
+	<div class="shop-name-container shop-name-container-product">
+  		<div class="image">
+		  <%= link_to controller: 'shops', action: 'index', id: @product.shop.id do %>
+    		<% if @product.shop.main_photo.attached? %>
+				<%= image_tag @shop.main_photo%>
+			<% else %>
+				<%= image_tag url_for('shop.png')%>
+			<% end %>
+		  <% end %>
+  		</div>
+  		<p class="shop-name" style="word-break: break-all"><%= link_to @product.shop.name, {controller: 'shops', action: 'index', id: @product.shop.id}, {style:"font-weight: bold"} %></p>
+	</div>
+</div>
+<!-- div class="shop-name-container shop-name-container-product" style="">
 		<div class="image">
 			<% if @product.shop.main_photo.attached? %>
 				<%= image_tag @shop.main_photo%>
@@ -10,9 +23,13 @@
 		</div>
 		<p class="shop-name" style="word-break: break-all"><%= link_to @product.shop.name, {controller: 'shops', action: 'index', id: @product.shop.id}, {style:"font-weight: bold"} %></p>
 	</div>
+
+	</div>
 </div>
 
 <section id="contact-us" class="contact-us section" style="padding-top: 20px;">
+-->
+<section id="contact-us" class="contact-us section">
 	<div class="container">
 		<div class="contact-head">
 			<div class="row">
