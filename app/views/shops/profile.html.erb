@@ -21,7 +21,7 @@
       <% else %>
         <%= image_tag url_for('shop.png')%>
       <% end %>
-    <% end %>
+
     </div>
     <p class="shop-name"><%= link_to @shop.name, {controller: 'shops', action: 'index', id: @shop.id}, {style:"font-weight: bold"} %></p>
   </div>
