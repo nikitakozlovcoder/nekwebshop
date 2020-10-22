@@ -1108,8 +1108,27 @@ section.restore {
   grid-area: name;
 }
 // end
+
+//user actions animation
+.actions a:hover{
+  color: #F6971C !important;
+}
+//end user actions animation
+//animation in user profile shops section
+.shop-list .edit-shop:hover{
+  color: #F6971C;
+}
+.shop-list .shop-name a:hover{
+  color: #F6971C;
+}
+.my_shops_title .add_shop_button:hover{
+  color: #F6971C;
+}
+//end animation in user profile shops section
+
 @media screen and (max-width: 767px) {
   .users.profile .sidebar-container{
     width: 100%;
   }
 }
+

@@ -817,7 +817,9 @@ tbody tr:hover {
   .shop-profile_container{
     margin: 0 !important;
   }
-
+  .shop-name-container{
+    margin: 20px 40px;
+  }
 }
 .data-shop .reviews {
   margin-top: 0 !important;
@@ -956,6 +958,14 @@ tbody tr:hover {
     
   }
 }
+
+
+//animation in product exit button
+.product_title_show a:hover{
+  color: #F6971C
+}
+//end animation in product exit button
+
 @media only screen and (max-width: 575px){
   .left-shop-inform-container_second{
     width: 320px;
@@ -997,4 +1007,5 @@ tbody tr:hover {
     height: 300px !important;
   }
 }
+
 
