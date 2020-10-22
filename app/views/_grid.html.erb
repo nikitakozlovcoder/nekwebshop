@@ -130,11 +130,15 @@
                   <h3 class="title">Производители</h3>
                   <ul class="categor-list">
                     <% @makers.each do |el|%>
+                      <% prod_count = @products.where(maker_id: el.id).select{|a| a.quantity > 0 || a.is_inf_quantity}.count %>
+                      <% if prod_count > 0 %>
                       <li>
-                        <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" > <span class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">  <%= el.name %> (<%= @products.where(maker_id: el.id).count  %>)</span>
+
+                        <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" > <span class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">  <%= el.name %> (<%=  prod_count %>)</span>
                         <!-- <a href="?&makers[]=<%= el.id%>" class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">-->
 
                       </li>
+                        <% end %>
                     <% end %>
                   </ul>
                 </div>

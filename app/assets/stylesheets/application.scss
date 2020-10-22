@@ -969,16 +969,6 @@ tbody tr:hover {
   }
 }
 
-//shop title in product fix
-.products.show .section{
-  padding-top: 0;
-}
-@media only screen and (max-width: 991px) {
-  .products.show .shop-name-container{
-    //margin-bottom: -30px;
-  }
-}
-//end shop title in product fix
 //animation in product exit button
 .product_title_show a:hover{
   color: #F6971C
@@ -1084,9 +1074,15 @@ tbody tr:hover {
   .shop-name-container-product p{
     font-size: 14px !important;
   }
+
+  .list-image-fix{
+    width: 100% !important;
+    height: 300px !important;
+  }
 }
 //fix of add shop button
 .section-profile .add_shop_button {
   position: relative;
 }
+
 

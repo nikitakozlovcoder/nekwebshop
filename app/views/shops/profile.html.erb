@@ -13,8 +13,9 @@
 
 <div class="shop-name-container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <div style="display: flex; align-items: center;">
-    <div class="image">
-    <%= link_to controller: 'shops', action: 'index', id: @shop.id do %>
+
+    <div class="image" style="width: 55px; height: 55px;">
+
       <% if @shop.main_photo.attached? %>
         <%= image_tag @shop.main_photo%>
       <% else %>

@@ -1108,6 +1108,7 @@ section.restore {
   grid-area: name;
 }
 // end
+
 //user actions animation
 .actions a:hover{
   color: #F6971C !important;
@@ -1124,8 +1125,10 @@ section.restore {
   color: #F6971C;
 }
 //end animation in user profile shops section
+
 @media screen and (max-width: 767px) {
   .users.profile .sidebar-container{
     width: 100%;
   }
 }
+

@@ -16,7 +16,7 @@ Order.destroy_all
 User.destroy_all
 
 
-
+maker_xiaomi = Maker.create(name: "Xiaomi")
 test_user = User.new(name: 'John', surname: 'Doe', password: '12345678', password_confirmation: '12345678', phone: '88005553535', email: 'john.doe@gmail.com', confirmed: true)
 test_user.restore_date = Time.now.getutc
 test_user.save
@@ -83,31 +83,53 @@ Category.add 'Овощи', [
 с2 = Category.create(name: "Молочные продукты", parent: с1)
 с3 = Category.create(name: "Хлебобулочные изделия", parent: с1)
 a1 = Category.where(name:"Творожные изделия").first
+maker_korovka = Maker.create(name: "Коровка из Кореновки")
+maker_prostokvashino = Maker.create(name: "Простоквашино")
 a1.makers << another
+a1.makers << maker_prostokvashino
+a1.makers << Maker.create(name: "Белый медведь")
+a1.makers << maker_korovka
 a1.parent = с2
 a1.save
 a2 = Category.where(name:"Кисломолочные продукты").first
 a2.makers << another
+a2.makers << maker_prostokvashino
+a2.makers << maker_korovka
 a2.parent = с2
 a2.save
+maker_autinsk = Maker.create(name: "Аютинский")
 a3 = Category.where(name:"Хлеб").first
 a3.makers << another
+a3.makers << maker_autinsk
+a3.makers << Maker.create(name: "Черновской Хлеб")
+a3.makers << Maker.create(name: "ООО «САБУС»")
 a3.parent = с3
 a3.save
 a4 = Category.where(name:"Выпечка").first
 a4.makers << another
+a4.makers << maker_autinsk
+a4.makers << Maker.create(name: "Золотая Нива")
 a4.parent = с3
 a4.save
 a5 = Category.where(name:"Мясо").first
 a5.makers << another
+a5.makers << Maker.create(name: "Черкизово")
+a5.makers << Maker.create(name: "Мираторг")
+a5.makers << Maker.create(name: "Белая птица")
 a5.parent = с1
 a5.save
 a5 = Category.where(name:"Рыба").first
 a5.makers << another
+a5.makers << Maker.create(name: "Чайка")
+a5.makers << Maker.create(name: "Восточный поток")
+a5.makers << Maker.create(name: "БалтФишТрейд")
 a5.parent = с1
 a5.save
 a5 = Category.where(name:"Овощи").first
 a5.makers << another
+a5.makers << Maker.create(name: "Сады Придонья")
+a5.makers << Maker.create(name: "ОвощТорг")
+a5.makers << Maker.create(name: "АгроФТ")
 a5.parent = с1
 a5.save
 
@@ -154,26 +176,43 @@ Category.add 'Осенние куртки', [
 с2 = Category.create(name: "Куртки", parent: с1)
 a1 = Category.where(name:"Обувь").first
 a1.makers << another
+a1.makers << Maker.create(name: "Camaby")
+a1.makers << Maker.create(name: "CarloPazzolini")
+a1.makers << Maker.create(name: "Adidas")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Джинсы").first
 a1.makers << another
+a1.makers << Maker.create(name: "LEVIS")
+a1.makers << Maker.create(name: "Wrangler")
+a1.makers << Maker.create(name: "Pepe jeans")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Рубашки").first
 a1.makers << another
+a1.makers << Maker.create(name: "Hugo Boss")
+a1.makers << Maker.create(name: "Calvin Klein")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Свитера").first
 a1.makers << another
+a1.makers << Maker.create(name: "Galib")
+a1.makers << Maker.create(name: "Мультитекс")
+a1.makers << Maker.create(name: "ТЕКС ПЛЮС")
 a1.parent = с1
 a1.save
+maker_forpost = Maker.create(name: "Форпост")
 a1 = Category.where(name:"Зимние куртки").first
 a1.makers << another
+a1.makers << maker_forpost
+a1.makers << Maker.create(name: "АртМех")
+a1.makers << Maker.create(name: "Columbia")
 a1.parent = с2
 a1.save
 a1 = Category.where(name:"Осенние куртки").first
 a1.makers << another
+a1.makers << maker_forpost
+a1.makers << Maker.create(name: "RomMax")
 a1.parent = с2
 a1.save
 #Цифровая техника
@@ -219,22 +258,37 @@ Category.add 'Компьютерные мыши', [
     {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 ]
 #Дерево
+maker_samsung = Maker.create(name:"Samsung")
+maker_a4tech = Maker.create(name:"A4Tech")
 с1 = Category.create(name: "Цифровая техника")
 с2 = Category.create(name: "Переферия", parent: с1)
 a1 = Category.where(name:"Фото и видео-техника").first
 a1.makers << another
+a1.makers << maker_samsung
+a1.makers << Maker.create(name:"Pentax")
+a1.makers << Maker.create(name:"Nikon")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Смартфоны").first
 a1.makers << another
+a1.makers << maker_samsung
+a1.makers << maker_xiaomi
+a1.makers << Maker.create(name:"Apple")
+a1.makers << Maker.create(name:"Huawei")
 a1.parent = с1
 a1.save
 a1 = Category.where(name:"Компьютерные мыши").first
 a1.makers << another
+a1.makers << Maker.create(name:"Genius")
+a1.makers << Maker.create(name:"Trust")
+a1.makers << maker_a4tech
 a1.parent = с2
 a1.save
 a1 = Category.where(name:"Клавиатуры").first
 a1.makers << another
+a1.makers << Maker.create(name:"Oklick")
+a1.makers << Maker.create(name:"Defender")
+a1.makers << maker_a4tech
 a1.parent = с2
 a1.save
 
@@ -320,45 +374,81 @@ Category.add 'Отбеливатели', [
 с6 = Category.create(name: "Бытовая химия", parent: с1)
 a1 = Category.where(name:"Миксеры").first
 a1.makers << another
+a1.makers << Maker.create(name: "Bosh")
+maker_aceline = Maker.create(name: "Aceline")
+a1.makers << Maker.create(name: "Bosh")
+a1.makers << Maker.create(name: "Galaxy")
+a1.makers << Maker.create(name: "Philips")
+a1.makers << maker_aceline
 a1.parent = с2
 a1.save
 a1 = Category.where(name:"Обогреватели").first
 a1.makers << another
+a1.makers << maker_aceline
+a1.makers << Maker.create(name: "Ballu")
+a1.makers << Maker.create(name: "Hyundai")
 a1.parent = с2
 a1.save
 a1 = Category.where(name:"Ножи").first
 a1.makers << another
+a1.makers << Maker.create(name: "Global")
+a1.makers << Maker.create(name: "Rondell")
+a1.makers << Maker.create(name: "Samura")
 a1.parent = с3
 a1.save
 a1 = Category.where(name:"Сервировка").first
 a1.makers << another
+a1.makers << Maker.create(name: "ASA SELECTION")
+a1.makers << Maker.create(name: "Friesland")
 a1.parent = с3
 a1.save
+maker_nadoba = Maker.create(name: "Nadoba")
 a1 = Category.where(name:"Сковородки").first
 a1.makers << another
+a1.makers << maker_nadoba
+a1.makers << maker_aceline
+a1.makers << Maker.create(name: "Tefal")
+a1.makers << Maker.create(name: "Tima")
 a1.parent = с4
 a1.save
 a1 = Category.where(name:"Кастрюли").first
 a1.makers << another
+a1.makers << Maker.create(name: "Lara")
+a1.makers << Maker.create(name: "Polaris")
+a1.makers << maker_aceline
+
+a1.makers <<  maker_nadoba
 a1.parent = с4
 a1.save
 a1 = Category.where(name:"Лампы").first
 a1.makers << another
+a1.makers << maker_xiaomi
+a1.makers << Maker.create(name: "Proconnect")
+a1.makers << Maker.create(name: "Фотон")
 a1.parent = с5
 a1.save
 a1 = Category.where(name:"Вазы").first
 a1.makers << another
+a1.makers << Maker.create(name: "ЗАО «Никольский завод светотехнического стекла»")
+a1.makers << Maker.create(name: "Дымовкерамика")
 a1.parent = с5
 a1.save
 a1 = Category.where(name:"Полки").first
 a1.makers << another
+a1.makers << Maker.create(name: "ООО \"Мебель-стиль\"")
+a1.makers << Maker.create(name: "ООО \"МК Шатура\"")
 a1.parent = с5
 a1.save
 a1 = Category.where(name:"Порошки").first
 a1.makers << another
+a1.makers << Maker.create(name: "Tide")
+a1.makers << Maker.create(name: "Losk")
+a1.makers << Maker.create(name: "Миф")
 a1.parent = с6
 a1.save
 a1 = Category.where(name:"Отбеливатели").first
 a1.makers << another
+a1.makers << Maker.create(name: "Vanish")
+a1.makers << Maker.create(name: "БОС")
 a1.parent = с6
 a1.save

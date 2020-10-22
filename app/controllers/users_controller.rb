@@ -3,6 +3,9 @@
 # TODO implement actions functionality
 class UsersController < ApplicationController
   before_action :require_login, only: [:profile, :password_change, :profile_change]
+  def orders
+    redirect_to controller: 'users', action: 'sign_in' if !current_user
+  end
   def require_login
     unless current_user
       redirect_to :sign_in

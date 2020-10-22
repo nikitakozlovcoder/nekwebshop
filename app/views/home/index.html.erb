@@ -45,9 +45,9 @@
         <div class="single-banner">
           <img src="https://via.placeholder.com/600x370" alt="#">
           <div class="content">
-            <p>Man's Collectons</p>
-            <h3>Summer travel <br> collection</h3>
-            <a href="#">Discover Now</a>
+            <p style="font-weight: 600;">Лучшее предложение</p>
+            <h3>Товары для<br>вашего дома</h3>
+            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Товары для дома")%>
           </div>
         </div>
       </div>
@@ -57,9 +57,9 @@
         <div class="single-banner">
           <img src="https://via.placeholder.com/600x370" alt="#">
           <div class="content">
-            <p>Bag Collectons</p>
-            <h3>Awesome Bag <br> 2020</h3>
-            <a href="#">Shop Now</a>
+            <p style="font-weight: 600;">Лучшее предложение</p>
+            <h3>Смартфоны<br> 2020</h3>
+            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")%>
           </div>
         </div>
       </div>
@@ -69,9 +69,9 @@
         <div class="single-banner tab-height">
           <img src="https://via.placeholder.com/600x370" alt="#">
           <div class="content">
-            <p>Flash Sale</p>
-            <h3>Mid Season <br> Up to <span>40%</span> Off</h3>
-            <a href="#">Discover Now</a>
+            <p style="font-weight: 600;">Лучшее предложение</p>
+            <h3>Готовимся к морозам<br>Зимние куртки</h3>
+            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Зимние куртки")%>
           </div>
         </div>
       </div>
@@ -111,9 +111,10 @@
             <div class="tab-pane fade show active" id="man" role="tabpanel">
               <div class="tab-single">
                 <div class="row">
-                
-                  <% Product.order('RANDOM()').first(8).each do |product| %>
-                  <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+
+                  <% Product.order('RANDOM()').select{|a| a.is_inf_quantity || a.quantity > 0}.first(8).each do |product| %>
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+
                     <div class="single-product">
                       <div class="product-img">
                         <%= link_to(controller: 'products', action: "show", id: product.id) do %>
@@ -1282,9 +1283,9 @@
         <div class="single-banner">
           <img src="https://via.placeholder.com/600x370" alt="#">
           <div class="content">
-            <p>Man's Collectons</p>
-            <h3>Man's items <br>Up to<span> 50%</span></h3>
-            <a href="#">Shop Now</a>
+            <p>советуем заглянуть</p>
+            <h3>РашнБест<br/>БайСторЕвер</h3>
+            <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'РашнБестБайСторЕвер').id},  class: "btn" %>
           </div>
         </div>
       </div>
@@ -1294,9 +1295,9 @@
         <div class="single-banner">
           <img src="https://via.placeholder.com/600x370" alt="#">
           <div class="content">
-            <p>shoes women</p>
-            <h3>mid season <br> up to <span>70%</span></h3>
-            <a href="#" class="btn">Shop Now</a>
+            <p>лучший выбор</p>
+            <h3>Семерочка</h3>
+            <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'Семерочка').id},  class: "btn" %>
           </div>
         </div>
       </div>
@@ -1307,7 +1308,7 @@
 <!-- End Midium Banner -->
 
 <!-- Start Most Popular -->
-<div class="product-area most-popular section" style="padding-top: 50px;">
+<div class="product-area most-popular section" style="padding-top: 50px; display: none">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -1434,7 +1435,7 @@
 <!-- End Most Popular Area -->
 
 <!-- Start Shop Home List  -->
-<section class="shop-home-list section">
+<section class="shop-home-list section" style="padding-top: 50px;">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-6">
@@ -1445,13 +1446,14 @@
             </div>
           </div>
         </div>
-       <% Product.last(3).reverse.each do |product| %>
+       <% Product.select{|a| a.quantity > 0 || a.is_inf_quantity}.last(3).reverse.each do |product| %>
 
             <div class="single-list">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="list-image overlay">
-                 <%= image_tag product.main_photo, style: "object-fit: cover;" %>
+               <div class="col-lg-6 col-md-6 col-12" >
+
+                <div class="list-image overlay list-image-fix"  style="width: 150px; height: 150px;">
+                 <%= image_tag product.main_photo, style: "object-fit: contain;" %>
                   <%= link_to({controller: 'products', action: 'show', id: product.id}, class: 'buy') do %>
                    <i class="fa fa-shopping-bag"></i>
                   <%end %>
@@ -1478,12 +1480,13 @@
             </div>
           </div>
         </div>
-        <% Product.all.sort_by{|el| el.orders.count }.last(3).reverse.each do |product| %>
+        <% Product.select{|a| a.quantity > 0 || a.is_inf_quantity}.sort_by{|el| el.orders.count }.last(3).reverse.each do |product| %>
           <div class="single-list">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="list-image overlay">
-                  <%= image_tag product.main_photo, style: "object-fit: cover;" %>
+              <div class="col-lg-6 col-md-6 col-12" >
+
+                <div class="list-image overlay list-image-fix"  style="width: 150px; height: 150px;">
+                  <%= image_tag product.main_photo, style: "object-fit: contain;" %>
                   <%= link_to({controller: 'products', action: 'show', id: product.id}, class: 'buy') do %>
                     <i class="fa fa-shopping-bag"></i>
                   <%end %>
@@ -1508,26 +1511,27 @@
           </div>
         </div>
         <div class="row" style="margin: 0;">
-        <% Product.all.sort_by{|el| [el.mark, el.posts.count]}.last(3).reverse.each do |product| %>
+        <% Product.select{|a| a.quantity > 0 || a.is_inf_quantity}.sort_by{|el| [el.mark, el.posts.count]}.last(3).reverse.each do |product| %>
             <div class="col-md-6 col-sm-6 col-lg-12">
-            <div class="single-list ">
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-12">
-                <div class="list-image overlay">
-                  <%= image_tag product.main_photo, style: "object-fit: cover;" %>
-                  <%= link_to({controller: 'products', action: 'show', id: product.id}, class: 'buy') do %>
-                    <i class="fa fa-shopping-bag"></i>
-                  <%end %>
+              <div class="single-list">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-12" >
+
+                    <div class="list-image overlay list-image-fix"  style="width: 150px; height: 150px;">
+                      <%= image_tag product.main_photo, style: "object-fit: contain;" %>
+                      <%= link_to({controller: 'products', action: 'show', id: product.id}, class: 'buy') do %>
+                        <i class="fa fa-shopping-bag"></i>
+                      <%end %>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-12 no-padding">
+                    <div class="content">
+                      <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
+                      <p class="price with-discount"><%= product.price %>₽</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-12 no-padding">
-                <div class="content">
-                  <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                  <p class="price with-discount"><%= product.price %>₽</p>
-                </div>
-              </div>
-            </div>
-          </div>
             </div>
         <% end %>
         </div>
