@@ -1,8 +1,10 @@
 <%= render partial: './header.html.erb' %>
+
 <div class="container">
 
 	<div class="shop-name-container shop-name-container-product" style="">
 		<div class="image" style="width: 55px; height: 55px;">
+
 			<% if @product.shop.main_photo.attached? %>
 				<%= image_tag @product.shop.main_photo%>
 			<% else %>
@@ -16,6 +18,8 @@
 </div>
 
 <section id="contact-us" class="contact-us section" style="padding-top: 20px;">
+-->
+<section id="contact-us" class="contact-us section">
 	<div class="container">
 		<div class="contact-head">
 			<div class="row">

@@ -184,10 +184,11 @@
             <div class="col-lg-4 col-md-6 col-xs-12 ">
               <div class="single-product">
                 <div class="product-img">
+                  
                   <%= link_to(controller: 'products', action: "show", id: el.id) do %>
                     <%= image_tag el.main_photo, :class => "default-img" %>
-                    <%= image_tag el.main_photo, :class => "hover-img" %>
                   <% end %>
+
                   
                   <div class="button-head">
                     <div class="product-action" style="padding-right:  20px">
