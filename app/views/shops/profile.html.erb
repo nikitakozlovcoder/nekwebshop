@@ -1,10 +1,36 @@
 <%= render partial: './header.html.erb' %>
-
-<div class="shop-name-container">
-  <div class="image">
-    <img src="https://via.placeholder.com/50x50" alt="">
+<form action="<%= request.base_url %>/shop/<%= @shop.id %>/add_address" id="address-form", method="post">
+  <div style="display: none">
+    <input name="street" class="field" id="form-street"/>
+    <input name="city" class="field" id="form-city" />
+    <input name="state" class="field" id="form-administrative" />
+    <input name="zip" class="field" id="form-zip" />
+    <input name="country" class="field" id="form-country" />
+    <input name="county" class="field" id="form-county" />
+    <input name="suburb" class="field" id="form-suburb"/>
   </div>
-  <p class="shop-name">Пятёрочка</p>
+</form>
+
+<div class="shop-name-container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+  <div style="display: flex; align-items: center;">
+    <div class="image" style="width: 55px; height: 55px;">
+      <% if @shop.main_photo.attached? %>
+        <%= image_tag @shop.main_photo%>
+      <% else %>
+        <%= image_tag url_for('shop.png')%>
+      <% end %>
+    </div>
+    <p class="shop-name"><%= link_to @shop.name, {controller: 'shops', action: 'index', id: @shop.id}, {style:"font-weight: bold"} %></p>
+  </div>
+  <%= link_to controller: 'products', action: 'new', id: @shop.id  do %>
+  <div style="display: flex; align-items: center; flex-flow: row-reverse; cursor: pointer; padding-left: 11px;" class="add_product_round_button_container">
+
+    <div style="display: flex; width: 35px; height: 35px; border-radius: 50%; background-color: #333333; font-size: 22px; color: white; margin-right: 7px;" class="add_product_round_button">
+      <i class="fa fa-plus" aria-hidden="true" style="margin: auto"></i>
+    </div>
+    <div style="font-weight: bold; font-size: 17px; padding-right: 7px;">Добавить товар</div>
+  </div>
+  <% end %>
 </div>
 
 
@@ -28,7 +54,7 @@
                       <div class="row">
                         <div class = "add_product_section">
                           <div class="form-main">
-                            <div class="title">
+                            <div class="title profile_info_title">
                               <h3>Редактировать данные магазина</h3>
                             </div>
 
@@ -123,9 +149,9 @@
                                     </div>
                                     <tbody>
                                     <% @shop.address.each do |addr| %>
-                                      <tr>
+                                      <tr style="height: auto;">
                                       	
-                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash del_addr" aria-hidden="true" data-id="<%= addr.id %>"></i></td>
                                         	
                                     	
 
@@ -140,20 +166,12 @@
                                     <label>Добавить новую торговую точку</label>
                                     <div style="display: flex; align-items: center;">
                                       <input type="search" id="address-input" />
-                                      <i class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px"></i>
+                                      <i onclick="document.querySelector('#address-form').submit();" class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px; cursor: pointer;" ></i>
                                     </div>
 
                                     <p>Выбрано: <strong id="address-value">---</strong></p>
                                   </div>
-                                  <div style="display: none">
-                                    <input name="street" class="field" id="form-street"/>
-                                    <input name="city" class="field" id="form-city" />
-                                    <input name="state" class="field" id="form-administrative" />
-                                    <input name="zip" class="field" id="form-zip" />
-                                    <input name="country" class="field" id="form-country" />
-                                    <input name="county" class="field" id="form-county" />
-                                    <input name="suburb" class="field" id="form-suburb"/>
-                                  </div>
+
 
 
                                   <div class="title">
@@ -181,7 +199,6 @@
                                     <div class="error-list"></div>
                                   </div>
                                 </div>
-
 
 
                                 <div class="col-12">
@@ -228,239 +245,173 @@
                     <h3 style="text-align: center; padding: 25px">Заказов пока нет</h3>
                   <% end %>
                   <% @shop.orders.each_with_index do |order, idx| %>
-                    <div class = "order">
-                    <div class = "title" onclick = "ShowOrder(this)">
-                      <div class = "number">
-                        <%= idx+1 %>.
-                      </div>
-                      <div class = "customer_name">
-                       <%= order.name+" "+order.surname%>
-                      </div>
-                      <div class = "order_date">
-                        <%= order.created_at.strftime(" %H:%M %d.%m.%Y") %>
-                      </div>
-                      <div class = "total_amount">
 
-                        <%= order.price.round(2) %> ₽
-                      </div>
-                      <div class = "tel">
-                       <%= order.phone %>
-                      </div>
-                      <div class = "inf_btn">
-                        Подробнее
-                        <i class="ti-angle-down"></i>
-                      </div>
-                    </div>
-                    <div class = "inner_info">
-                      <div class = "wrapper">
+                      <div class = "order">
+                        <div class = "title" onclick = "ShowOrder(this)">
+                          <div class = "number">
+                            <%= idx+1 %>.
+                          </div>
+                          <div class = "customer_name">
+                            <%= order.name+" "+order.surname%>
+                          </div>
+                          <div class = "order_date">
+                            <%= order.created_at.strftime(" %H:%M %d.%m.%Y") %>
+                          </div>
+                          <div class = "total_amount">
 
-                        <div class = "description">
-                          <h3>Информация о заказчике</h3>
-                        </div>
-                        <div class = "main_info">
-                          <div>
-                            <p>Имя-Фамилия</p>
+                            <%= order.price.round(2) %> ₽
                           </div>
-                          <div class = "content">
-                           <%= order.name+" "+order.surname%>
+                          <div class = "tel">
+                            <%= order.phone %>
                           </div>
-                          <div>
-                            <p>Моб. телефон</p>
-                          </div>
-                          <div class = "content">
-                           <%= order.phone %>
-                          </div>
-                          <div>
-                            <p>Адрес</p>
-                          </div>
-                          <div class = "content">
-                            <%= order.address.location %>
+                          <div class = "inf_btn">
+                            Подробнее
+                            <i class="ti-angle-down"></i>
                           </div>
                         </div>
+                        <div class = "inner_info">
+                          <div class = "wrapper">
 
-                        <div class = "description">
-                          <h3>Список товаров заказа</h3>
-                        </div>
-
-                        <div class = "items_header">
-                          <div>
-                            Товар
-                          </div>
-                          <div>
-                            Описание
-                          </div>
-                          <div>
-                            Цена
-                          </div>
-                          <div>
-                            Количество
-                          </div>
-                          <div>
-                            Подытог
-                          </div>
-                        </div>
-                        <div class = "items_container">
-                          <% order.ordered_products.each do |op| %>
-                           <div class = "item">
-                            <div class = "image">
-                             <%= image_tag op.main_photo %>
+                            <div class = "description">
+                              <h3>Информация о заказчике</h3>
                             </div>
-                            <div class = "des">
-                              <p class = "product-name"><%= op.title %></p>
-                              <p class = "product-des"><%= op.data_view %></p>
-                            </div>
-                            <div class = "price">
-                              <p><%= op.price %>₽</p>
-                            </div>
-                            <div class = "qty">
-                              <p><%= op.quantity %></p>
-                            </div>
-                            <div class = "sub-total">
-                              <%= (op.price * op.quantity).round(2) %>₽
+                            <div class = "main_info">
+                              <div>
+                                <p>Имя-Фамилия</p>
+                              </div>
+                              <div class = "content">
+                                <%= order.name+" "+order.surname%>
+                              </div>
+                              <div>
+                                <p>Моб. телефон</p>
+                              </div>
+                              <div class = "content">
+                                <%= order.phone %>
+                              </div>
+                              <div>
+                                <p>Адрес</p>
+                              </div>
+                              <div class = "content">
+                                <%= order.address.location %>
+                              </div>
+                              <div>
+                                <p>Почтовый индекс</p>
+                              </div>
+                              <div class = "content">
+                                <%= order.address.zip %>
+                              </div>
                             </div>
 
-                            <div class = "price_name">
-                              Цена
+                            <div class = "description">
+                              <h3>Список товаров заказа</h3>
                             </div>
-                            <div class = "qty_name">
-                              Количество
+
+                            <div class = "items_header">
+                              <div>
+                                Товар
+                              </div>
+                              <div>
+                                Описание
+                              </div>
+                              <div>
+                                Цена
+                              </div>
+                              <div>
+                                Количество
+                              </div>
+                              <div>
+                                Подытог
+                              </div>
                             </div>
-                            <div class = "sub-total_name">
-                              Подытог
+                            <div class = "items_container">
+                              <% order.ordered_products.each do |op| %>
+                                <%= link_to controller: 'products', action: 'show', id: op.product.try(:id) ? op.product.try(:id) : -1 do%>
+                                  <div class = "item">
+                                    <div class = "image">
+                                      <%= image_tag op.main_photo %>
+                                    </div>
+                                    <div class = "des">
+                                      <p class = "product-name"><%= op.title %></p>
+                                      <p class = "product-des"><%= op.data_view %></p>
+                                    </div>
+                                    <div class = "price">
+                                      <p><%= op.price %>₽</p>
+                                    </div>
+                                    <div class = "qty">
+                                      <p><%= op.quantity %></p>
+                                    </div>
+                                    <div class = "sub-total">
+                                      <%= (op.price * op.quantity).round(2) %>₽
+                                    </div>
+
+                                    <div class = "price_name">
+                                      Цена
+                                    </div>
+                                    <div class = "qty_name">
+                                      Количество
+                                    </div>
+                                    <div class = "sub-total_name">
+                                      Подытог
+                                    </div>
+                                  </div>
+                                <% end %>
+
+                              <% end %>
                             </div>
+                            <div class = "items_footer">
+                              <div class = "total_name">
+                                Итого
+                              </div>
+                              <div class = "total">
+                                <%= order.price %>₽
+                              </div>
+                            </div>
+
                           </div>
-                          <% end %>
                         </div>
-                        <div class = "items_footer">
-                          <div class = "total_name">
-                            Итого
-                          </div>
-                          <div class = "total">
-                            <%= order.price %>₽
-                          </div>
-                        </div>
-                        
                       </div>
-                    </div>
-                  </div>
+
                   <% end %>
 
                 </div>
     </div>
     <div class = "option">
-      <ul class="list-products">
-        <li class="shop-product">
+      <ul class="list-products" data-count="<%= @shop.products.count %>">
+
+          <h4 class="profile_no_products" style="text-align: center; padding: 25px; display: none;">Вы пока не добавили ни одного товара. <br/><%= link_to "Создать товар", controller: "products", action: "new"  %></h4>
+        <% @shop.products.each do |product| %>
+          <li class="shop-product" data-id="<%= product.id %>">
            <div class="shop-product-inform">
              <div class="product-image">
-               <img src="https://via.placeholder.com/100x100" alt="">
+               <%= link_to(controller: 'products', action: 'show', id: product.id) do %>
+                  <%= image_tag product.main_photo %>
+               <% end %>
              </div>
              <div class="product-inform">
-               <p class="product-name"><a href="#">Women Dress</a></p>
-               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+               <p class="product-name"><a href="#" class="roduct-name_link"><%= product.title %></a></p>
+               <p class="descr"><%= product.description[0..45] %><%= product.description.length > 46 ? "..." : "" %></p>
              </div>
            </div>
            <div class="product-elements">
              <div class="price">
-             <span>13 900 &#8381;</span>
+             <span><%= product.price %> &#8381;</span>
            </div>
              <div class="quantity">
                <p>Количество:</p>
-               <p class="quantity-num">14</p>
+               <p class="quantity-num"><%= product.is_inf_quantity ? "Неограничено" :  product.quantity %></p>
              </div>
              <div class="icon-link-container">
                <div class="icon-link">
-                 <a href="#"><i class="ti-settings remove-icon"></i></a>
+                 <%= link_to controller: 'products', action: 'update_product', shop_id: @shop.id, id: product.id do %><i class="ti-settings remove-icon"></i><% end %>
                </div>
-               <div class="icon-link">
-                 <a href="#"><i class="ti-trash remove-icon"></i></a>
+               <div class="icon-link delete-product">
+                 <a style="cursor: pointer"><i class="ti-trash remove-icon"></i></a>
                </div>
              </div>
            </div>
          </li>
-        <li class="shop-product">
-           <div class="shop-product-inform">
-             <div class="product-image">
-               <img src="https://via.placeholder.com/100x100" alt="">
-             </div>
-             <div class="product-inform">
-               <p class="product-name"><a href="#">Women Dress</a></p>
-               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-             </div>
-           </div>
-           <div class="product-elements">
-             <div class="price">
-               <span>13 900 &#8381;</span>
-             </div>
-             <div class="quantity">
-               <p>Количество:</p>
-               <p class="quantity-num">14</p>
-             </div>
-             <div class="icon-link-container">
-               <div class="icon-link">
-                 <a href="#"><i class="ti-settings remove-icon"></i></a>
-               </div>
-               <div class="icon-link">
-                 <a href="#"><i class="ti-trash remove-icon"></i></a>
-               </div>
-             </div>
-           </div>
-         </li>
-        <li class="shop-product">
-           <div class="shop-product-inform">
-             <div class="product-image">
-               <img src="https://via.placeholder.com/100x100" alt="">
-             </div>
-             <div class="product-inform">
-               <p class="product-name"><a href="#">Women Dress</a></p>
-               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-             </div>
-           </div>
-           <div class="product-elements">
-             <div class="price">
-               <span>13 900 &#8381;</span>
-             </div>
-             <div class="quantity">
-               <p>Количество:</p>
-               <p class="quantity-num">14</p>
-             </div>
-             <div class="icon-link-container">
-               <div class="icon-link">
-                 <a href="#"><i class="ti-settings remove-icon"></i></a>
-               </div>
-               <div class="icon-link">
-                 <a href="#"><i class="ti-trash remove-icon"></i></a>
-               </div>
-             </div>
-           </div>
-         </li>
-        <li class="shop-product">
-           <div class="shop-product-inform">
-             <div class="product-image">
-               <img src="https://via.placeholder.com/100x100" alt="">
-             </div>
-             <div class="product-inform">
-               <p class="product-name"><a href="#">Women Dress</a></p>
-               <p class="descr">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-             </div>
-           </div>
-           <div class="product-elements">
-             <div class="price">
-               <span>13 900 &#8381;</span>
-             </div>
-             <div class="quantity">
-               <p>Количество:</p>
-               <p class="quantity-num">14</p>
-             </div>
-             <div class="icon-link-container">
-               <div class="icon-link">
-                 <a href="#"><i class="ti-settings remove-icon"></i></a>
-               </div>
-               <div class="icon-link">
-                 <a href="#"><i class="ti-trash remove-icon"></i></a>
-               </div>
-             </div>
-           </div>
-         </li>
+        <% end %>
+
        </ul>
      </div>
    </div>

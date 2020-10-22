@@ -324,7 +324,7 @@
             <div class="all-category">
               <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>Категории</h3>
               <ul class="main-category">
-                <li><a href="#">Новые предложения <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <!--  <li><a href="#">Новые предложения <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                   <ul class="sub-category">
                     <li><a href="#">аксесуары</a></li>
                     <li><a href="#">наиболее продавемые</a></li>
@@ -376,7 +376,7 @@
                       </div>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <% all_categories.roots.each do |root| %>
                   <li>
                     <%= link_to(controller: 'products', action: 'index', category_id: root.id) do%>
@@ -411,12 +411,12 @@
                 <div class="navbar-collapse">
                   <div class="nav-inner">
                     <ul class="nav main-menu menu navbar-nav">
-                      <li class="active"><%= link_to 'Главная', :root %></li>
-                      <li><%= link_to 'Магазины', :shops %></li>
-                      <li><%= link_to 'Товары', :products %></li>
-                      <li><%= link_to 'Корзина', :cart_index %></li>
+                      <li class="<%= controller_name == "home" ? 'active' : ""%>"><%= link_to 'Главная', :root %></li>
+                      <li class="<%= controller_name == "shops" ? 'active' : ""%>"><%= link_to 'Магазины', :shops %></li>
+                      <li class="<%= controller_name == "products" ? 'active' : ""%>"><%= link_to 'Товары', :products %></li>
+                      <li class="<%= controller_name == "cart" ? 'active' : ""%>"><%= link_to 'Корзина', :cart_index %></li>
                       <% if current_user %>
-                        <li><%= link_to 'Избранное', :wishlist %></li>
+                        <li class="<%= controller_name == "wishes" ? 'active' : ""%>"><%= link_to 'Избранное', :wishlist %></li>
                       <% end %>
 
 

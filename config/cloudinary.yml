@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: di44wepvj
+  api_key: '868864946286112'
+  api_secret: zmUcNy4Mn2ZNLmhDIy3urqPZ5iM
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: di44wepvj
+  api_key: '868864946286112'
+  api_secret: zmUcNy4Mn2ZNLmhDIy3urqPZ5iM
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: di44wepvj
+  api_key: '868864946286112'
+  api_secret: zmUcNy4Mn2ZNLmhDIy3urqPZ5iM
+  enhance_image_tag: true
+  static_file_support: false

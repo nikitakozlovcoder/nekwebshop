@@ -1,13 +1,21 @@
 <%= render partial: './header.html.erb' %>
 <div class="container">
-	<div class="shop-name-container">
-  		<div class="image">
-    		<img src="https://via.placeholder.com/50x50" alt="">
-  		</div>
-  		<p class="shop-name">Пятёрочка</p>
+
+	<div class="shop-name-container shop-name-container-product" style="">
+		<div class="image" style="width: 55px; height: 55px;">
+			<% if @product.shop.main_photo.attached? %>
+				<%= image_tag @product.shop.main_photo%>
+			<% else %>
+				<%= image_tag url_for('shop.png')%>
+			<% end %>
+		</div>
+		<p class="shop-name" style="word-break: break-all"><%= link_to @product.shop.name, {controller: 'shops', action: 'index', id: @product.shop.id}, {style:"font-weight: bold"} %></p>
+	</div>
+
 	</div>
 </div>
-<section id="contact-us" class="contact-us section">
+
+<section id="contact-us" class="contact-us section" style="padding-top: 20px;">
 	<div class="container">
 		<div class="contact-head">
 			<div class="row">
@@ -216,7 +224,7 @@
 											<div class = "single_review" id="<%= post.id %>">
 												<div class = "user_attributes">
 													<div class = "reviewer_name">
-														<%= post.user.name%>
+														<%= post.user.name%> <%= post.user.surname%> <%= post.user.third_name%>
 													</div>
 													<% if post.user.avatar.attached? %>
 														<%= image_tag post.user.avatar, :class=>"user_photo_review" %>

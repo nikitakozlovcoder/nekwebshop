@@ -1,7 +1,44 @@
 $(document).on('turbolinks:load', function () {
     if (get_body().classList.contains('shops')&& (get_body().classList.contains('profile') || get_body().classList.contains('update'))){
+        document.querySelectorAll('.del_addr').forEach(el=>{
+            el.addEventListener('click', ()=>{
+                if(confirm("Удалить адрес?"))
+                {
+                    let id  = el.dataset.id;
+                    fetch(window.location.href +`/delete_address/${id}`, {method: 'POST' });
+                    el.parentElement.style.display = "none";
+                }
+
+            })
+        });
+       let PRODUCTS_COUNT = Number(document.querySelector('.list-products').dataset.count);
+       let profile_no_products = document.querySelector('.profile_no_products');
+       function update_no_products()
+       {
+           if(!PRODUCTS_COUNT)
+           {
+                profile_no_products.style.display = "block";
+           }
+           else
+           {
+               profile_no_products.style.display = "none";
+           }
 
 
+       }
+        update_no_products();
+        document.querySelectorAll('.shop-product').forEach(el=>{
+            let id = el.dataset.id;
+            console.log(id);
+            el.querySelector('.delete-product').addEventListener('click', ()=>{
+                if(confirm(`Удалить товар ${el.querySelector('.product-name').textContent}`)){
+                    PRODUCTS_COUNT--;
+                    update_no_products();
+                    el.style.display = 'none';
+                    fetch(window.location.href +`/delete_product/${id}`, {method: 'POST' });
+                }
+            })
+        });
         function AppendPhoto(container, src) {
         var img = document.createElement('div');
         img.className = 'img-wrapper';

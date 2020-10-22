@@ -3,7 +3,7 @@ class Address < ApplicationRecord
   belongs_to :shop, optional: true
   def location
     location = [self.street, self.city, self.state, self.country ]
-
-    location.any?{|a| a.nil? or a.blank? } ? '' : location.join(', ')
+    location.select{|a| a != nil && a != "" }.join(', ')
+    #location.any?{|a| a.nil? or a.blank? } ? '' : location.join(', ')
   end
 end

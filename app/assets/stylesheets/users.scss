@@ -66,7 +66,7 @@ section.restore {
 }
 
 .profile-main{
-  padding: 10px;
+  //padding: 10px;
   flex-grow: 1;
   padding-left: 20px;
 }
@@ -447,7 +447,7 @@ section.restore {
 
 
 .shop-name-container{
-  margin: 20px 40px -30px;
+  margin: 20px 40px 10px;
   display: flex;
   align-items: center;
 }
@@ -1077,7 +1077,12 @@ section.restore {
     margin-bottom: 10px;
   }
 }
-
+.users.orders .sidebar-container{
+  width: 100% !important;
+}
+.users.orders .wishlist-container{
+  flex-wrap: wrap !important;
+}
 @media (max-width: 500px){
   .orders_container .order .title {
     grid-template-columns: 25px 1fr;
@@ -1103,6 +1108,7 @@ section.restore {
   grid-area: name;
 }
 // end
+
 //user actions animation
 .actions a:hover{
   color: #F6971C !important;
@@ -1119,3 +1125,10 @@ section.restore {
   color: #F6971C;
 }
 //end animation in user profile shops section
+
+@media screen and (max-width: 767px) {
+  .users.profile .sidebar-container{
+    width: 100%;
+  }
+}
+

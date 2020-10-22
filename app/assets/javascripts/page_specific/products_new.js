@@ -2,7 +2,25 @@
 
 $(document).on('turbolinks:load', function () {
 	if (get_body().classList.contains('products') && (get_body().classList.contains('new') || get_body().classList.contains('create') || get_body().classList.contains('update'))) {
+		function CATEGORY_SELECT_LISTENER(){
+
+			let textedit = document.querySelector(".Category .current");
+			textedit.contentEditable = true;
+			textedit.focus();
+			let divMO = new window.MutationObserver(function(e) {
+				console.log("NEW!!!!");
+				//SEARCH!
+			});
+			divMO.observe(textedit, { childList: true, subtree: true, characterData: true });
+		}
+		let CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
+		CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
+
+
+		//
 		 CategoryCheck = function(e) {
+		 	console.log("hi!");
+
 			return new Promise(resolve => {
 
 				if (e.value == "") {
@@ -27,6 +45,8 @@ $(document).on('turbolinks:load', function () {
 					})
 					.then(() => {
 						resolve();
+						CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
+						CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
 					});
 
 			});
@@ -34,7 +54,7 @@ $(document).on('turbolinks:load', function () {
 
 		function refill_fields(product) {
 			console.log(product);
-
+			document.querySelectorAll('#developer_input_inp').value = product['custom_maker_name'];
 			//Fill Text elements
 			let texts = document.querySelectorAll('.generated_fields .Text');
 			texts.forEach((el) => {
@@ -252,6 +272,7 @@ $(document).on('turbolinks:load', function () {
 		function generateForm(data) {
 			let dev = document.querySelector('.form-group_dev');
 			let dev_select = document.querySelector('.form-group_dev_select');
+
 			dev.style.display = "block";
 			dev_select.innerHTML = "";
 
@@ -264,7 +285,8 @@ $(document).on('turbolinks:load', function () {
 				}
 
 			});
-
+			if(document.querySelector('select.form-group_dev_select').value == another)
+				document.querySelector('#developer_input').style.display = 'block';
 			$('select').niceSelect('update');
 
 			let generated_fields = document.querySelector(".generated_fields");
@@ -305,7 +327,7 @@ $(document).on('turbolinks:load', function () {
 					style = "";
 					type = "file";
 
-					text_to_add = `<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Load images...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><input name="${el.id}_changed" type="text" value = "No"><div class="error-list"></div></div></div>`;
+					text_to_add = `<div class="form-group img-preloader ${el.type}" data-min="${el.min}" data-max="${el.max}" data-code="${el.id}"><div class="label-container"><label for = "${el.id}[]" class = "btn">Загрузите изображения...</label><input id = "${el.id}[]" type="file" accept="image/*" onchange="preview_image(this)" name="${el.id}[]" multiple><input name="${el.id}_changed" type="text" value = "No"><div class="error-list"></div></div></div>`;
 
 				}
 				generated_fields.innerHTML += text_to_add;
