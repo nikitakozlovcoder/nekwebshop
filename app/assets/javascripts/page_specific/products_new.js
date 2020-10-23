@@ -2,21 +2,44 @@
 
 $(document).on('turbolinks:load', function () {
 	if (get_body().classList.contains('products') && (get_body().classList.contains('new') || get_body().classList.contains('create') || get_body().classList.contains('update'))) {
-		function CATEGORY_SELECT_LISTENER(){
 
+		function CATEGORY_SELECT_LISTENER(){
+			Categories = document.querySelectorAll(".Category .list li");
 			let textedit = document.querySelector(".Category .current");
+
+
 			textedit.contentEditable = true;
 			textedit.focus();
+			if(textedit.innerHTML == "-------"){
+				textedit.innerHTML = "";
+			}
 			let divMO = new window.MutationObserver(function(e) {
-				console.log("NEW!!!!");
 				//SEARCH!
+				let current_raw = textedit.textContent.trim();
+				let current = UniteFormat(current_raw); 
+				document.querySelectorAll(".Category .list li").forEach((el)=>{
+
+					let sample = UniteFormat(el.textContent);
+					let ind = sample.indexOf(current);
+					if(ind == -1){
+						el.style.display = "none";
+					} else {
+						let str = el.textContent;
+						
+						el.innerHTML = `${str.slice(0, ind)}<b>${str.slice(ind, ind+current_raw.length)}</b>${str.slice(ind+current_raw.length)}`
+						el.style.display = "block";
+					}
+				});
+
 			});
 			divMO.observe(textedit, { childList: true, subtree: true, characterData: true });
 		}
 		let CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
 		CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
-
-
+		//unite format
+		function UniteFormat(str){
+			return str.toLowerCase().trim();
+		}
 		//
 		 CategoryCheck = function(e) {
 		 	console.log("hi!");

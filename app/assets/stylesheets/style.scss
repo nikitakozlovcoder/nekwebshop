@@ -1854,7 +1854,8 @@ Version:1.0
 //For description (small text) of button (3 styles below)
 .single-product .product-img .product-action a span,
 .header.shop .right-bar .sinlge-bar .single-icon span,
-.section-profile .add_shop_button > .single-icon span {
+.section-profile .add_shop_button > .single-icon span,
+.control_description_icon {
 	visibility: hidden;
 	position: absolute;
 	background: #F7941D !important;
@@ -1878,7 +1879,8 @@ Version:1.0
 }
 .single-product .product-img .button-head .product-action a span::after,
 .header.shop .right-bar .sinlge-bar .single-icon span::after,
-.section-profile .add_shop_button > .single-icon span::after {
+.section-profile .add_shop_button > .single-icon span::after,
+.control_description_icon::after {
 	position: absolute;
 	content: "";
 	right: 0;
@@ -1890,7 +1892,8 @@ Version:1.0
 }
 .single-product .product-img .product-action a:hover span,
 .header.shop .right-bar .sinlge-bar .single-icon:hover span,
-.section-profile .add_shop_button > .single-icon:hover span {
+.section-profile .add_shop_button > .single-icon:hover span,
+.control_single_icon:hover ~ .control_description_icon {
   visibility: visible;
   opacity: 1;
   color:#333;
