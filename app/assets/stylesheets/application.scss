@@ -1085,4 +1085,22 @@ tbody tr:hover {
   position: relative;
 }
 
+//Search in add product
+.Category.form-group .nice-select {
+  min-width: 108px;
+}
 
+.Category.form-group .nice-select > span {
+  outline: none;
+  min-width: 10px;
+}
+
+//shop profile trash-icon
+.del_addr{
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.del_addr:hover {
+  color: #F6971C;
+}
