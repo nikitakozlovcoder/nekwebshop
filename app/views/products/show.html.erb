@@ -82,18 +82,18 @@
 
 									<div class="form-group add-to-cart">
 										<h3 class = "left product_price"><%= @product.price == @product.price.floor ? @product.price.to_i : @product.price %>₽</h3>
-										<div class = "buttons_group product_add_to">
-											<span class="add_to_cart_wrapper">
+										<div class = "buttons_group product_add_to" style="display: flex;">
+											<span class="add_to_cart_wrapper" >
 													<% if !is_in_cart(@product.id) %>
-														<span onclick="addtoCart(<%= @product.id %>, this)" class="btn">Добавить в корзину</span>
+														<div onclick="addtoCart(<%= @product.id %>, this)" class="btn" style="padding-top: 0; padding-bottom: 0; height: 52px; display: flex; align-items: center; justify-content: center;">Добавить в корзину</div>
 													<% else %>
-														<%= link_to('Уже в корзине', {controller: 'cart', action: 'index'}, class: 'btn active' ) %>
+														<%= link_to('Уже в корзине', {controller: 'cart', action: 'index'}, class: 'btn active', style: "padding-top: 0; padding-bottom: 0; height: 52px; display: flex; align-items: center; justify-content: center;" ) %>
 													<% end %>
 
 											</span>
 											<!-- <= is_in_wishlist(@product.id) ? 'active' : '' %> -->
 											<% if current_user %>
-											<span class="btn min <%= is_in_wishlist(@product.id) ? 'active' : '' %>" onclick = "addtoWishlist(<%= @product.id %>, this)"><i class="<%= is_in_wishlist(@product.id) ? 'fa fa-heart' : 'ti-heart' %>"></i></span>
+											<span style="margin-left: 5px; height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; width: 60px;" class="btn min <%= is_in_wishlist(@product.id) ? 'active' : '' %>" onclick = "addtoWishlist(<%= @product.id %>, this)"><i class="<%= is_in_wishlist(@product.id) ? 'fa fa-heart' : 'ti-heart' %>"></i></span>
 											<% end %>
 										</div>
 									</div>

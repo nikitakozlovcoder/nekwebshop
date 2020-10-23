@@ -33,6 +33,16 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.single-product .product-img a {
+  width: 100% !important;
+}
+.link-banner{
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.link-banner:hover{
+  border-color: #f7941d !important;
+}
 .logo-shop{
   text-align: center;
 }
@@ -1104,3 +1114,5 @@ tbody tr:hover {
 .del_addr:hover {
   color: #F6971C;
 }
+
+

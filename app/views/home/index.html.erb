@@ -42,36 +42,45 @@
     <div class="row">
       <!-- Single Banner  -->
       <div class="col-lg-4 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://via.placeholder.com/600x370" alt="#">
-          <div class="content">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
+          <%= image_tag "lamp.jpeg" %>
+
+          <div class="content" >
             <p style="font-weight: 600;">Лучшее предложение</p>
-            <h3>Товары для<br>вашего дома</h3>
-            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Товары для дома")%>
+            <h3 style="color: white !important;">Товары для<br>вашего дома</h3>
+            <%= link_to "Перейти", {controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")}, class: "link-banner"%>
           </div>
         </div>
       </div>
+
       <!-- /End Single Banner  -->
       <!-- Single Banner  -->
-      <div class="col-lg-4 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://via.placeholder.com/600x370" alt="#">
-          <div class="content">
+      <div class="col-lg-4 col-md-6 col-12" >
+
+
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
+          <%= image_tag "phones.jpg" %>
+
+          <div class="content" >
             <p style="font-weight: 600;">Лучшее предложение</p>
-            <h3>Смартфоны<br> 2020</h3>
-            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")%>
+            <h3 style="color: white !important;">Смартфоны<br> 2020</h3>
+            <%= link_to "Перейти", {controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")}, class: "link-banner"%>
           </div>
         </div>
       </div>
       <!-- /End Single Banner  -->
       <!-- Single Banner  -->
       <div class="col-lg-4 col-12">
-        <div class="single-banner tab-height">
-          <img src="https://via.placeholder.com/600x370" alt="#">
-          <div class="content">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
+          <%= image_tag "jackets.jpg" %>
+
+          <div class="content" >
             <p style="font-weight: 600;">Лучшее предложение</p>
-            <h3>Готовимся к морозам<br>Зимние куртки</h3>
-            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Зимние куртки")%>
+            <h3 style="color: white !important;">Готовимся К Морозам<br> Зимние Куртки</h3>
+            <%= link_to "Перейти", {controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")}, class: "link-banner"%>
           </div>
         </div>
       </div>
