@@ -69,7 +69,7 @@
                   <%= order.created_at.strftime(" %H:%M %d.%m.%Y") %>
                 </div>
                 <div class = "total_amount">
-                  <%= order.price.round(2) %> ₽
+                  <%= number_to_currency(order.price, unit:'₽') %>
                 </div>
                 <div class = "tel">
                   <%= order.phone %>

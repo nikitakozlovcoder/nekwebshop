@@ -149,7 +149,7 @@
                       </div>
                       <div class="product-content">
                         <div class="product-price">
-                          <span>₽ <%= product.price %></span>
+                          <span> <%= number_to_currency(product.price, unit:'₽') %></span>
                         </div>
                         <h3> <%= link_to(controller: 'products', action: "show", id: product.id) do %><%= product.title %><% end %></h3>
                         <div class = "mobile-buttons">
@@ -1471,7 +1471,7 @@
               <div class="col-lg-6 col-md-6 col-12 no-padding">
                 <div class="content">
                   <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                  <p class="price with-discount"><%= product.price %>₽</p>
+                  <p class="price with-discount"><%= number_to_currency(product.price, unit:'₽') %></p>
                 </div>
               </div>
             </div>
@@ -1504,7 +1504,7 @@
               <div class="col-lg-6 col-md-6 col-12 no-padding">
                 <div class="content">
                   <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                  <p class="price with-discount"><%= product.price %>₽</p>
+                  <p class="price with-discount"><%= number_to_currency(product.price, unit:'₽') %></p>
                 </div>
               </div>
             </div>
@@ -1536,7 +1536,7 @@
                   <div class="col-lg-6 col-md-6 col-12 no-padding">
                     <div class="content">
                       <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                      <p class="price with-discount"><%= product.price %>₽</p>
+                      <p class="price with-discount"><%= number_to_currency(product.price, unit:'₽') %></p>
                     </div>
                   </div>
                 </div>
