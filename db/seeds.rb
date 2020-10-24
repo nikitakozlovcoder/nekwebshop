@@ -262,7 +262,7 @@ Category.add 'Компьютерные мыши', [
 maker_samsung = Maker.create(name:"Samsung")
 maker_a4tech = Maker.create(name:"A4Tech")
 с1 = Category.create(name: "Цифровая техника")
-с2 = Category.create(name: "Перефирия", parent: с1)
+с2 = Category.create(name: "Периферия", parent: с1)
 a1 = Category.where(name:"Фото и видео-техника").first
 a1.makers << another
 a1.makers << maker_samsung
