@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function () {
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
                 const entries = [...new FormData(form).entries()]
-                console.log(entries)
+                //console.log(entries)
                 const params = "?" + entries.map(e => e.map(encodeURIComponent).join('=')).join('&')
                 turbolinks_control.setEnabled();
                 if (form.dataset['scrolltotop'] == 'true')
@@ -131,7 +131,7 @@ $(document).on('turbolinks:load', function () {
                 return response.json();
             })
             .then((data)=>{
-                console.log(data);
+                //console.log(data);
             });
         }
     }
@@ -151,7 +151,7 @@ $(document).on('turbolinks:load', function () {
                 return response.json();
             })
             .then((data)=>{
-                console.log(data);
+                //console.log(data);
             });
         }
     }

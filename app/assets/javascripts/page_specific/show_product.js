@@ -171,7 +171,7 @@ $(document).on('turbolinks:load', function () {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data);
+                    //console.log(data);
                     if (data.success) {
                         post_review_form.reset();
                         set_stars(-1);

@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function () {
                                         // /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
                                 } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email_val))) {
                                         valid = false;
-                                        console.log(email_val);
+                                        //console.log(email_val);
                                         error_list.innerHTML += `<li>Адрес эл. почты не соотвесвует стандартному формату.<br>Пример: my.example12@test.ru</li>`;
                                 }
                         }

@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', function () {
 		}
 		//
 		 CategoryCheck = function(e) {
-		 	console.log("hi!");
+		 	console.log("hi, stranger, what are you doing here?");
 
 			return new Promise(resolve => {
 
@@ -77,7 +77,7 @@ $(document).on('turbolinks:load', function () {
 		}
 
 		function refill_fields(product) {
-			console.log(product);
+			//console.log("product");
 			document.querySelectorAll('#developer_input_inp').value = product['custom_maker_name'];
 			//Fill Text elements
 			let texts = document.querySelectorAll('.generated_fields .Text');
