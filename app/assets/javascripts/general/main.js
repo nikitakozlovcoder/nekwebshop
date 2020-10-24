@@ -96,6 +96,7 @@ class TurbolinksControl  {
 
 turbolinks_control = new TurbolinksControl();
 turbolinks_control.run();
+
 $(document).on('turbolinks:load', function () {
     for (let i = 0; i < document.forms.length; i++) {
         const form = document.forms[i]
