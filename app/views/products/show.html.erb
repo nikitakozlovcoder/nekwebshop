@@ -73,7 +73,7 @@
 									<div class = "categories">
 
 										<% @product.category.path.each do |el|%>
-											<p><%= el.name %></p>
+											<p><%= link_to el.name, controller: 'products', action: 'index', category_id: el.id %></p>
 										<%end %>
 
 									</div>
