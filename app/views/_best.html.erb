@@ -9,7 +9,7 @@
     </div>
     <div class="content">
       <h5 style="word-break: break-word"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h5>
-      <p class="price"><%= product.price %>₽</p>
+      <p class="price"><%= number_to_currency(product.price, unit:'₽') %></p>
       <ul class="reviews">
         <% (1..product.mark.round()).each do |i| %>
         <li class="yellow"><i class="ti-star"></i></li>

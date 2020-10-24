@@ -50,7 +50,14 @@
                     <input name="quantity" type="number" placeholder="<%= @product.quantity %>" value="<%= @product.quantity %>" class="inp_quantity">
                     <div class="error-list"></div>
                   </div>
-                  <div class="form-group Bool" data-min="" data-max=""><label>Неограниченное количество</label><input name="is_inf_quantity" type="checkbox" placeholder="" style="width: 25px; height: 25px; display: block" class="inf_quantity" <%= @product.is_inf_quantity ? "checked" : "" %>><div class="error-list"></div></div>
+                  <div class="form-group Bool new_checkbox bounce" data-min="" data-max="">
+                        <input id = "is_inf_quantity" name="is_inf_quantity" type="checkbox" placeholder="" class="inf_quantity" <%= @product.is_inf_quantity ? "checked" : "" %>>
+                        <svg viewBox="0 0 21 21">
+                          <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+                        </svg>
+                        <label for="is_inf_quantity">Неограниченное количество</label>
+                        <div class="error-list"></div>
+                  </div>
                   <div class="form-group Category">
                     <label>Категория<span>*</span></label>
                     <p style="display: flex" >

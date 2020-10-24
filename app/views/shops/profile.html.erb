@@ -13,9 +13,9 @@
 
 <div class="shop-name-container" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
   <div style="display: flex; align-items: center;">
-
+    
     <div class="image" style="width: 55px; height: 55px;">
-
+    <%= link_to(controller: 'shops', action: 'index', id: @shop.id) do %>
       <% if @shop.main_photo.attached? %>
         <%= image_tag @shop.main_photo%>
       <% else %>
@@ -146,15 +146,19 @@
                                   </div>
                                 </div>-->
                                 <div class = "address_show_field" style="padding: 0 15px; width: 100%">
-                                  <table>
+                                  <table style="overflow:visible">
                                     <div class = "desription">
-                                      <h3>Адреса</h3>
+                                      <h4>Адреса</h4>
                                     </div>
                                     <tbody>
                                     <% @shop.address.each do |addr| %>
                                       <tr style="height: auto;">
                                       	
-                                        	<td class="column1 address_table_cell"><%= addr.location %><i class="fa fa-trash del_addr" aria-hidden="true" data-id="<%= addr.id %>"></i></td>
+                                        	<td class="column1 address_table_cell" style = ""><%= addr.location %>
+                                            <i class="fa fa-trash del_addr control_single_icon" aria-hidden="true" data-id="<%= addr.id %>">
+                                              <span class = "control_description_icon">Удалить</span>
+                                            </i>
+                                          </td>
                                         	
                                     	
 
@@ -166,10 +170,12 @@
                                 </div>
                                 <div class="col-12">
                                   <div id="locationField" class="form-group">
-                                    <label>Добавить новую торговую точку</label>
-                                    <div style="display: flex; align-items: center;">
+                                    <label style = "margin-top: 30px;">Добавить новую торговую точку</label>
+                                    <div style="display: flex; align-items: center; position: relative">
                                       <input type="search" id="address-input" />
-                                      <i onclick="document.querySelector('#address-form').submit();" class="fa fa-plus" aria-hidden="true" style="font-size: 20px; padding: 10px; cursor: pointer;" ></i>
+                                      <i onclick="document.querySelector('#address-form').submit();" class="fa fa-plus control_single_icon" aria-hidden="true" style="font-size: 20px; padding: 10px; cursor: pointer;" >
+                                        <span class = "control_description_icon">Добавить</span>
+                                      </i>
                                     </div>
 
                                     <p>Выбрано: <strong id="address-value">---</strong></p>
@@ -177,7 +183,7 @@
 
 
 
-                                  <div class="title">
+                                  <div class="title" style = "margin-top: 30px;">
                                     <h4>Добавить социальные сети</h4>
                                   </div>
 
@@ -274,7 +280,7 @@
                         </div>
                         <div class = "inner_info">
                           <div class = "wrapper">
-
+                            <hr>
                             <div class = "description">
                               <h3>Информация о заказчике</h3>
                             </div>
@@ -338,13 +344,14 @@
                                       <p class = "product-des"><%= op.data_view %></p>
                                     </div>
                                     <div class = "price">
-                                      <p><%= op.price %>₽</p>
+                                      <p><%= number_to_currency(op.price, unit:'₽') %></p>
                                     </div>
                                     <div class = "qty">
                                       <p><%= op.quantity %></p>
                                     </div>
                                     <div class = "sub-total">
-                                      <%= (op.price * op.quantity).round(2) %>₽
+                                      <%= number_to_currency((op.price * op.quantity).round(2), unit:'₽') %>
+
                                     </div>
 
                                     <div class = "price_name">
@@ -366,7 +373,7 @@
                                 Итого
                               </div>
                               <div class = "total">
-                                <%= order.price %>₽
+                                <%= number_to_currency(order.price, unit:'₽') %>
                               </div>
                             </div>
 
@@ -397,7 +404,7 @@
            </div>
            <div class="product-elements">
              <div class="price">
-             <span><%= product.price %> &#8381;</span>
+             <span><%= number_to_currency(product.price, unit:'₽') %></span>
            </div>
              <div class="quantity">
                <p>Количество:</p>
@@ -405,10 +412,18 @@
              </div>
              <div class="icon-link-container">
                <div class="icon-link">
-                 <%= link_to controller: 'products', action: 'update_product', shop_id: @shop.id, id: product.id do %><i class="ti-settings remove-icon"></i><% end %>
+                 <%= link_to controller: 'products', action: 'update_product', shop_id: @shop.id, id: product.id do%>
+                    <i class="ti-settings remove-icon clickable control_single_icon">
+                      <span class ="control_description_icon">Редактировать</span>
+                    </i>
+                 <% end %>
                </div>
                <div class="icon-link delete-product">
-                 <a style="cursor: pointer"><i class="ti-trash remove-icon"></i></a>
+                 <a style="cursor: pointer" class = "clickable">
+                    <i class="ti-trash remove-icon control_single_icon">
+                      <span class ="control_description_icon">Удалить</span>
+                    </i>
+                 </a>
                </div>
              </div>
            </div>

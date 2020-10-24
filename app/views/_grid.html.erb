@@ -83,9 +83,16 @@
                       </div>
                     </div>
                     <div style="padding: 15px 0">
-                      <input type="checkbox" name="qty" id="qty_checkbox" value="yes" <%= !params[:qty] || params[:qty] == 'yes'? 'checked' : '' %>>
+                      <div class="new_checkbox bounce">
+                        <input type="checkbox" name="qty" id="qty_checkbox" value="yes" <%= !params[:qty] || params[:qty] == 'yes'? 'checked' : '' %>>
+                        <svg viewBox="0 0 21 21">
+                          <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+                        </svg>
+                        <label for="qty_checkbox" style="font-weight: bold; font-size: 14px;">
+                            Товары в наличии
+                        </label>
+                      </div>
                       <input type="checkbox" name="qty" id="qty_checkbox2" hidden value="no" <%=  params[:qty] == 'no'? 'checked' : '' %>>
-                      <span style="font-weight: bold; font-size: 14px;">Товары в наличии</span>
                     </div>
                   </div>
                 </div>
@@ -103,12 +110,18 @@
                   <% elsif el['type'] == 'Bool' %>
                     <div class="filter-title"><%= el['name'] %></div>
                     <div class="form-group">
-                      <label for="">Любое</label>
-                      <input name="<%= el['id'].to_s%>" type="radio" placeholder=""  value="" <%= params[el['id'].to_s ]== 'No' || params[el['id'].to_s ]== 'Yes' ? '': 'checked' %>>
-                      <label for="">Нет</label>
-                      <input name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No" <%= params[el['id'].to_s ]== 'No' ? 'checked' : '' %>>
-                      <label for="">Да</label>
-                      <input name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes" <%= params[el['id'].to_s ]== 'Yes' ? 'checked' : '' %>>
+                    <p>
+                      <input id = "radio1<%= el['id'].to_s%>" name="<%= el['id'].to_s%>" type="radio" placeholder=""  value="" <%= params[el['id'].to_s ]== 'No' || params[el['id'].to_s ]== 'Yes' ? '': 'checked' %>>
+                      <label for="radio1<%= el['id'].to_s%>">Любое</label>
+                    </p>
+                    <p>
+                      <input id = "radio2<%= el['id'].to_s%>" name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No" <%= params[el['id'].to_s ]== 'No' ? 'checked' : '' %>>
+                      <label for="radio2<%= el['id'].to_s%>">Нет</label>
+                    </p>
+                    <p>
+                      <input id = "radio3<%= el['id'].to_s%>" name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes" <%= params[el['id'].to_s ]== 'Yes' ? 'checked' : '' %>>
+                      <label for="radio3<%= el['id'].to_s%>">Да</label>
+                    </p>
                     </div>
                   <% end %>
                 <% end %>
@@ -132,12 +145,15 @@
                     <% @makers.each do |el|%>
                       <% prod_count = @products.where(maker_id: el.id).select{|a| a.quantity > 0 || a.is_inf_quantity}.count %>
                       <% if prod_count > 0 %>
-                      <li>
-
-                        <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" > <span class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">  <%= el.name %> (<%=  prod_count %>)</span>
-                        <!-- <a href="?&makers[]=<%= el.id%>" class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">-->
-
-                      </li>
+                      <div class="new_checkbox bounce">
+                        <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" >
+                        <svg viewBox="0 0 21 21">
+                          <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+                        </svg>
+                        <label for="qty_checkbox" class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">
+                          <%= el.name %> (<%=  prod_count %>)
+                        </label>
+                      </div>
                         <% end %>
                     <% end %>
                   </ul>
@@ -209,7 +225,7 @@
                 </div>
                 <div class="product-content">
                   <div class="product-price">
-                    <span>₽ <%= el.price %></span>
+                    <span><%= number_to_currency(el.price, unit:'₽') %></span>
                   </div>
                   <h3> <%= link_to(controller: 'products', action: "show", id: el.id) do %><%= el.title %><% end %></h3>
                   <div class = "mobile-buttons">

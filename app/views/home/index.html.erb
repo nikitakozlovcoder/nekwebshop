@@ -42,36 +42,47 @@
     <div class="row">
       <!-- Single Banner  -->
       <div class="col-lg-4 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://sun9-55.userapi.com/mlWYRPlWZtQwh172vO5WjPgUbit9Fq_cecwqwQ/hCRhYDDcfk8.jpg" alt="#">
-          <div class="content">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
+          <%= image_tag "lamp.jpeg" %>
+
+          <div class="content" >
             <p style="font-weight: 600;">Лучшее предложение</p>
-            <h3>Товары для<br>вашего дома</h3>
-            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Товары для дома")%>
+            <h3 style="color: white !important;">Товары для<br>вашего дома</h3>
+            <%= link_to "Перейти", {controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")}, class: "link-banner clickable"%>
           </div>
         </div>
       </div>
+
       <!-- /End Single Banner  -->
       <!-- Single Banner  -->
-      <div class="col-lg-4 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://sun9-71.userapi.com/JZa-QAm8-B7Y552xj-5iajn88wIU3774qrrdXA/aSTBlptWUiM.jpg" alt="#">
-          <div class="content">
+
+      <div class="col-lg-4 col-md-6 col-12" >
+
+
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
+          <%= image_tag "phones.jpg" %>
+
+          <div class="content" >
             <p style="font-weight: 600;">Лучшее предложение</p>
-            <h3>Смартфоны<br> 2020</h3>
-            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")%>
+            <h3 style="color: white !important;">Смартфоны<br> 2020</h3>
+            <%= link_to "Перейти", {controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")}, class: "link-banner clickable"%>
           </div>
         </div>
       </div>
       <!-- /End Single Banner  -->
       <!-- Single Banner  -->
       <div class="col-lg-4 col-12">
-        <div class="single-banner tab-height">
-          <img src="https://sun9-21.userapi.com/rtIg6idrD0B6YtsOmwE5vhUqXQ7SJXeiHJG-tg/r2A5LyLfPi8.jpg" alt="#">
-          <div class="content">
+
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
+          <%= image_tag "jackets.jpg" %>
+
+          <div class="content" >
             <p style="font-weight: 600;">Лучшее предложение</p>
-            <h3>Готовимся к морозам<br>Зимние куртки</h3>
-            <%= link_to "Перейти", controller: "products", action: "index", category_id: Category.find_by(name:"Зимние куртки")%>
+            <h3 style="color: white !important;">Готовимся К Морозам<br> Зимние Куртки</h3>
+            <%= link_to "Перейти", {controller: "products", action: "index", category_id: Category.find_by(name:"Смартфоны")}, class: "link-banner clickable"%>
           </div>
         </div>
       </div>
@@ -140,7 +151,7 @@
                       </div>
                       <div class="product-content">
                         <div class="product-price">
-                          <span>₽ <%= product.price %></span>
+                          <span> <%= number_to_currency(product.price, unit:'₽') %></span>
                         </div>
                         <h3> <%= link_to(controller: 'products', action: "show", id: product.id) do %><%= product.title %><% end %></h3>
                         <div class = "mobile-buttons">
@@ -1280,27 +1291,31 @@
     <div class="row">
 
       <div class="col-lg-6 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://via.placeholder.com/600x370" alt="#">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.5;"></div>
+          <%= image_tag "bestrussianbuystorever.jpeg" %>
           <div class="content">
-            <p>советуем заглянуть</p>
-            <h3>РашнБест<br/>БайСторЕвер</h3>
-            <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'РашнБестБайСторЕвер').id},  class: "btn" %>
+            <p style="font-weight: 600;">Лучший выбор</p>
+            <h3 style="color: white !important;">РашнБестБай<br>СторЕвер</h3>
+            <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'Семерочка').id},  class: "btn" %>
           </div>
         </div>
       </div>
 
 
       <div class="col-lg-6 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://via.placeholder.com/600x370" alt="#">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.4;"></div>
+          <%= image_tag "semerochka.jpeg" %>
           <div class="content">
-            <p>лучший выбор</p>
-            <h3>Семерочка</h3>
+            <p style="font-weight: 600;">Лучший выбор</p>
+            <h3 style="color: white !important;">Семерочка</h3>
             <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'Семерочка').id},  class: "btn" %>
           </div>
         </div>
       </div>
+
+      
 
     </div>
   </div>
@@ -1320,6 +1335,7 @@
     <div class="row">
       <div class="col-12">
         <div class="owl-carousel popular-slider">
+          
           <!-- Start Single Product -->
           <div class="single-product">
             <div class="product-img">
@@ -1348,85 +1364,7 @@
             </div>
           </div>
           <!-- End Single Product -->
-          <!-- Start Single Product -->
-          <div class="single-product">
-            <div class="product-img">
-              <a href="product-details.html">
-                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-              </a>
-              <div class="button-head">
-                <div class="product-action">
-                  <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                  <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                  <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                </div>
-                <div class="product-action-2">
-                  <a title="Add to cart" href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3><a href="product-details.html">Women Hot Collection</a></h3>
-              <div class="product-price">
-                <span>$50.00</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Single Product -->
-          <!-- Start Single Product -->
-          <div class="single-product">
-            <div class="product-img">
-              <a href="product-details.html">
-                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                <span class="new">New</span>
-              </a>
-              <div class="button-head">
-                <div class="product-action">
-                  <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                  <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                  <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                </div>
-                <div class="product-action-2">
-                  <a title="Add to cart" href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3><a href="product-details.html">Awesome Pink Show</a></h3>
-              <div class="product-price">
-                <span>$50.00</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Single Product -->
-          <!-- Start Single Product -->
-          <div class="single-product">
-            <div class="product-img">
-              <a href="product-details.html">
-                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-              </a>
-              <div class="button-head">
-                <div class="product-action">
-                  <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                  <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                  <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                </div>
-                <div class="product-action-2">
-                  <a title="Add to cart" href="#">Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
-              <div class="product-price">
-                <span>$50.00</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Single Product -->
+
         </div>
       </div>
     </div>
@@ -1462,7 +1400,7 @@
               <div class="col-lg-6 col-md-6 col-12 no-padding">
                 <div class="content">
                   <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                  <p class="price with-discount"><%= product.price %>₽</p>
+                  <p class="price with-discount"><%= number_to_currency(product.price, unit:'₽') %></p>
                 </div>
               </div>
             </div>
@@ -1495,7 +1433,7 @@
               <div class="col-lg-6 col-md-6 col-12 no-padding">
                 <div class="content">
                   <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                  <p class="price with-discount"><%= product.price %>₽</p>
+                  <p class="price with-discount"><%= number_to_currency(product.price, unit:'₽') %></p>
                 </div>
               </div>
             </div>
@@ -1527,7 +1465,7 @@
                   <div class="col-lg-6 col-md-6 col-12 no-padding">
                     <div class="content">
                       <h4 class="title"><%= link_to product.title, controller: 'products', action: 'show', id: product.id %></h4>
-                      <p class="price with-discount"><%= product.price %>₽</p>
+                      <p class="price with-discount"><%= number_to_currency(product.price, unit:'₽') %></p>
                     </div>
                   </div>
                 </div>

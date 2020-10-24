@@ -182,7 +182,9 @@
         <div>
           <ul class="shop-list">
             <% @user.shops.each do |shop| %>
-            <li style="position: relative">
+
+            <li style="position: relative; padding-bottom: 40px">
+
               <div class="shop-inform">
                 <div class="shop-image">
                 <%= link_to controller: 'shops', action: 'index', id: shop.id do%>
@@ -202,7 +204,9 @@
                 </div>
               </div>
 
-              <div class="link-settings" style="position: absolute; right: 0;">
+
+              <div class="link-settings" style="position: absolute; right: 0; bottom: 0">
+
                 <%= link_to({controller: 'shops', action: 'profile', id: shop.id}, {class: 'edit-shop'} ) do%>
                   Управление<i class="ti-settings remove-icon"></i>
                 <% end %>

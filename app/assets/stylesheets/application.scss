@@ -33,6 +33,22 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.product-price span{
+  font-weight: bold !important;
+}
+body{
+  font-family: my_roboto !important;
+}
+.single-product .product-img a {
+  width: 100% !important;
+}
+.link-banner{
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.link-banner:hover{
+  border-color: #f7941d !important;
+}
 .logo-shop{
   text-align: center;
 }
@@ -150,7 +166,10 @@ h4 a:hover{
   margin-top: 25px;
 }
 .product-img{
-  height: 250px;
+  //height: 250px;
+  height: 18vw;
+  max-height: 250px;
+  min-height: 150px;
   padding: 0 10px 10px;
   display: flex;
 
@@ -162,7 +181,7 @@ h4 a:hover{
   margin: auto;
   width: 100%;
   height: 100%;
-  object-fit: cover !important;
+  object-fit: contain !important;
 }
 .nice-select .list{
   z-index: 100;
@@ -449,6 +468,7 @@ tbody tr:hover {
   position: relative;
   width: 1.1em;
   font-size: 20px;
+  margin-right: -4px;
 }
 .set_rating > span:hover:before,
 .set_rating > span:hover ~ span:before {
@@ -549,9 +569,16 @@ tbody tr:hover {
   object-fit: cover;
 }
 
-
-.name-shop {
+.name-shop{
   font-size: 15px;
+  padding-bottom: 8px;
+}
+.name-shop h5{
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: normal !important;
+  white-space: nowrap;
 }
 .left-shop-inform-container_second {
   padding: 10px;
@@ -564,7 +591,7 @@ tbody tr:hover {
   padding: 10px;
 }
 .categories_shop{
-  margin-top: auto;
+  padding-bottom: 0;
 }
 .left-shop-inform_second {
   height: 100%;
@@ -1085,4 +1112,235 @@ tbody tr:hover {
   position: relative;
 }
 
+//Search in add product
+.Category.form-group .nice-select {
+  min-width: 108px;
+}
 
+.Category.form-group .nice-select > span {
+  outline: none;
+  min-width: 10px;
+}
+
+//shop profile trash-icon
+.del_addr{
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.del_addr:hover {
+  color: #F6971C;
+}
+
+//clickable link
+.clickable:hover{
+  color: #F6971C !important;
+}
+.clickable:hover i {
+  color: #F6971C !important;
+}
+i.clickable{
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+//Fix transition in cart
+.cart.index .button i{
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+//Radio buttons for search start
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    display: none;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color:#555555;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #F6971C;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+[type="radio"]:checked + label:before{
+  border-color: #F6971C;
+  -moz-box-shadow: #F6971C 0 0px 7px;
+    -webkit-box-shadow: #F6971C 0 0px 1px;
+    box-shadow: #F6971C 0 0px 7px;
+}
+//radio buttons end 
+
+//hide increment buttons on input[number] start
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+//increment buttons end
+
+//checkout radios fix
+.shop.checkout .single-widget .radios {
+  text-align: left;
+  margin: 0;
+  padding: 0px 30px;
+  margin-top: 30px;
+}
+//
+
+//grid side bar title and input fix
+.shop-sidebar .single-widget .filter-title{
+  margin-bottom: 5px;
+  margin-right: 0.5rem;
+}
+.shop-sidebar .single-widget .form-group label {
+  margin-top: 0.5rem;
+}
+.shop-sidebar .single-widget input {
+  max-width: 185px;
+}
+.product-area.shop-sidebar .single-widget .filters-wrap .form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 510px){
+  .product-area.shop-sidebar .single-widget .filters-wrap .form-group{
+    flex-direction: row;
+  }
+  .shop-sidebar .single-widget input {
+    margin-right: 20px;
+  }
+}
+//
+
+//checkbox styles start
+.form-group.Bool.new_checkbox,
+.new_checkbox {
+  --background: #fff;
+  --border: #D1D6EE;
+  --border-hover: #F6971C;
+  --border-active: #F6971C;
+  --tick: #fff;
+  position: relative;
+  display:flex;
+  cursor: pointer;
+  vertical-align: middle;
+  label {
+      margin-left: 2px;
+      cursor: pointer;
+  }
+  input,
+  svg {
+      width: 21px;
+      height: 21px;
+      display: block;
+  }
+  input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      position: relative;
+      outline: none;
+      background: var(--background);
+      border: none;
+      margin: 0;
+      margin-right: 3px;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: box-shadow .3s;
+      box-shadow: inset 0 0 0 var(--s, 1px) var(--b, var(--border));
+      &:hover {
+          --s: 2px;
+          --b: var(--border-hover);
+      }
+      &:checked {
+          --b: var(--border-active);
+      }
+  }
+  svg {
+      pointer-events: none;
+      fill: none;
+      stroke-width: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: var(--stroke, var(--border-active));
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 21px;
+      height: 21px;
+      transform: scale(var(--scale, 1)) translateZ(0);
+  }
+  &.bounce {
+      --stroke: var(--tick);
+      input {
+          &:checked {
+              --s: 11px;
+              & + svg {
+                  animation: bounce .4s linear forwards .2s;
+              }
+          }
+      }
+      svg {
+          --scale: 0;
+      }
+  }
+}
+
+@keyframes bounce {
+  50% {
+      transform: scale(1.2);
+  }
+  75% {
+      transform: scale(.9);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+//checkbox styles start end

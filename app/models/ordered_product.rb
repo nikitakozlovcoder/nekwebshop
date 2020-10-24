@@ -9,6 +9,9 @@ class OrderedProduct < ApplicationRecord
     data.each do |d|
       val = d['value']
       val = val[0..20] if val.is_a? String
+      if val.is_a? String and val.length >= 21
+        val+="... "
+      end
       str+="#{d['name']}#{d['hint'].blank? ? '' : '('+d['hint']+')' }:  #{val}. " if d
     end
     str
