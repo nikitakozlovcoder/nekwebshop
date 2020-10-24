@@ -225,7 +225,7 @@ Category.add 'Фото и видео-техника', [
 
 ]
 Category.add 'Смартфоны', [
-    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: "пикселей", is_int: false},
+    {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil, is_int: false},
     {:name=> "Процессор", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
     {:name=> "Объем ОЗУ", :type => "Number", :id=>3, :min=>0, :max=>nil, hint: "gb", is_int: true},
     {:name=> "Объем ОЗУ", :type => "Number", :id=>4, :min=>0, :max=>nil, hint: "gb", is_int: true},
@@ -236,7 +236,8 @@ Category.add 'Смартфоны', [
     {:name=> "Влагозащита", :type => "Bool", :id=>9, :min=>nil , :max=>nil, hint: nil},
     {:name=> "NFC", :type => "Bool", :id=>10, :min=>nil , :max=>nil, hint: nil},
     {:name=> "Емкость аккумулятора", :type => "Number", :id=>11, :min=>nil , :max=>nil, hint: nil, is_int: true},
-    {:name=> "Операционная система", :type => "Text", :id=>12, :min=>nil , :max=>nil, hint: nil}
+    {:name=> "Операционная система", :type => "Text", :id=>12, :min=>nil , :max=>nil, hint: nil},
+    {:name=> "Разрешение экрана", :type => "Text", :id=>13, :min=>nil , :max=>nil, hint: nil},
 ]
 Category.add 'Клавиатуры', [
     {:name=> "Игровая", :type => "Bool", :id=>1, :min=>nil , :max=>nil, hint: nil},

@@ -33,6 +33,12 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.product-price span{
+  font-weight: bold !important;
+}
+body{
+  font-family: my_roboto !important;
+}
 .single-product .product-img a {
   width: 100% !important;
 }
