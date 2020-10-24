@@ -115,12 +115,12 @@
                       <label for="radio1<%= el['id'].to_s%>">Любое</label>
                     </p>
                     <p>
-                      <input id = "radio2<%= el['id'].to_s%>" name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No" <%= params[el['id'].to_s ]== 'No' ? 'checked' : '' %>>
-                      <label for="radio2<%= el['id'].to_s%>">Нет</label>
-                    </p>
-                    <p>
                       <input id = "radio3<%= el['id'].to_s%>" name="<%= el['id'].to_s %>" type="radio" placeholder="" value="Yes" <%= params[el['id'].to_s ]== 'Yes' ? 'checked' : '' %>>
                       <label for="radio3<%= el['id'].to_s%>">Да</label>
+                    </p>
+                    <p>
+                      <input id = "radio2<%= el['id'].to_s%>" name="<%= el['id'].to_s%>" type="radio" placeholder="" value="No" <%= params[el['id'].to_s ]== 'No' ? 'checked' : '' %>>
+                      <label for="radio2<%= el['id'].to_s%>">Нет</label>
                     </p>
                     </div>
                   <% end %>
