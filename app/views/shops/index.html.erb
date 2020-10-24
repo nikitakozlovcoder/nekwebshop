@@ -74,7 +74,7 @@
                 <tbody>
                   <tr>
 								    <td class="column1">Моб. телефон</td>
-									  <td class="column2"><%= @shop.phone %></td>
+									  <td class="column2"><a href = "tel:<%= @shop.phone %>"><%= @shop.phone %></a></td>
 								  </tr>
                   <tr>
 								    <td class="column1">Эл. почта</td>
@@ -96,25 +96,25 @@
 									<% if !(@shop.vk.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">ВКонтакте</td>
-									  <td class="column2"><a><%= @shop.vk %></a></td>
+									  <td class="column2"><a href="<%= @shop.vk %>"><%= @shop.vk %></a></td>
 								  </tr>
 									<% end %>
 									<% if !(@shop.wu.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">WhatsUp</td>
-									  <td class="column2"><a><%= @shop.wu %></a></td>
+									  <td class="column2"><a href = "<%= @shop.wu %>"><%= @shop.wu %></a></td>
 								  </tr>
 									<% end %>
 									<% if !(@shop.tg.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">Telegram</td>
-									  <td class="column2"><a><%= @shop.tg %></a></td>
+									  <td class="column2"><a href = "<%= @shop.tg %>"><%= @shop.tg %></a></td>
 								  </tr>
 									<% end %>
 									<% if !(@shop.fb.blank?) %>
 									<tr class = "sub">
 										<td class="column1">Facebook</td>
-										<td class="column2"><a><%= @shop.fb %></a></td>
+										<td class="column2"><a href = "<%= @shop.fb %>"><%= @shop.fb %></a></td>
 									</tr>
 								<% end %>
                 </tbody>
