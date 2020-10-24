@@ -1851,7 +1851,14 @@ Version:1.0
 .single-product .product-img .product-action a i {
   line-height: 40px;
 }
-//For description (small text) of button (3 styles below)
+//For description (small text) of button (5 styles below)
+.control_single_icon {
+	position: relative;
+}
+.control_single_icon span {
+	font-family: 'Poppins', sans-serif;
+}
+
 .single-product .product-img .product-action a span,
 .header.shop .right-bar .sinlge-bar .single-icon span,
 .section-profile .add_shop_button > .single-icon span,
@@ -1893,12 +1900,16 @@ Version:1.0
 .single-product .product-img .product-action a:hover span,
 .header.shop .right-bar .sinlge-bar .single-icon:hover span,
 .section-profile .add_shop_button > .single-icon:hover span,
-.control_single_icon:hover ~ .control_description_icon {
+.control_single_icon:hover .control_description_icon {
   visibility: visible;
   opacity: 1;
   color:#333;
   background:#fff;
   margin-top: -12px;
+}
+.control_description_icon{
+	right: 2px;
+	top: -19px
 }
 //
 .single-product .product-img .product-action a:hover {
@@ -3005,6 +3016,7 @@ Version:1.0
 	vertical-align: middle;
 	border-top: 1px solid #eee;
 	padding: 30px;
+	text-align: center;
 }
 .shopping-summery tbody .price {
 	text-align: center;

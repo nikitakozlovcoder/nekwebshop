@@ -39,7 +39,7 @@
           <tbody>
           <% @carts.each do |cart| %>
             <tr data-code = "<%= cart.id %>" class = "cart-item-wrap">
-              <td class="image" data-title="№"><%= image_tag cart.product.main_photo %></td>
+              <td class="image" data-title="№"><%= link_to(controller: "products", action: "show", id: cart.product.id) do %><%= image_tag cart.product.main_photo %><% end %></td>
               <td class="product-des" data-title="Описание">
                 <p class="product-name"><%= link_to cart.product.title, controller: "products", action: "show", id: cart.product.id  %></p>
                 <p class="product-des"><%= cart.product.description[0..45] %><%= cart.product.description.length > 46 ? "..." : "" %></p>
@@ -48,13 +48,13 @@
               <td class="qty" data-title="Количество"><!-- Input Order -->
                 <div class="input-group">
                   <div class="button minus">
-                    <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="quant[<%= cart.id %>]"> 
+                    <button type="button" class="btn btn-primary btn-number clickable" data-type="minus" data-field="quant[<%= cart.id %>]"> 
                       <i class="ti-minus"></i>
                     </button>
                   </div>
                   <input type="text" name="quant[<%= cart.id %>]" class="input-number" data-min="1" data-max="2147483647" value="<%= cart.quantity %>">
                   <div class="button plus">
-                    <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[<%= cart.id %>]">
+                    <button type="button" class="btn btn-primary btn-number clickable" data-type="plus" data-field="quant[<%= cart.id %>]">
                       <i class="ti-plus"></i>
                     </button>
                   </div>
@@ -62,7 +62,7 @@
                 <!--/ End Input Order -->
               </td>
               <td class="total-amount" data-title="Подытог"><span>₽<%=  (cart.product.price * cart.quantity).round(2) %></span></td>
-              <td class="action" data-title="Удалить"><span><i class="ti-trash remove-icon"></i></span></td>
+              <td class="action" data-title="Удалить"><span><i class="ti-trash remove-icon control_single_icon"><span class = "control_description_icon">Удалить</span></i></span></td>
             </tr>
           <% end %>
 

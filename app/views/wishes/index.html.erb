@@ -39,7 +39,7 @@
                 <%= image_tag el.product.main_photo, class: 'image' %>
               </div>
               <div class="product-inform">
-                <p class="product-name"><%= link_to el.product.title, controller: 'products', action: 'show', id: el.product.id %></p>
+                <p class="product-name"><%= link_to el.product.title, {controller: 'products', action: 'show', id: el.product.id}, {class: 'clickable'} %></p>
                 <p class="descr"><%= el.product.description[0..45] %><%= el.product.description.length > 45 ? "..." : "" %></p>
               </div>
             </div>
@@ -47,7 +47,7 @@
                 <span><%= el.product.price %> &#8381;</span>
               </div>
               <div class="delete">
-               <%= link_to({controller: 'wishes', action: 'delete', id: el.id}, data:{'turbolinks-no-scroll'=>true}) do %><i class="ti-trash remove-icon"></i><% end %>
+               <%= link_to({controller: 'wishes', action: 'delete', id: el.id}, data:{'turbolinks-no-scroll'=>true}) do %><i class="ti-trash remove-icon control_single_icon"><span class ="control_description_icon">Удалить</span></i><% end %>
               </div>
           </div>
               <% end %>

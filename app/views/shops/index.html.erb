@@ -102,7 +102,7 @@
 									<% if !(@shop.wu.blank?) %>
                   <tr class = "sub">
 								    <td class="column1">WhatsUp</td>
-									  <td class="column2"><a><%= @shop.wu %></a></td>
+									  <td class="column2"><a href = "<%= @shop.wu %>"><%= @shop.wu %></a></td>
 								  </tr>
 									<% end %>
 									<% if !(@shop.tg.blank?) %>
@@ -114,7 +114,7 @@
 									<% if !(@shop.fb.blank?) %>
 									<tr class = "sub">
 										<td class="column1">Facebook</td>
-										<td class="column2"><a><%= @shop.fb %></a></td>
+										<td class="column2"><a href = "<%= @shop.fb %>"><%= @shop.fb %></a></td>
 									</tr>
 								<% end %>
                 </tbody>
