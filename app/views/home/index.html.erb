@@ -56,6 +56,7 @@
 
       <!-- /End Single Banner  -->
       <!-- Single Banner  -->
+
       <div class="col-lg-4 col-md-6 col-12" >
 
 
@@ -73,6 +74,7 @@
       <!-- /End Single Banner  -->
       <!-- Single Banner  -->
       <div class="col-lg-4 col-12">
+
         <div class="single-banner" style="position: relative;">
           <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.3;"></div>
           <%= image_tag "jackets.jpg" %>
@@ -1289,27 +1291,31 @@
     <div class="row">
 
       <div class="col-lg-6 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://via.placeholder.com/600x370" alt="#">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.5;"></div>
+          <%= image_tag "bestrussianbuystorever.jpeg" %>
           <div class="content">
-            <p>советуем заглянуть</p>
-            <h3>РашнБест<br/>БайСторЕвер</h3>
-            <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'РашнБестБайСторЕвер').id},  class: "btn" %>
+            <p style="font-weight: 600;">Лучший выбор</p>
+            <h3 style="color: white !important;">РашнБестБай<br>СторЕвер</h3>
+            <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'Семерочка').id},  class: "btn" %>
           </div>
         </div>
       </div>
 
 
       <div class="col-lg-6 col-md-6 col-12">
-        <div class="single-banner">
-          <img src="https://via.placeholder.com/600x370" alt="#">
+        <div class="single-banner" style="position: relative;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: rgb(43,43,43); opacity: 0.4;"></div>
+          <%= image_tag "semerochka.jpeg" %>
           <div class="content">
-            <p>лучший выбор</p>
-            <h3>Семерочка</h3>
+            <p style="font-weight: 600;">Лучший выбор</p>
+            <h3 style="color: white !important;">Семерочка</h3>
             <%= link_to "К магазину",{controller: "shops", action: "index", id: Shop.find_by(name: 'Семерочка').id},  class: "btn" %>
           </div>
         </div>
       </div>
+
+      
 
     </div>
   </div>

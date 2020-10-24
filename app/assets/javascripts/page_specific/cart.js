@@ -8,7 +8,8 @@ $(document).on('turbolinks:load', function () {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data);
+                    console.log("Don't look here");
+                    //console.log(data);
                 });
         }
 
@@ -20,7 +21,8 @@ $(document).on('turbolinks:load', function () {
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data);
+                    console.log("Don't look here");
+                   // console.log(data);
                 });
         }
 
