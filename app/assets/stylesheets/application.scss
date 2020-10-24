@@ -568,9 +568,16 @@ tbody tr:hover {
   object-fit: cover;
 }
 
-
-.name-shop {
+.name-shop{
   font-size: 15px;
+  padding-bottom: 8px;
+}
+.name-shop h5{
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: normal !important;
+  white-space: nowrap;
 }
 .left-shop-inform-container_second {
   padding: 10px;
@@ -583,7 +590,7 @@ tbody tr:hover {
   padding: 10px;
 }
 .categories_shop{
-  margin-top: auto;
+  padding-bottom: 0;
 }
 .left-shop-inform_second {
   height: 100%;
