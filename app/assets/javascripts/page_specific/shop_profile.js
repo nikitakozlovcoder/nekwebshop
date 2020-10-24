@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function () {
             let id = el.dataset.id;
             console.log(id);
             el.querySelector('.delete-product').addEventListener('click', ()=>{
-                if(confirm(`Удалить товар ${el.querySelector('.product-name').textContent}`)){
+                if(confirm(`Удалить товар ${el.querySelector('.product-name').textContent}?`)){
                     PRODUCTS_COUNT--;
                     update_no_products();
                     el.style.display = 'none';

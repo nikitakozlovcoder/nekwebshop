@@ -2,8 +2,8 @@
 
 $(document).on('turbolinks:load', function () {
 	if (get_body().classList.contains('products') && (get_body().classList.contains('new') || get_body().classList.contains('create') || get_body().classList.contains('update'))) {
-
 		function CATEGORY_SELECT_LISTENER(){
+
 			Categories = document.querySelectorAll(".Category .list li");
 			let textedit = document.querySelector(".Category .current");
 
@@ -35,6 +35,7 @@ $(document).on('turbolinks:load', function () {
 			divMO.observe(textedit, { childList: true, subtree: true, characterData: true });
 		}
 		let CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
+
 		CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
 		//unite format
 		function UniteFormat(str){
@@ -138,6 +139,8 @@ $(document).on('turbolinks:load', function () {
 					refill_fields(data);
 					//after select update
 					$('select').niceSelect('update');
+					CATEGORY_SELECT = document.querySelector(".Category .nice-select.category_select");
+					CATEGORY_SELECT.addEventListener('click', CATEGORY_SELECT_LISTENER);
 				})
 
 		}
