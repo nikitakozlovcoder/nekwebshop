@@ -26,7 +26,7 @@ class TurbolinksControl  {
     run (){
         let scrollPosition = null;
         document.addEventListener('turbolinks:before-visit', (event) => {
-            console.log(this.enabled);
+            //console.log(this.enabled);
             if (this.enabled)
                 scrollPosition = window.scrollY;
             else
@@ -36,7 +36,7 @@ class TurbolinksControl  {
 
         document.addEventListener('turbolinks:load', (event) => {
             const elements = document.querySelectorAll(`[data-turbolinks-no-scroll="true"]`);
-            console.log(elements);
+          //  console.log(elements);
             for (let i = 0; i < elements.length; i++) {
                 elements[i].addEventListener('click', () => {
                     this.enabled = true
@@ -63,7 +63,7 @@ class TurbolinksControl  {
                 {
                     scrollPosition-=0;
                 }
-                console.log(scrollPosition)
+              //  console.log(scrollPosition)
                 let anchor;
                 if (this.scrollToTop && document.body.clientWidth>=768)
                 {
@@ -96,6 +96,7 @@ class TurbolinksControl  {
 
 turbolinks_control = new TurbolinksControl();
 turbolinks_control.run();
+
 $(document).on('turbolinks:load', function () {
     for (let i = 0; i < document.forms.length; i++) {
         const form = document.forms[i]

@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
      @shop = Shop.find_by!(id: params[:id], user_id: current_user)
      @product = @shop.products.find(params[:product_id])
      @product.destroy
+     @shop.update_top_cat
      render json: true
    end
    def load_fields

@@ -33,6 +33,22 @@ $color-border: rgba(175, 175, 175, 0.86);
 *{
   box-sizing: border-box;
 }
+.product-price span{
+  font-weight: bold !important;
+}
+body{
+  font-family: my_roboto !important;
+}
+.single-product .product-img a {
+  width: 100% !important;
+}
+.link-banner{
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+.link-banner:hover{
+  border-color: #f7941d !important;
+}
 .logo-shop{
   text-align: center;
 }
@@ -150,7 +166,10 @@ h4 a:hover{
   margin-top: 25px;
 }
 .product-img{
-  height: 250px;
+  //height: 250px;
+  height: 18vw;
+  max-height: 250px;
+  min-height: 150px;
   padding: 0 10px 10px;
   display: flex;
 
@@ -162,7 +181,7 @@ h4 a:hover{
   margin: auto;
   width: 100%;
   height: 100%;
-  object-fit: cover !important;
+  object-fit: contain !important;
 }
 .nice-select .list{
   z-index: 100;
@@ -549,9 +568,16 @@ tbody tr:hover {
   object-fit: cover;
 }
 
-
-.name-shop {
+.name-shop{
   font-size: 15px;
+  padding-bottom: 8px;
+}
+.name-shop h5{
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: normal !important;
+  white-space: nowrap;
 }
 .left-shop-inform-container_second {
   padding: 10px;
@@ -564,7 +590,7 @@ tbody tr:hover {
   padding: 10px;
 }
 .categories_shop{
-  margin-top: auto;
+  padding-bottom: 0;
 }
 .left-shop-inform_second {
   height: 100%;
@@ -1104,3 +1130,5 @@ tbody tr:hover {
 .del_addr:hover {
   color: #F6971C;
 }
+
+

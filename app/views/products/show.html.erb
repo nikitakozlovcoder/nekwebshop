@@ -73,7 +73,7 @@
 									<div class = "categories">
 
 										<% @product.category.path.each do |el|%>
-											<p><%= el.name %></p>
+											<p><%= link_to el.name, controller: 'products', action: 'index', category_id: el.id %></p>
 										<%end %>
 
 									</div>
@@ -81,7 +81,7 @@
 								<div class="col-lg-6 col-12">
 
 									<div class="form-group add-to-cart">
-										<h3 class = "left product_price"><%= @product.price == @product.price.floor ? @product.price.to_i : @product.price %>₽</h3>
+										<h3 class = "left product_price"><%= number_to_currency(@product.price, unit:'₽') %></h3>
 										<div class = "buttons_group product_add_to" style="display: flex;">
 											<span class="add_to_cart_wrapper" >
 													<% if !is_in_cart(@product.id) %>

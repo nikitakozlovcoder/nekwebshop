@@ -275,7 +275,7 @@
                         </div>
                         <div class = "inner_info">
                           <div class = "wrapper">
-
+                            <hr>
                             <div class = "description">
                               <h3>Информация о заказчике</h3>
                             </div>
@@ -339,13 +339,14 @@
                                       <p class = "product-des"><%= op.data_view %></p>
                                     </div>
                                     <div class = "price">
-                                      <p><%= op.price %>₽</p>
+                                      <p><%= number_to_currency(op.price, unit:'₽') %></p>
                                     </div>
                                     <div class = "qty">
                                       <p><%= op.quantity %></p>
                                     </div>
                                     <div class = "sub-total">
-                                      <%= (op.price * op.quantity).round(2) %>₽
+                                      <%= number_to_currency((op.price * op.quantity).round(2), unit:'₽') %>
+
                                     </div>
 
                                     <div class = "price_name">
@@ -367,7 +368,7 @@
                                 Итого
                               </div>
                               <div class = "total">
-                                <%= order.price %>₽
+                                <%= number_to_currency(order.price, unit:'₽') %>
                               </div>
                             </div>
 
@@ -398,7 +399,7 @@
            </div>
            <div class="product-elements">
              <div class="price">
-             <span><%= product.price %> &#8381;</span>
+             <span><%= number_to_currency(product.price, unit:'₽') %></span>
            </div>
              <div class="quantity">
                <p>Количество:</p>
