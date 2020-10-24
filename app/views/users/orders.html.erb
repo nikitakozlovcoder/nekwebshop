@@ -81,7 +81,7 @@
               </div>
               <div class = "inner_info">
                 <div class = "wrapper">
-
+                  <hr>
                     <div class = "description">
                       <h3>Информация о продавце</h3>
                     </div>
@@ -104,6 +104,12 @@
                         <div class = "content">
                          <%= order.address.location %>
                         </div>
+                      <div>
+                        <p>Почтовый индекс</p>
+                      </div>
+                      <div class = "content">
+                        <%= order.address.zip %>
+                      </div>
                     </div>
 
                     <div class = "description">
