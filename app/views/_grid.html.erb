@@ -143,8 +143,8 @@
                   <h3 class="title">Производители</h3>
                   <ul class="categor-list">
                     <% @makers.each do |el|%>
-                      <% prod_count = @products.where(maker_id: el.id).select{|a| a.quantity > 0 || a.is_inf_quantity}.count %>
-                      <% if prod_count > 0 %>
+                      <% prod_count =  (!params['qty'].nil? and params['qty']=="no") ? @products.where(maker_id: el.id).count : @products.where(maker_id: el.id).select{|a| a.quantity > 0 || a.is_inf_quantity}.count %>
+                      <% if prod_count > 0   %>
                       <div class="new_checkbox bounce">
                         <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" >
                         <svg viewBox="0 0 21 21">
