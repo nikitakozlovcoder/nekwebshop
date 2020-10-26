@@ -1120,6 +1120,8 @@ tbody tr:hover {
 .Category.form-group .nice-select > span {
   outline: none;
   min-width: 10px;
+  color: red;
+  display:  block;
 }
 
 //shop profile trash-icon
@@ -1344,4 +1346,5 @@ input[type=number]::-webkit-outer-spin-button {
       transform: scale(1);
   }
 }
+
 //checkbox styles start end
