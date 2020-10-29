@@ -228,7 +228,7 @@ Category.add 'Смартфоны', [
     {:name=> "Диагональ", :type => "Number", :id=>1, :min=>0, :max=>nil, hint: nil, is_int: false},
     {:name=> "Процессор", :type => "Text", :id=>2, :min=>0, :max=>nil, hint: nil},
     {:name=> "Объем ОЗУ", :type => "Number", :id=>3, :min=>0, :max=>nil, hint: "gb", is_int: true},
-    {:name=> "Объем ОЗУ", :type => "Number", :id=>4, :min=>0, :max=>nil, hint: "gb", is_int: true},
+    {:name=> "Объем ПЗУ", :type => "Number", :id=>4, :min=>0, :max=>nil, hint: "gb", is_int: true},
     {:name=> "Слот под карту памяти", :type => "Bool", :id=>5, :min=>nil , :max=>nil, hint: nil},
     {:name=> "WI-FI", :type => "Bool", :id=>6, :min=>nil , :max=>nil, hint: nil},
     {:name=> "GPS", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
@@ -245,7 +245,7 @@ Category.add 'Клавиатуры', [
     {:name=> "Тип подключения", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет", :type => "Text", :id=>4, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет подсветки", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
-    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: "gb", is_int: true},
+    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, is_int: true, hint: nil},
     {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 
 ]
@@ -255,14 +255,14 @@ Category.add 'Компьютерные мыши', [
     {:name=> "Тип подключения", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет", :type => "Text", :id=>4, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет подсветки", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
-    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: "gb", is_int: true},
+    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: nil, is_int: true},
     {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 ]
 #Дерево
 maker_samsung = Maker.create(name:"Samsung")
 maker_a4tech = Maker.create(name:"A4Tech")
 с1 = Category.create(name: "Цифровая техника")
-с2 = Category.create(name: "Перефирия", parent: с1)
+с2 = Category.create(name: "Периферия", parent: с1)
 a1 = Category.where(name:"Фото и видео-техника").first
 a1.makers << another
 a1.makers << maker_samsung

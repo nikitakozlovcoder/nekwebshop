@@ -448,7 +448,6 @@ tbody tr:hover {
   display: inline-block;
   padding: 10px;
   margin-bottom: 10px;
-  margin-right: 10px;
 }
 .title.inside_title {
   padding-top: 20px;
@@ -1120,6 +1119,7 @@ tbody tr:hover {
 .Category.form-group .nice-select > span {
   outline: none;
   min-width: 10px;
+  display:  block;
 }
 
 //shop profile trash-icon
@@ -1344,4 +1344,5 @@ input[type=number]::-webkit-outer-spin-button {
       transform: scale(1);
   }
 }
+
 //checkbox styles start end

@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     @category = nil
     @data = nil
     query = []
+    query_makers = []
     if params[:category_id]
       @category = Category.includes(:products, :makers).find params[:category_id]
       @data = JSON.parse @category.data if @category.is_template
@@ -44,7 +45,7 @@ class ApplicationController < ActionController::Base
       query << "lower(products.title) like '%#{params[:search].downcase}%'"
     end
     if params['makers']
-      query << 'products.maker_id in (' + params[:makers].join(', ') + ')'
+      query_makers << 'products.maker_id in (' + params[:makers].join(', ') + ')'
     end
     if !params['price_min'].blank?
       query << "products.price >='#{params['price_min']}'"
@@ -80,6 +81,7 @@ class ApplicationController < ActionController::Base
       end
     end
     query = query.join ' and '
+    query_makers = query_makers.join ' and '
     sum = query2.count
     query2 = query2.join ' or '
     pp query
@@ -121,6 +123,8 @@ class ApplicationController < ActionController::Base
     @min_price = 0 if !@min_price
 
     @makers = @makers.nil? ? nil : @makers.sort_by(&:name).sort_by{|el| el.is_another ? 1 : 0}
+    @products_independent = @products
+    @products = @products.where(query_makers);
   end
   def is_in_cart(id)
     result = false

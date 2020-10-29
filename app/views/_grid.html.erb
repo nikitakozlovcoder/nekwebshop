@@ -143,14 +143,14 @@
                   <h3 class="title">Производители</h3>
                   <ul class="categor-list">
                     <% @makers.each do |el|%>
-                      <% prod_count = @products.where(maker_id: el.id).select{|a| a.quantity > 0 || a.is_inf_quantity}.count %>
-                      <% if prod_count > 0 %>
+                      <% prod_count =  (!params['qty'].nil? and params['qty']=="no") ? @products_independent.where(maker_id: el.id).count : @products_independent.where(maker_id: el.id).select{|a| a.quantity > 0 || a.is_inf_quantity}.count %>
+                      <% if prod_count > 0   %>
                       <div class="new_checkbox bounce">
-                        <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> type="checkbox" name="makers[]" value="<%= el.id %>" >
+                        <input <%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "checked": '' %> id="<%= "manuf_#{el.id}" %>" type="checkbox" name="makers[]" value="<%= el.id %>" >
                         <svg viewBox="0 0 21 21">
                           <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
                         </svg>
-                        <label for="qty_checkbox" class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">
+                        <label for="<%= "manuf_#{el.id}" %>" class="<%=  params[:makers] && params[:makers].include?(el.id.to_s)  ? "maker-assent": '' %>">
                           <%= el.name %> (<%=  prod_count %>)
                         </label>
                       </div>
