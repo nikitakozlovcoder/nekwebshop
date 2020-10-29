@@ -245,7 +245,7 @@ Category.add 'Клавиатуры', [
     {:name=> "Тип подключения", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет", :type => "Text", :id=>4, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет подсветки", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
-    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, is_int: true},
+    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, is_int: true, hint: nil},
     {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 
 ]
@@ -255,7 +255,7 @@ Category.add 'Компьютерные мыши', [
     {:name=> "Тип подключения", :type => "Text", :id=>3, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет", :type => "Text", :id=>4, :min=>0, :max=>nil, hint: nil},
     {:name=> "Цвет подсветки", :type => "Text", :id=>5, :min=>0, :max=>nil, hint: nil},
-    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: null, is_int: true},
+    {:name=> "Количество клавиш", :type => "Number", :id=>6, :min=>0, :max=>nil, hint: nil, is_int: true},
     {:name=> "Подсветка", :type => "Bool", :id=>7, :min=>nil , :max=>nil, hint: nil},
 ]
 #Дерево
