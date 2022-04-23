@@ -108,7 +108,6 @@ class ApplicationController < ActionController::Base
     end
 
       if t
-        puts "HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         pr = Product.where(category_id: t)
         pr = pr.where(shop_id: shop_id) if shop_id
         @max_price = pr.maximum(:price)
@@ -126,6 +125,7 @@ class ApplicationController < ActionController::Base
     @products_independent = @products
     @products = @products.where(query_makers);
   end
+  
   def is_in_cart(id)
     result = false
     if current_user and current_user.carts.find_by(product_id: id )
@@ -135,6 +135,7 @@ class ApplicationController < ActionController::Base
     end
      result
   end
+
   def is_in_wishlist(id)
     if current_user and current_user.wishes.find_by(product_id: id )
       true
