@@ -5,8 +5,8 @@ Rails.application.configure do
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'gmail.com',
-      user_name:            'nekmarketplace@gmail.com',
-      password:             'eeulqshtzdqxqgze',
+      user_name:            'nekwebmarketplace@gmail.com',
+      password:             'rkebbenbouiybgth',
       authentication:       'plain',
       enable_starttls_auto: true }
   # Settings specified here will take precedence over those in config/application.rb.
