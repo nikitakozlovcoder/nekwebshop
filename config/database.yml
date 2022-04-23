@@ -30,4 +30,5 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  database: nekwebshop_production
+  username: nekwebshop
