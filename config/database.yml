@@ -30,5 +30,4 @@ test:
 
 production:
   <<: *default
-  database: nekwebshop_production
-  username: nekwebshop
+  url: <%= ENV["HEROKU_POSTGRESQL_YELLOW_URL"] %>
