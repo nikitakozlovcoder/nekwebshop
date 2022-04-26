@@ -72,16 +72,13 @@ class CartController < ApplicationController
       order.email = params[:email]
       order.shop_id = shop_id
       order.user = current_user if current_user
-      puts "START1!!!!!!!!!"
       order.address = create_addr
 
-      puts "START2!!!!!!!!!"
       carts.each{|el|
         order.ordered_products << create_ordered_product(el)
       }
 
       order.save
-      puts "STOP!!!!!!!!!"
     end
     get_carts.destroy_all
     else

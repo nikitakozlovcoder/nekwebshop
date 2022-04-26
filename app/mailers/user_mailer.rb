@@ -7,7 +7,6 @@ class UserMailer < ApplicationMailer
   end
 
   def confirm
-    puts "MailDeliver!"
     @user = params[:user]
     @url =  params[:url]
 
@@ -15,7 +14,6 @@ class UserMailer < ApplicationMailer
   end
 
   def change
-    puts "MailDeliver!"
     @user = params[:user]
     @url =  params[:url]
 

@@ -71,8 +71,6 @@ class UsersController < ApplicationController
         time = Time.now.getutc
         @user.email_temp_code = code
         @user.change_code_task_started = time
-        puts "!!!!!!!!!!!!"
-        puts @user.email_temp
         UserMailer.with(user: @user, url: request.base_url+"/user/#{@user.id}/change/"+code).change.deliver_later
         UserClearTempCodeJob.set(wait: 10.minutes).perform_later(@user, time)
         @mail_change = true
@@ -278,7 +276,6 @@ class UsersController < ApplicationController
       @errors << "Введите адрес"
     end
     if  @user.valid? and @errors.count <= 0
-      puts "SAVEDUSER"
       code = SecureRandom.hex(10)
       time = Time.now.getutc
       @user.restore_code_task_started = time
@@ -325,16 +322,13 @@ class UsersController < ApplicationController
   private
 
   def fill_cart
-    puts "hi!"
     @temp = []
     @temp = Cart.where(uuid: cookies.signed[:uuid]) if cookies.signed[:uuid]
     @db = @user.carts
     @temp.each do |el|
       if @db.where(product_id: el.product.id).last
-        puts "1111111111111111111111111"
         el.delete
       else
-        puts "!!!!!!!!!!!!!!!!!!!!!!!!!"
         el.uuid = nil
         @user.carts << el
       end

@@ -140,7 +140,6 @@ class ProductsController < ApplicationController
           if should_save
             a.save
           else
-            puts ""
             @product.fields << a
           end
 

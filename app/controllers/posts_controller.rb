@@ -7,7 +7,6 @@ class PostsController < ApplicationController
 
   end
   def delete
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!"
     @post = Post.find params[:id]
     if current_user && @post.user.id == current_user.id
       product = @post.product
