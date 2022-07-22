@@ -223,7 +223,7 @@ GEM
       activesupport (>= 5.2.0)
       railties (>= 5.2.0)
       turbolinks-source (~> 5.1)
-    tzinfo (1.2.9)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
